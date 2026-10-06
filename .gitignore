@@ -1,0 +1,33 @@
+# SSH / 인증서 / 비밀키
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+ota_lab
+ota_lab.pub
+
+# Ansible secrets
+secrets.yml
+vault-password*
+.vault_pass*
+
+# VM / Cloud images
+*.qcow2
+*.img
+*.iso
+*.raw
+
+# Ansible temporary
+*.retry
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc

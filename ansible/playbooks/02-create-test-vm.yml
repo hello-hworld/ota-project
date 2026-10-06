@@ -1,0 +1,99 @@
+---
+- name: Create test VM
+  hosts: localhost
+  connection: local
+  become: true
+  gather_facts: false
+
+  vars:
+    vm_name: test-vm
+    vm_memory: 2048
+    vm_vcpus: 2
+    vm_disk_size: 30G
+
+    vm_root: /var/lib/libvirt/ota
+    image_dir: "{{ vm_root }}/images"
+    vm_dir: "{{ vm_root }}/vms/{{ vm_name }}"
+
+    base_image: "{{ image_dir }}/noble-server-cloudimg-amd64.img"
+    vm_disk: "{{ vm_dir }}/{{ vm_name }}.qcow2"
+    seed_iso: "{{ vm_dir }}/seed.iso"
+
+    cloud_image_url: "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
+
+    ssh_public_key: "{{ lookup('file', lookup('env', 'HOME') + '/.ssh/ota_lab.pub') }}"
+
+  tasks:
+
+    - name: Create image directory
+      ansible.builtin.file:
+        path: "{{ image_dir }}"
+        state: directory
+        mode: "0755"
+
+    - name: Create VM directory
+      ansible.builtin.file:
+        path: "{{ vm_dir }}"
+        state: directory
+        mode: "0755"
+
+    - name: Download Ubuntu 24.04 cloud image
+      ansible.builtin.get_url:
+        url: "{{ cloud_image_url }}"
+        dest: "{{ base_image }}"
+        mode: "0644"
+
+    - name: Create VM disk from cloud image
+      ansible.builtin.copy:
+        src: "{{ base_image }}"
+        dest: "{{ vm_disk }}"
+        remote_src: true
+        force: false
+
+    - name: Resize VM disk
+      ansible.builtin.command:
+        cmd: "qemu-img resize {{ vm_disk }} {{ vm_disk_size }}"
+      changed_when: false
+
+    - name: Create cloud-init user-data
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../templates/user-data.j2"
+        dest: "{{ vm_dir }}/user-data"
+        mode: "0644"
+
+    - name: Create cloud-init meta-data
+      ansible.builtin.copy:
+        dest: "{{ vm_dir }}/meta-data"
+        mode: "0644"
+        content: |
+          instance-id: {{ vm_name }}
+          local-hostname: {{ vm_name }}
+
+    - name: Create cloud-init seed ISO
+      ansible.builtin.command:
+        cmd: >
+          cloud-localds
+          {{ seed_iso }}
+          {{ vm_dir }}/user-data
+          {{ vm_dir }}/meta-data
+      args:
+        creates: "{{ seed_iso }}"
+
+    - name: Create test VM
+      ansible.builtin.command:
+        cmd: >
+          virt-install
+          --name {{ vm_name }}
+          --memory {{ vm_memory }}
+          --vcpus {{ vm_vcpus }}
+          --cpu host-model
+          --import
+          --disk path={{ vm_disk }},format=qcow2,bus=virtio
+          --disk path={{ seed_iso }},device=cdrom
+          --network network=ota-net,model=virtio
+          --os-variant ubuntu24.04
+          --graphics none
+          --noautoconsole
+          --autostart
+      args:
+        creates: "/etc/libvirt/qemu/{{ vm_name }}.xml"

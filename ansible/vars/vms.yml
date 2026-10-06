@@ -1,0 +1,30 @@
+vms:
+  - name: cp-a
+    ip: 192.168.56.20
+    vcpu: 2
+    memory_mb: 2048
+    disk_gb: 30
+
+  - name: worker-a1
+    ip: 192.168.56.21
+    vcpu: 4
+    memory_mb: 6144
+    disk_gb: 60
+
+  - name: cp-b
+    ip: 192.168.56.30
+    vcpu: 2
+    memory_mb: 3072
+    disk_gb: 30
+
+  - name: worker-b1
+    ip: 192.168.56.31
+    vcpu: 4
+    memory_mb: 7168
+    disk_gb: 50
+
+  - name: worker-b2
+    ip: 192.168.56.32
+    vcpu: 4
+    memory_mb: 7168
+    disk_gb: 80

@@ -1,0 +1,45 @@
+---
+- name: Configure OTA libvirt network
+  hosts: localhost
+  connection: local
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Define ota-net
+      community.libvirt.virt_net:
+        name: ota-net
+        command: define
+        xml: |
+          <network>
+            <name>ota-net</name>
+
+            <forward mode='nat'/>
+
+            <bridge
+              name='virbr56'
+              stp='on'
+              delay='0'/>
+
+            <ip
+              address='192.168.56.1'
+              netmask='255.255.255.0'>
+
+              <dhcp>
+                <range
+                  start='192.168.56.100'
+                  end='192.168.56.200'/>
+              </dhcp>
+
+            </ip>
+          </network>
+
+    - name: Start ota-net
+      community.libvirt.virt_net:
+        name: ota-net
+        state: active
+
+    - name: Enable ota-net autostart
+      community.libvirt.virt_net:
+        name: ota-net
+        autostart: true
