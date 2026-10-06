@@ -1,0 +1,158 @@
+---
+- name: Create OTA Kubernetes VMs
+  hosts: localhost
+  connection: local
+  become: true
+  gather_facts: false
+
+  vars_files:
+    - ../vars/vms.yml
+
+  vars:
+    vm_root: /var/lib/libvirt/ota
+    image_dir: "{{ vm_root }}/images"
+    vm_dir: "{{ vm_root }}/vms"
+
+    base_image: "{{ image_dir }}/noble-server-cloudimg-amd64.img"
+
+    cloud_image_url: >-
+      https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
+
+    ssh_public_key: >-
+      {{ lookup('file', lookup('env', 'HOME') + '/.ssh/ota_lab.pub') }}
+
+  tasks:
+
+    - name: Ensure VM storage directories exist
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: "0755"
+      loop:
+        - "{{ image_dir }}"
+        - "{{ vm_dir }}"
+
+    - name: Download Ubuntu 24.04 cloud image
+      ansible.builtin.get_url:
+        url: "{{ cloud_image_url }}"
+        dest: "{{ base_image }}"
+        mode: "0644"
+
+    # --------------------------------------------------
+    # DHCP Reservations
+    # --------------------------------------------------
+
+    - name: Read ota-net XML
+      ansible.builtin.command:
+        cmd: virsh -c qemu:///system net-dumpxml ota-net
+      register: ota_net_xml
+      changed_when: false
+
+    - name: Add DHCP reservations
+      ansible.builtin.command:
+        argv:
+          - virsh
+          - -c
+          - qemu:///system
+          - net-update
+          - ota-net
+          - add
+          - ip-dhcp-host
+          - "<host mac='{{ item.mac }}' name='{{ item.name }}' ip='{{ item.ip }}'/>"
+          - --live
+          - --config
+      loop: "{{ vms }}"
+      when:
+        - item.mac not in ota_net_xml.stdout
+        - item.ip not in ota_net_xml.stdout
+
+    # --------------------------------------------------
+    # VM directories
+    # --------------------------------------------------
+
+    - name: Create individual VM directories
+      ansible.builtin.file:
+        path: "{{ vm_dir }}/{{ item.name }}"
+        state: directory
+        mode: "0755"
+      loop: "{{ vms }}"
+
+    # --------------------------------------------------
+    # VM disks
+    # --------------------------------------------------
+
+    - name: Create VM disks from base image
+      ansible.builtin.copy:
+        src: "{{ base_image }}"
+        dest: "{{ vm_dir }}/{{ item.name }}/{{ item.name }}.qcow2"
+        remote_src: true
+        force: false
+      loop: "{{ vms }}"
+      register: vm_disk_copy
+
+    - name: Resize newly created VM disks
+      ansible.builtin.command:
+        cmd: >-
+          qemu-img resize
+          {{ vm_dir }}/{{ item.item.name }}/{{ item.item.name }}.qcow2
+          {{ item.item.disk_gb }}G
+      loop: "{{ vm_disk_copy.results }}"
+      when: item.changed
+
+    # --------------------------------------------------
+    # cloud-init
+    # --------------------------------------------------
+
+    - name: Create user-data for each VM
+      ansible.builtin.template:
+        src: "{{ playbook_dir }}/../templates/user-data.j2"
+        dest: "{{ vm_dir }}/{{ item.name }}/user-data"
+        mode: "0644"
+      loop: "{{ vms }}"
+      vars:
+        vm_name: "{{ item.name }}"
+
+    - name: Create meta-data for each VM
+      ansible.builtin.copy:
+        dest: "{{ vm_dir }}/{{ item.name }}/meta-data"
+        mode: "0644"
+        content: |
+          instance-id: {{ item.name }}
+          local-hostname: {{ item.name }}
+      loop: "{{ vms }}"
+
+    - name: Create cloud-init seed ISO
+      ansible.builtin.command:
+        cmd: >-
+          cloud-localds
+          {{ vm_dir }}/{{ item.name }}/seed.iso
+          {{ vm_dir }}/{{ item.name }}/user-data
+          {{ vm_dir }}/{{ item.name }}/meta-data
+      args:
+        creates: "{{ vm_dir }}/{{ item.name }}/seed.iso"
+      loop: "{{ vms }}"
+
+    # --------------------------------------------------
+    # VM Creation
+    # --------------------------------------------------
+
+    - name: Create VMs
+      ansible.builtin.command:
+        cmd: >-
+          virt-install
+          --connect qemu:///system
+          --name {{ item.name }}
+          --memory {{ item.memory_mb }}
+          --vcpus {{ item.vcpu }}
+          --cpu host-model
+          --import
+          --disk path={{ vm_dir }}/{{ item.name }}/{{ item.name }}.qcow2,format=qcow2,bus=virtio
+          --disk path={{ vm_dir }}/{{ item.name }}/seed.iso,device=cdrom
+          --network network=ota-net,model=virtio,mac={{ item.mac }}
+          --os-variant ubuntu24.04
+          --graphics none
+          --noautoconsole
+          --autostart
+      args:
+        creates: "/etc/libvirt/qemu/{{ item.name }}.xml"
+      loop: "{{ vms }}"
