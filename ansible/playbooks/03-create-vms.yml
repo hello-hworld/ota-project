@@ -64,7 +64,6 @@
       loop: "{{ vms }}"
       when:
         - item.mac not in ota_net_xml.stdout
-        - item.ip not in ota_net_xml.stdout
 
     # --------------------------------------------------
     # VM directories
