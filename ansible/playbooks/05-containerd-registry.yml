@@ -1,0 +1,29 @@
+---
+- name: Configure HTTP private registry for containerd
+  hosts: all
+  become: true
+
+  vars:
+    registry_host: "192.168.56.21:32000"
+    registry_dir: "/etc/containerd/certs.d/192.168.56.21:32000"
+
+  tasks:
+    - name: Create registry certs directory
+      ansible.builtin.file:
+        path: "{{ registry_dir }}"
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+
+    - name: Configure HTTP registry
+      ansible.builtin.copy:
+        dest: "{{ registry_dir }}/hosts.toml"
+        owner: root
+        group: root
+        mode: "0644"
+        content: |
+          server = "http://{{ registry_host }}"
+
+          [host."http://{{ registry_host }}"]
+            capabilities = ["pull", "resolve", "push"]
