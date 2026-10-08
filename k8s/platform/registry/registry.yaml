@@ -4,6 +4,7 @@ metadata:
   name: registry-pvc
   namespace: platform
 spec:
+  storageClassName: local-path
   accessModes:
     - ReadWriteOnce
   resources:
@@ -18,9 +19,14 @@ metadata:
   namespace: platform
 spec:
   replicas: 1
+
+  strategy:
+    type: Recreate
+
   selector:
     matchLabels:
       app: registry
+
   template:
     metadata:
       labels:
@@ -32,12 +38,18 @@ spec:
       containers:
         - name: registry
           image: registry:2
+
           ports:
             - containerPort: 5000
 
-          volumeMounts:
-            - name: registry-data
-              mountPath: /var/lib/registry
+          readinessProbe:
+            httpGet:
+              path: /v2/
+              port: 5000
+            initialDelaySeconds: 3
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
 
           resources:
             requests:
@@ -46,6 +58,10 @@ spec:
             limits:
               cpu: 500m
               memory: 512Mi
+
+          volumeMounts:
+            - name: registry-data
+              mountPath: /var/lib/registry
 
       volumes:
         - name: registry-data
