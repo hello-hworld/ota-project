@@ -1,0 +1,33 @@
+NAME        STATUS   ROLES           AGE     VERSION    LABELS
+cp-a        Ready    control-plane   4d21h   v1.30.14   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=cp-a,kubernetes.io/os=linux,node-role.kubernetes.io/control-plane=,node.kubernetes.io/exclude-from-external-load-balancers=
+worker-a1   Ready    <none>          4d21h   v1.30.14   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=worker-a1,kubernetes.io/os=linux,workload=platform
+NAME                 STATUS   AGE
+default              Active   4d21h
+kube-node-lease      Active   4d21h
+kube-public          Active   4d21h
+kube-system          Active   4d21h
+local-path-storage   Active   4d1h
+monitoring           Active   4d21h
+platform             Active   4d21h
+staging              Active   4d21h
+NAME                           READY   STATUS    RESTARTS   AGE     IP            NODE        NOMINATED NODE   READINESS GATES
+pod/registry-76b469968-m9vg9   1/1     Running   0          3d23h   10.10.238.9   worker-a1   <none>           <none>
+
+NAME               TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE     SELECTOR
+service/registry   NodePort   10.104.235.209   <none>        5000:32000/TCP   3d23h   app=registry
+
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE     CONTAINERS   IMAGES       SELECTOR
+deployment.apps/registry   1/1     1            1           3d23h   registry     registry:2   app=registry
+
+NAME                                 DESIRED   CURRENT   READY   AGE     CONTAINERS   IMAGES       SELECTOR
+replicaset.apps/registry-76b469968   1         1         1       3d23h   registry     registry:2   app=registry,pod-template-hash=76b469968
+
+NAME                                 STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE     VOLUMEMODE
+persistentvolumeclaim/registry-pvc   Bound    pvc-d639b278-c685-4701-92c8-27d4c09d74cf   10Gi       RWO            local-path     <unset>                 3d23h   Filesystem
+NAME                                      READY   STATUS    RESTARTS   AGE    IP            NODE        NOMINATED NODE   READINESS GATES
+local-path-provisioner-85d9db4886-hntpz   1/1     Running   0          4d1h   10.10.238.1   worker-a1   <none>           <none>
+NAME                                     PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+storageclass.storage.k8s.io/local-path   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  4d1h
+
+NAME                                                        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                   STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+persistentvolume/pvc-d639b278-c685-4701-92c8-27d4c09d74cf   10Gi       RWO            Delete           Bound    platform/registry-pvc   local-path     <unset>                          3d23h

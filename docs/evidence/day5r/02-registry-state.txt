@@ -1,0 +1,9 @@
+HTTP/1.1 200 OK
+Content-Length: 2
+Content-Type: application/json; charset=utf-8
+Docker-Distribution-Api-Version: registry/2.0
+X-Content-Type-Options: nosniff
+{"repositories":["day5/busybox"]}
+
+{"name":"day5/busybox","tags":["1.36"]}
+

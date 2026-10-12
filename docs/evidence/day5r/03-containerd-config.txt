@@ -1,0 +1,60 @@
+worker-b1 | CHANGED | rc=0 >>
+containerd github.com/containerd/containerd/v2 2.2.1 
+total 12
+drwxr-xr-x 3 root root 4096 Oct  8 07:13 .
+drwxr-xr-x 3 root root 4096 Oct  8 07:13 ..
+drwxr-xr-x 2 root root 4096 Oct  8 07:13 192.168.56.21:32000
+server = "http://192.168.56.21:32000"
+
+[host."http://192.168.56.21:32000"]
+  capabilities = ["pull", "resolve", "push"]Usage: grep [OPTION]... PATTERNS [FILE]...
+Try 'grep --help' for more information.
+/bin/sh: 4: config_path|use_local_image_pull: not found
+worker-b2 | CHANGED | rc=0 >>
+containerd github.com/containerd/containerd/v2 2.2.1 
+total 12
+drwxr-xr-x 3 root root 4096 Oct  8 07:13 .
+drwxr-xr-x 3 root root 4096 Oct  8 07:13 ..
+drwxr-xr-x 2 root root 4096 Oct  8 07:13 192.168.56.21:32000
+server = "http://192.168.56.21:32000"
+
+[host."http://192.168.56.21:32000"]
+  capabilities = ["pull", "resolve", "push"]Usage: grep [OPTION]... PATTERNS [FILE]...
+Try 'grep --help' for more information.
+/bin/sh: 4: config_path|use_local_image_pull: not found
+worker-a1 | CHANGED | rc=0 >>
+containerd github.com/containerd/containerd/v2 2.2.1 
+total 12
+drwxr-xr-x 3 root root 4096 Oct  8 07:13 .
+drwxr-xr-x 3 root root 4096 Oct  8 07:13 ..
+drwxr-xr-x 2 root root 4096 Oct  8 07:13 192.168.56.21:32000
+server = "http://192.168.56.21:32000"
+
+[host."http://192.168.56.21:32000"]
+  capabilities = ["pull", "resolve", "push"]Usage: grep [OPTION]... PATTERNS [FILE]...
+Try 'grep --help' for more information.
+/bin/sh: 4: config_path|use_local_image_pull: not found
+cp-b | CHANGED | rc=0 >>
+containerd github.com/containerd/containerd/v2 2.2.1 
+total 12
+drwxr-xr-x 3 root root 4096 Oct  8 07:13 .
+drwxr-xr-x 3 root root 4096 Oct  8 07:13 ..
+drwxr-xr-x 2 root root 4096 Oct  8 07:13 192.168.56.21:32000
+server = "http://192.168.56.21:32000"
+
+[host."http://192.168.56.21:32000"]
+  capabilities = ["pull", "resolve", "push"]Usage: grep [OPTION]... PATTERNS [FILE]...
+Try 'grep --help' for more information.
+/bin/sh: 4: config_path|use_local_image_pull: not found
+cp-a | CHANGED | rc=0 >>
+containerd github.com/containerd/containerd/v2 2.2.1 
+total 12
+drwxr-xr-x 3 root root 4096 Oct  8 07:13 .
+drwxr-xr-x 3 root root 4096 Oct  8 07:13 ..
+drwxr-xr-x 2 root root 4096 Oct  8 07:13 192.168.56.21:32000
+server = "http://192.168.56.21:32000"
+
+[host."http://192.168.56.21:32000"]
+  capabilities = ["pull", "resolve", "push"]Usage: grep [OPTION]... PATTERNS [FILE]...
+Try 'grep --help' for more information.
+/bin/sh: 4: config_path|use_local_image_pull: not found
