@@ -1,0 +1,32 @@
+## A
+containerd github.com/containerd/containerd/v2 2.2.1 
+48:    use_local_image_pull = false
+54:      config_path = '/etc/containerd/certs.d:/etc/docker/certs.d'
+169:    plugin_config_path = '/etc/nri/conf.d'
+245:    config_path = ''
+## B
+total 12
+drwxr-xr-x 3 root root 4096 Oct  8 07:13 .
+drwxr-xr-x 3 root root 4096 Oct  8 07:13 ..
+drwxr-xr-x 2 root root 4096 Oct  8 07:13 192.168.56.21:32000
+-bash: /etc/containerd/certs.d/192.168.56.21:32000/: Is a directory
+server = "http://192.168.56.21:32000"
+
+[host."http://192.168.56.21:32000"]
+  capabilities = ["pull", "resolve", "push"]## C
+HTTP/1.1 200 OK
+Content-Length: 2
+Content-Type: application/json; charset=utf-8
+## D
+   └──layer (034d6572bf28)              	extracted  	|[32m++++++++++++++++++++++++++++++++++++++[0m|	
+application/vnd.oci.image.manifest.v1+json sha256:b7f3d86d6e84fc17718c48bcde1450807faa2d56704205c697b4bd5df7b9e29f
+Completed pull from OCI Registry (192.168.56.21:32000/day5/busybox:1.36)	elapsed: 0.2 s	total:  2.1 Mi	(12.5 MiB/s)	
+## E
+time="2026-10-12T05:33:46Z" level=warning msg="image connect using default endpoints: [unix:///run/containerd/containerd.sock unix:///run/crio/crio.sock unix:///var/run/cri-dockerd.sock]. As the default settings are now deprecated, you should set the endpoint instead."
+E1012 05:33:46.848066 2617535 remote_image.go:180] "PullImage from image service failed" err="rpc error: code = Unknown desc = failed to pull and unpack image \"192.168.56.21:32000/day5/busybox:1.36\": failed to resolve image: failed to do request: Head \"https://192.168.56.21:32000/v2/day5/busybox/manifests/1.36\": http: server gave HTTP response to HTTPS client" image="192.168.56.21:32000/day5/busybox:1.36"
+time="2026-10-12T05:33:46Z" level=fatal msg="pulling image: failed to pull and unpack image \"192.168.56.21:32000/day5/busybox:1.36\": failed to resolve image: failed to do request: Head \"https://192.168.56.21:32000/v2/day5/busybox/manifests/1.36\": http: server gave HTTP response to HTTPS client"
+## F
+Oct 12 05:33:46 worker-b1 containerd[5612]: time="2026-10-12T05:33:46.844420801Z" level=info msg="PullImage \"192.168.56.21:32000/day5/busybox:1.36\""
+Oct 12 05:33:46 worker-b1 containerd[5612]: time="2026-10-12T05:33:46.846694065Z" level=info msg="fetch failed" error="failed to do request: Head \"https://192.168.56.21:32000/v2/day5/busybox/manifests/1.36\": http: server gave HTTP response to HTTPS client" host="192.168.56.21:32000"
+Oct 12 05:33:46 worker-b1 containerd[5612]: time="2026-10-12T05:33:46.847912110Z" level=error msg="PullImage \"192.168.56.21:32000/day5/busybox:1.36\" failed" error="rpc error: code = Unknown desc = failed to pull and unpack image \"192.168.56.21:32000/day5/busybox:1.36\": failed to resolve image: failed to do request: Head \"https://192.168.56.21:32000/v2/day5/busybox/manifests/1.36\": http: server gave HTTP response to HTTPS client"
+Oct 12 05:33:46 worker-b1 containerd[5612]: time="2026-10-12T05:33:46.847936563Z" level=info msg="stop pulling image 192.168.56.21:32000/day5/busybox:1.36: active requests=0, bytes read=0"
