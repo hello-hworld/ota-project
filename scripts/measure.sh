@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 # =====================================================================
 # measure.sh — 계층별 자원 스냅샷 (Physical Host → VM(Guest) → K8s)
@@ -13,7 +12,7 @@ set -uo pipefail
 
 LABEL="${1:-}"
 if [[ -z "$LABEL" ]]; then
-  echo "사용법:$0 <라벨>   예)$0 day5r-P0" >&2
+  echo "사용법: $0 <라벨>   예) $0 day5r-P0" >&2
   exit 1
 fi
 
@@ -44,10 +43,10 @@ VMSTORE="$(sudo du -sh --exclude=backup /var/lib/libvirt/ota 2>/dev/null | awk '
 
 {
   sec "META"
-  echo "label :$LABEL"
-  echo "date  :$(date '+%F %T %Z')"
-  echo "git   :$(git -C "$REPO" log -1 --oneline 2>/dev/null || echo n/a)"
-  echo "vms   :$(sudo virsh list --name | xargs)"
+  echo "label : $LABEL"
+  echo "date  : $(date '+%F %T %Z')"
+  echo "git   : $(git -C "$REPO" log -1 --oneline 2>/dev/null || echo n/a)"
+  echo "vms   : $(sudo virsh list --name | xargs)"
 
   sec "SUMMARY (비교표 입력용)"
   echo "$MEMINFO" | awk '
@@ -82,11 +81,11 @@ VMSTORE="$(sudo du -sh --exclude=backup /var/lib/libvirt/ota 2>/dev/null | awk '
   for vm in $(sudo virsh list --name); do
     sudo virsh dommemstat "$vm" | awk -v vm="$vm" '$1=="rss" {printf "%-10s %10.1f MiB\n", vm, $2/1024}'
   done
-  echo "TOTAL QEMU RSS:${QEMU_TOTAL} MiB"
+  echo "TOTAL QEMU RSS: ${QEMU_TOTAL} MiB"
 
   for e in "${VMS[@]}"; do
     read -r name ip <<< "$e"
-    sec "[Guest]$name ($ip)"
+    sec "[Guest] $name ($ip)"
     "${SSH[@]}" "devops@$ip" '
       echo "loadavg: $(cat /proc/loadavg)"
       free -m
@@ -96,12 +95,12 @@ VMSTORE="$(sudo du -sh --exclude=backup /var/lib/libvirt/ota 2>/dev/null | awk '
         sudo -n du -sh /opt/local-path-provisioner 2>/dev/null \
           || du -sh /opt/local-path-provisioner 2>/dev/null \
           || echo "(권한 부족 → 수동 측정)"
-      fi' 2>&1 || echo "(SSH 실패:$name)"
+      fi' 2>&1 || echo "(SSH 실패: $name)"
   done
 
   for e in "cp-a 192.168.56.20" "cp-b 192.168.56.30"; do
     read -r name ip <<< "$e"
-    sec "[K8s]$name"
+    sec "[K8s] $name"
     "${SSH[@]}" "devops@$ip" '
       kubectl get nodes -o wide
       echo "--- pods"
@@ -109,9 +108,9 @@ VMSTORE="$(sudo du -sh --exclude=backup /var/lib/libvirt/ota 2>/dev/null | awk '
       echo "--- sc / pv / pvc"
       kubectl get sc 2>&1
       kubectl get pv 2>&1
-      kubectl get pvc -A 2>&1' 2>&1 || echo "(kubectl 실패:$name)"
+      kubectl get pvc -A 2>&1' 2>&1 || echo "(kubectl 실패: $name)"
   done
 } 2>&1 | tee "$OUT"
 
 echo
-echo "저장 완료 →$OUT"
+echo "저장 완료 → $OUT"
