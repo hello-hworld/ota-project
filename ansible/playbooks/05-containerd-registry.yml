@@ -1,29 +1,59 @@
+# [노트북] C:\ota-project\ansible\playbooks\05-containerd-registry.yml
 ---
-- name: Configure HTTP private registry for containerd
-  hosts: all
+- name: Configure containerd for the private HTTP registry
+  hosts: k8s_nodes
   become: true
-
+  serial: 1                       # 한 대씩 재시작
   vars:
     registry_host: "192.168.56.21:32000"
-    registry_dir: "/etc/containerd/certs.d/192.168.56.21:32000"
+    certs_dir: /etc/containerd/certs.d
 
   tasks:
-    - name: Create registry certs directory
+    - name: Create registry host directory
       ansible.builtin.file:
-        path: "{{ registry_dir }}"
+        path: "{{ certs_dir }}/{{ registry_host }}"
         state: directory
-        owner: root
-        group: root
         mode: "0755"
 
-    - name: Configure HTTP registry
+    - name: Deploy hosts.toml for the HTTP registry
       ansible.builtin.copy:
-        dest: "{{ registry_dir }}/hosts.toml"
-        owner: root
-        group: root
+        dest: "{{ certs_dir }}/{{ registry_host }}/hosts.toml"
         mode: "0644"
         content: |
           server = "http://{{ registry_host }}"
 
           [host."http://{{ registry_host }}"]
             capabilities = ["pull", "resolve", "push"]
+
+    # containerd 2.2 'config default'가 만드는 묶인 경로를 단일 경로로 바꾼다.
+    # 04-base-config.yml로 노드를 새로 만들면 다시 묶인 경로가 생기므로 05는 항상 04 다음에 실행한다.
+    - name: Use a single CRI registry config_path
+      ansible.builtin.replace:
+        path: /etc/containerd/config.toml
+        regexp: "^([ \\t]*)config_path = '/etc/containerd/certs.d:/etc/docker/certs.d'"
+        replace: "\\1config_path = '{{ certs_dir }}'"
+        backup: true
+      notify: Restart containerd
+
+    - name: Restart now if config changed
+      ansible.builtin.meta: flush_handlers
+
+    - name: Verify CRI is answering
+      ansible.builtin.command: crictl --runtime-endpoint unix:///run/containerd/containerd.sock info
+      register: crictl_info
+      until: crictl_info.rc == 0
+      retries: 10
+      delay: 3
+      changed_when: false
+
+    - name: Verify effective config_path
+      ansible.builtin.shell: >-
+        containerd config dump
+        | grep -E "config_path = ['\"]{{ certs_dir }}['\"]"
+      changed_when: false
+
+  handlers:
+    - name: Restart containerd
+      ansible.builtin.systemd:
+        name: containerd
+        state: restarted
