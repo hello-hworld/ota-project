@@ -1,0 +1,35 @@
+f4db7d1cde41a607c3b8d99c3d3ea28c5d831bfc7b97f40c03bc275db20a0d0e  cp-a/cp-a.qcow2
+0e9be5cbf6cb401d7811b634e8e25b1d5262e5ba57531ae48d079822265cbac9  cp-b/cp-b.qcow2
+b4d1281a4b830a55010dcff01840568f3ca61169067b7e09bab87831bcbbcc3f  worker-a1/worker-a1.qcow2
+f0791813498abbfacf2bcd680df3dcb97230464fc2c0122e837cb4552a6d51c1  worker-b1/worker-b1.qcow2
+3c2ad22bb2fdbcd2b6b0abe41cea9bc0756e6d5f3b5a60fda80e0c108d8be0bf  worker-b2/worker-b2.qcow2
+25G	/var/lib/libvirt/ota/backup/R0-20261012
+/var/lib/libvirt/ota/backup/R0-20261012/cp-a/:
+total 5931372
+-rw-r--r-- 1 root root 6100680704 Oct 12 06:48 cp-a.qcow2
+-rw-r--r-- 1 root root       6550 Oct 12 06:46 cp-a.xml
+-rw-r--r-- 1 root root     374784 Oct 12 06:48 seed.iso
+
+/var/lib/libvirt/ota/backup/R0-20261012/cp-b/:
+total 5661764
+-rw-r--r-- 1 root root 5822021632 Oct 12 06:48 cp-b.qcow2
+-rw-r--r-- 1 root root       6550 Oct 12 06:46 cp-b.xml
+-rw-r--r-- 1 root root     374784 Oct 12 06:48 seed.iso
+
+/var/lib/libvirt/ota/backup/R0-20261012/worker-a1/:
+total 4642432
+-rw-r--r-- 1 root root     374784 Oct 12 06:48 seed.iso
+-rw-r--r-- 1 root root 4778885120 Oct 12 06:48 worker-a1.qcow2
+-rw-r--r-- 1 root root       6570 Oct 12 06:46 worker-a1.xml
+
+/var/lib/libvirt/ota/backup/R0-20261012/worker-b1/:
+total 4773788
+-rw-r--r-- 1 root root     374784 Oct 12 06:48 seed.iso
+-rw-r--r-- 1 root root 4912578560 Oct 12 06:48 worker-b1.qcow2
+-rw-r--r-- 1 root root       6570 Oct 12 06:46 worker-b1.xml
+
+/var/lib/libvirt/ota/backup/R0-20261012/worker-b2/:
+total 4839144
+-rw-r--r-- 1 root root     374784 Oct 12 06:48 seed.iso
+-rw-r--r-- 1 root root 4981719040 Oct 12 06:48 worker-b2.qcow2
+-rw-r--r-- 1 root root       6570 Oct 12 06:46 worker-b2.xml
