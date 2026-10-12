@@ -1,0 +1,5 @@
+192.168.56.21:32000/day5/busybox:1.36
+time="2026-10-12T06:18:30Z" level=error msg="unable to delete diag" error="namespace \"diag\" must be empty, but it still has blobs, snapshots on \"overlayfs\" snapshotter: failed precondition"
+ctr: unable to delete diag: namespace "diag" must be empty, but it still has blobs, snapshots on "overlayfs" snapshotter: failed precondition
+Deleted: 192.168.56.21:32000/day5/busybox:1.36
+clean: no registry images

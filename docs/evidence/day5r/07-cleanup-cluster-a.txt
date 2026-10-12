@@ -1,0 +1,10 @@
+No resources found
+No resources found in platform namespace.
+NAME              STATUS   AGE
+default           Active   4d22h
+kube-node-lease   Active   4d22h
+kube-public       Active   4d22h
+kube-system       Active   4d22h
+monitoring        Active   4d22h
+platform          Active   4d22h
+staging           Active   4d22h

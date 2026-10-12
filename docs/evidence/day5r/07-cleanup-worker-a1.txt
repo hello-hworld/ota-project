@@ -1,0 +1,26 @@
+## before
+IMAGE                                      TAG                 IMAGE ID            SIZE
+192.168.56.21:32000/day5/busybox           1.36                b116e15507444       2.22MB
+docker.io/library/busybox                  1.36                b116e15507444       2.22MB
+docker.io/calico/cni                       v3.28.2             8db78ebb3152c       94.7MB
+docker.io/calico/node                      v3.28.2             f3bc59d46b56d       120MB
+docker.io/library/busybox                  latest              aaef90e065235       2.24MB
+docker.io/library/registry                 2                   26b2eb03618e7       10.1MB
+docker.io/rancher/local-path-provisioner   v0.0.37             683316f41426e       15.1MB
+registry.k8s.io/kube-proxy                 v1.30.14            709bcab73020c       29.2MB
+registry.k8s.io/pause                      3.10.1              cd073f4c5f6a8       320kB
+== ns: k8s.io
+192.168.56.21:32000/day5/busybox:1.36
+docker.io/library/busybox:1.36
+Deleted: docker.io/library/busybox@sha256:73aaf090f3d85aa34ee199857f03fa3a95c8ede2ffd4cc2cdb5b94e566b11662
+Deleted: docker.io/library/busybox:latest
+Deleted: docker.io/library/registry:2
+Deleted: docker.io/rancher/local-path-provisioner:v0.0.37
+## after
+IMAGE                        TAG                 IMAGE ID            SIZE
+docker.io/calico/cni         v3.28.2             8db78ebb3152c       94.7MB
+docker.io/calico/node        v3.28.2             f3bc59d46b56d       120MB
+registry.k8s.io/kube-proxy   v1.30.14            709bcab73020c       29.2MB
+registry.k8s.io/pause        3.10.1              cd073f4c5f6a8       320kB
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        58G  3.7G   54G   7% /
