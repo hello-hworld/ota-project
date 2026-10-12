@@ -1,0 +1,23 @@
+NAME                           READY   STATUS    RESTARTS   AGE     IP             NODE        NOMINATED NODE   READINESS GATES
+pod/registry-76b469968-dkdnz   1/1     Running   0          6m16s   10.10.238.18   worker-a1   <none>           <none>
+
+NAME                                 STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE     VOLUMEMODE
+persistentvolumeclaim/registry-pvc   Bound    pvc-b5adbe30-8b1c-48fd-95a5-ee5ae8b02686   10Gi       RWO            local-path     <unset>                 6m16s   Filesystem
+
+NAME               TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE     SELECTOR
+service/registry   NodePort   10.111.167.51   <none>        5000:32000/TCP   6m16s   app=registry
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                   STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+pvc-b5adbe30-8b1c-48fd-95a5-ee5ae8b02686   10Gi       RWO            Delete           Bound    platform/registry-pvc   local-path     <unset>                          6m13s
+192.168.56.20 -> 200
+192.168.56.21 -> 200
+192.168.56.30 -> 200
+192.168.56.31 -> 200
+192.168.56.32 -> 200
+pvc-b5adbe30-8b1c-48fd-95a5-ee5ae8b02686_platform_registry-pvc
+du: cannot access '/otp/local-path-provisioner': No such file or directory
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        58G  3.8G   54G   7% /
+pvc-b5adbe30-8b1c-48fd-95a5-ee5ae8b02686_platform_registry-pvc
+8.0K	/opt/local-path-provisioner
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        58G  3.8G   54G   7% /

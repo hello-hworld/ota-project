@@ -1,0 +1,5 @@
+[2J[HCONTAINER           NAME                     CPU %               MEM                 DISK                INODES
+140c9776fd7ce       local-path-provisioner   0.63                11.09MB             45.06kB             14
+4a759f439b8b4       registry                 0.00                8.634MB             40.96kB             10
+610e483f71b4b       kube-proxy               0.00                65.46MB             65.54kB             24
+91776619181be       calico-node              1.63                152.6MB             340kB               103

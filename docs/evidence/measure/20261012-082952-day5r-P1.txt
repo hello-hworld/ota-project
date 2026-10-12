@@ -1,0 +1,154 @@
+
+===== META =====
+label : day5r-P1
+date  : 2026-10-12 08:29:59 UTC
+git   : b85c3f7 DAY5 recovery
+vms   : cp-a cp-b worker-a1 worker-b1 worker-b2
+
+===== SUMMARY (비교표 입력용) =====
+Host RAM Used (Total-Avail) :   11309.3 MiB
+Host MemAvailable           :   20500.8 MiB
+Swap Used                   :       2.5 MiB
+Load 1m / 5m / 15m          : 1.02 / 0.98 / 1.01
+CPU us / sy / id / wa (%)   : 0.0 / 1.2 / 93.8 / 0.2
+Swap si / so (평균)         : 0.0 / 0.0
+Root Used                   : 13G / 98G
+VM Storage Used (du)        : 26G
+Total QEMU RSS              : 10341.7 MiB
+
+===== [Host] free -m =====
+               total        used        free      shared  buff/cache   available
+Mem:           31810       11311       14419          11        6492       20498
+Swap:           8191           2        8189
+
+===== [Host] meminfo (kB) =====
+MemTotal:       32573540 kB
+MemAvailable:   20992804 kB
+SwapTotal:       8388604 kB
+SwapFree:        8386044 kB
+
+===== [Host] uptime =====
+ 08:29:59 up 7 days,  3:33,  1 user,  load average: 1.02, 0.98, 1.01
+
+===== [Host] vmstat 1 6 =====
+procs -----------memory---------- ---swap-- -----io---- -system-- -------cpu-------
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st gu
+ 0  0   2560 14766968  28820 6619048    0    0    81   227 11108   12  0  1 94  0  0  4
+ 4  0   2560 14768712  28828 6619056    0    0     0   264 15843 21634  0  2 93  1  0  5
+ 0  0   2560 14768712  28828 6619056    0    0     0    28 15085 20913  0  1 94  0  0  4
+ 0  0   2560 14768712  28828 6619056    0    0     0   100 15343 20509  0  1 94  0  0  4
+ 0  0   2560 14768712  28828 6619060    0    0     0    52 15535 21450  0  1 94  0  0  4
+ 2  0   2560 14768712  28828 6619060    0    0     0   124 15003 20673  0  1 94  0  0  4
+
+===== [Host] df =====
+Filesystem                          Size  Used Avail Use% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv    98G   13G   81G  14% /
+/dev/mapper/ubuntu--vg-ota--vm--lv  295G   51G  230G  18% /var/lib/libvirt/ota
+
+===== [Host] du (항목별) =====
+25G	/var/lib/libvirt/ota/backup
+597M	/var/lib/libvirt/ota/images
+16K	/var/lib/libvirt/ota/lost+found
+25G	/var/lib/libvirt/ota/vms
+
+===== [Host] QEMU RSS (VM별) =====
+cp-a           2067.9 MiB
+cp-b           2779.1 MiB
+worker-a1      1988.7 MiB
+worker-b1      1682.9 MiB
+worker-b2      1820.5 MiB
+TOTAL QEMU RSS: 10341.7 MiB
+
+===== [Guest] cp-a (192.168.56.20) =====
+loadavg: 0.09 0.08 0.12 1/413 64013
+               total        used        free      shared  buff/cache   available
+Mem:            1967         944         170           2        1007        1023
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        29G  4.8G   24G  18% /
+
+===== [Guest] worker-a1 (192.168.56.21) =====
+loadavg: 0.05 0.06 0.02 1/351 39367
+               total        used        free      shared  buff/cache   available
+Mem:            5925         672        4455           1        1034        5252
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        58G  3.8G   54G   7% /
+--- /opt/local-path-provisioner 실제 사용량
+8.0K	/opt/local-path-provisioner
+
+===== [Guest] cp-b (192.168.56.30) =====
+loadavg: 0.36 0.31 0.31 1/421 63275
+               total        used        free      shared  buff/cache   available
+Mem:            2907        1020         529           2        1580        1887
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        29G  4.9G   24G  18% /
+
+===== [Guest] worker-b1 (192.168.56.31) =====
+loadavg: 0.13 0.08 0.02 1/310 36803
+               total        used        free      shared  buff/cache   available
+Mem:            6933         633        5691           1         845        6299
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        48G  3.7G   44G   8% /
+
+===== [Guest] worker-b2 (192.168.56.32) =====
+loadavg: 0.00 0.04 0.06 1/306 36865
+               total        used        free      shared  buff/cache   available
+Mem:            6933         629        5631           1         909        6303
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        77G  3.7G   73G   5% /
+
+===== [K8s] cp-a =====
+NAME        STATUS   ROLES           AGE    VERSION    INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+cp-a        Ready    control-plane   5d1h   v1.30.14   192.168.56.20   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+worker-a1   Ready    <none>          5d     v1.30.14   192.168.56.21   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+--- pods
+NAMESPACE            NAME                                       READY   STATUS    RESTARTS      AGE    IP              NODE        NOMINATED NODE   READINESS GATES
+kube-system          calico-kube-controllers-65dcc554ff-ssmzj   1/1     Running   1 (97m ago)   5d     10.10.229.132   cp-a        <none>           <none>
+kube-system          calico-node-8cnlm                          1/1     Running   1 (97m ago)   5d     192.168.56.20   cp-a        <none>           <none>
+kube-system          calico-node-rgtpc                          1/1     Running   1 (95m ago)   5d     192.168.56.21   worker-a1   <none>           <none>
+kube-system          coredns-55cb58b774-p8lxm                   1/1     Running   1 (97m ago)   5d1h   10.10.229.134   cp-a        <none>           <none>
+kube-system          coredns-55cb58b774-tr2wb                   1/1     Running   1 (97m ago)   5d1h   10.10.229.133   cp-a        <none>           <none>
+kube-system          etcd-cp-a                                  1/1     Running   2 (97m ago)   5d1h   192.168.56.20   cp-a        <none>           <none>
+kube-system          kube-apiserver-cp-a                        1/1     Running   2 (97m ago)   5d1h   192.168.56.20   cp-a        <none>           <none>
+kube-system          kube-controller-manager-cp-a               1/1     Running   1 (97m ago)   5d1h   192.168.56.20   cp-a        <none>           <none>
+kube-system          kube-proxy-r7q2w                           1/1     Running   1 (95m ago)   5d     192.168.56.21   worker-a1   <none>           <none>
+kube-system          kube-proxy-vbblx                           1/1     Running   1 (97m ago)   5d1h   192.168.56.20   cp-a        <none>           <none>
+kube-system          kube-scheduler-cp-a                        1/1     Running   2 (97m ago)   5d1h   192.168.56.20   cp-a        <none>           <none>
+local-path-storage   local-path-provisioner-85d9db4886-rhj5b    1/1     Running   0             56m    10.10.238.11    worker-a1   <none>           <none>
+platform             registry-76b469968-dkdnz                   1/1     Running   0             19m    10.10.238.18    worker-a1   <none>           <none>
+--- sc / pv / pvc
+NAME         PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+local-path   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  56m
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                   STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+pvc-b5adbe30-8b1c-48fd-95a5-ee5ae8b02686   10Gi       RWO            Delete           Bound    platform/registry-pvc   local-path     <unset>                          19m
+NAMESPACE   NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+platform    registry-pvc   Bound    pvc-b5adbe30-8b1c-48fd-95a5-ee5ae8b02686   10Gi       RWO            local-path     <unset>                 19m
+
+===== [K8s] cp-b =====
+NAME        STATUS   ROLES           AGE    VERSION    INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+cp-b        Ready    control-plane   5d2h   v1.30.14   192.168.56.30   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+worker-b1   Ready    <none>          5d1h   v1.30.14   192.168.56.31   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+worker-b2   Ready    <none>          5d1h   v1.30.14   192.168.56.32   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+--- pods
+NAMESPACE     NAME                                       READY   STATUS    RESTARTS      AGE    IP              NODE        NOMINATED NODE   READINESS GATES
+kube-system   calico-kube-controllers-65dcc554ff-m89st   1/1     Running   1 (97m ago)   5d2h   10.20.164.197   cp-b        <none>           <none>
+kube-system   calico-node-b2qj8                          1/1     Running   1 (97m ago)   5d2h   192.168.56.30   cp-b        <none>           <none>
+kube-system   calico-node-bk8v8                          1/1     Running   1 (95m ago)   5d1h   192.168.56.32   worker-b2   <none>           <none>
+kube-system   calico-node-pw64t                          1/1     Running   1 (95m ago)   5d1h   192.168.56.31   worker-b1   <none>           <none>
+kube-system   coredns-55cb58b774-8qtd2                   1/1     Running   1 (97m ago)   5d2h   10.20.164.196   cp-b        <none>           <none>
+kube-system   coredns-55cb58b774-9bk54                   1/1     Running   1 (97m ago)   5d2h   10.20.164.198   cp-b        <none>           <none>
+kube-system   etcd-cp-b                                  1/1     Running   1 (97m ago)   5d2h   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-apiserver-cp-b                        1/1     Running   1 (97m ago)   5d2h   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-controller-manager-cp-b               1/1     Running   1 (97m ago)   5d2h   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-8wdrj                           1/1     Running   1 (95m ago)   5d1h   192.168.56.31   worker-b1   <none>           <none>
+kube-system   kube-proxy-dwst5                           1/1     Running   1 (97m ago)   5d2h   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-p67hw                           1/1     Running   1 (95m ago)   5d1h   192.168.56.32   worker-b2   <none>           <none>
+kube-system   kube-scheduler-cp-b                        1/1     Running   1 (97m ago)   5d2h   192.168.56.30   cp-b        <none>           <none>
+--- sc / pv / pvc
+No resources found
+No resources found
+No resources found
