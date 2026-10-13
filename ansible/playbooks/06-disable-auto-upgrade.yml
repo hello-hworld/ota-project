@@ -1,0 +1,46 @@
+---
+# 06-disable-auto-upgrade.yml
+# 목적  : 측정 조건 고정. 실험 기간 동안 VM의 자동 업데이트(unattended-upgrades)를 멈춘다.
+#         (DAY5 R0 재기동 때 자동 업데이트로 커널이 6.8.0-142 → 6.8.0-146으로 바뀐 것이 계기)
+# 실행  : [ota-host] ~/ota-project
+#         ansible-playbook -i ansible/inventory/hosts.ini ansible/playbooks/06-disable-auto-upgrade.yml --diff
+# 되돌리기: 20auto-upgrades 값을 "1"로 바꾸고 두 timer를 enable --now
+# 주의  : 보안 업데이트도 자동으로 들어오지 않는다. 필요하면 계획된 시점에 수동 업데이트 → 재측정한다.
+- name: Disable automatic package upgrades on K8s nodes
+  hosts: k8s_nodes
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Turn off APT periodic update and unattended-upgrade
+      ansible.builtin.copy:
+        dest: /etc/apt/apt.conf.d/20auto-upgrades
+        owner: root
+        group: root
+        mode: "0644"
+        content: |
+          APT::Periodic::Update-Package-Lists "0";
+          APT::Periodic::Unattended-Upgrade "0";
+
+    - name: Stop and disable apt timers
+      ansible.builtin.systemd:
+        name: "{{ item }}"
+        state: stopped
+        enabled: false
+      loop:
+        - apt-daily.timer
+        - apt-daily-upgrade.timer
+
+    - name: Collect state for evidence
+      ansible.builtin.shell: |
+        echo "kernel=$(uname -r)"
+        if [ -f /var/run/reboot-required ]; then echo "reboot-required=yes"; else echo "reboot-required=no"; fi
+        echo "apt-daily.timer=$(systemctl is-enabled apt-daily.timer 2>/dev/null)"
+        echo "apt-daily-upgrade.timer=$(systemctl is-enabled apt-daily-upgrade.timer 2>/dev/null)"
+        cat /etc/apt/apt.conf.d/20auto-upgrades
+      register: auto_upgrade_state
+      changed_when: false
+
+    - name: Show state
+      ansible.builtin.debug:
+        var: auto_upgrade_state.stdout_lines
