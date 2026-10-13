@@ -1,46 +1,123 @@
 ---
 # 06-disable-auto-upgrade.yml
-# 목적  : 측정 조건 고정. 실험 기간 동안 VM의 자동 업데이트(unattended-upgrades)를 멈춘다.
-#         (DAY5 R0 재기동 때 자동 업데이트로 커널이 6.8.0-142 → 6.8.0-146으로 바뀐 것이 계기)
-# 실행  : [ota-host] ~/ota-project
-#         ansible-playbook -i ansible/inventory/hosts.ini ansible/playbooks/06-disable-auto-upgrade.yml --diff
-# 되돌리기: 20auto-upgrades 값을 "1"로 바꾸고 두 timer를 enable --now
-# 주의  : 보안 업데이트도 자동으로 들어오지 않는다. 필요하면 계획된 시점에 수동 업데이트 → 재측정한다.
-- name: Disable automatic package upgrades on K8s nodes
-  hosts: k8s_nodes
+# 목적   : 측정 조건 고정. 실험 기간 동안 자동 패키지 업데이트(APT periodic + unattended-upgrades)를 멈춘다.
+#          계기: DAY5 R0 재기동 후 VM 커널 6.8.0-142 -> 6.8.0-146 (원인 로그는 DAY6 4.2에서 확인)
+# 실행   : [ota-host] ~/ota-project
+#   미리보기 : ansible-playbook -i ansible/inventory/hosts.ini ansible/playbooks/06-disable-auto-upgrade.yml --check --diff
+#   중지     : ansible-playbook -i ansible/inventory/hosts.ini ansible/playbooks/06-disable-auto-upgrade.yml --diff
+#   복구     : 위 명령 + -e auto_upgrade_enabled=true
+#              (Ubuntu 기본값 "1"/timer enabled+active 기준. 'before' 기록이 다르면 backup 파일로 복구)
+#   대상     : 기본 k8s_nodes. Host 포함 시 인벤토리에 ota_host 그룹을 만들고 -e target_hosts=ota_host -K
+# 주의   : 중지 기간에는 보안 업데이트도 자동으로 들어오지 않는다. 계획된 시점에 수동 업데이트 -> 재측정.
+#          수동 업데이트 뒤에는 이 Playbook을 다시 실행해 changed=0과 assert 통과를 확인한다.
+#          unattended-upgrades.service(종료 시 진행 중 작업을 기다리는 안전장치)는 건드리지 않는다.
+- name: Control automatic package upgrades
+  hosts: "{{ target_hosts | default('k8s_nodes') }}"
   become: true
   gather_facts: false
+  vars:
+    auto_upgrade_enabled: false
+    periodic_value: "{{ '1' if auto_upgrade_enabled | bool else '0' }}"
+    expected_timer_state: "{{ 'enabled/active' if auto_upgrade_enabled | bool else 'disabled/inactive' }}"
+    apt_timers:
+      - apt-daily.timer
+      - apt-daily-upgrade.timer
 
   tasks:
-    - name: Turn off APT periodic update and unattended-upgrade
+    # 1) 바꾸기 전 상태를 먼저 남긴다 (복구 근거)
+    - name: Record state before change
+      ansible.builtin.shell: |
+        echo "--- 20auto-upgrades (file)"
+        cat /etc/apt/apt.conf.d/20auto-upgrades 2>&1 || true
+        echo "--- APT::Periodic (effective)"
+        apt-config dump | grep -E '^APT::Periodic::' || echo "(none)"
+        echo "--- timers (UnitFileState/ActiveState)"
+        for t in {{ apt_timers | join(' ') }}; do
+          echo "$t=$(systemctl show -p UnitFileState --value "$t")/$(systemctl show -p ActiveState --value "$t")"
+        done
+      register: before_state
+      changed_when: false
+      check_mode: false
+
+    - name: Show state before change
+      ansible.builtin.debug:
+        var: before_state.stdout_lines
+
+    # 2) 설정 변경. backup 파일은 이름이 '~'로 끝나 APT가 읽지 않는다.
+    - name: Set APT periodic options
       ansible.builtin.copy:
         dest: /etc/apt/apt.conf.d/20auto-upgrades
         owner: root
         group: root
         mode: "0644"
+        backup: true
         content: |
-          APT::Periodic::Update-Package-Lists "0";
-          APT::Periodic::Unattended-Upgrade "0";
+          APT::Periodic::Update-Package-Lists "{{ periodic_value }}";
+          APT::Periodic::Unattended-Upgrade "{{ periodic_value }}";
 
-    - name: Stop and disable apt timers
+    - name: Set apt timers
       ansible.builtin.systemd:
         name: "{{ item }}"
-        state: stopped
-        enabled: false
-      loop:
-        - apt-daily.timer
-        - apt-daily-upgrade.timer
+        state: "{{ 'started' if auto_upgrade_enabled | bool else 'stopped' }}"
+        enabled: "{{ auto_upgrade_enabled | bool }}"
+      loop: "{{ apt_timers }}"
 
-    - name: Collect state for evidence
+    # 3) timer를 멈춰도 이미 시작된 작업은 계속된다. 끝날 때까지 기다리기만 하고 죽이지 않는다.
+    #    oneshot 서비스는 실행 중 ActiveState=activating 이므로 is-active로는 놓친다.
+    - name: Wait for in-flight apt/dpkg work to finish (never kill)
+      ansible.builtin.shell: |
+        for u in apt-daily.service apt-daily-upgrade.service; do
+          s=$(systemctl show -p ActiveState --value "$u")
+          case "$s" in
+            inactive|failed) ;;
+            *) echo "busy: $u=$s"; exit 1 ;;
+          esac
+        done
+        if lslocks -n -o COMMAND,PID,PATH | grep -E '/var/lib/(dpkg|apt)/'; then
+          echo "busy: apt/dpkg lock held"; exit 1
+        fi
+        echo "idle"
+      register: apt_idle
+      until: apt_idle.rc == 0
+      retries: 60
+      delay: 10
+      changed_when: false
+      check_mode: false
+      when: not (auto_upgrade_enabled | bool)
+
+    # 4) 판정은 파일이 아니라 유효값과 현재 상태로 한다.
+    - name: Collect state after change
       ansible.builtin.shell: |
         echo "kernel=$(uname -r)"
+        echo "uptime=$(uptime -p)"
         if [ -f /var/run/reboot-required ]; then echo "reboot-required=yes"; else echo "reboot-required=no"; fi
-        echo "apt-daily.timer=$(systemctl is-enabled apt-daily.timer 2>/dev/null)"
-        echo "apt-daily-upgrade.timer=$(systemctl is-enabled apt-daily-upgrade.timer 2>/dev/null)"
-        cat /etc/apt/apt.conf.d/20auto-upgrades
-      register: auto_upgrade_state
+        apt-config dump | grep -E '^APT::Periodic::(Update-Package-Lists|Unattended-Upgrade) ' || echo "(none)"
+        for t in {{ apt_timers | join(' ') }}; do
+          echo "$t=$(systemctl show -p UnitFileState --value "$t")/$(systemctl show -p ActiveState --value "$t")"
+        done
+        echo "snaps=$(snap list 2>/dev/null | awk 'NR>1 {print $1}' | xargs)"
+      register: after_state
       changed_when: false
+      check_mode: false
 
-    - name: Show state
+    - name: Show state after change
       ansible.builtin.debug:
-        var: auto_upgrade_state.stdout_lines
+        var: after_state.stdout_lines
+
+    - name: Assert effective APT options
+      ansible.builtin.assert:
+        that:
+          - ('APT::Periodic::Update-Package-Lists "' ~ periodic_value ~ '";') in after_state.stdout
+          - ('APT::Periodic::Unattended-Upgrade "' ~ periodic_value ~ '";') in after_state.stdout
+        fail_msg: "APT::Periodic 유효값이 {{ periodic_value }}가 아니다. 다른 apt.conf.d 파일이 덮어쓰는지 확인할 것"
+        quiet: true
+      when: not ansible_check_mode
+
+    - name: Assert timer state
+      ansible.builtin.assert:
+        that:
+          - (item ~ '=' ~ expected_timer_state) in after_state.stdout_lines
+        fail_msg: "{{ item }} 상태가 {{ expected_timer_state }}가 아니다"
+        quiet: true
+      loop: "{{ apt_timers }}"
+      when: not ansible_check_mode
