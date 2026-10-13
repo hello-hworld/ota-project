@@ -1,0 +1,63 @@
+=====ota-a
+NAME        STATUS   ROLES           AGE     VERSION    INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+cp-a        Ready    control-plane   5d23h   v1.30.14   192.168.56.20   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+worker-a1   Ready    <none>          5d23h   v1.30.14   192.168.56.21   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+error: a resource cannot be retrieved by name across all namespaces
+=====ota-b
+NAME        STATUS   ROLES           AGE     VERSION    INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+cp-b        Ready    control-plane   6d      v1.30.14   192.168.56.30   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+worker-b1   Ready    <none>          5d23h   v1.30.14   192.168.56.31   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+worker-b2   Ready    <none>          5d23h   v1.30.14   192.168.56.32   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+error: a resource cannot be retrieved by name across all namespaces
+===== A platform
+NAME        STATUS   ROLES           AGE     VERSION    WORKLOAD
+cp-a        Ready    control-plane   5d23h   v1.30.14   
+worker-a1   Ready    <none>          5d23h   v1.30.14   platform
+NAME                 STATUS   AGE
+default              Active   5d23h
+kube-node-lease      Active   5d23h
+kube-public          Active   5d23h
+kube-system          Active   5d23h
+local-path-storage   Active   23h
+monitoring           Active   5d22h
+platform             Active   5d22h
+staging              Active   5d22h
+stagins              Active   23h
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES       SELECTOR
+deployment.apps/registry   1/1     1            1           22h   registry     registry:2   app=registry
+
+NAME               TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE   SELECTOR
+service/registry   NodePort   10.111.167.51   <none>        5000:32000/TCP   22h   app=registry
+
+NAME                                 STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE   VOLUMEMODE
+persistentvolumeclaim/registry-pvc   Bound    pvc-b5adbe30-8b1c-48fd-95a5-ee5ae8b02686   10Gi       RWO            local-path     <unset>                 22h   Filesystem
+NAME                                     PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+storageclass.storage.k8s.io/local-path   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  23h
+
+NAME                                                        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                   STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+persistentvolume/pvc-b5adbe30-8b1c-48fd-95a5-ee5ae8b02686   10Gi       RWO            Delete           Bound    platform/registry-pvc   local-path     <unset>                          22h
+Conditions:
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----                 ------  -----------------                 ------------------                ------                       -------
+  NetworkUnavailable   False   Mon, 12 Oct 2026 06:55:07 +0000   Mon, 12 Oct 2026 06:55:07 +0000   CalicoIsUp                   Calico is running on this node
+  MemoryPressure       False   Tue, 13 Oct 2026 06:38:06 +0000   Mon, 12 Oct 2026 06:55:03 +0000   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Tue, 13 Oct 2026 06:38:06 +0000   Mon, 12 Oct 2026 06:55:03 +0000   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Tue, 13 Oct 2026 06:38:06 +0000   Mon, 12 Oct 2026 06:55:03 +0000   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Tue, 13 Oct 2026 06:38:06 +0000   Mon, 12 Oct 2026 06:55:03 +0000   KubeletReady                 kubelet is posting ready status
+Addresses:
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests    Limits
+  --------           --------    ------
+  cpu                350m (8%)   500m (12%)
+  memory             128Mi (2%)  512Mi (8%)
+  ephemeral-storage  0 (0%)      0 (0%)
+  hugepages-1Gi      0 (0%)      0 (0%)
+  hugepages-2Mi      0 (0%)      0 (0%)
+Events:              <none>
+===== registry
+/v2/ 200
+{"repositories":["day5/busybox","day5/buxybox"]}
+
+{"name":"day5/busybox","tags":["1.36"]}
+

@@ -1,0 +1,7 @@
+--- before
+--- after
+0
+e2e
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        58G  3.9G   54G   7% /
+Connection to 192.168.56.21 closed.
