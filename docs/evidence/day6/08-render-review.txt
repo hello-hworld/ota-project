@@ -1,0 +1,27 @@
+--- kinds
+      3 kind: ConfigMap
+      1 kind: PersistentVolumeClaim
+      2 kind: Role
+      2 kind: RoleBinding
+      1 kind: Service
+      2 kind: ServiceAccount
+      1 kind: StatefulSet
+--- images
+      2           image: "docker.io/jenkins/jenkins:2.580.1-jdk25"
+      2           image: "docker.io/kiwigrid/k8s-sidecar:2.11.2"
+      1                 image: "jenkins/inbound-agent:3385.vf1123fb_515da_-1-jdk25"
+      2           imagePullPolicy: "IfNotPresent"
+      2           imagePullPolicy: IfNotPresent
+--- cloud
+          containerCapStr: "1"
+          garbageCollection:
+          webSocket: true
+          namespace: "ci"
+              namespace: "ci"
+              instanceCap: 1
+--- plugins
+74:    lockable-resources:latest
+--- pvc keep
+200:    helm.sh/resource-policy: keep
+--- registry?
+없음
