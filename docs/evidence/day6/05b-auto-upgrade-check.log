@@ -1,0 +1,60 @@
+
+PLAY [Control automatic package upgrades] **************************************
+
+TASK [Record state before change] **********************************************
+ok: [worker-b2]
+
+TASK [Show state before change] ************************************************
+ok: [worker-b2] => {
+    "before_state.stdout_lines": [
+        "--- 20auto-upgrades (file)",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "--- APT::Periodic (effective)",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Download-Upgradeable-Packages \"0\";",
+        "APT::Periodic::AutocleanInterval \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "--- timers (UnitFileState/ActiveState)",
+        "apt-daily.timer=disabled/inactive",
+        "apt-daily-upgrade.timer=disabled/inactive"
+    ]
+}
+
+TASK [Set APT periodic options] ************************************************
+ok: [worker-b2]
+
+TASK [Set apt timers] **********************************************************
+ok: [worker-b2] => (item=apt-daily.timer)
+ok: [worker-b2] => (item=apt-daily-upgrade.timer)
+
+TASK [Wait for in-flight apt/dpkg work to finish (never kill)] *****************
+ok: [worker-b2]
+
+TASK [Collect state after change] **********************************************
+ok: [worker-b2]
+
+TASK [Show state after change] *************************************************
+ok: [worker-b2] => {
+    "after_state.stdout_lines": [
+        "kernel=6.8.0-146-generic",
+        "uptime=up 1 day, 13 minutes",
+        "reboot-required=no",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "apt-daily.timer=disabled/inactive",
+        "apt-daily-upgrade.timer=disabled/inactive",
+        "snaps="
+    ]
+}
+
+TASK [Assert effective APT options] ********************************************
+ok: [worker-b2]
+
+TASK [Assert timer state] ******************************************************
+ok: [worker-b2] => (item=apt-daily.timer)
+ok: [worker-b2] => (item=apt-daily-upgrade.timer)
+
+PLAY RECAP *********************************************************************
+worker-b2                  : ok=9    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

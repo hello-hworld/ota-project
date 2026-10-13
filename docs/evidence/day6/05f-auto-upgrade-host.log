@@ -1,0 +1,68 @@
+
+PLAY [Control automatic package upgrades] **************************************
+
+TASK [Record state before change] **********************************************
+ok: [ota-host]
+
+TASK [Show state before change] ************************************************
+ok: [ota-host] => {
+    "before_state.stdout_lines": [
+        "--- 20auto-upgrades (file)",
+        "APT::Periodic::Update-Package-Lists \"1\";",
+        "APT::Periodic::Unattended-Upgrade \"1\";",
+        "--- APT::Periodic (effective)",
+        "APT::Periodic::Update-Package-Lists \"1\";",
+        "APT::Periodic::Download-Upgradeable-Packages \"0\";",
+        "APT::Periodic::AutocleanInterval \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"1\";",
+        "--- timers (UnitFileState/ActiveState)",
+        "apt-daily.timer=enabled/active",
+        "apt-daily-upgrade.timer=enabled/active"
+    ]
+}
+
+TASK [Set APT periodic options] ************************************************
+--- before: /etc/apt/apt.conf.d/20auto-upgrades
++++ after: /etc/apt/apt.conf.d/20auto-upgrades
+@@ -1,2 +1,2 @@
+-APT::Periodic::Update-Package-Lists "1";
+-APT::Periodic::Unattended-Upgrade "1";
++APT::Periodic::Update-Package-Lists "0";
++APT::Periodic::Unattended-Upgrade "0";
+
+changed: [ota-host]
+
+TASK [Set apt timers] **********************************************************
+changed: [ota-host] => (item=apt-daily.timer)
+changed: [ota-host] => (item=apt-daily-upgrade.timer)
+
+TASK [Wait for in-flight apt/dpkg work to finish (never kill)] *****************
+ok: [ota-host]
+
+TASK [Collect state after change] **********************************************
+ok: [ota-host]
+
+TASK [Show state after change] *************************************************
+ok: [ota-host] => {
+    "after_state.stdout_lines": [
+        "kernel=6.8.0-139-generic",
+        "uptime=up 1 week, 1 day, 2 hours, 36 minutes",
+        "reboot-required=yes",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "apt-daily.timer=disabled/inactive",
+        "apt-daily-upgrade.timer=disabled/inactive",
+        "snaps="
+    ]
+}
+
+TASK [Assert effective APT options] ********************************************
+ok: [ota-host]
+
+TASK [Assert timer state] ******************************************************
+ok: [ota-host] => (item=apt-daily.timer)
+ok: [ota-host] => (item=apt-daily-upgrade.timer)
+
+PLAY RECAP *********************************************************************
+ota-host                   : ok=9    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

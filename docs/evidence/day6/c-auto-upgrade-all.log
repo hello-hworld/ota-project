@@ -1,0 +1,208 @@
+
+PLAY [Control automatic package upgrades] **************************************
+
+TASK [Record state before change] **********************************************
+ok: [worker-b2]
+ok: [cp-b]
+ok: [cp-a]
+ok: [worker-b1]
+ok: [worker-a1]
+
+TASK [Show state before change] ************************************************
+ok: [worker-a1] => {
+    "before_state.stdout_lines": [
+        "--- 20auto-upgrades (file)",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "--- APT::Periodic (effective)",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Download-Upgradeable-Packages \"0\";",
+        "APT::Periodic::AutocleanInterval \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "--- timers (UnitFileState/ActiveState)",
+        "apt-daily.timer=disabled/inactive",
+        "apt-daily-upgrade.timer=disabled/inactive"
+    ]
+}
+ok: [worker-b1] => {
+    "before_state.stdout_lines": [
+        "--- 20auto-upgrades (file)",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "--- APT::Periodic (effective)",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Download-Upgradeable-Packages \"0\";",
+        "APT::Periodic::AutocleanInterval \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "--- timers (UnitFileState/ActiveState)",
+        "apt-daily.timer=disabled/inactive",
+        "apt-daily-upgrade.timer=disabled/inactive"
+    ]
+}
+ok: [worker-b2] => {
+    "before_state.stdout_lines": [
+        "--- 20auto-upgrades (file)",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "--- APT::Periodic (effective)",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Download-Upgradeable-Packages \"0\";",
+        "APT::Periodic::AutocleanInterval \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "--- timers (UnitFileState/ActiveState)",
+        "apt-daily.timer=disabled/inactive",
+        "apt-daily-upgrade.timer=disabled/inactive"
+    ]
+}
+ok: [cp-a] => {
+    "before_state.stdout_lines": [
+        "--- 20auto-upgrades (file)",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "--- APT::Periodic (effective)",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Download-Upgradeable-Packages \"0\";",
+        "APT::Periodic::AutocleanInterval \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "--- timers (UnitFileState/ActiveState)",
+        "apt-daily.timer=disabled/inactive",
+        "apt-daily-upgrade.timer=disabled/inactive"
+    ]
+}
+ok: [cp-b] => {
+    "before_state.stdout_lines": [
+        "--- 20auto-upgrades (file)",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "--- APT::Periodic (effective)",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Download-Upgradeable-Packages \"0\";",
+        "APT::Periodic::AutocleanInterval \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "--- timers (UnitFileState/ActiveState)",
+        "apt-daily.timer=disabled/inactive",
+        "apt-daily-upgrade.timer=disabled/inactive"
+    ]
+}
+
+TASK [Set APT periodic options] ************************************************
+ok: [worker-b2]
+ok: [worker-b1]
+ok: [cp-a]
+ok: [worker-a1]
+ok: [cp-b]
+
+TASK [Set apt timers] **********************************************************
+ok: [worker-b2] => (item=apt-daily.timer)
+ok: [worker-a1] => (item=apt-daily.timer)
+ok: [cp-b] => (item=apt-daily.timer)
+ok: [worker-b1] => (item=apt-daily.timer)
+ok: [cp-a] => (item=apt-daily.timer)
+ok: [worker-a1] => (item=apt-daily-upgrade.timer)
+ok: [worker-b2] => (item=apt-daily-upgrade.timer)
+ok: [worker-b1] => (item=apt-daily-upgrade.timer)
+ok: [cp-b] => (item=apt-daily-upgrade.timer)
+ok: [cp-a] => (item=apt-daily-upgrade.timer)
+
+TASK [Wait for in-flight apt/dpkg work to finish (never kill)] *****************
+ok: [worker-a1]
+ok: [worker-b1]
+ok: [worker-b2]
+ok: [cp-b]
+ok: [cp-a]
+
+TASK [Collect state after change] **********************************************
+ok: [worker-b1]
+ok: [worker-b2]
+ok: [worker-a1]
+ok: [cp-b]
+ok: [cp-a]
+
+TASK [Show state after change] *************************************************
+ok: [worker-a1] => {
+    "after_state.stdout_lines": [
+        "kernel=6.8.0-146-generic",
+        "uptime=up 1 day, 18 minutes",
+        "reboot-required=no",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "apt-daily.timer=disabled/inactive",
+        "apt-daily-upgrade.timer=disabled/inactive",
+        "snaps="
+    ]
+}
+ok: [worker-b1] => {
+    "after_state.stdout_lines": [
+        "kernel=6.8.0-146-generic",
+        "uptime=up 1 day, 18 minutes",
+        "reboot-required=no",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "apt-daily.timer=disabled/inactive",
+        "apt-daily-upgrade.timer=disabled/inactive",
+        "snaps="
+    ]
+}
+ok: [worker-b2] => {
+    "after_state.stdout_lines": [
+        "kernel=6.8.0-146-generic",
+        "uptime=up 1 day, 18 minutes",
+        "reboot-required=no",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "apt-daily.timer=disabled/inactive",
+        "apt-daily-upgrade.timer=disabled/inactive",
+        "snaps="
+    ]
+}
+ok: [cp-a] => {
+    "after_state.stdout_lines": [
+        "kernel=6.8.0-146-generic",
+        "uptime=up 1 day, 20 minutes",
+        "reboot-required=no",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "apt-daily.timer=disabled/inactive",
+        "apt-daily-upgrade.timer=disabled/inactive",
+        "snaps="
+    ]
+}
+ok: [cp-b] => {
+    "after_state.stdout_lines": [
+        "kernel=6.8.0-146-generic",
+        "uptime=up 1 day, 20 minutes",
+        "reboot-required=no",
+        "APT::Periodic::Update-Package-Lists \"0\";",
+        "APT::Periodic::Unattended-Upgrade \"0\";",
+        "apt-daily.timer=disabled/inactive",
+        "apt-daily-upgrade.timer=disabled/inactive",
+        "snaps="
+    ]
+}
+
+TASK [Assert effective APT options] ********************************************
+ok: [worker-a1]
+ok: [worker-b1]
+ok: [worker-b2]
+ok: [cp-a]
+ok: [cp-b]
+
+TASK [Assert timer state] ******************************************************
+ok: [worker-a1] => (item=apt-daily.timer)
+ok: [worker-b1] => (item=apt-daily.timer)
+ok: [worker-a1] => (item=apt-daily-upgrade.timer)
+ok: [worker-b2] => (item=apt-daily.timer)
+ok: [worker-b1] => (item=apt-daily-upgrade.timer)
+ok: [cp-a] => (item=apt-daily.timer)
+ok: [worker-b2] => (item=apt-daily-upgrade.timer)
+ok: [cp-b] => (item=apt-daily.timer)
+ok: [cp-a] => (item=apt-daily-upgrade.timer)
+ok: [cp-b] => (item=apt-daily-upgrade.timer)
+
+PLAY RECAP *********************************************************************
+cp-a                       : ok=9    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+cp-b                       : ok=9    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+worker-a1                  : ok=9    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+worker-b1                  : ok=9    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+worker-b2                  : ok=9    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

@@ -1,0 +1,6 @@
+ERROR! failed at splitting arguments, either an unbalanced jinja2 block or quotes: 
+echo "running=$(uname -r)"
+echo "installed: $(ls /boot/vmlinuz-* | sed "s|/boot/vmlinuz-||" | xargs)"
+zgrep -h -B3 "linux-image-6.8.0-146" /var/log/apt/histroy.log" 2>/dev/null \
+ | grep -E "Start-Date|Commandline|Requested-By|linux-image-6.8.0-146" | cut -c1-200 | head -8
+zgrep -h "linux-image" /var/log/unattended-upgrades/unattended-upgrades.log* 2>/dev/null | tail -3
