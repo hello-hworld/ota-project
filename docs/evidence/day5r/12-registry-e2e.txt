@@ -1,0 +1,12 @@
+{"repositories":["day5/buxybox"]}
+
+{"name":"day5/buxybox","tags":["1.36"]}
+
+HTTP/1.1 404 Not Found
+reg-e2e-worker-b1   0/1     Completed   0          9m20s   10.20.214.193   worker-b1   <none>           <none>
+reg-e2e-worker-b2   0/1     Completed   0          8m48s   10.20.127.129   worker-b2   <none>           <none>
+registry-e2e-ok
+registry-e2e-ok
+  Normal  Pulling    8m48s  kubelet            Pulling image "192.168.56.21:32000/day5/busybox:1.36"
+  Normal  Pulled     8m48s  kubelet            Successfully pulled image "192.168.56.21:32000/day5/busybox:1.36" in 144ms (144ms including waiting). Image size: 2217006 bytes.
+{"name":"day5/busybox","tags":["1.36"]}
