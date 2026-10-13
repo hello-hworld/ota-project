@@ -1,0 +1,6 @@
+controller:
+  JCasC:
+    configScripts:
+      project-message: |
+        jenkins:
+          systemMessage: "OTA DAY6 Helm upgrade check"

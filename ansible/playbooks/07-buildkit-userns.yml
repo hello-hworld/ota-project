@@ -1,0 +1,49 @@
+---
+# 07-buildkit-userns.yml — 전환안 A: worker-a1에서 비특권 user namespace 제한을 푼다 (rootless BuildKit용)
+# 배경  : Ubuntu 24.04는 kernel.apparmor_restrict_unprivileged_userns=1이 기본이라 rootless BuildKit이 막힐 수 있다.
+# 실행  : [ota-host] ~/ota-project
+#         ansible-playbook -i ansible/inventory/hosts.ini ansible/playbooks/07-buildkit-userns.yml --diff
+# 되돌리기: 위 명령 + -e userns_restrict=1
+# 주의  : worker-a1 전체에서 Ubuntu의 userns 제한(보안 강화 설정)을 푼다. 적용했다면 Issue Log에 기록한다.
+- name: Control unprivileged user namespace restriction on worker-a1
+  hosts: worker-a1
+  become: true
+  gather_facts: false
+  vars:
+    userns_restrict: 0
+
+  tasks:
+    - name: Record current value
+      ansible.builtin.command: sysctl -n kernel.apparmor_restrict_unprivileged_userns
+      register: before
+      changed_when: false
+
+    - name: Show current value
+      ansible.builtin.debug:
+        msg: "before={{ before.stdout }}"
+
+    - name: Write sysctl drop-in
+      ansible.builtin.copy:
+        dest: /etc/sysctl.d/60-buildkit-userns.conf
+        owner: root
+        group: root
+        mode: "0644"
+        content: "kernel.apparmor_restrict_unprivileged_userns = {{ userns_restrict }}\n"
+      register: dropin
+
+    # 파일이 바뀌었거나, 파일은 같아도 런타임 값이 다르면 적용한다 (재실행으로 복구 가능)
+    - name: Apply now
+      ansible.builtin.command: sysctl -p /etc/sysctl.d/60-buildkit-userns.conf
+      when: dropin.changed or (before.stdout != (userns_restrict | string))
+
+    - name: Read effective value
+      ansible.builtin.command: sysctl -n kernel.apparmor_restrict_unprivileged_userns
+      register: after
+      changed_when: false
+
+    - name: Assert effective value
+      ansible.builtin.assert:
+        that:
+          - after.stdout == (userns_restrict | string)
+        fail_msg: "유효값 {{ after.stdout }} ≠ {{ userns_restrict }}"
+        quiet: true

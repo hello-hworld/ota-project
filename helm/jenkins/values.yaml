@@ -1,0 +1,96 @@
+controller:
+  image:
+    pullPolicy: IfNotPresent          # 변경: 기본값 Always는 Pod 재생성마다 Docker Hub에서 다시 받는다
+  numExecutors: 0
+  nodeSelector:
+    workload: platform
+  serviceType: ClusterIP
+  agentListenerEnabled: false
+  jenkinsUrl: "http://127.0.0.1:18080/"   # 추가: SSH 터널로 여는 주소. Agent URL은 Chart가 내부 Service로 따로 계산
+  resources:
+    requests:
+      cpu: "250m"
+      memory: "768Mi"
+    limits:
+      cpu: "1000m"
+      memory: "1536Mi"
+  initContainerResources:
+    requests:
+      cpu: "250m"
+      memory: "768Mi"
+    limits:
+      cpu: "1000m"
+      memory: "1536Mi"
+  javaOpts: "-Xms256m -Xmx768m"
+  admin:
+    createSecret: false
+    existingSecret: jenkins-admin
+  additionalPlugins:
+    - lockable-resources:latest       # 추가: Jenkinsfile의 lock 스텝. STEP 8에서 실제 버전으로 바꿔 기록
+  # installLatestPlugins: 차트 기본값(true) 유지 — 코어 2.580.1과 호환되는 최신 의존성을 받고, 설치 후 전체 목록을 고정
+  initializeOnce: true
+  JCasC:
+    defaultConfig: true
+    configScripts:
+      project-message: |
+        jenkins:
+          systemMessage: "OTA DAY6 Helm baseline"
+  sidecars:
+    configAutoReload:
+      resources:                      # 추가: requests 합계·측정에 포함되도록
+        requests:
+          cpu: "10m"
+          memory: "32Mi"
+        limits:
+          cpu: "100m"
+          memory: "128Mi"
+  probes:
+    startupProbe:
+      failureThreshold: 60
+  testEnabled: false                  # 추가: 렌더링에 테스트 Pod를 넣지 않음
+
+agent:
+  enabled: true
+  namespace: ci
+  nodeSelector:
+    workload: platform
+  customJenkinsLabels:
+    - day6-agent
+  podLabels:
+    ota-ci-agent: "true"
+  containerCap: 1
+  instanceCap: 1
+  idleMinutes: 0
+  podRetention: Never
+  websocket: true
+  resources:
+    requests:
+      cpu: "200m"
+      memory: "256Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+  garbageCollection:                  # 추가: 정리되지 않은 Agent Pod를 5분 뒤 회수
+    enabled: true
+    timeout: 300
+
+persistence:
+  enabled: true
+  storageClass: local-path
+  accessMode: ReadWriteOnce
+  size: "10Gi"
+  annotations:
+    helm.sh/resource-policy: keep     # 추가: helm uninstall이나 첫 설치 실패에도 Jenkins Home PVC를 지우지 않음
+
+rbac:
+  create: true
+  readSecrets: false
+
+serviceAccount:
+  create: true
+  name: jenkins-controller
+
+serviceAccountAgent:
+  create: true
+  name: jenkins-agent
+  automountServiceAccountToken: false

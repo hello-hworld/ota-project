@@ -1,7 +1,7 @@
 ---
 # 06-disable-auto-upgrade.yml
 # 목적   : 측정 조건 고정. 실험 기간 동안 자동 패키지 업데이트(APT periodic + unattended-upgrades)를 멈춘다.
-#          계기: DAY5 R0 재기동 후 VM 커널 6.8.0-142 -> 6.8.0-146 (원인 로그는 DAY6 4.2에서 확인)
+#          계기: DAY5 R0 재기동 후 VM 커널 6.8.0-142 -> 6.8.0-146 (원인 로그는 DAY6 STEP 3-1에서 확인)
 # 실행   : [ota-host] ~/ota-project
 #   미리보기 : ansible-playbook -i ansible/inventory/hosts.ini ansible/playbooks/06-disable-auto-upgrade.yml --check --diff
 #   중지     : ansible-playbook -i ansible/inventory/hosts.ini ansible/playbooks/06-disable-auto-upgrade.yml --diff

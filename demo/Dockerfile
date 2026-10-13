@@ -1,0 +1,13 @@
+# DAY6 CI 검증용 이미지. BASE_IMAGE는 STEP 12-3에서 확인한 digest로 고정한다.
+ARG BASE_IMAGE=docker.io/library/python:3.12-alpine@sha256:<PYTHON_DIGEST>
+FROM ${BASE_IMAGE}
+ARG APP_VERSION=dev
+ENV APP_VERSION=${APP_VERSION} \
+    PORT=8080 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+WORKDIR /app
+COPY app.py .
+USER 65534:65534
+EXPOSE 8080
+CMD ["python", "/app/app.py"]

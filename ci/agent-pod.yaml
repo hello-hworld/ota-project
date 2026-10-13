@@ -1,0 +1,59 @@
+# ci/agent-pod.yaml — CI 빌드용 Agent Pod
+# 기본 Template 'default'(Helm values)를 상속한다(yamlMergeStrategy merge).
+# jnlp 컨테이너·namespace(ci)·nodeSelector(workload=platform)·serviceAccount(jenkins-agent)는 상속분이다.
+# <...> 자리는 STEP 12-3에서 확인한 태그와 digest로 바꾼다.
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    ota-ci-build: "true"
+spec:
+  containers:
+    - name: python
+      image: docker.io/library/python:3.12-alpine@sha256:<PYTHON_DIGEST>
+      command: ["cat"]
+      tty: true
+      resources:
+        requests: {cpu: "100m", memory: "64Mi"}
+        limits: {cpu: "500m", memory: "256Mi"}
+    # 전환안 A·B는 STEP 13-3 참고. 기본은 rootless.
+    - name: buildkit
+      image: docker.io/moby/buildkit:<BUILDKIT_TAG>-rootless@sha256:<BUILDKIT_ROOTLESS_DIGEST>
+      args: ["--oci-worker-no-process-sandbox"]
+      env:
+        - name: BUILDKIT_HOST
+          value: unix:///run/user/1000/buildkit/buildkitd.sock
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        seccompProfile: {type: Unconfined}
+        appArmorProfile: {type: Unconfined}
+      volumeMounts:
+        - name: buildkitd-state
+          mountPath: /home/user/.local/share/buildkit
+      resources:
+        requests: {cpu: "500m", memory: "256Mi"}
+        limits: {cpu: "2", memory: "1536Mi"}
+    - name: trivy
+      image: docker.io/aquasec/trivy:<TRIVY_TAG>@sha256:<TRIVY_DIGEST>
+      command: ["cat"]
+      tty: true
+      volumeMounts:
+        - name: trivy-cache
+          mountPath: /trivy-cache
+      resources:
+        requests: {cpu: "200m", memory: "256Mi"}
+        limits: {cpu: "1", memory: "1Gi"}
+    - name: skopeo
+      image: quay.io/skopeo/stable:<SKOPEO_TAG>@sha256:<SKOPEO_DIGEST>
+      command: ["cat"]
+      tty: true
+      resources:
+        requests: {cpu: "100m", memory: "64Mi"}
+        limits: {cpu: "500m", memory: "256Mi"}
+  volumes:
+    - name: buildkitd-state
+      emptyDir: {}
+    - name: trivy-cache
+      persistentVolumeClaim:
+        claimName: trivy-cache
