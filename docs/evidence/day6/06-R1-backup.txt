@@ -1,0 +1,26 @@
+No errors were found on the image.
+114696/491520 = 23.33% allocated, 25.83% fragmented, 22.42% compressed clusters
+Image end offset: 6386614272
+No errors were found on the image.
+95333/983040 = 9.70% allocated, 29.36% fragmented, 26.60% compressed clusters
+Image end offset: 5136777216
+No errors were found on the image.
+106626/491520 = 21.69% allocated, 27.26% fragmented, 24.17% compressed clusters
+Image end offset: 5854330880
+No errors were found on the image.
+92365/819200 = 11.28% allocated, 30.57% fragmented, 27.95% compressed clusters
+Image end offset: 4917297152
+No errors were found on the image.
+94105/1310720 = 7.18% allocated, 30.28% fragmented, 27.63% compressed clusters
+Image end offset: 5024448512
+cp-a/cp-a.qcow2: OK
+cp-b/cp-b.qcow2: OK
+worker-a1/worker-a1.qcow2: OK
+worker-b1/worker-b1.qcow2: OK
+worker-b2/worker-b2.qcow2: OK
+BACKUP=/var/lib/libvirt/ota/backup/R1-20261013-0751
+R1_BACKUP_OK
+25G	/var/lib/libvirt/ota/backup/R0-20261012
+26G	/var/lib/libvirt/ota/backup/R1-20261013-0751
+Filesystem                          Size  Used Avail Use% Mounted on
+/dev/mapper/ubuntu--vg-ota--vm--lv  295G   77G  204G  28% /var/lib/libvirt/ota

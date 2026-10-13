@@ -1,0 +1,20 @@
+NAME        STATUS   ROLES           AGE   VERSION
+cp-a        Ready    control-plane   6d    v1.30.14
+worker-a1   Ready    <none>          6d    v1.30.14
+NAMESPACE            NAME                                       READY   STATUS    RESTARTS        AGE
+NAME        STATUS   ROLES           AGE    VERSION
+cp-b        Ready    control-plane   6d1h   v1.30.14
+worker-b1   Ready    <none>          6d1h   v1.30.14
+worker-b2   Ready    <none>          6d1h   v1.30.14
+NAMESPACE     NAME                                       READY   STATUS    RESTARTS       AGE
+cp-b | CHANGED | rc=0 >>
+6.8.0-146-generic reboot-required=no
+worker-b2 | CHANGED | rc=0 >>
+6.8.0-146-generic reboot-required=no
+worker-a1 | CHANGED | rc=0 >>
+6.8.0-146-generic reboot-required=no
+worker-b1 | CHANGED | rc=0 >>
+6.8.0-146-generic reboot-required=no
+cp-a | CHANGED | rc=0 >>
+6.8.0-146-generic reboot-required=no
+/v2/ 200
