@@ -1,0 +1,45 @@
+NAMESPACE     NAME                                       READY   STATUS    RESTARTS      AGE     IP              NODE        NOMINATED NODE   READINESS GATES
+kube-system   calico-kube-controllers-749d8f4b87-7qnst   1/1     Running   0             22m     10.20.214.202   worker-b1   <none>           <none>
+kube-system   calico-node-qncl9                          1/1     Running   0             19m     192.168.56.30   cp-b        <none>           <none>
+kube-system   calico-node-rsfq5                          1/1     Running   0             21m     192.168.56.31   worker-b1   <none>           <none>
+kube-system   calico-node-vzrbj                          1/1     Running   0             22m     192.168.56.32   worker-b2   <none>           <none>
+kube-system   coredns-55cb58b774-8qtd2                   1/1     Running   3 (86m ago)   7d15h   10.20.164.203   cp-b        <none>           <none>
+kube-system   coredns-55cb58b774-9bk54                   1/1     Running   3 (86m ago)   7d15h   10.20.164.204   cp-b        <none>           <none>
+kube-system   etcd-cp-b                                  1/1     Running   3 (86m ago)   7d15h   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-apiserver-cp-b                        1/1     Running   3 (86m ago)   7d15h   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-controller-manager-cp-b               1/1     Running   3 (86m ago)   7d15h   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-8wdrj                           1/1     Running   3 (85m ago)   7d14h   192.168.56.31   worker-b1   <none>           <none>
+kube-system   kube-proxy-dwst5                           1/1     Running   3 (86m ago)   7d15h   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-p67hw                           1/1     Running   3 (85m ago)   7d14h   192.168.56.32   worker-b2   <none>           <none>
+kube-system   kube-scheduler-cp-b                        1/1     Running   3 (86m ago)   7d15h   192.168.56.30   cp-b        <none>           <none>
+production    ota-demo-86699c58ff-496tf                  1/1     Running   0             64m     10.20.127.136   worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-j72sr                  1/1     Running   0             63m     10.20.214.201   worker-b1   <none>           <none>
+kube-system   upgrade-health-check-pn4mx-cn4jx           0/1     Pending   0             0s      <none>          <none>      <none>           <none>
+kube-system   upgrade-health-check-pn4mx-cn4jx           0/1     Pending   0             0s      <none>          worker-b2   <none>           <none>
+kube-system   upgrade-health-check-pn4mx-cn4jx           0/1     ContainerCreating   0             0s      <none>          worker-b2   <none>           <none>
+kube-system   upgrade-health-check-pn4mx-cn4jx           0/1     ContainerCreating   0             0s      <none>          worker-b2   <none>           <none>
+kube-system   upgrade-health-check-pn4mx-cn4jx           0/1     Completed           0             2s      10.20.127.137   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-pn4mx-cn4jx           0/1     Completed           0             3s      10.20.127.137   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-pn4mx-cn4jx           0/1     Completed           0             3s      10.20.127.137   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-pn4mx-cn4jx           0/1     Completed           0             4s      10.20.127.137   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-pn4mx-cn4jx           0/1     Terminating         0             24s     10.20.127.137   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-pn4mx-cn4jx           0/1     Terminating         0             24s     10.20.127.137   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-nd54v-5crfk           0/1     Pending             0             0s      <none>          <none>      <none>           <none>
+kube-system   upgrade-health-check-nd54v-5crfk           0/1     Pending             0             0s      <none>          worker-b2   <none>           <none>
+kube-system   upgrade-health-check-nd54v-5crfk           0/1     ContainerCreating   0             0s      <none>          worker-b2   <none>           <none>
+kube-system   upgrade-health-check-nd54v-5crfk           0/1     ContainerCreating   0             0s      <none>          worker-b2   <none>           <none>
+kube-system   upgrade-health-check-nd54v-5crfk           0/1     Completed           0             0s      10.20.127.138   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-nd54v-5crfk           0/1     Completed           0             2s      10.20.127.138   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-nd54v-5crfk           0/1     Completed           0             2s      10.20.127.138   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-nd54v-5crfk           0/1     Completed           0             3s      10.20.127.138   worker-b2   <none>           <none>
+kube-system   etcd-cp-b                                  1/1     Terminating         3 (88m ago)   7d15h   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-apiserver-cp-b                        0/1     Running             3 (88m ago)   7d15h   192.168.56.30   cp-b        <none>           <none>
+kube-system   calico-kube-controllers-749d8f4b87-7qnst   0/1     Running             0             25m     10.20.214.202   worker-b1   <none>           <none>
+kube-system   etcd-cp-b                                  1/1     Terminating         3 (88m ago)   7d15h   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-controller-manager-cp-b               1/1     Running             4 (53s ago)   7d15h   192.168.56.30   cp-b        <none>           <none>
+kube-system   calico-kube-controllers-749d8f4b87-7qnst   0/1     Running             1 (4s ago)    25m     10.20.214.202   worker-b1   <none>           <none>
+kube-system   kube-scheduler-cp-b                        0/1     Running             4 (46s ago)   7d15h   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-apiserver-cp-b                        1/1     Running             3 (88m ago)   7d15h   192.168.56.30   cp-b        <none>           <none>
+kube-system   etcd-cp-b                                  0/1     Pending             0             1s      <none>          cp-b        <none>           <none>
+kube-system   kube-scheduler-cp-b                        1/1     Running             4 (59s ago)   7d15h   192.168.56.30   cp-b        <none>           <none>
+kube-system   etcd-cp-b                                  1/1     Running             0             3s      192.168.56.30   cp-b        <none>           <none>

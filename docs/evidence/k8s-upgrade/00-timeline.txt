@@ -24,3 +24,8 @@
 2026-10-14T21:13:11Z hop v1.31.14 cluster b ansible start
 2026-10-14T21:13:27Z hop v1.31.14 cluster b ansible end rc=2
 2026-10-14T21:13:34Z H1 end
+2026-10-14T21:18:18Z H1 재실행: 1차는 패키지 조회 SIGPIPE(rc=141)로 cp-a·cp-b 설치 전 실패. 변경은 kubernetes.list v1.31·apt 캐시뿐
+2026-10-14T21:18:24Z hop v1.31.14 cluster a ansible start
+2026-10-14T21:23:33Z hop v1.31.14 cluster a ansible end rc=0
+2026-10-14T21:26:16Z hop v1.31.14 cluster b ansible start
+2026-10-14T21:33:24Z hop v1.31.14 cluster b ansible end rc=0
