@@ -1,0 +1,7 @@
+==ota-a /stagins
+stagins   Active   2d
+==ota-b /day6-ci-test
+Error from server (NotFound): namespaces "day6-ci-test" not found
+No resources found in day6-ci-test namespace.
+namespace "stagins" deleted
+Error from server (NotFound): namespaces "day6-ci-test" not found
