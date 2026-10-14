@@ -21,7 +21,7 @@
 - name: Find the {{ k8s_version }} package revision
   ansible.builtin.shell: |
     set -o pipefail
-    apt-cache madison {{ item }} | awk -v v="{{ k8s_version }}-" 'index($3, v) == 1 {print $3; exit}'
+    apt-cache madison {{ item }} | awk -v v="{{ k8s_version }}-" 'index($3, v) == 1 && f == 0 {print $3; f = 1}'
   args:
     executable: /bin/bash
   loop: "{{ k8s_pkgs }}"
