@@ -1,0 +1,5 @@
+관문 A 2026-10-14T13:57:29Z
+/home/devops/ota-project/docs/evidence/day7/20-staging-G-sync.txt:RESULT=PASS
+/home/devops/ota-project/docs/evidence/day7/21-staging-G-check.txt:RESULT=PASS
+/home/devops/ota-project/docs/evidence/day7/22-staging-stop-sync.txt:RESULT=PASS
+/home/devops/ota-project/docs/evidence/day7/23-staging-stop-check.txt:RESULT=PASS

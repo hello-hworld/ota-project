@@ -1,0 +1,7 @@
+== 20-staging-G-sync (재기록: 13:55:00Z PASS 실행분이 같은 이름 재실행으로 덮어써져 Argo CD 기록으로 대체)
+SOURCE  https://github.com/hello-hworld/ota-project.git
+ID      DATE                           REVISION
+0       2026-10-14 13:55:01 +0000 UTC  main (5883c09)
+sync=Synced health=Healthy op=Succeeded synced-rev=5883c09801fe64ffde6cd477987d79f692daef5f op-start=2026-10-14T13:55:00Z op-end=2026-10-14T13:55:01Z
+원본 화면: wait rc=0, Sync 시작→Healthy +3s
+RESULT=PASS

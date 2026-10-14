@@ -1,0 +1,12 @@
+== demo-check staging expect=G digest=sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478 version=2f99fb73f694-day6-ci-2 at=2026-10-14T13:56:10Z
+-- application ota-demo-staging: sync=Synced health=Healthy compared-rev=5883c09801fe64ffde6cd477987d79f692daef5f op=Succeeded synced-rev=5883c09801fe64ffde6cd477987d79f692daef5f
+-- deployment: replicas=1 ready=1 updated=1 available=1 readinessPath=/healthz conditions={'Available': 'True/MinimumReplicasAvailable', 'Progressing': 'True/NewReplicaSetAvailable'}
+   image=192.168.56.21:32000/day6/demo@sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
+-- pods (NAME NODE PHASE READY RESTARTS IP / image / imageID)
+   ota-demo-7cfb6b594d-ww6vj worker-a1 Running ready=True restarts=0 10.10.238.53
+     image=192.168.56.21:32000/day6/demo@sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
+     imageID=192.168.56.21:32000/day6/demo@sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
+-- http (노드 192.168.56.21에서 curl, Service 10.101.40.30:8080 10회)
+   pod 10.10.238.53: 200 {"status": "ok", "version": "2f99fb73f694-day6-ci-2"}
+   service 10.101.40.30: 10/10 정상
+RESULT=PASS
