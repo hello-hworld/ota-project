@@ -1,0 +1,7 @@
+== install-cli kubectl v1.34.12 at=2026-10-14T22:35:24Z
+before: kubectl is /home/devops/.local/bin/kubectl kubectl is /home/devops/.local/bin/kubectl kubectl is /home/devops/.local/bin/kubectl 
+official sha256: 90b7b9058ffeb5c10710bb1c73f541eaf426fb1b4e87df435db669de9a2564a2
+/tmp/tmp.0GTNzgeVRB/kubectl: OK
+installed: /home/devops/.local/bin/kubectl → kubectl-v1.34.12 (v1.34.12)
+after: kubectl is /home/devops/.local/bin/kubectl kubectl is /home/devops/.local/bin/kubectl kubectl is /home/devops/.local/bin/kubectl 
+RESULT=PASS (이 터미널에서 hash -r)
