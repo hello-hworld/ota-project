@@ -1,0 +1,277 @@
+NAMESPACE     NAME                                       READY   STATUS    RESTARTS      AGE   IP              NODE        NOMINATED NODE   READINESS GATES
+kube-system   calico-kube-controllers-855c4cc49d-7sgh4   1/1     Running   0             15m   10.20.214.225   worker-b1   <none>           <none>
+kube-system   calico-node-4bx8k                          1/1     Running   0             34m   192.168.56.32   worker-b2   <none>           <none>
+kube-system   calico-node-dpxjs                          1/1     Running   0             37m   192.168.56.30   cp-b        <none>           <none>
+kube-system   calico-node-hrtlw                          1/1     Running   0             36m   192.168.56.31   worker-b1   <none>           <none>
+kube-system   coredns-7d764666f9-767pw                   1/1     Running   0             16m   10.20.164.209   cp-b        <none>           <none>
+kube-system   coredns-7d764666f9-l4d7m                   1/1     Running   0             15m   10.20.214.224   worker-b1   <none>           <none>
+kube-system   etcd-cp-b                                  1/1     Running   2 (17m ago)   17m   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-apiserver-cp-b                        1/1     Running   2 (17m ago)   17m   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-controller-manager-cp-b               1/1     Running   1 (17m ago)   17m   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-d4268                           1/1     Running   0             17m   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-jjxgw                           1/1     Running   0             18m   192.168.56.32   worker-b2   <none>           <none>
+kube-system   kube-proxy-rw78x                           1/1     Running   0             18m   192.168.56.31   worker-b1   <none>           <none>
+kube-system   kube-scheduler-cp-b                        1/1     Running   1 (17m ago)   17m   192.168.56.30   cp-b        <none>           <none>
+production    ota-demo-86699c58ff-j4mrh                  1/1     Running   0             15m   10.20.127.158   worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-vh8rw                  1/1     Running   0             16m   10.20.214.223   worker-b1   <none>           <none>
+kube-system   upgrade-health-check-1792021063608-pfckd   0/1     Pending   0             0s    <none>          <none>      <none>           <none>
+kube-system   upgrade-health-check-1792021063608-pfckd   0/1     Pending   0             0s    <none>          worker-b2   <none>           <none>
+kube-system   upgrade-health-check-1792021063608-pfckd   0/1     ContainerCreating   0             0s    <none>          worker-b2   <none>           <none>
+kube-system   upgrade-health-check-1792021063608-pfckd   0/1     ContainerCreating   0             1s    <none>          worker-b2   <none>           <none>
+kube-system   upgrade-health-check-1792021063608-pfckd   0/1     Completed           0             3s    10.20.127.159   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-1792021063608-pfckd   0/1     Completed           0             4s    10.20.127.159   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-1792021063608-pfckd   0/1     Completed           0             4s    10.20.127.159   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-1792021063608-pfckd   0/1     Completed           0             5s    10.20.127.159   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-1792021121850-44dcm   0/1     Pending             0             0s    <none>          <none>      <none>           <none>
+kube-system   upgrade-health-check-1792021121850-44dcm   0/1     Pending             0             0s    <none>          worker-b2   <none>           <none>
+kube-system   upgrade-health-check-1792021121850-44dcm   0/1     ContainerCreating   0             0s    <none>          worker-b2   <none>           <none>
+kube-system   upgrade-health-check-1792021121850-44dcm   0/1     ContainerCreating   0             1s    <none>          worker-b2   <none>           <none>
+kube-system   upgrade-health-check-1792021121850-44dcm   0/1     Completed           0             2s    10.20.127.160   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-1792021121850-44dcm   0/1     Completed           0             3s    10.20.127.160   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-1792021121850-44dcm   0/1     Completed           0             3s    10.20.127.160   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-1792021121850-44dcm   0/1     Completed           0             4s    10.20.127.160   worker-b2   <none>           <none>
+kube-system   etcd-cp-b                                  1/1     Terminating         2 (20m ago)   20m   192.168.56.30   cp-b        <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-7sgh4   0/1     Running             0             18m   10.20.214.225   worker-b1   <none>           <none>
+kube-system   etcd-cp-b                                  1/1     Terminating         2 (20m ago)   20m   192.168.56.30   cp-b        <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-7sgh4   0/1     Running             1 (7s ago)    18m   10.20.214.225   worker-b1   <none>           <none>
+kube-system   kube-apiserver-cp-b                        0/1     Running             2 (20m ago)   20m   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-controller-manager-cp-b               1/1     Running             2 (64s ago)   20m   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-scheduler-cp-b                        0/1     Running             2 (59s ago)   20m   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-apiserver-cp-b                        1/1     Running             2 (20m ago)   20m   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-scheduler-cp-b                        0/1     Running             2 (59s ago)   20m   192.168.56.30   cp-b        <none>           <none>
+kube-system   etcd-cp-b                                  0/1     Pending             0             0s    <none>          cp-b        <none>           <none>
+kube-system   etcd-cp-b                                  1/1     Running             0             1s    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-scheduler-cp-b                        1/1     Running             2 (61s ago)   20m   192.168.56.30   cp-b        <none>           <none>
+--- watch 끊김·재연결 23:40:33
+--- watch 끊김·재연결 23:40:35
+--- watch 끊김·재연결 23:40:37
+--- watch 끊김·재연결 23:40:40
+--- watch 끊김·재연결 23:40:42
+--- watch 끊김·재연결 23:40:44
+NAMESPACE     NAME                                       READY   STATUS      RESTARTS       AGE    IP              NODE        NOMINATED NODE   READINESS GATES
+kube-system   calico-kube-controllers-855c4cc49d-7sgh4   0/1     Running     1 (52s ago)    18m    10.20.214.225   worker-b1   <none>           <none>
+kube-system   calico-node-4bx8k                          1/1     Running     0              38m    192.168.56.32   worker-b2   <none>           <none>
+kube-system   calico-node-dpxjs                          1/1     Running     0              41m    192.168.56.30   cp-b        <none>           <none>
+kube-system   calico-node-hrtlw                          1/1     Running     0              39m    192.168.56.31   worker-b1   <none>           <none>
+kube-system   coredns-7d764666f9-767pw                   1/1     Running     0              20m    10.20.164.209   cp-b        <none>           <none>
+kube-system   coredns-7d764666f9-l4d7m                   1/1     Running     0              18m    10.20.214.224   worker-b1   <none>           <none>
+kube-system   etcd-cp-b                                  1/1     Running     0              44s    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-apiserver-cp-b                        1/1     Running     2 (20m ago)    21m    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-controller-manager-cp-b               1/1     Running     2 (109s ago)   21m    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-d4268                           1/1     Running     0              21m    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-jjxgw                           1/1     Running     0              22m    192.168.56.32   worker-b2   <none>           <none>
+kube-system   kube-proxy-rw78x                           1/1     Running     0              21m    192.168.56.31   worker-b1   <none>           <none>
+kube-system   kube-scheduler-cp-b                        1/1     Running     2 (104s ago)   21m    192.168.56.30   cp-b        <none>           <none>
+kube-system   upgrade-health-check-1792021063608-pfckd   0/1     Completed   0              3m3s   10.20.127.159   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-1792021121850-44dcm   0/1     Completed   0              2m5s   10.20.127.160   worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-j4mrh                  1/1     Running     0              18m    10.20.127.158   worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-vh8rw                  1/1     Running     0              20m    10.20.214.223   worker-b1   <none>           <none>
+kube-system   kube-apiserver-cp-b                        1/1     Terminating   2 (20m ago)    21m    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-apiserver-cp-b                        1/1     Terminating   2 (20m ago)    21m    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-apiserver-cp-b                        0/1     Pending       0              0s     <none>          cp-b        <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-7sgh4   0/1     Running       1 (52s ago)    18m    10.20.214.225   worker-b1   <none>           <none>
+kube-system   upgrade-health-check-1792021063608-pfckd   0/1     Completed     0              3m6s   10.20.127.159   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-1792021121850-44dcm   0/1     Completed     0              2m8s   10.20.127.160   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-1792021063608-pfckd   0/1     Completed     0              3m6s   10.20.127.159   worker-b2   <none>           <none>
+kube-system   upgrade-health-check-1792021121850-44dcm   0/1     Completed     0              2m8s   10.20.127.160   worker-b2   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-7sgh4   0/1     Running       2 (1s ago)     19m    10.20.214.225   worker-b1   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-7sgh4   1/1     Running       2 (1s ago)     19m    10.20.214.225   worker-b1   <none>           <none>
+kube-system   kube-apiserver-cp-b                        0/1     Running       0              27s    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-apiserver-cp-b                        0/1     Running       0              28s    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-apiserver-cp-b                        1/1     Running       0              29s    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-controller-manager-cp-b               1/1     Terminating   2 (2m27s ago)   21m    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-controller-manager-cp-b               1/1     Terminating   2 (2m27s ago)   21m    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-controller-manager-cp-b               0/1     Pending       0               0s     <none>          cp-b        <none>           <none>
+kube-system   kube-controller-manager-cp-b               0/1     Running       0               1s     192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-scheduler-cp-b                        1/1     Terminating   2 (2m35s ago)   22m    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-scheduler-cp-b                        1/1     Terminating   2 (2m35s ago)   22m    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-scheduler-cp-b                        0/1     Pending       0               0s     <none>          cp-b        <none>           <none>
+kube-system   kube-scheduler-cp-b                        0/1     Running       0               1s     192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-jjxgw                           1/1     Terminating   0               22m    192.168.56.32   worker-b2   <none>           <none>
+kube-system   kube-proxy-jjxgw                           1/1     Terminating   0               22m    192.168.56.32   worker-b2   <none>           <none>
+kube-system   kube-proxy-jjxgw                           0/1     Error         0               22m    192.168.56.32   worker-b2   <none>           <none>
+kube-system   kube-proxy-72smq                           0/1     Pending       0               0s     <none>          <none>      <none>           <none>
+kube-system   kube-proxy-72smq                           0/1     Pending       0               0s     <none>          worker-b2   <none>           <none>
+kube-system   kube-proxy-72smq                           0/1     ContainerCreating   0               0s     192.168.56.32   worker-b2   <none>           <none>
+kube-system   coredns-589f44dc88-sspmj                   0/1     Pending             0               0s     <none>          <none>      <none>           <none>
+kube-system   coredns-7d764666f9-767pw                   1/1     Terminating         0               21m    10.20.164.209   cp-b        <none>           <none>
+kube-system   coredns-589f44dc88-sspmj                   0/1     Pending             0               0s     <none>          worker-b2   <none>           <none>
+kube-system   coredns-7d764666f9-767pw                   1/1     Terminating         0               21m    10.20.164.209   cp-b        <none>           <none>
+kube-system   coredns-589f44dc88-sspmj                   0/1     ContainerCreating   0               0s     <none>          worker-b2   <none>           <none>
+kube-system   coredns-589f44dc88-f86x5                   0/1     Pending             0               0s     <none>          <none>      <none>           <none>
+kube-system   coredns-589f44dc88-f86x5                   0/1     Pending             0               0s     <none>          worker-b1   <none>           <none>
+kube-system   kube-proxy-jjxgw                           0/1     Error               0               22m    192.168.56.32   worker-b2   <none>           <none>
+kube-system   coredns-589f44dc88-f86x5                   0/1     ContainerCreating   0               0s     <none>          worker-b1   <none>           <none>
+kube-system   kube-proxy-jjxgw                           0/1     Error               0               22m    192.168.56.32   worker-b2   <none>           <none>
+kube-system   coredns-589f44dc88-sspmj                   0/1     ContainerCreating   0               1s     <none>          worker-b2   <none>           <none>
+kube-system   coredns-589f44dc88-f86x5                   0/1     ContainerCreating   0               1s     <none>          worker-b1   <none>           <none>
+kube-system   coredns-7d764666f9-767pw                   1/1     Terminating         0               21m    10.20.164.209   cp-b        <none>           <none>
+kube-system   kube-controller-manager-cp-b               1/1     Running             0               20s    192.168.56.30   cp-b        <none>           <none>
+kube-system   coredns-7d764666f9-767pw                   1/1     Terminating         0               21m    10.20.164.209   cp-b        <none>           <none>
+kube-system   coredns-7d764666f9-767pw                   1/1     Terminating         0               21m    10.20.164.209   cp-b        <none>           <none>
+kube-system   coredns-7d764666f9-767pw                   0/1     Completed           0               21m    10.20.164.209   cp-b        <none>           <none>
+kube-system   coredns-7d764666f9-767pw                   0/1     Completed           0               21m    10.20.164.209   cp-b        <none>           <none>
+kube-system   coredns-7d764666f9-767pw                   0/1     Completed           0               21m    10.20.164.209   cp-b        <none>           <none>
+kube-system   kube-proxy-72smq                           1/1     Running             0               10s    192.168.56.32   worker-b2   <none>           <none>
+kube-system   kube-proxy-d4268                           1/1     Terminating         0               22m    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-d4268                           1/1     Terminating         0               22m    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-d4268                           0/1     Error               0               22m    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-sfpjf                           0/1     Pending             0               0s     <none>          <none>      <none>           <none>
+kube-system   kube-proxy-sfpjf                           0/1     Pending             0               0s     <none>          cp-b        <none>           <none>
+kube-system   kube-proxy-sfpjf                           0/1     ContainerCreating   0               0s     192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-sfpjf                           1/1     Running             0               1s     192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-rw78x                           1/1     Terminating         0               22m    192.168.56.31   worker-b1   <none>           <none>
+kube-system   kube-proxy-d4268                           0/1     Error               0               22m    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-d4268                           0/1     Error               0               22m    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-rw78x                           1/1     Terminating         0               22m    192.168.56.31   worker-b1   <none>           <none>
+kube-system   kube-proxy-rw78x                           0/1     Error               0               22m    192.168.56.31   worker-b1   <none>           <none>
+kube-system   kube-proxy-cfvlw                           0/1     Pending             0               0s     <none>          <none>      <none>           <none>
+kube-system   kube-proxy-cfvlw                           0/1     Pending             0               0s     <none>          worker-b1   <none>           <none>
+kube-system   kube-proxy-cfvlw                           0/1     ContainerCreating   0               0s     192.168.56.31   worker-b1   <none>           <none>
+kube-system   kube-proxy-rw78x                           0/1     Error               0               22m    192.168.56.31   worker-b1   <none>           <none>
+kube-system   kube-proxy-rw78x                           0/1     Error               0               22m    192.168.56.31   worker-b1   <none>           <none>
+kube-system   kube-scheduler-cp-b                        0/1     Running             0               20s    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-scheduler-cp-b                        1/1     Running             0               21s    192.168.56.30   cp-b        <none>           <none>
+kube-system   coredns-589f44dc88-f86x5                   0/1     Running             0               20s    10.20.214.226   worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-f86x5                   1/1     Running             0               20s    10.20.214.226   worker-b1   <none>           <none>
+kube-system   coredns-7d764666f9-l4d7m                   1/1     Terminating         0               20m    10.20.214.224   worker-b1   <none>           <none>
+kube-system   coredns-7d764666f9-l4d7m                   1/1     Terminating         0               20m    10.20.214.224   worker-b1   <none>           <none>
+kube-system   coredns-7d764666f9-l4d7m                   1/1     Terminating         0               20m    10.20.214.224   worker-b1   <none>           <none>
+kube-system   coredns-7d764666f9-l4d7m                   0/1     Completed           0               20m    10.20.214.224   worker-b1   <none>           <none>
+kube-system   coredns-7d764666f9-l4d7m                   0/1     Completed           0               20m    10.20.214.224   worker-b1   <none>           <none>
+kube-system   coredns-7d764666f9-l4d7m                   0/1     Completed           0               20m    10.20.214.224   worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-sspmj                   0/1     Running             0               27s    10.20.127.161   worker-b2   <none>           <none>
+kube-system   coredns-589f44dc88-sspmj                   1/1     Running             0               27s    10.20.127.161   worker-b2   <none>           <none>
+kube-system   kube-proxy-cfvlw                           1/1     Running             0               22s    192.168.56.31   worker-b1   <none>           <none>
+kube-system   kube-controller-manager-cp-b               1/1     Terminating         0               56s    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-controller-manager-cp-b               1/1     Terminating         0               56s    192.168.56.30   cp-b        <none>           <none>
+kube-system   calico-node-dpxjs                          1/1     Running             0               43m    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-controller-manager-cp-b               0/1     Pending             0               0s     <none>          cp-b        <none>           <none>
+kube-system   etcd-cp-b                                  0/1     Error               0               2m18s   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-apiserver-cp-b                        0/1     Running             0               94s     192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-scheduler-cp-b                        0/1     Running             0               43s     192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-controller-manager-cp-b               0/1     Running             0               0s      192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-sfpjf                           1/1     Running             0               27s     192.168.56.30   cp-b        <none>           <none>
+kube-system   etcd-cp-b                                  0/1     Terminating         0               2m18s   192.168.56.30   cp-b        <none>           <none>
+kube-system   etcd-cp-b                                  0/1     Terminating         0               2m18s   192.168.56.30   cp-b        <none>           <none>
+kube-system   etcd-cp-b                                  0/1     Pending             0               0s      <none>          cp-b        <none>           <none>
+--- watch 끊김·재연결 23:42:21
+--- watch 끊김·재연결 23:42:33
+--- watch 끊김·재연결 23:42:42
+--- watch 끊김·재연결 23:42:44
+NAMESPACE     NAME                                       READY   STATUS    RESTARTS       AGE   IP              NODE        NOMINATED NODE   READINESS GATES
+kube-system   calico-kube-controllers-855c4cc49d-7sgh4   1/1     Running   2 (102s ago)   20m   10.20.214.225   worker-b1   <none>           <none>
+kube-system   calico-node-4bx8k                          1/1     Running   0              40m   192.168.56.32   worker-b2   <none>           <none>
+kube-system   calico-node-dpxjs                          1/1     Running   0              43m   192.168.56.30   cp-b        <none>           <none>
+kube-system   calico-node-hrtlw                          1/1     Running   0              41m   192.168.56.31   worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-f86x5                   1/1     Running   0              63s   10.20.214.226   worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-sspmj                   1/1     Running   0              63s   10.20.127.161   worker-b2   <none>           <none>
+kube-system   etcd-cp-b                                  0/1     Running   2 (26s ago)    26s   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-apiserver-cp-b                        0/1     Running   2 (5s ago)     1s    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-controller-manager-cp-b               0/1     Running   1 (26s ago)    26s   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-72smq                           1/1     Running   0              63s   192.168.56.32   worker-b2   <none>           <none>
+kube-system   kube-proxy-cfvlw                           1/1     Running   0              52s   192.168.56.31   worker-b1   <none>           <none>
+kube-system   kube-proxy-sfpjf                           1/1     Running   0              53s   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-scheduler-cp-b                        0/1     Running   1 (26s ago)    1s    192.168.56.30   cp-b        <none>           <none>
+production    ota-demo-86699c58ff-j4mrh                  1/1     Running   0              20m   10.20.127.158   worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-vh8rw                  1/1     Running   0              22m   10.20.214.223   worker-b1   <none>           <none>
+kube-system   kube-scheduler-cp-b                        0/1     Running   1 (33s ago)    8s    192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-controller-manager-cp-b               1/1     Running   1 (33s ago)    33s   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-scheduler-cp-b                        1/1     Running   1 (33s ago)    8s    192.168.56.30   cp-b        <none>           <none>
+kube-system   etcd-cp-b                                  0/1     Running   2 (43s ago)    43s   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-apiserver-cp-b                        1/1     Running   2 (22s ago)    18s   192.168.56.30   cp-b        <none>           <none>
+kube-system   etcd-cp-b                                  1/1     Running   2 (43s ago)    43s   192.168.56.30   cp-b        <none>           <none>
+production    ota-demo-86699c58ff-vh8rw                  1/1     Running   0              22m   10.20.214.223   worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-f86x5                   1/1     Running   0              84s   10.20.214.226   worker-b1   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-7sgh4   1/1     Running   2 (2m3s ago)   21m   10.20.214.225   worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-f86x5                   1/1     Terminating   0              84s   10.20.214.226   worker-b1   <none>           <none>
+production    ota-demo-86699c58ff-vh8rw                  1/1     Terminating   0              22m   10.20.214.223   worker-b1   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-7sgh4   1/1     Terminating   2 (2m3s ago)   21m   10.20.214.225   worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-f86x5                   1/1     Terminating   0              85s   10.20.214.226   worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-442lx                   0/1     Pending       0              0s    <none>          <none>      <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-vh79n   0/1     Pending       0              0s    <none>          <none>      <none>           <none>
+production    ota-demo-86699c58ff-7lchk                  0/1     Pending       0              0s    <none>          <none>      <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-7sgh4   1/1     Terminating   2 (2m4s ago)   21m   10.20.214.225   worker-b1   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-vh79n   0/1     Pending       0              0s    <none>          worker-b2   <none>           <none>
+kube-system   coredns-589f44dc88-442lx                   0/1     Pending       0              0s    <none>          cp-b        <none>           <none>
+production    ota-demo-86699c58ff-7lchk                  0/1     Pending       0              0s    <none>          <none>      <none>           <none>
+production    ota-demo-86699c58ff-vh8rw                  1/1     Terminating   0              22m   10.20.214.223   worker-b1   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-7sgh4   1/1     Terminating   2 (2m4s ago)   21m   10.20.214.225   worker-b1   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-7sgh4   0/1     Error         2 (2m4s ago)   21m   10.20.214.225   worker-b1   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-7sgh4   0/1     Error         2 (2m4s ago)   21m   10.20.214.225   worker-b1   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-7sgh4   0/1     Error         2 (2m4s ago)   21m   10.20.214.225   worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-442lx                   0/1     Pending       0              0s    <none>          cp-b        <none>           <none>
+kube-system   coredns-589f44dc88-442lx                   0/1     ContainerCreating   0              0s    <none>          cp-b        <none>           <none>
+kube-system   coredns-589f44dc88-442lx                   0/1     Running             0              0s    10.20.164.210   cp-b        <none>           <none>
+kube-system   coredns-589f44dc88-442lx                   1/1     Running             0              1s    10.20.164.210   cp-b        <none>           <none>
+kube-system   coredns-589f44dc88-442lx                   1/1     Running             0              3s    10.20.164.210   cp-b        <none>           <none>
+kube-system   coredns-589f44dc88-f86x5                   1/1     Terminating         0              90s   10.20.214.226   worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-f86x5                   0/1     Completed           0              90s   10.20.214.226   worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-f86x5                   0/1     Completed           0              90s   10.20.214.226   worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-f86x5                   0/1     Completed           0              90s   10.20.214.226   worker-b1   <none>           <none>
+production    ota-demo-86699c58ff-vh8rw                  1/1     Terminating         0              23m   10.20.214.223   worker-b1   <none>           <none>
+production    ota-demo-86699c58ff-vh8rw                  0/1     Error               0              23m   10.20.214.223   worker-b1   <none>           <none>
+production    ota-demo-86699c58ff-vh8rw                  0/1     Error               0              23m   10.20.214.223   worker-b1   <none>           <none>
+production    ota-demo-86699c58ff-vh8rw                  0/1     Error               0              23m   10.20.214.223   worker-b1   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-vh79n   0/1     ContainerCreating   0              32s   <none>          worker-b2   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-vh79n   0/1     ContainerCreating   0              32s   <none>          worker-b2   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-vh79n   0/1     Running             0              32s   10.20.127.162   worker-b2   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-vh79n   1/1     Running             0              32s   10.20.127.162   worker-b2   <none>           <none>
+kube-system   kube-proxy-cfvlw                           1/1     Running             0              2m    192.168.56.31   worker-b1   <none>           <none>
+kube-system   calico-node-hrtlw                          1/1     Running             0              42m   192.168.56.31   worker-b1   <none>           <none>
+production    ota-demo-86699c58ff-7lchk                  0/1     Pending             0              48s   <none>          <none>      <none>           <none>
+production    ota-demo-86699c58ff-7lchk                  0/1     Pending             0              48s   <none>          worker-b1   <none>           <none>
+production    ota-demo-86699c58ff-7lchk                  0/1     ContainerCreating   0              48s   <none>          worker-b1   <none>           <none>
+production    ota-demo-86699c58ff-7lchk                  0/1     ContainerCreating   0              49s   <none>          worker-b1   <none>           <none>
+production    ota-demo-86699c58ff-7lchk                  0/1     ContainerCreating   0              49s   <none>          worker-b1   <none>           <none>
+production    ota-demo-86699c58ff-7lchk                  0/1     Running             0              49s   10.20.214.227   worker-b1   <none>           <none>
+production    ota-demo-86699c58ff-7lchk                  0/1     Running             0              51s   10.20.214.227   worker-b1   <none>           <none>
+production    ota-demo-86699c58ff-7lchk                  1/1     Running             0              51s   10.20.214.227   worker-b1   <none>           <none>
+production    ota-demo-86699c58ff-j4mrh                  1/1     Running             0              22m   10.20.127.158   worker-b2   <none>           <none>
+kube-system   coredns-589f44dc88-sspmj                   1/1     Running             0              2m29s   10.20.127.161   worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-j4mrh                  1/1     Terminating         0              22m     10.20.127.158   worker-b2   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-vh79n   1/1     Running             0              64s     10.20.127.162   worker-b2   <none>           <none>
+kube-system   coredns-589f44dc88-sspmj                   1/1     Terminating         0              2m29s   10.20.127.161   worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-j4mrh                  1/1     Terminating         0              22m     10.20.127.158   worker-b2   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-vh79n   1/1     Terminating         0              64s     10.20.127.162   worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-mtfxx                  0/1     Pending             0              0s      <none>          <none>      <none>           <none>
+production    ota-demo-86699c58ff-mtfxx                  0/1     Pending             0              0s      <none>          <none>      <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-vh79n   1/1     Terminating         0              64s     10.20.127.162   worker-b2   <none>           <none>
+kube-system   coredns-589f44dc88-sspmj                   1/1     Terminating         0              2m29s   10.20.127.161   worker-b2   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-5fbtn   0/1     Pending             0              0s      <none>          <none>      <none>           <none>
+kube-system   coredns-589f44dc88-x9zd5                   0/1     Pending             0              0s      <none>          <none>      <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-5fbtn   0/1     Pending             0              0s      <none>          worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-x9zd5                   0/1     Pending             0              0s      <none>          worker-b1   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-5fbtn   0/1     ContainerCreating   0              0s      <none>          worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-x9zd5                   0/1     ContainerCreating   0              0s      <none>          worker-b1   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-vh79n   1/1     Terminating         0              64s     10.20.127.162   worker-b2   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-vh79n   0/1     Error               0              64s     10.20.127.162   worker-b2   <none>           <none>
+kube-system   coredns-589f44dc88-x9zd5                   0/1     ContainerCreating   0              0s      <none>          worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-x9zd5                   0/1     ContainerCreating   0              0s      <none>          worker-b1   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-vh79n   0/1     Error               0              64s     10.20.127.162   worker-b2   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-5fbtn   0/1     ContainerCreating   0              0s      <none>          worker-b1   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-vh79n   0/1     Error               0              64s     10.20.127.162   worker-b2   <none>           <none>
+kube-system   coredns-589f44dc88-x9zd5                   0/1     Running             0              0s      10.20.214.228   worker-b1   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-5fbtn   0/1     ContainerCreating   0              1s      <none>          worker-b1   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-5fbtn   0/1     Running             0              1s      10.20.214.229   worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-x9zd5                   1/1     Running             0              2s      10.20.214.228   worker-b1   <none>           <none>
+kube-system   calico-kube-controllers-855c4cc49d-5fbtn   1/1     Running             0              2s      10.20.214.229   worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-x9zd5                   1/1     Running             0              3s      10.20.214.228   worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-sspmj                   1/1     Terminating         0              2m34s   10.20.127.161   worker-b2   <none>           <none>
+kube-system   coredns-589f44dc88-sspmj                   0/1     Completed           0              2m34s   10.20.127.161   worker-b2   <none>           <none>
+kube-system   coredns-589f44dc88-sspmj                   0/1     Completed           0              2m35s   10.20.127.161   worker-b2   <none>           <none>
+kube-system   coredns-589f44dc88-sspmj                   0/1     Completed           0              2m35s   10.20.127.161   worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-j4mrh                  1/1     Terminating         0              22m     10.20.127.158   worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-j4mrh                  0/1     Error               0              22m     10.20.127.158   worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-j4mrh                  0/1     Error               0              22m     10.20.127.158   worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-j4mrh                  0/1     Error               0              22m     10.20.127.158   worker-b2   <none>           <none>
+kube-system   kube-proxy-72smq                           1/1     Running             0              3m17s   192.168.56.32   worker-b2   <none>           <none>
+kube-system   calico-node-4bx8k                          1/1     Running             0              42m     192.168.56.32   worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-mtfxx                  0/1     Pending             0              50s     <none>          <none>      <none>           <none>
+production    ota-demo-86699c58ff-mtfxx                  0/1     Pending             0              50s     <none>          worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-mtfxx                  0/1     ContainerCreating   0              50s     <none>          worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-mtfxx                  0/1     ContainerCreating   0              50s     <none>          worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-mtfxx                  0/1     ContainerCreating   0              50s     <none>          worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-mtfxx                  0/1     Running             0              50s     10.20.127.163   worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-mtfxx                  0/1     Running             0              52s     10.20.127.163   worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-mtfxx                  1/1     Running             0              55s     10.20.127.163   worker-b2   <none>           <none>
