@@ -1,0 +1,16 @@
+== demo-check production expect=C digest=sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e version=50615d6ab9d2-day6-ci-3 at=2026-10-14T14:19:49Z
+-- application ota-demo-production: sync=Synced health=Healthy compared-rev=800d8abeb4a2afe5282aa525d2565d98685f37f0 op=Succeeded synced-rev=6e77f208b41bea0b8f5d81379aa6e54bbac9cf82
+-- deployment: replicas=2 ready=2 updated=2 available=2 readinessPath=/healthz conditions={'Available': 'True/MinimumReplicasAvailable', 'Progressing': 'True/NewReplicaSetAvailable'}
+   image=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+-- pods (NAME NODE PHASE READY RESTARTS IP / image / imageID)
+   ota-demo-86699c58ff-t8z2x worker-b1 Running ready=True restarts=0 10.20.214.196
+     image=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+     imageID=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+   ota-demo-86699c58ff-brftk worker-b2 Running ready=True restarts=0 10.20.127.132
+     image=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+     imageID=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+-- http (노드 192.168.56.31에서 curl, Service 10.105.243.168:8080 10회)
+   pod 10.20.214.196: 200 {"status": "ok", "version": "50615d6ab9d2-day6-ci-3"}
+   pod 10.20.127.132: 200 {"status": "ok", "version": "50615d6ab9d2-day6-ci-3"}
+   service 10.105.243.168: 10/10 정상
+RESULT=PASS

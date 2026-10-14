@@ -1,0 +1,17 @@
+NAME                       READY   STATUS    RESTARTS   AGE   IP             NODE        NOMINATED NODE   READINESS GATES
+ota-demo-f4c6fdbbc-v8v9p   1/1     Running   0          8s    10.10.238.55   worker-a1   <none>           <none>
+ota-demo-6d6df77c68-6hlq9   0/1     Pending   0          0s    <none>         <none>      <none>           <none>
+ota-demo-6d6df77c68-6hlq9   0/1     Pending   0          0s    <none>         worker-a1   <none>           <none>
+ota-demo-6d6df77c68-6hlq9   0/1     ContainerCreating   0          0s    <none>         worker-a1   <none>           <none>
+ota-demo-6d6df77c68-6hlq9   0/1     ContainerCreating   0          0s    <none>         worker-a1   <none>           <none>
+ota-demo-6d6df77c68-6hlq9   0/1     Running             0          0s    10.10.238.56   worker-a1   <none>           <none>
+ota-demo-6d6df77c68-6hlq9   0/1     Terminating         0          3m35s   10.10.238.56   worker-a1   <none>           <none>
+ota-demo-f4c6fdbbc-v8v9p    1/1     Terminating         0          4m7s    10.10.238.55   worker-a1   <none>           <none>
+ota-demo-6d6df77c68-6hlq9   0/1     Terminating         0          4m5s    10.10.238.56   worker-a1   <none>           <none>
+ota-demo-6d6df77c68-6hlq9   0/1     Terminating         0          4m5s    10.10.238.56   worker-a1   <none>           <none>
+ota-demo-6d6df77c68-6hlq9   0/1     Terminating         0          4m5s    10.10.238.56   worker-a1   <none>           <none>
+ota-demo-6d6df77c68-6hlq9   0/1     Terminating         0          4m5s    10.10.238.56   worker-a1   <none>           <none>
+ota-demo-f4c6fdbbc-v8v9p    1/1     Terminating         0          4m37s   10.10.238.55   worker-a1   <none>           <none>
+ota-demo-f4c6fdbbc-v8v9p    0/1     Terminating         0          4m37s   10.10.238.55   worker-a1   <none>           <none>
+ota-demo-f4c6fdbbc-v8v9p    0/1     Terminating         0          4m38s   10.10.238.55   worker-a1   <none>           <none>
+ota-demo-f4c6fdbbc-v8v9p    0/1     Terminating         0          4m38s   10.10.238.55   worker-a1   <none>           <none>

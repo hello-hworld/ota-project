@@ -1,0 +1,6 @@
+== demo-check staging expect=C digest=sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e version=50615d6ab9d2-day6-ci-3 at=2026-10-14T14:20:18Z
+-- application ota-demo-staging: sync=Synced health=Healthy compared-rev=8bc6bdbc7a9fcf45f46cbb373406813dfc071fa1 op=Succeeded synced-rev=8bc6bdbc7a9fcf45f46cbb373406813dfc071fa1
+-- deployment: replicas=0 ready=0 updated=0 available=0 readinessPath=/healthz conditions={'Available': 'True/MinimumReplicasAvailable', 'Progressing': 'True/NewReplicaSetAvailable'}
+   image=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+-- pods: 실행 0개, 종료 중 0개 (replicas 0)
+RESULT=PASS

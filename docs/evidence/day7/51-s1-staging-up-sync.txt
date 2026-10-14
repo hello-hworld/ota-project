@@ -1,0 +1,75 @@
+== 51-s1-staging-up-sync  app=ota-demo-staging  mode=normal  start=2026-10-14T14:16:05Z
+git: HEAD=77c2028eedac575e5a541a5b148f3f8c04333ac3 origin/main=77c2028eedac575e5a541a5b148f3f8c04333ac3
+git: last commit 77c2028 DAY7 S1-1: staging C up
+-- refresh (2026-10-14T14:16:07Z)
+state: sync=OutOfSync health=Healthy compared-rev=77c2028eedac575e5a541a5b148f3f8c04333ac3 op=Succeeded synced-rev=8f0b00eb75d5de4e530143ecc24360c81d8ee715 op-start=2026-10-14T14:07:23Z op-end=2026-10-14T14:07:23Z
+-- diff (2026-10-14T14:16:09Z)
+
+===== apps/Deployment staging/ota-demo ======
+159c159
+<   replicas: 0
+---
+>   replicas: 1
+diff: 차이 있음 (rc=1, 정상)
+-- sync
+sync-start=2026-10-14T14:16:09Z
+TIMESTAMP                  GROUP        KIND   NAMESPACE                  NAME    STATUS    HEALTH        HOOK  MESSAGE
+2026-10-14T14:16:09+00:00            Service     staging              ota-demo    Synced   Healthy              
+2026-10-14T14:16:09+00:00   apps  Deployment     staging              ota-demo  OutOfSync  Healthy              
+2026-10-14T14:16:10+00:00   apps  Deployment     staging              ota-demo  OutOfSync  Healthy              deployment.apps/ota-demo configured
+2026-10-14T14:16:10+00:00            Service     staging              ota-demo    Synced   Healthy              service/ota-demo unchanged
+
+Name:               argocd/ota-demo-staging
+Project:            ota-staging
+Server:             https://kubernetes.default.svc
+Namespace:          staging
+URL:                https://argocd.example.com/applications/ota-demo-staging
+Source:
+- Repo:             https://github.com/hello-hworld/ota-project.git
+  Target:           main
+  Path:             charts/demo
+  Helm Values:      ../../values/staging.yaml
+SyncWindow:         Sync Allowed
+Sync Policy:        Manual
+Sync Status:        Synced to main (77c2028)
+Health Status:      Progressing
+
+Operation:          Sync
+Sync Revision:      77c2028eedac575e5a541a5b148f3f8c04333ac3
+Phase:              Succeeded
+Start:              2026-10-14 14:16:09 +0000 UTC
+Finished:           2026-10-14 14:16:10 +0000 UTC
+Duration:           1s
+Message:            successfully synced (all tasks run)
+
+GROUP  KIND        NAMESPACE  NAME      STATUS  HEALTH       HOOK  MESSAGE
+       Service     staging    ota-demo  Synced  Healthy            service/ota-demo unchanged
+apps   Deployment  staging    ota-demo  Synced  Progressing        deployment.apps/ota-demo configured
+sync-end=2026-10-14T14:16:10Z (+1s)
+-- wait
+TIMESTAMP                  GROUP        KIND   NAMESPACE                  NAME    STATUS   HEALTH            HOOK  MESSAGE
+2026-10-14T14:16:10+00:00            Service     staging              ota-demo    Synced  Healthy                  service/ota-demo unchanged
+2026-10-14T14:16:10+00:00   apps  Deployment     staging              ota-demo    Synced  Progressing              deployment.apps/ota-demo configured
+
+Name:               argocd/ota-demo-staging
+Project:            ota-staging
+Server:             https://kubernetes.default.svc
+Namespace:          staging
+URL:                https://argocd.example.com/applications/ota-demo-staging
+Source:
+- Repo:             https://github.com/hello-hworld/ota-project.git
+  Target:           main
+  Path:             charts/demo
+  Helm Values:      ../../values/staging.yaml
+SyncWindow:         Sync Allowed
+Sync Policy:        Manual
+Sync Status:        Synced to main (77c2028)
+Health Status:      Healthy
+
+
+GROUP  KIND        NAMESPACE  NAME      STATUS  HEALTH   HOOK  MESSAGE
+       Service     staging    ota-demo  Synced  Healthy        service/ota-demo unchanged
+apps   Deployment  staging    ota-demo  Synced  Healthy        deployment.apps/ota-demo configured
+wait rc=0 end=2026-10-14T14:16:13Z (+4s)
+state: sync=Synced health=Healthy compared-rev=77c2028eedac575e5a541a5b148f3f8c04333ac3 op=Succeeded synced-rev=77c2028eedac575e5a541a5b148f3f8c04333ac3 op-start=2026-10-14T14:16:09Z op-end=2026-10-14T14:16:10Z
+RESULT=PASS

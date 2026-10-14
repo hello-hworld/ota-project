@@ -13,3 +13,8 @@
 2026-10-14T14:07:06Z commit ae5054b DAY7 STEP7: staging C candidate, replicas 1
 2026-10-14T14:07:18Z commit 8f0b00e DAY7 STEP7: staging stop
 2026-10-14T14:10:11Z commit 6e77f20 DAY7 STEP7: promote C to production (staging-verified, same digest, no rebuild)
+2026-10-14T14:16:01Z S1 start
+2026-10-14T14:16:05Z commit 77c2028 DAY7 S1-1: staging C up
+2026-10-14T14:16:27Z commit 800d8ab DAY7 S1-2: staging readiness /not-ready (intended failure)
+2026-10-14T14:20:03Z revert 29a628e (reverts 800d8abeb4a2)
+2026-10-14T14:20:12Z commit 8bc6bdb DAY7 S1-5: staging stop
