@@ -1,0 +1,80 @@
+== calico-upgrade cluster=a context=ota-a target=v3.32.2 start=2026-10-14T22:55:39Z
+-- 사전 관문
+calico-v3.32.2.yaml: OK
+Calico v3.31.7 → v3.32.2, API 서버 v1.34.12 (새 Calico 테스트 범위 1.34~1.36) OK
+== nodes context=ota-a arg=- at=2026-10-14T22:55:39Z
+  node cp-a ready=True unschedulable=False kubelet=v1.34.12 runtime=containerd://2.2.1 kernel=6.8.0-146-generic
+  node worker-a1 ready=True unschedulable=False kubelet=v1.34.12 runtime=containerd://2.2.1 kernel=6.8.0-146-generic
+CHECK nodes PASS
+== pods context=ota-a arg=- at=2026-10-14T22:55:39Z
+  pods 전체 18개, 문제 0개
+CHECK pods PASS
+agent(ci)=0 staging=0
+  ippool default-ipv4-ippool cidr=10.10.0.0/16 blockSize=26 ipipMode=Always vxlanMode=Never natOutgoing=True disabled=False nodeSelector=all()
+-- apply (2026-10-14T22:55:39Z)
+poddisruptionbudget.policy/calico-kube-controllers serverside-applied
+serviceaccount/calico-kube-controllers serverside-applied
+serviceaccount/calico-node serverside-applied
+serviceaccount/calico-cni-plugin serverside-applied
+configmap/calico-config serverside-applied
+customresourcedefinition.apiextensions.k8s.io/bgpconfigurations.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/bgpfilters.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/bgppeers.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/blockaffinities.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/caliconodestatuses.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/clusterinformations.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/felixconfigurations.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/globalnetworkpolicies.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/globalnetworksets.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/hostendpoints.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/ipamblocks.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/ipamconfigs.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/ipamhandles.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/ippools.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/ipreservations.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/kubecontrollersconfigurations.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/networkpolicies.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/networksets.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/stagedglobalnetworkpolicies.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/stagedkubernetesnetworkpolicies.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/stagednetworkpolicies.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/tiers.crd.projectcalico.org serverside-applied
+customresourcedefinition.apiextensions.k8s.io/clusternetworkpolicies.policy.networking.k8s.io serverside-applied
+clusterrole.rbac.authorization.k8s.io/calico-kube-controllers serverside-applied
+clusterrole.rbac.authorization.k8s.io/calico-node serverside-applied
+clusterrole.rbac.authorization.k8s.io/calico-cni-plugin serverside-applied
+clusterrole.rbac.authorization.k8s.io/calico-tier-getter serverside-applied
+clusterrolebinding.rbac.authorization.k8s.io/calico-kube-controllers serverside-applied
+clusterrolebinding.rbac.authorization.k8s.io/calico-node serverside-applied
+clusterrolebinding.rbac.authorization.k8s.io/calico-cni-plugin serverside-applied
+clusterrolebinding.rbac.authorization.k8s.io/calico-tier-getter serverside-applied
+daemonset.apps/calico-node serverside-applied
+deployment.apps/calico-kube-controllers serverside-applied
+-- rollout (2026-10-14T22:55:40Z)
+Waiting for daemon set "calico-node" rollout to finish: 0 out of 2 new pods have been updated...
+Waiting for daemon set "calico-node" rollout to finish: 1 out of 2 new pods have been updated...
+Waiting for daemon set "calico-node" rollout to finish: 1 out of 2 new pods have been updated...
+Waiting for daemon set "calico-node" rollout to finish: 0 of 2 updated pods are available...
+Waiting for daemon set "calico-node" rollout to finish: 1 of 2 updated pods are available...
+daemon set "calico-node" successfully rolled out
+deployment "calico-kube-controllers" successfully rolled out
+rollout end=2026-10-14T22:58:32Z (+173s)
+-- 사후 관문
+== calico context=ota-a arg=3.32.2 at=2026-10-14T22:58:32Z
+  calico-node images=['quay.io/calico/node:v3.32.2'] desired=2 updated=2 ready=2
+  calico-kube-controllers image=quay.io/calico/kube-controllers:v3.32.2 replicas=1 ready=1 updated=1
+  node cp-a NetworkUnavailable=False CalicoIsUp
+  node worker-a1 NetworkUnavailable=False CalicoIsUp
+CHECK calico PASS
+IPPool 전후 동일
+== nodes context=ota-a arg=- at=2026-10-14T22:58:32Z
+  node cp-a ready=True unschedulable=False kubelet=v1.34.12 runtime=containerd://2.2.1 kernel=6.8.0-146-generic
+  node worker-a1 ready=True unschedulable=False kubelet=v1.34.12 runtime=containerd://2.2.1 kernel=6.8.0-146-generic
+CHECK nodes PASS
+== pods context=ota-a arg=- at=2026-10-14T22:58:32Z
+  pods 전체 18개, 문제 0개
+CHECK pods PASS
+{"name":"day6/demo","tags":["283ab3143bec-day6-ci-2-2","50615d6ab9d2-day6-ci-3","283ab3143bec-day6-ci-8","2f99fb73f694-day6-ci-2"]}
+
+end=2026-10-14T22:58:32Z (+173s)
+RESULT=PASS
