@@ -1,0 +1,635 @@
+== k8s-hop cluster=b context=ota-b target=v1.33.13 start=2026-10-14T22:26:19Z
+-- 사전 관문
+kubectl client minor=33 OK
+API 서버 v1.32.13 → v1.33.13 (minor 32 → 33)
+== nodes context=ota-b arg=- at=2026-10-14T22:26:20Z
+  node cp-b ready=True unschedulable=False kubelet=v1.32.13 runtime=containerd://2.2.1 kernel=6.8.0-146-generic
+  node worker-b1 ready=True unschedulable=False kubelet=v1.32.13 runtime=containerd://2.2.1 kernel=6.8.0-146-generic
+  node worker-b2 ready=True unschedulable=False kubelet=v1.32.13 runtime=containerd://2.2.1 kernel=6.8.0-146-generic
+CHECK nodes PASS
+== pods context=ota-b arg=- at=2026-10-14T22:26:20Z
+  pods 전체 15개, 문제 0개
+CHECK pods PASS
+Calico v3.31.7 (테스트 범위 1.32~1.35) OK
+== deprecated context=ota-b arg=33 at=2026-10-14T22:26:20Z
+  deprecated API 요청 기록 없음 (API 서버 시작 이후)
+CHECK deprecated PASS
+cp-b disk=32% cgroup=cgroup2fs
+worker-b1 disk=15% cgroup=cgroup2fs
+worker-b2 disk=10% cgroup=cgroup2fs
+사전 관문 통과 (2026-10-14T22:26:21Z)
+-- 변경 전 Node·제어부 이미지
+NAME        STATUS   ROLES           AGE     VERSION    INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+cp-b        Ready    control-plane   7d16h   v1.32.13   192.168.56.30   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+worker-b1   Ready    <none>          7d15h   v1.32.13   192.168.56.31   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+worker-b2   Ready    <none>          7d15h   v1.32.13   192.168.56.32   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+NAME                                       NODE        IMAGE
+calico-kube-controllers-7b4769b5c5-82wwn   worker-b2   quay.io/calico/kube-controllers:v3.31.7
+coredns-55cb58b774-6wr2z                   worker-b1   registry.k8s.io/coredns/coredns:v1.11.3
+coredns-55cb58b774-l8xbj                   cp-b        registry.k8s.io/coredns/coredns:v1.11.3
+etcd-cp-b                                  cp-b        registry.k8s.io/etcd:3.5.24-0
+kube-apiserver-cp-b                        cp-b        registry.k8s.io/kube-apiserver:v1.32.13
+kube-controller-manager-cp-b               cp-b        registry.k8s.io/kube-controller-manager:v1.32.13
+kube-proxy-427s8                           worker-b1   registry.k8s.io/kube-proxy:v1.32.13
+kube-proxy-5s9l5                           worker-b2   registry.k8s.io/kube-proxy:v1.32.13
+kube-proxy-pm6l4                           cp-b        registry.k8s.io/kube-proxy:v1.32.13
+kube-scheduler-cp-b                        cp-b        registry.k8s.io/kube-scheduler:v1.32.13
+-- Ansible 08-k8s-upgrade.yml (2026-10-14T22:26:21Z)
+
+PLAY [Check input] *************************************************************
+
+TASK [Validate cluster and version] ********************************************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+PLAY [Upgrade control plane] ***************************************************
+
+TASK [Read API server version] *************************************************
+ok: [cp-b]
+
+TASK [Decide what to do] *******************************************************
+ok: [cp-b]
+
+TASK [No minor skipping] *******************************************************
+ok: [cp-b] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [Read this node's kubelet version] ****************************************
+ok: [cp-b]
+
+TASK [Check cgroup v2 (kubelet 1.35+)] *****************************************
+skipping: [cp-b]
+
+TASK [Timestamp] ***************************************************************
+ok: [cp-b] => {
+    "msg": "cp-b control plane start 2026-10-14T22:26:23Z"
+}
+
+TASK [Install kubeadm 1.33.13] *************************************************
+included: /home/devops/ota-project/ansible/playbooks/tasks/k8s-packages.yml for cp-b
+
+TASK [Point apt at Kubernetes v1.33] *******************************************
+changed: [cp-b]
+
+TASK [Update apt cache] ********************************************************
+changed: [cp-b]
+
+TASK [Find the 1.33.13 package revision] ***************************************
+ok: [cp-b] => (item=kubeadm)
+
+TASK [Unhold kubeadm] **********************************************************
+changed: [cp-b] => (item=kubeadm)
+
+TASK [Install kubeadm 1.33.13] *************************************************
+changed: [cp-b]
+
+TASK [Hold kubeadm] ************************************************************
+changed: [cp-b] => (item=kubeadm)
+
+TASK [Verify installed package versions] ***************************************
+ok: [cp-b] => (item=kubeadm=1.33.13-1.1)
+
+TASK [Check kubeadm version] ***************************************************
+ok: [cp-b]
+
+TASK [kubeadm-flags.env before] ************************************************
+ok: [cp-b]
+
+TASK [Show kubeadm-flags.env before] *******************************************
+ok: [cp-b] => {
+    "cp_flags_before.stdout_lines": [
+        "KUBELET_KUBEADM_ARGS=\"--container-runtime-endpoint=unix:///var/run/containerd/containerd.sock --pod-infra-container-image=registry.k8s.io/pause:3.9\""
+    ]
+}
+
+TASK [kubeadm upgrade plan] ****************************************************
+ok: [cp-b]
+
+TASK [Show plan] ***************************************************************
+ok: [cp-b] => {
+    "cp_plan.stdout_lines": [
+        "[preflight] Running pre-flight checks.",
+        "[upgrade/config] Reading configuration from the \"kubeadm-config\" ConfigMap in namespace \"kube-system\"...",
+        "[upgrade/config] Use 'kubeadm init phase upload-config --config your-config-file' to re-upload it.",
+        "[upgrade] Running cluster health checks",
+        "[upgrade] Fetching available versions to upgrade to",
+        "[upgrade/versions] Cluster version: 1.32.13",
+        "[upgrade/versions] kubeadm version: v1.33.13",
+        "[upgrade/versions] Target version: v1.33.13",
+        "[upgrade/versions] Latest version in the v1.32 series: v1.33.13",
+        "",
+        "Components that must be upgraded manually after you have upgraded the control plane with 'kubeadm upgrade apply':",
+        "COMPONENT   NODE        CURRENT    TARGET",
+        "kubelet     cp-b        v1.32.13   v1.33.13",
+        "kubelet     worker-b1   v1.32.13   v1.33.13",
+        "kubelet     worker-b2   v1.32.13   v1.33.13",
+        "",
+        "Upgrade to the latest version in the v1.32 series:",
+        "",
+        "COMPONENT                 NODE      CURRENT    TARGET",
+        "kube-apiserver            cp-b      v1.32.13   v1.33.13",
+        "kube-controller-manager   cp-b      v1.32.13   v1.33.13",
+        "kube-scheduler            cp-b      v1.32.13   v1.33.13",
+        "kube-proxy                          1.32.13    v1.33.13",
+        "CoreDNS                             v1.11.3    v1.12.0",
+        "etcd                      cp-b      3.5.24-0   3.5.24-0",
+        "",
+        "You can now apply the upgrade by executing the following command:",
+        "",
+        "\tkubeadm upgrade apply v1.33.13",
+        "",
+        "_____________________________________________________________________",
+        "",
+        "",
+        "The table below shows the current state of component configs as understood by this version of kubeadm.",
+        "Configs that have a \"yes\" mark in the \"MANUAL UPGRADE REQUIRED\" column require manual config upgrade or",
+        "resetting to kubeadm defaults before a successful upgrade can be performed. The version to manually",
+        "upgrade to is denoted in the \"PREFERRED VERSION\" column.",
+        "",
+        "API GROUP                 CURRENT VERSION   PREFERRED VERSION   MANUAL UPGRADE REQUIRED",
+        "kubeproxy.config.k8s.io   v1alpha1          v1alpha1            no",
+        "kubelet.config.k8s.io     v1beta1           v1beta1             no",
+        "_____________________________________________________________________"
+    ]
+}
+
+TASK [Pull control plane images] ***********************************************
+changed: [cp-b]
+
+TASK [Show pulled images] ******************************************************
+ok: [cp-b] => {
+    "cp_pull.stdout_lines": [
+        "[config/images] Pulled registry.k8s.io/kube-apiserver:v1.33.13",
+        "[config/images] Pulled registry.k8s.io/kube-controller-manager:v1.33.13",
+        "[config/images] Pulled registry.k8s.io/kube-scheduler:v1.33.13",
+        "[config/images] Pulled registry.k8s.io/kube-proxy:v1.33.13",
+        "[config/images] Pulled registry.k8s.io/coredns/coredns:v1.12.0",
+        "[config/images] Pulled registry.k8s.io/pause:3.10",
+        "[config/images] Pulled registry.k8s.io/etcd:3.5.24-0"
+    ]
+}
+
+TASK [Timestamp before apply] **************************************************
+ok: [cp-b] => {
+    "msg": "cp-b upgrade apply start 2026-10-14T22:27:29Z"
+}
+
+TASK [kubeadm upgrade apply] ***************************************************
+changed: [cp-b]
+
+TASK [Show apply (last 30 lines)] **********************************************
+ok: [cp-b] => {
+    "cp_apply.stdout_lines[-30:]": [
+        "[upgrade/staticpods] Waiting for the kubelet to restart the component",
+        "[upgrade/staticpods] This can take up to 5m0s",
+        "[apiclient] Found 1 Pods for label selector component=kube-controller-manager",
+        "[upgrade/staticpods] Component \"kube-controller-manager\" upgraded successfully!",
+        "[upgrade/staticpods] Preparing for \"kube-scheduler\" upgrade",
+        "[upgrade/staticpods] Renewing scheduler.conf certificate",
+        "[upgrade/staticpods] Moving new manifest to \"/etc/kubernetes/manifests/kube-scheduler.yaml\" and backing up old manifest to \"/etc/kubernetes/tmp/kubeadm-backup-manifests-2026-10-14-22-27-33/kube-scheduler.yaml\"",
+        "[upgrade/staticpods] Waiting for the kubelet to restart the component",
+        "[upgrade/staticpods] This can take up to 5m0s",
+        "[apiclient] Found 1 Pods for label selector component=kube-scheduler",
+        "[upgrade/staticpods] Component \"kube-scheduler\" upgraded successfully!",
+        "[upgrade/control-plane] The control plane instance for this node was successfully upgraded!",
+        "[upload-config] Storing the configuration used in ConfigMap \"kubeadm-config\" in the \"kube-system\" Namespace",
+        "[kubelet] Creating a ConfigMap \"kubelet-config\" in namespace kube-system with the configuration for the kubelets in the cluster",
+        "[upgrade/kubeconfig] The kubeconfig files for this node were successfully upgraded!",
+        "[upgrade] Backing up kubelet config file to /etc/kubernetes/tmp/kubeadm-kubelet-config3925551188/config.yaml",
+        "[kubelet-start] Writing kubelet configuration to file \"/var/lib/kubelet/config.yaml\"",
+        "[upgrade/kubelet-config] The kubelet configuration for this node was successfully upgraded!",
+        "[upgrade/bootstrap-token] Configuring bootstrap token and cluster-info RBAC rules",
+        "[bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to get nodes",
+        "[bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials",
+        "[bootstrap-token] Configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token",
+        "[bootstrap-token] Configured RBAC rules to allow certificate rotation for all node client certificates in the cluster",
+        "[bootstrap-token] Configured RBAC rules to allow the API server kubelet client certificate to access the kubelet API",
+        "[addons] Applied essential addon: CoreDNS",
+        "[addons] Applied essential addon: kube-proxy",
+        "",
+        "[upgrade] SUCCESS! A control plane node of your cluster was upgraded to \"v1.33.13\".",
+        "",
+        "[upgrade] Now please proceed with upgrading the rest of the nodes by following the right order."
+    ]
+}
+
+TASK [kubeadm-flags.env after] *************************************************
+ok: [cp-b]
+
+TASK [Show kubeadm-flags.env after] ********************************************
+ok: [cp-b] => {
+    "cp_flags_after.stdout_lines": [
+        "KUBELET_KUBEADM_ARGS=\"--container-runtime-endpoint=unix:///var/run/containerd/containerd.sock --pod-infra-container-image=registry.k8s.io/pause:3.9\""
+    ]
+}
+
+TASK [Flag removed in kubelet 1.35 must be gone] *******************************
+skipping: [cp-b]
+
+TASK [Drain cp-b] **************************************************************
+changed: [cp-b]
+
+TASK [Show drain] **************************************************************
+ok: [cp-b] => {
+    "cp_drain.stdout_lines": [
+        "node/cp-b cordoned",
+        "evicting pod kube-system/coredns-55cb58b774-l8xbj",
+        "pod/coredns-55cb58b774-l8xbj evicted",
+        "node/cp-b drained"
+    ]
+}
+
+TASK [Install kubelet, kubectl 1.33.13] ****************************************
+included: /home/devops/ota-project/ansible/playbooks/tasks/k8s-packages.yml for cp-b
+
+TASK [Point apt at Kubernetes v1.33] *******************************************
+ok: [cp-b]
+
+TASK [Update apt cache] ********************************************************
+changed: [cp-b]
+
+TASK [Find the 1.33.13 package revision] ***************************************
+ok: [cp-b] => (item=kubelet)
+ok: [cp-b] => (item=kubectl)
+
+TASK [Unhold kubelet, kubectl] *************************************************
+changed: [cp-b] => (item=kubelet)
+changed: [cp-b] => (item=kubectl)
+
+TASK [Install kubelet, kubectl 1.33.13] ****************************************
+changed: [cp-b]
+
+TASK [Hold kubelet, kubectl] ***************************************************
+changed: [cp-b] => (item=kubelet)
+changed: [cp-b] => (item=kubectl)
+
+TASK [Verify installed package versions] ***************************************
+ok: [cp-b] => (item=kubelet=1.33.13-1.1)
+ok: [cp-b] => (item=kubectl=1.33.13-1.1)
+
+TASK [Restart kubelet] *********************************************************
+changed: [cp-b]
+
+TASK [Wait for cp-b Ready on v1.33.13] *****************************************
+FAILED - RETRYING: [cp-b]: Wait for cp-b Ready on v1.33.13 (30 retries left).
+FAILED - RETRYING: [cp-b]: Wait for cp-b Ready on v1.33.13 (29 retries left).
+ok: [cp-b]
+
+TASK [Uncordon cp-b] ***********************************************************
+changed: [cp-b]
+
+TASK [Timestamp] ***************************************************************
+ok: [cp-b] => {
+    "msg": "cp-b control plane end 2026-10-14T22:30:16Z"
+}
+
+PLAY [Upgrade workers one by one] **********************************************
+
+TASK [API server must already be on v1.33.13] **********************************
+ok: [worker-b1 -> cp-b(192.168.56.30)]
+
+TASK [Read this node's kubelet version] ****************************************
+ok: [worker-b1 -> cp-b(192.168.56.30)]
+
+TASK [Check cgroup v2 (kubelet 1.35+)] *****************************************
+skipping: [worker-b1]
+
+TASK [Timestamp] ***************************************************************
+ok: [worker-b1] => {
+    "msg": "worker-b1 worker start 2026-10-14T22:30:16Z"
+}
+
+TASK [Install kubeadm 1.33.13] *************************************************
+included: /home/devops/ota-project/ansible/playbooks/tasks/k8s-packages.yml for worker-b1
+
+TASK [Point apt at Kubernetes v1.33] *******************************************
+changed: [worker-b1]
+
+TASK [Update apt cache] ********************************************************
+changed: [worker-b1]
+
+TASK [Find the 1.33.13 package revision] ***************************************
+ok: [worker-b1] => (item=kubeadm)
+
+TASK [Unhold kubeadm] **********************************************************
+changed: [worker-b1] => (item=kubeadm)
+
+TASK [Install kubeadm 1.33.13] *************************************************
+changed: [worker-b1]
+
+TASK [Hold kubeadm] ************************************************************
+changed: [worker-b1] => (item=kubeadm)
+
+TASK [Verify installed package versions] ***************************************
+ok: [worker-b1] => (item=kubeadm=1.33.13-1.1)
+
+TASK [Check kubeadm version] ***************************************************
+ok: [worker-b1]
+
+TASK [kubeadm-flags.env before] ************************************************
+ok: [worker-b1]
+
+TASK [Show kubeadm-flags.env before] *******************************************
+ok: [worker-b1] => {
+    "w_flags_before.stdout_lines": [
+        "KUBELET_KUBEADM_ARGS=\"--container-runtime-endpoint=unix:///var/run/containerd/containerd.sock --pod-infra-container-image=registry.k8s.io/pause:3.9\""
+    ]
+}
+
+TASK [kubeadm upgrade node] ****************************************************
+changed: [worker-b1]
+
+TASK [Show upgrade node (last 15 lines)] ***************************************
+ok: [worker-b1] => {
+    "w_upgrade.stdout_lines[-15:]": [
+        "[upgrade] Reading configuration from the \"kubeadm-config\" ConfigMap in namespace \"kube-system\"...",
+        "[upgrade] Use 'kubeadm init phase upload-config --config your-config-file' to re-upload it.",
+        "[upgrade/preflight] Running pre-flight checks",
+        "[upgrade/preflight] Skipping prepull. Not a control plane node.",
+        "[upgrade/control-plane] Skipping phase. Not a control plane node.",
+        "[upgrade/kubeconfig] Skipping phase. Not a control plane node.",
+        "[upgrade] Backing up kubelet config file to /etc/kubernetes/tmp/kubeadm-kubelet-config602562073/config.yaml",
+        "[kubelet-start] Writing kubelet configuration to file \"/var/lib/kubelet/config.yaml\"",
+        "[upgrade/kubelet-config] The kubelet configuration for this node was successfully upgraded!",
+        "[upgrade/addon] Skipping the addon/coredns phase. Not a control plane node.",
+        "[upgrade/addon] Skipping the addon/kube-proxy phase. Not a control plane node."
+    ]
+}
+
+TASK [kubeadm-flags.env after] *************************************************
+ok: [worker-b1]
+
+TASK [Show kubeadm-flags.env after] ********************************************
+ok: [worker-b1] => {
+    "w_flags_after.stdout_lines": [
+        "KUBELET_KUBEADM_ARGS=\"--container-runtime-endpoint=unix:///var/run/containerd/containerd.sock --pod-infra-container-image=registry.k8s.io/pause:3.9\""
+    ]
+}
+
+TASK [Flag removed in kubelet 1.35 must be gone] *******************************
+skipping: [worker-b1]
+
+TASK [Drain worker-b1] *********************************************************
+changed: [worker-b1 -> cp-b(192.168.56.30)]
+
+TASK [Show drain] **************************************************************
+ok: [worker-b1] => {
+    "w_drain.stdout_lines": [
+        "node/worker-b1 cordoned",
+        "evicting pod production/ota-demo-86699c58ff-l68mg",
+        "evicting pod kube-system/coredns-674b8bbfcf-8j5s7",
+        "pod/coredns-674b8bbfcf-8j5s7 evicted",
+        "pod/ota-demo-86699c58ff-l68mg evicted",
+        "node/worker-b1 drained"
+    ]
+}
+
+TASK [Install kubelet, kubectl 1.33.13] ****************************************
+included: /home/devops/ota-project/ansible/playbooks/tasks/k8s-packages.yml for worker-b1
+
+TASK [Point apt at Kubernetes v1.33] *******************************************
+ok: [worker-b1]
+
+TASK [Update apt cache] ********************************************************
+changed: [worker-b1]
+
+TASK [Find the 1.33.13 package revision] ***************************************
+ok: [worker-b1] => (item=kubelet)
+ok: [worker-b1] => (item=kubectl)
+
+TASK [Unhold kubelet, kubectl] *************************************************
+changed: [worker-b1] => (item=kubelet)
+changed: [worker-b1] => (item=kubectl)
+
+TASK [Install kubelet, kubectl 1.33.13] ****************************************
+changed: [worker-b1]
+
+TASK [Hold kubelet, kubectl] ***************************************************
+changed: [worker-b1] => (item=kubelet)
+changed: [worker-b1] => (item=kubectl)
+
+TASK [Verify installed package versions] ***************************************
+ok: [worker-b1] => (item=kubelet=1.33.13-1.1)
+ok: [worker-b1] => (item=kubectl=1.33.13-1.1)
+
+TASK [Restart kubelet] *********************************************************
+changed: [worker-b1]
+
+TASK [Wait for worker-b1 Ready on v1.33.13] ************************************
+ok: [worker-b1 -> cp-b(192.168.56.30)]
+
+TASK [Uncordon worker-b1] ******************************************************
+changed: [worker-b1 -> cp-b(192.168.56.30)]
+
+TASK [Timestamp] ***************************************************************
+ok: [worker-b1] => {
+    "msg": "worker-b1 worker end 2026-10-14T22:31:59Z"
+}
+
+PLAY [Upgrade workers one by one] **********************************************
+
+TASK [API server must already be on v1.33.13] **********************************
+ok: [worker-b2 -> cp-b(192.168.56.30)]
+
+TASK [Read this node's kubelet version] ****************************************
+ok: [worker-b2 -> cp-b(192.168.56.30)]
+
+TASK [Check cgroup v2 (kubelet 1.35+)] *****************************************
+skipping: [worker-b2]
+
+TASK [Timestamp] ***************************************************************
+ok: [worker-b2] => {
+    "msg": "worker-b2 worker start 2026-10-14T22:32:00Z"
+}
+
+TASK [Install kubeadm 1.33.13] *************************************************
+included: /home/devops/ota-project/ansible/playbooks/tasks/k8s-packages.yml for worker-b2
+
+TASK [Point apt at Kubernetes v1.33] *******************************************
+changed: [worker-b2]
+
+TASK [Update apt cache] ********************************************************
+changed: [worker-b2]
+
+TASK [Find the 1.33.13 package revision] ***************************************
+ok: [worker-b2] => (item=kubeadm)
+
+TASK [Unhold kubeadm] **********************************************************
+changed: [worker-b2] => (item=kubeadm)
+
+TASK [Install kubeadm 1.33.13] *************************************************
+changed: [worker-b2]
+
+TASK [Hold kubeadm] ************************************************************
+changed: [worker-b2] => (item=kubeadm)
+
+TASK [Verify installed package versions] ***************************************
+ok: [worker-b2] => (item=kubeadm=1.33.13-1.1)
+
+TASK [Check kubeadm version] ***************************************************
+ok: [worker-b2]
+
+TASK [kubeadm-flags.env before] ************************************************
+ok: [worker-b2]
+
+TASK [Show kubeadm-flags.env before] *******************************************
+ok: [worker-b2] => {
+    "w_flags_before.stdout_lines": [
+        "KUBELET_KUBEADM_ARGS=\"--container-runtime-endpoint=unix:///var/run/containerd/containerd.sock --pod-infra-container-image=registry.k8s.io/pause:3.9\""
+    ]
+}
+
+TASK [kubeadm upgrade node] ****************************************************
+changed: [worker-b2]
+
+TASK [Show upgrade node (last 15 lines)] ***************************************
+ok: [worker-b2] => {
+    "w_upgrade.stdout_lines[-15:]": [
+        "[upgrade] Reading configuration from the \"kubeadm-config\" ConfigMap in namespace \"kube-system\"...",
+        "[upgrade] Use 'kubeadm init phase upload-config --config your-config-file' to re-upload it.",
+        "[upgrade/preflight] Running pre-flight checks",
+        "[upgrade/preflight] Skipping prepull. Not a control plane node.",
+        "[upgrade/control-plane] Skipping phase. Not a control plane node.",
+        "[upgrade/kubeconfig] Skipping phase. Not a control plane node.",
+        "[upgrade] Backing up kubelet config file to /etc/kubernetes/tmp/kubeadm-kubelet-config1625149801/config.yaml",
+        "[kubelet-start] Writing kubelet configuration to file \"/var/lib/kubelet/config.yaml\"",
+        "[upgrade/kubelet-config] The kubelet configuration for this node was successfully upgraded!",
+        "[upgrade/addon] Skipping the addon/coredns phase. Not a control plane node.",
+        "[upgrade/addon] Skipping the addon/kube-proxy phase. Not a control plane node."
+    ]
+}
+
+TASK [kubeadm-flags.env after] *************************************************
+ok: [worker-b2]
+
+TASK [Show kubeadm-flags.env after] ********************************************
+ok: [worker-b2] => {
+    "w_flags_after.stdout_lines": [
+        "KUBELET_KUBEADM_ARGS=\"--container-runtime-endpoint=unix:///var/run/containerd/containerd.sock --pod-infra-container-image=registry.k8s.io/pause:3.9\""
+    ]
+}
+
+TASK [Flag removed in kubelet 1.35 must be gone] *******************************
+skipping: [worker-b2]
+
+TASK [Drain worker-b2] *********************************************************
+changed: [worker-b2 -> cp-b(192.168.56.30)]
+
+TASK [Show drain] **************************************************************
+ok: [worker-b2] => {
+    "w_drain.stdout_lines": [
+        "node/worker-b2 cordoned",
+        "evicting pod production/ota-demo-86699c58ff-r6rmx",
+        "evicting pod kube-system/calico-kube-controllers-7b4769b5c5-82wwn",
+        "evicting pod kube-system/coredns-674b8bbfcf-9p2q5",
+        "pod/calico-kube-controllers-7b4769b5c5-82wwn evicted",
+        "pod/coredns-674b8bbfcf-9p2q5 evicted",
+        "pod/ota-demo-86699c58ff-r6rmx evicted",
+        "node/worker-b2 drained"
+    ]
+}
+
+TASK [Install kubelet, kubectl 1.33.13] ****************************************
+included: /home/devops/ota-project/ansible/playbooks/tasks/k8s-packages.yml for worker-b2
+
+TASK [Point apt at Kubernetes v1.33] *******************************************
+ok: [worker-b2]
+
+TASK [Update apt cache] ********************************************************
+changed: [worker-b2]
+
+TASK [Find the 1.33.13 package revision] ***************************************
+ok: [worker-b2] => (item=kubelet)
+ok: [worker-b2] => (item=kubectl)
+
+TASK [Unhold kubelet, kubectl] *************************************************
+changed: [worker-b2] => (item=kubelet)
+changed: [worker-b2] => (item=kubectl)
+
+TASK [Install kubelet, kubectl 1.33.13] ****************************************
+changed: [worker-b2]
+
+TASK [Hold kubelet, kubectl] ***************************************************
+changed: [worker-b2] => (item=kubelet)
+changed: [worker-b2] => (item=kubectl)
+
+TASK [Verify installed package versions] ***************************************
+ok: [worker-b2] => (item=kubelet=1.33.13-1.1)
+ok: [worker-b2] => (item=kubectl=1.33.13-1.1)
+
+TASK [Restart kubelet] *********************************************************
+changed: [worker-b2]
+
+TASK [Wait for worker-b2 Ready on v1.33.13] ************************************
+ok: [worker-b2 -> cp-b(192.168.56.30)]
+
+TASK [Uncordon worker-b2] ******************************************************
+changed: [worker-b2 -> cp-b(192.168.56.30)]
+
+TASK [Timestamp] ***************************************************************
+ok: [worker-b2] => {
+    "msg": "worker-b2 worker end 2026-10-14T22:33:04Z"
+}
+
+PLAY RECAP *********************************************************************
+cp-b                       : ok=39   changed=14   unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+localhost                  : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+worker-b1                  : ok=32   changed=13   unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+worker-b2                  : ok=32   changed=13   unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+
+ansible rc=0 end=2026-10-14T22:33:04Z (+405s)
+-- 사후 관문
+== server context=ota-b arg=1.33.13 at=2026-10-14T22:33:04Z
+  server v1.33.13 (client v1.33.13)
+CHECK server PASS
+== nodes context=ota-b arg=1.33.13 at=2026-10-14T22:33:04Z
+  node cp-b ready=True unschedulable=False kubelet=v1.33.13 runtime=containerd://2.2.1 kernel=6.8.0-146-generic
+  node worker-b1 ready=True unschedulable=False kubelet=v1.33.13 runtime=containerd://2.2.1 kernel=6.8.0-146-generic
+  node worker-b2 ready=True unschedulable=False kubelet=v1.33.13 runtime=containerd://2.2.1 kernel=6.8.0-146-generic
+CHECK nodes PASS
+== addons context=ota-b arg=1.33.13 at=2026-10-14T22:33:05Z
+  kube-apiserver kube-apiserver-cp-b image=registry.k8s.io/kube-apiserver:v1.33.13 OK
+  kube-controller-manager kube-controller-manager-cp-b image=registry.k8s.io/kube-controller-manager:v1.33.13 OK
+  kube-scheduler kube-scheduler-cp-b image=registry.k8s.io/kube-scheduler:v1.33.13 OK
+  etcd etcd-cp-b image=registry.k8s.io/etcd:3.5.24-0 OK
+  kube-proxy image=registry.k8s.io/kube-proxy:v1.33.13 desired=3 updated=3 ready=3
+  coredns image=registry.k8s.io/coredns/coredns:v1.12.0 replicas=2 ready=2 updated=2
+CHECK addons PASS
+== calico context=ota-b arg=- at=2026-10-14T22:33:15Z
+  calico-node images=['quay.io/calico/node:v3.31.7'] desired=3 updated=3 ready=3
+  calico-kube-controllers image=quay.io/calico/kube-controllers:v3.31.7 replicas=1 ready=1 updated=1
+  node cp-b NetworkUnavailable=False CalicoIsUp
+  node worker-b1 NetworkUnavailable=False CalicoIsUp
+  node worker-b2 NetworkUnavailable=False CalicoIsUp
+CHECK calico PASS
+== pods context=ota-b arg=- at=2026-10-14T22:33:15Z
+  pods 전체 15개, 문제 0개
+CHECK pods PASS
+== demo-check production expect=C digest=sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e version=50615d6ab9d2-day6-ci-3 at=2026-10-14T22:33:15Z
+-- application ota-demo-production: sync=Synced health=Healthy compared-rev=0fb0ea178e63f770326a2fe021c693e109131ffa op=Succeeded synced-rev=fb382f3794de5be73c7155cf6a89baa1325d8150
+-- deployment: replicas=2 ready=2 updated=2 available=2 readinessPath=/healthz conditions={'Progressing': 'True/NewReplicaSetAvailable', 'Available': 'True/MinimumReplicasAvailable'}
+   image=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+-- pods (NAME NODE PHASE READY RESTARTS IP / image / imageID)
+   ota-demo-86699c58ff-7vj7w worker-b1 Running ready=True restarts=0 10.20.214.213
+     image=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+     imageID=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+   ota-demo-86699c58ff-6h69h worker-b2 Running ready=True restarts=0 10.20.127.149
+     image=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+     imageID=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+-- http (노드 192.168.56.31에서 curl, Service 10.105.243.168:8080 10회)
+   pod 10.20.214.213: 200 {"status": "ok", "version": "50615d6ab9d2-day6-ci-3"}
+   pod 10.20.127.149: 200 {"status": "ok", "version": "50615d6ab9d2-day6-ci-3"}
+   service 10.105.243.168: 10/10 정상
+RESULT=PASS
+저장 → /home/devops/ota-project/docs/evidence/k8s-upgrade/34-hop-1.33.13-b-demo.txt
+-- 변경 후 Node
+NAME        STATUS   ROLES           AGE     VERSION    INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+cp-b        Ready    control-plane   7d16h   v1.33.13   192.168.56.30   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+worker-b1   Ready    <none>          7d15h   v1.33.13   192.168.56.31   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+worker-b2   Ready    <none>          7d15h   v1.33.13   192.168.56.32   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+end=2026-10-14T22:33:16Z (+417s)
+RESULT=PASS
