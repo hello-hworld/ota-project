@@ -1,0 +1,12 @@
+05:37:57 EVENT      NAME                          READY   STATUS    RESTARTS   AGE   IP       NODE     NOMINATED NODE   READINESS GATES
+05:37:57 ADDED      day6-ci-3-w3n7m-tm7js-70k7r   0/5     Pending   0          0s    <none>   <none>   <none>           <none>
+05:37:57 MODIFIED   day6-ci-3-w3n7m-tm7js-70k7r   0/5     Pending   0          0s    <none>   worker-a1   <none>           <none>
+05:37:57 MODIFIED   day6-ci-3-w3n7m-tm7js-70k7r   0/5     ContainerCreating   0          0s    <none>   worker-a1   <none>           <none>
+05:37:57 MODIFIED   day6-ci-3-w3n7m-tm7js-70k7r   0/5     ContainerCreating   0          0s    <none>   worker-a1   <none>           <none>
+05:37:58 MODIFIED   day6-ci-3-w3n7m-tm7js-70k7r   5/5     Running             0          1s    10.10.238.41   worker-a1   <none>           <none>
+05:38:26 MODIFIED   day6-ci-3-w3n7m-tm7js-70k7r   5/5     Running             0          29s   10.10.238.41   worker-a1   <none>           <none>
+05:38:45 MODIFIED   day6-ci-3-w3n7m-tm7js-70k7r   5/5     Terminating         0          48s   10.10.238.41   worker-a1   <none>           <none>
+05:39:15 MODIFIED   day6-ci-3-w3n7m-tm7js-70k7r   5/5     Terminating         0          78s   10.10.238.41   worker-a1   <none>           <none>
+05:39:15 MODIFIED   day6-ci-3-w3n7m-tm7js-70k7r   0/5     Terminating         0          78s   10.10.238.41   worker-a1   <none>           <none>
+05:39:16 MODIFIED   day6-ci-3-w3n7m-tm7js-70k7r   0/5     Terminating         0          79s   10.10.238.41   worker-a1   <none>           <none>
+05:39:16 DELETED    day6-ci-3-w3n7m-tm7js-70k7r   0/5     Terminating         0          79s   10.10.238.41   worker-a1   <none>           <none>
