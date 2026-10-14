@@ -1,0 +1,8 @@
+[33mWARN[0m[0000] runtime connect using default endpoints: [unix:///run/containerd/containerd.sock unix:///run/crio/crio.sock unix:///var/run/cri-dockerd.sock]. As the default settings are now deprecated, you should set the endpoint instead. 
+[2J[HCONTAINER           NAME                     CPU %               MEM                 DISK                INODES
+77702cd3c2e99       config-reload            0.02                77.59MB             32.77kB             9
+98431f1de1abe       kube-proxy               0.00                65.46MB             65.54kB             24
+990640741ebe0       registry                 0.33                25.96MB             40.96kB             10
+a6dc7fd26d9c9       local-path-provisioner   0.25                51.74MB             45.06kB             14
+e2f9fa010cba7       calico-node              1.67                156.6MB             340kB               103
+e3a50098b7a63       jenkins                  0.09                534.2MB             73.73kB             16
