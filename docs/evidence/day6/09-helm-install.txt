@@ -1,0 +1,122 @@
+Release "jenkins" does not exist. Installing it now.
+NAME: jenkins
+LAST DEPLOYED: Tue Oct 13 08:26:27 2026
+NAMESPACE: platform
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+1. Get your 'admin' user password by running:
+  kubectl exec --namespace platform -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/additional/chart-admin-password && echo
+2. Get the Jenkins URL to visit by running these commands in the same shell:
+  echo http://127.0.0.1:8080
+  kubectl --namespace platform port-forward svc/jenkins 8080:8080
+
+3. Login with the password from step 1 and the username: admin
+4. Configure security realm and authorization strategy
+5. Use Jenkins Configuration as Code by specifying configScripts in your values.yaml file, see documentation: http://127.0.0.1:8080/configuration-as-code and examples: https://github.com/jenkinsci/configuration-as-code-plugin/tree/master/demos
+
+For more information on running Jenkins on Kubernetes, visit:
+https://cloud.google.com/solutions/jenkins-on-container-engine
+
+For more information about Jenkins Configuration as Code, visit:
+https://jenkins.io/projects/jcasc/
+
+
+NOTE: Consider using a custom image with pre-installed plugins
+NAME: jenkins
+LAST DEPLOYED: Tue Oct 13 08:26:27 2026
+NAMESPACE: platform
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+1. Get your 'admin' user password by running:
+  kubectl exec --namespace platform -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/additional/chart-admin-password && echo
+2. Get the Jenkins URL to visit by running these commands in the same shell:
+  echo http://127.0.0.1:8080
+  kubectl --namespace platform port-forward svc/jenkins 8080:8080
+
+3. Login with the password from step 1 and the username: admin
+4. Configure security realm and authorization strategy
+5. Use Jenkins Configuration as Code by specifying configScripts in your values.yaml file, see documentation: http://127.0.0.1:8080/configuration-as-code and examples: https://github.com/jenkinsci/configuration-as-code-plugin/tree/master/demos
+
+For more information on running Jenkins on Kubernetes, visit:
+https://cloud.google.com/solutions/jenkins-on-container-engine
+
+For more information about Jenkins Configuration as Code, visit:
+https://jenkins.io/projects/jcasc/
+
+
+NOTE: Consider using a custom image with pre-installed plugins
+REVISION	UPDATED                 	STATUS  	CHART         	APP VERSION	DESCRIPTION     
+1       	Tue Oct 13 08:26:27 2026	deployed	jenkins-5.9.68	2.580.1    	Install complete
+NAME                       READY   AGE   CONTAINERS              IMAGES
+statefulset.apps/jenkins   1/1     12m   jenkins,config-reload   docker.io/jenkins/jenkins:2.580.1-jdk25,docker.io/kiwigrid/k8s-sidecar:2.11.2
+
+NAME            READY   STATUS    RESTARTS   AGE   IP             NODE        NOMINATED NODE   READINESS GATES
+pod/jenkins-0   2/2     Running   0          12m   10.10.238.24   worker-a1   <none>           <none>
+
+NAME              TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE   SELECTOR
+service/jenkins   ClusterIP   10.111.248.187   <none>        8080/TCP   12m   app.kubernetes.io/component=jenkins-controller,app.kubernetes.io/instance=jenkins
+
+NAME                            STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE   VOLUMEMODE
+persistentvolumeclaim/jenkins   Bound    pvc-cf98e752-e413-4b06-9ddf-5b52d46a3b9b   10Gi       RWO            local-path     <unset>                 12m   Filesystem
+--- images
+config-reload-init	docker.io/kiwigrid/k8s-sidecar@sha256:2912be006f62f9ea080194cf6d3afcd90daead8d101d0ba686a137a849f6a4f6
+init	docker.io/jenkins/jenkins@sha256:42fc298cdafa2683dddde9a7ccdce4058f771b1ec56c2423dbfca82f010a455f
+config-reload	docker.io/kiwigrid/k8s-sidecar@sha256:2912be006f62f9ea080194cf6d3afcd90daead8d101d0ba686a137a849f6a4f6
+jenkins	docker.io/jenkins/jenkins@sha256:42fc298cdafa2683dddde9a7ccdce4058f771b1ec56c2423dbfca82f010a455f
+Error: UPGRADE FAILED: template: jenkins/templates/jenkins-controller-statefulset.yaml:41:28: executing "jenkins/templates/jenkins-controller-statefulset.yaml" at <include "jenkins.configChecksum" (dict "context" $ "path" "/config.yaml")>: error calling include: template: jenkins/templates/_helpers.tpl:38:17: executing "jenkins.configChecksum" at <include (print .context.Template.BasePath .path) .context>: error calling include: template: jenkins/templates/config.yaml:77:34: executing "jenkins/templates/config.yaml" at <.Values.controller.additionalPlugins>: range can't iterate over -lockable-resources:1560.va_b_cd589f23eb_
+Release "jenkins" has been upgraded. Happy Helming!
+NAME: jenkins
+LAST DEPLOYED: Tue Oct 13 08:44:44 2026
+NAMESPACE: platform
+STATUS: deployed
+REVISION: 2
+TEST SUITE: None
+NOTES:
+1. Get your 'admin' user password by running:
+  kubectl exec --namespace platform -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/additional/chart-admin-password && echo
+2. Get the Jenkins URL to visit by running these commands in the same shell:
+  echo http://127.0.0.1:8080
+  kubectl --namespace platform port-forward svc/jenkins 8080:8080
+
+3. Login with the password from step 1 and the username: admin
+4. Configure security realm and authorization strategy
+5. Use Jenkins Configuration as Code by specifying configScripts in your values.yaml file, see documentation: http://127.0.0.1:8080/configuration-as-code and examples: https://github.com/jenkinsci/configuration-as-code-plugin/tree/master/demos
+
+For more information on running Jenkins on Kubernetes, visit:
+https://cloud.google.com/solutions/jenkins-on-container-engine
+
+For more information about Jenkins Configuration as Code, visit:
+https://jenkins.io/projects/jcasc/
+
+
+NOTE: Consider using a custom image with pre-installed plugins
+Release "jenkins" has been upgraded. Happy Helming!
+NAME: jenkins
+LAST DEPLOYED: Wed Oct 14 00:55:59 2026
+NAMESPACE: platform
+STATUS: deployed
+REVISION: 3
+TEST SUITE: None
+NOTES:
+1. Get your 'admin' user password by running:
+  kubectl exec --namespace platform -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/additional/chart-admin-password && echo
+2. Get the Jenkins URL to visit by running these commands in the same shell:
+  echo http://127.0.0.1:8080
+  kubectl --namespace platform port-forward svc/jenkins 8080:8080
+
+3. Login with the password from step 1 and the username: admin
+4. Configure security realm and authorization strategy
+5. Use Jenkins Configuration as Code by specifying configScripts in your values.yaml file, see documentation: http://127.0.0.1:8080/configuration-as-code and examples: https://github.com/jenkinsci/configuration-as-code-plugin/tree/master/demos
+
+For more information on running Jenkins on Kubernetes, visit:
+https://cloud.google.com/solutions/jenkins-on-container-engine
+
+For more information about Jenkins Configuration as Code, visit:
+https://jenkins.io/projects/jcasc/
+
+
+NOTE: Consider using a custom image with pre-installed plugins

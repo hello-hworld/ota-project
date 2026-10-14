@@ -1,0 +1,5 @@
+controller create pods -n ci         :yes
+controller create pods -n platform :no
+controller get secrets -n platform :no
+agent create pods -n ci            :no
+agent create deployments -n platform:no
