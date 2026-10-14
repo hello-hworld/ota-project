@@ -29,3 +29,11 @@
 2026-10-14T21:23:33Z hop v1.31.14 cluster a ansible end rc=0
 2026-10-14T21:26:16Z hop v1.31.14 cluster b ansible start
 2026-10-14T21:33:24Z hop v1.31.14 cluster b ansible end rc=0
+2026-10-14T21:39:00Z H1 end
+2026-10-14T21:39:07Z H1-B T5 pods-watch: cp-b 제어부 재시작(upgrade apply) 때 watch 연결이 끊겨 종료 → 이후 drain 구간 미수집. 서비스 영향은 14-hop-1.31.14-b-r2-http, drain 과정은 14-hop-1.31.14-b-r2.txt
+2026-10-14T21:39:11Z U2 start
+2026-10-14T21:39:16Z calico v3.30.7 cluster a apply start
+2026-10-14T21:41:58Z calico v3.30.7 cluster a rollout end
+2026-10-14T21:42:46Z calico v3.30.7 cluster b apply start
+2026-10-14T21:47:28Z calico v3.30.7 cluster b rollout end
+2026-10-14T21:47:37Z U2 end
