@@ -1,6 +1,6 @@
 # values/staging.yaml — Cluster A / staging (worker-a1)
 # 바꾸는 값: image.digest, replicaCount(검증 중 1, 평소 0), probes.readiness.path(STEP 8 실패 시나리오만)
-replicaCount: 0
+replicaCount: 1
 
 image:
   digest: sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
