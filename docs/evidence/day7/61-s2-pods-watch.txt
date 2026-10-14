@@ -1,0 +1,13 @@
+NAME                        READY   STATUS    RESTARTS   AGE   IP              NODE        NOMINATED NODE   READINESS GATES
+ota-demo-86699c58ff-brftk   1/1     Running   0          11m   10.20.127.132   worker-b2   <none>           <none>
+ota-demo-86699c58ff-t8z2x   1/1     Running   0          11m   10.20.214.196   worker-b1   <none>           <none>
+ota-demo-56796dfdbd-hjdz2   0/1     Pending   0          0s    <none>          <none>      <none>           <none>
+ota-demo-56796dfdbd-hjdz2   0/1     Pending   0          0s    <none>          worker-b1   <none>           <none>
+ota-demo-56796dfdbd-hjdz2   0/1     ContainerCreating   0          0s    <none>          worker-b1   <none>           <none>
+ota-demo-56796dfdbd-hjdz2   0/1     ContainerCreating   0          0s    <none>          worker-b1   <none>           <none>
+ota-demo-56796dfdbd-hjdz2   0/1     Running             0          0s    10.20.214.197   worker-b1   <none>           <none>
+ota-demo-56796dfdbd-hjdz2   0/1     Terminating         0          3m9s   10.20.214.197   worker-b1   <none>           <none>
+ota-demo-56796dfdbd-hjdz2   0/1     Terminating         0          3m39s   10.20.214.197   worker-b1   <none>           <none>
+ota-demo-56796dfdbd-hjdz2   0/1     Terminating         0          3m39s   10.20.214.197   worker-b1   <none>           <none>
+ota-demo-56796dfdbd-hjdz2   0/1     Terminating         0          3m39s   10.20.214.197   worker-b1   <none>           <none>
+ota-demo-56796dfdbd-hjdz2   0/1     Terminating         0          3m39s   10.20.214.197   worker-b1   <none>           <none>

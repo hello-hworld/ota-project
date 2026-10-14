@@ -1,0 +1,72 @@
+== 64-s2-revert-sync  app=ota-demo-production  mode=normal  start=2026-10-14T14:25:37Z
+git: HEAD=55e5dc4e9911877e4d23e38d5ccc2ca3b4ac04a0 origin/main=55e5dc4e9911877e4d23e38d5ccc2ca3b4ac04a0
+git: last commit 55e5dc4 Revert "DAY7 S2: production readiness /not-ready (intended failure)"
+-- refresh (2026-10-14T14:25:39Z)
+state: sync=OutOfSync health=Degraded compared-rev=55e5dc4e9911877e4d23e38d5ccc2ca3b4ac04a0 op=Succeeded synced-rev=bb1d8f48b6e104aa4acc6207b3474c182ee60095 op-start=2026-10-14T14:22:32Z op-end=2026-10-14T14:22:32Z
+-- diff (2026-10-14T14:25:41Z)
+
+===== apps/Deployment production/ota-demo ======
+226c226
+<             path: /not-ready
+---
+>             path: /healthz
+diff: 차이 있음 (rc=1, 정상)
+-- sync
+sync-start=2026-10-14T14:25:41Z
+TIMESTAMP                  GROUP        KIND   NAMESPACE                  NAME    STATUS    HEALTH         HOOK  MESSAGE
+2026-10-14T14:25:41+00:00   apps  Deployment  production              ota-demo  OutOfSync  Degraded              
+2026-10-14T14:25:41+00:00            Service  production              ota-demo    Synced   Healthy               
+2026-10-14T14:25:42+00:00            Service  production              ota-demo    Synced   Healthy               service/ota-demo unchanged
+2026-10-14T14:25:42+00:00   apps  Deployment  production              ota-demo  OutOfSync  Degraded              deployment.apps/ota-demo configured
+
+Name:               argocd/ota-demo-production
+Project:            ota-production
+Server:             https://192.168.56.30:6443
+Namespace:          production
+URL:                https://argocd.example.com/applications/ota-demo-production
+Source:
+- Repo:             https://github.com/hello-hworld/ota-project.git
+  Target:           main
+  Path:             charts/demo
+  Helm Values:      ../../values/production.yaml
+SyncWindow:         Sync Allowed
+Sync Policy:        Manual
+Sync Status:        Synced to main (55e5dc4)
+Health Status:      Healthy
+
+Operation:          Sync
+Sync Revision:      55e5dc4e9911877e4d23e38d5ccc2ca3b4ac04a0
+Phase:              Succeeded
+Start:              2026-10-14 14:25:41 +0000 UTC
+Finished:           2026-10-14 14:25:42 +0000 UTC
+Duration:           1s
+Message:            successfully synced (all tasks run)
+
+GROUP  KIND        NAMESPACE   NAME      STATUS  HEALTH   HOOK  MESSAGE
+       Service     production  ota-demo  Synced  Healthy        service/ota-demo unchanged
+apps   Deployment  production  ota-demo  Synced  Healthy        deployment.apps/ota-demo configured
+sync-end=2026-10-14T14:25:42Z (+1s)
+-- wait
+
+Name:               argocd/ota-demo-production
+Project:            ota-production
+Server:             https://192.168.56.30:6443
+Namespace:          production
+URL:                https://argocd.example.com/applications/ota-demo-production
+Source:
+- Repo:             https://github.com/hello-hworld/ota-project.git
+  Target:           main
+  Path:             charts/demo
+  Helm Values:      ../../values/production.yaml
+SyncWindow:         Sync Allowed
+Sync Policy:        Manual
+Sync Status:        Synced to main (55e5dc4)
+Health Status:      Healthy
+
+
+GROUP  KIND        NAMESPACE   NAME      STATUS  HEALTH   HOOK  MESSAGE
+       Service     production  ota-demo  Synced  Healthy        service/ota-demo unchanged
+apps   Deployment  production  ota-demo  Synced  Healthy        deployment.apps/ota-demo configured
+wait rc=0 end=2026-10-14T14:25:42Z (+1s)
+state: sync=Synced health=Healthy compared-rev=55e5dc4e9911877e4d23e38d5ccc2ca3b4ac04a0 op=Succeeded synced-rev=55e5dc4e9911877e4d23e38d5ccc2ca3b4ac04a0 op-start=2026-10-14T14:25:41Z op-end=2026-10-14T14:25:42Z
+RESULT=PASS

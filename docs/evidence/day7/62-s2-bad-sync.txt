@@ -1,0 +1,76 @@
+== 62-s2-bad-sync  app=ota-demo-production  mode=--expect-fail  start=2026-10-14T14:22:27Z
+git: HEAD=bb1d8f48b6e104aa4acc6207b3474c182ee60095 origin/main=bb1d8f48b6e104aa4acc6207b3474c182ee60095
+git: last commit bb1d8f4 DAY7 S2: production readiness /not-ready (intended failure)
+-- refresh (2026-10-14T14:22:30Z)
+state: sync=OutOfSync health=Healthy compared-rev=bb1d8f48b6e104aa4acc6207b3474c182ee60095 op=Succeeded synced-rev=6e77f208b41bea0b8f5d81379aa6e54bbac9cf82 op-start=2026-10-14T14:10:16Z op-end=2026-10-14T14:10:16Z
+-- diff (2026-10-14T14:22:31Z)
+
+===== apps/Deployment production/ota-demo ======
+225c225
+<             path: /healthz
+---
+>             path: /not-ready
+diff: 차이 있음 (rc=1, 정상)
+-- sync
+sync-start=2026-10-14T14:22:31Z
+TIMESTAMP                  GROUP        KIND   NAMESPACE                  NAME    STATUS    HEALTH        HOOK  MESSAGE
+2026-10-14T14:22:32+00:00   apps  Deployment  production              ota-demo  OutOfSync  Healthy              
+2026-10-14T14:22:32+00:00            Service  production              ota-demo    Synced   Healthy              
+2026-10-14T14:22:33+00:00            Service  production              ota-demo    Synced   Healthy              service/ota-demo unchanged
+2026-10-14T14:22:33+00:00   apps  Deployment  production              ota-demo  OutOfSync  Healthy              deployment.apps/ota-demo configured
+
+Name:               argocd/ota-demo-production
+Project:            ota-production
+Server:             https://192.168.56.30:6443
+Namespace:          production
+URL:                https://argocd.example.com/applications/ota-demo-production
+Source:
+- Repo:             https://github.com/hello-hworld/ota-project.git
+  Target:           main
+  Path:             charts/demo
+  Helm Values:      ../../values/production.yaml
+SyncWindow:         Sync Allowed
+Sync Policy:        Manual
+Sync Status:        Synced to main (bb1d8f4)
+Health Status:      Progressing
+
+Operation:          Sync
+Sync Revision:      bb1d8f48b6e104aa4acc6207b3474c182ee60095
+Phase:              Succeeded
+Start:              2026-10-14 14:22:32 +0000 UTC
+Finished:           2026-10-14 14:22:32 +0000 UTC
+Duration:           0s
+Message:            successfully synced (all tasks run)
+
+GROUP  KIND        NAMESPACE   NAME      STATUS  HEALTH       HOOK  MESSAGE
+       Service     production  ota-demo  Synced  Healthy            service/ota-demo unchanged
+apps   Deployment  production  ota-demo  Synced  Progressing        deployment.apps/ota-demo configured
+sync-end=2026-10-14T14:22:33Z (+2s)
+-- wait
+TIMESTAMP                  GROUP        KIND   NAMESPACE                  NAME    STATUS   HEALTH            HOOK  MESSAGE
+2026-10-14T14:22:33+00:00            Service  production              ota-demo    Synced  Healthy                  service/ota-demo unchanged
+2026-10-14T14:22:33+00:00   apps  Deployment  production              ota-demo    Synced  Progressing              deployment.apps/ota-demo configured
+
+Name:               argocd/ota-demo-production
+Project:            ota-production
+Server:             https://192.168.56.30:6443
+Namespace:          production
+URL:                https://argocd.example.com/applications/ota-demo-production
+Source:
+- Repo:             https://github.com/hello-hworld/ota-project.git
+  Target:           main
+  Path:             charts/demo
+  Helm Values:      ../../values/production.yaml
+SyncWindow:         Sync Allowed
+Sync Policy:        Manual
+Sync Status:        Synced to main (bb1d8f4)
+Health Status:      Degraded
+
+
+GROUP  KIND        NAMESPACE   NAME      STATUS  HEALTH    HOOK  MESSAGE
+       Service     production  ota-demo  Synced  Healthy         service/ota-demo unchanged
+apps   Deployment  production  ota-demo  Synced  Degraded        deployment.apps/ota-demo configured
+{"level":"fatal","msg":"application 'ota-demo-production' health state has transitioned from Progressing to Degraded","time":"2026-10-14T14:25:33Z"}
+wait rc=20 end=2026-10-14T14:25:33Z (+182s)  ← 의도한 실패: 0이 아니어야 한다
+state: sync=Synced health=Degraded compared-rev=bb1d8f48b6e104aa4acc6207b3474c182ee60095 op=Succeeded synced-rev=bb1d8f48b6e104aa4acc6207b3474c182ee60095 op-start=2026-10-14T14:22:32Z op-end=2026-10-14T14:22:32Z
+RESULT=EXPECTED_FAIL health=Degraded

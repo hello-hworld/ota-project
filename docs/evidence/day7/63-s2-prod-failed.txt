@@ -1,0 +1,50 @@
+== demo-check production expect=C digest=sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e version=50615d6ab9d2-day6-ci-3 at=2026-10-14T14:25:33Z
+-- application ota-demo-production: sync=Synced health=Degraded compared-rev=bb1d8f48b6e104aa4acc6207b3474c182ee60095 op=Succeeded synced-rev=bb1d8f48b6e104aa4acc6207b3474c182ee60095
+-- deployment: replicas=2 ready=2 updated=1 available=2 readinessPath=/not-ready conditions={'Available': 'True/MinimumReplicasAvailable', 'Progressing': 'False/ProgressDeadlineExceeded'}
+   image=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+-- pods (NAME NODE PHASE READY RESTARTS IP / image / imageID)
+   ota-demo-56796dfdbd-hjdz2 worker-b1 Running ready=False restarts=0 10.20.214.197
+     image=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+     imageID=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+   ota-demo-86699c58ff-t8z2x worker-b1 Running ready=True restarts=0 10.20.214.196
+     image=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+     imageID=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+   ota-demo-86699c58ff-brftk worker-b2 Running ready=True restarts=0 10.20.127.132
+     image=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+     imageID=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+-- http (노드 192.168.56.31에서 curl, Service 10.105.243.168:8080 10회)
+   pod 10.20.214.197: 200 {"status": "ok", "version": "50615d6ab9d2-day6-ci-3"}
+   pod 10.20.214.196: 200 {"status": "ok", "version": "50615d6ab9d2-day6-ci-3"}
+   pod 10.20.127.132: 200 {"status": "ok", "version": "50615d6ab9d2-day6-ci-3"}
+   service 10.105.243.168: 10/10 정상
+RESULT=FAIL
+  - ota-demo-56796dfdbd-hjdz2 NotReady
+  - 수 불일치: replicas=2 ready=2 updated=1 pods=3
+  - 분산 불일치: ['worker-b1', 'worker-b1', 'worker-b2'] (기대 ['worker-b1', 'worker-b2'])
+NAME                  DESIRED   CURRENT   READY   AGE    CONTAINERS   IMAGES                                                                                                  SELECTOR
+ota-demo-56796dfdbd   1         1         0       3m2s   demo         192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e   app.kubernetes.io/instance=ota-demo-production,app.kubernetes.io/name=ota-demo,pod-template-hash=56796dfdbd
+ota-demo-7d864d779b   0         0         0       20m    demo         192.168.56.21:32000/day6/demo@sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478   app.kubernetes.io/instance=ota-demo-production,app.kubernetes.io/name=ota-demo,pod-template-hash=7d864d779b
+ota-demo-86699c58ff   2         2         2       15m    demo         192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e   app.kubernetes.io/instance=ota-demo-production,app.kubernetes.io/name=ota-demo,pod-template-hash=86699c58ff
+20m         Warning   Unhealthy           pod/ota-demo-7d864d779b-h5rg6    Readiness probe failed: Get "http://10.20.214.195:8080/healthz": dial tcp 10.20.214.195:8080: connect: connection refused
+15m         Warning   Unhealthy           pod/ota-demo-86699c58ff-t8z2x    Readiness probe failed: Get "http://10.20.214.196:8080/healthz": dial tcp 10.20.214.196:8080: connect: connection refused
+15m         Warning   Unhealthy           pod/ota-demo-86699c58ff-brftk    Readiness probe failed: Get "http://10.20.127.132:8080/healthz": dial tcp 10.20.127.132:8080: connect: connection refused
+2m58s       Warning   Unhealthy           pod/ota-demo-56796dfdbd-hjdz2    Readiness probe failed: Get "http://10.20.214.197:8080/not-ready": dial tcp 10.20.214.197:8080: connect: connection refused
+2m1s        Warning   Unhealthy           pod/ota-demo-56796dfdbd-hjdz2    Readiness probe failed: HTTP probe failed with statuscode: 404
+Name:               argocd/ota-demo-production
+Project:            ota-production
+Server:             https://192.168.56.30:6443
+Namespace:          production
+URL:                https://argocd.example.com/applications/ota-demo-production
+Source:
+- Repo:             https://github.com/hello-hworld/ota-project.git
+  Target:           main
+  Path:             charts/demo
+  Helm Values:      ../../values/production.yaml
+SyncWindow:         Sync Allowed
+Sync Policy:        Manual
+Sync Status:        Synced to main (bb1d8f4)
+Health Status:      Degraded
+
+GROUP  KIND        NAMESPACE   NAME      STATUS  HEALTH    HOOK  MESSAGE
+       Service     production  ota-demo  Synced  Healthy         service/ota-demo unchanged
+apps   Deployment  production  ota-demo  Synced  Degraded        deployment.apps/ota-demo configured
