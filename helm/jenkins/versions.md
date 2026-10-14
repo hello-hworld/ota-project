@@ -13,3 +13,11 @@
 | Trivy | (STEP 12, 0.69.4~0.69.6 제외) | |
 | skopeo | (STEP 12) | |
 | python base | 3.12-alpine | |
+
+## STEP 12-3 도구 이미지 (2026-10-14)
+- BuildKit v0.34.0 (rootless·rootful), Trivy 0.75.0 (0.69.4~0.69.6 아님), skopeo v1.22.3 (quay stable 최신. GitHub 최신 v1.24.1은 quay 미제공)
+- docker.io/moby/buildkit:v0.34.0-rootless@sha256:65eca3c01cd1180c8f64565c4e3c5983af5145818b0e6fa863385d099eb73855
+- docker.io/moby/buildkit:v0.34.0@sha256:b059f8d7226d0b326bc871af489a5dddf65e36af4d20d14251b072974d9ee87c
+- docker.io/aquasec/trivy:0.75.0@sha256:af6acf9a6b85dfe389a1941505c0ce9efef52a4719635e1a962f022a3d855daa
+- quay.io/skopeo/stable:v1.22.3@sha256:22ea3c3baf639147b07fb9f2ea28a6308edf7909e919d91a5d296af0121d7ed9
+- docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4
