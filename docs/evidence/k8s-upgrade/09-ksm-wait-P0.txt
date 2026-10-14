@@ -1,0 +1,7 @@
+== ksm-wait interval=600s max=6 delta<50MiB start=2026-10-14T20:23:24Z
+run=1
+pages_to_scan=100
+sleep_millisecs=200
+merge_across_nodes=1
+use_zero_pages=0
+20:23:24 general_profit=-41MiB

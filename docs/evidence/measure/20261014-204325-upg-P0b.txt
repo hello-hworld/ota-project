@@ -1,0 +1,323 @@
+
+===== META =====
+label  : upg-P0b
+date   : 2026-10-14 20:44:25 UTC
+git    : fe311c9 K8S-UPG STEP1: DAY7 end state, pre-check, Calico diff
+kernel : 6.8.0-139-generic
+vms    : cp-a cp-b worker-a1 worker-b1 worker-b2
+k8s    : A v1.30.14 / B v1.30.14
+
+===== SUMMARY (비교표 입력용) =====
+Host MemAvailable (주 지표)  :   18171.6 MiB
+Host RAM Used (Total-Avail) :   13638.5 MiB
+Swap Used                   :       2.8 MiB
+KSM 절약량 (general_profit) :     -78.8 MiB
+KSM 보정 사용량 (보조 추정) :   13559.7 MiB
+KSM run / use_zero_pages / ksm_zero_pages : 1 / 0 / 0
+Load 1m / 5m / 15m          : 0.69 / 0.99 / 1.07
+CPU us / sy / id / wa (%)   : 0.0 / 2.1 / 91.7 / 0.0
+Guest CPU gu (%)            : 5.8
+Swap si / so (평균)         : 0.0 / 0.0
+CPU 평균 샘플 수            : 12
+Root Used                   : 13G / 98G
+VM Storage Used (du)        : 34G
+Total QEMU RSS              : 12471.0 MiB
+Total QEMU PSS              : 12382.3 MiB
+ksmd (%cpu time)            : 0.1 00:17:47
+
+===== [Host] free -m =====
+               total        used        free      shared  buff/cache   available
+Mem:           31810       13658         448          11       18184       18151
+Swap:           8191           2        8189
+
+===== [Host] meminfo (kB) =====
+MemTotal:       32573540 kB
+MemAvailable:   18607724 kB
+SwapTotal:       8388604 kB
+SwapFree:        8385788 kB
+
+===== [Host] uptime =====
+ 20:44:25 up 9 days, 15:47, 11 users,  load average: 0.69, 0.99, 1.07
+
+===== [Host] vmstat 5 13 =====
+procs -----------memory---------- ---swap-- -----io---- -system-- -------cpu-------
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st gu
+ 0  0   2816 477040 571264 18055936    0    0   236   294 12330   14  0  1 94  0  0  5
+ 5  0   2816 482580 571320 18056044    0    0     0   270 17265 22806  0  2 92  0  0  6
+ 0  0   2816 478096 571344 18056236    0    0     0   204 16885 22776  0  2 91  0  0  6
+ 0  0   2816 474092 571360 18056340    0    0     0   184 16751 22418  0  2 93  0  0  5
+ 1  0   2816 471320 571384 18056408    0    0     0   125 16570 22292  0  2 93  0  0  5
+ 0  0   2816 472028 571408 18056600    0    0     0   208 16974 22837  0  2 91  0  0  6
+ 0  0   2816 500948 571424 18052580    0    0     0   186 16723 22088  0  2 88  0  0  9
+ 0  0   2816 491820 571440 18052644    0    0     0   236 16742 22652  0  2 92  0  0  6
+ 1  0   2816 511388 571456 18048584    0    0     0   202 16805 22754  0  2 91  0  0  6
+ 0  0   2816 490264 571480 18048704    0    0     0   178 16387 22249  0  2 92  0  0  5
+ 0  0   2816 488044 571504 18048848    0    0     6   209 16595 22522  0  2 93  0  0  5
+ 0  0   2816 484360 571528 18048948    0    0     0   197 15790 22717  0  2 93  0  0  5
+ 0  0   2816 479816 571544 18048996    0    0     0   176 16042 22434  0  3 91  0  0  6
+
+===== [Host] df =====
+Filesystem                          Size  Used Avail Use% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv    98G   13G   80G  14% /
+/dev/mapper/ubuntu--vg-ota--vm--lv  295G  116G  164G  42% /var/lib/libvirt/ota
+
+===== [Host] du (항목별) =====
+83G	/var/lib/libvirt/ota/backup
+597M	/var/lib/libvirt/ota/images
+16K	/var/lib/libvirt/ota/lost+found
+34G	/var/lib/libvirt/ota/vms
+
+===== [Host] KSM =====
+run=1
+pages_shared=0
+pages_sharing=0
+pages_unshared=0
+pages_volatile=1291287
+full_scans=203
+general_profit=-82642368
+use_zero_pages=0
+ksm_zero_pages=0
+
+===== [Host] QEMU RSS (VM별, virsh dommemstat) =====
+cp-a           2088.2 MiB
+cp-b           2703.8 MiB
+worker-a1      3940.2 MiB
+worker-b1      1865.8 MiB
+worker-b2      1868.4 MiB
+TOTAL QEMU RSS: 12471.0 MiB
+
+===== [Host] QEMU PSS (VM별, smaps_rollup) =====
+cp-a           2071.2 MiB
+cp-b           2687.2 MiB
+worker-a1      3923.4 MiB
+worker-b1      1849.0 MiB
+worker-b2      1851.5 MiB
+TOTAL QEMU PSS: 12382.3 MiB
+
+===== [Host] 자동 업데이트 =====
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Unattended-Upgrade "0";
+apt-daily.timer=disabled/inactive
+apt-daily-upgrade.timer=disabled/inactive
+
+===== [Host] timers (다음 실행 예정) =====
+NEXT                             LEFT LAST                              PASSED UNIT                           ACTIVATES
+Wed 2026-10-14 20:50:00 UTC      5min Wed 2026-10-14 20:40:02 UTC 4min 23s ago sysstat-collect.timer          sysstat-collect.service
+Wed 2026-10-14 21:39:59 UTC     55min Wed 2026-10-14 20:42:40 UTC 1min 46s ago fwupd-refresh.timer            fwupd-refresh.service
+Wed 2026-10-14 21:50:19 UTC   1h 5min Wed 2026-10-14 09:34:44 UTC      11h ago motd-news.timer                motd-news.service
+Thu 2026-10-15 00:00:00 UTC  3h 15min Wed 2026-10-14 00:00:28 UTC      20h ago dpkg-db-backup.timer           dpkg-db-backup.service
+Thu 2026-10-15 00:00:00 UTC  3h 15min Wed 2026-10-14 00:00:28 UTC      20h ago logrotate.timer                logrotate.service
+Thu 2026-10-15 00:07:00 UTC  3h 22min Wed 2026-10-14 00:07:28 UTC      20h ago sysstat-summary.timer          sysstat-summary.service
+Thu 2026-10-15 04:52:21 UTC        8h Wed 2026-10-14 04:50:22 UTC      15h ago man-db.timer                   man-db.service
+Thu 2026-10-15 05:04:28 UTC        8h Wed 2026-10-14 05:04:28 UTC      15h ago update-notifier-download.timer update-notifier-download.service
+Thu 2026-10-15 05:13:30 UTC        8h Wed 2026-10-14 05:13:30 UTC      15h ago systemd-tmpfiles-clean.timer   systemd-tmpfiles-clean.service
+Fri 2026-10-16 12:55:48 UTC 1 day 16h -                                      - update-notifier-motd.timer     update-notifier-motd.service
+Sun 2026-10-18 03:10:06 UTC    3 days Sun 2026-10-11 03:10:18 UTC   3 days ago e2scrub_all.timer              e2scrub_all.service
+Mon 2026-10-19 01:20:11 UTC    4 days Mon 2026-10-12 01:20:28 UTC   2 days ago fstrim.timer                   fstrim.service
+
+12 timers listed.
+Pass --all to see loaded but inactive timers, too.
+
+===== [Guest] cp-a (192.168.56.20) =====
+kernel : 6.8.0-146-generic
+loadavg: 0.30 0.25 0.20 1/418 32083
+MemTotal:        2014856 kB
+MemAvailable:     782304 kB
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Unattended-Upgrade "0";
+apt-daily.timer=disabled/inactive
+apt-daily-upgrade.timer=disabled/inactive
+               total        used        free      shared  buff/cache   available
+Mem:            1967        1203         120           2         802         763
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        29G  5.8G   23G  21% /
+
+===== [Guest] worker-a1 (192.168.56.21) =====
+kernel : 6.8.0-146-generic
+loadavg: 0.00 0.02 0.05 1/489 22542
+MemTotal:        6067400 kB
+MemAvailable:    4637380 kB
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Unattended-Upgrade "0";
+apt-daily.timer=disabled/inactive
+apt-daily-upgrade.timer=disabled/inactive
+               total        used        free      shared  buff/cache   available
+Mem:            5925        1397        2445           2        2344        4527
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        58G   11G   47G  19% /
+--- /opt/local-path-provisioner 실제 사용량
+1.8G	/opt/local-path-provisioner
+
+===== [Guest] cp-b (192.168.56.30) =====
+kernel : 6.8.0-146-generic
+loadavg: 1.14 0.59 0.38 1/414 32978
+MemTotal:        2977672 kB
+MemAvailable:    1905996 kB
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Unattended-Upgrade "0";
+apt-daily.timer=disabled/inactive
+apt-daily-upgrade.timer=disabled/inactive
+               total        used        free      shared  buff/cache   available
+Mem:            2907        1046         466           2        1617        1861
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        29G  4.8G   24G  18% /
+
+===== [Guest] worker-b1 (192.168.56.31) =====
+kernel : 6.8.0-146-generic
+loadavg: 0.18 0.09 0.02 1/330 22676
+MemTotal:        7099596 kB
+MemAvailable:    6423092 kB
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Unattended-Upgrade "0";
+apt-daily.timer=disabled/inactive
+apt-daily-upgrade.timer=disabled/inactive
+               total        used        free      shared  buff/cache   available
+Mem:            6933         661        5521           1         988        6272
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        48G  3.8G   44G   8% /
+
+===== [Guest] worker-b2 (192.168.56.32) =====
+kernel : 6.8.0-146-generic
+loadavg: 0.03 0.09 0.03 1/324 22369
+MemTotal:        7099600 kB
+MemAvailable:    6418256 kB
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Unattended-Upgrade "0";
+apt-daily.timer=disabled/inactive
+apt-daily-upgrade.timer=disabled/inactive
+               total        used        free      shared  buff/cache   available
+Mem:            6933         665        5486           1        1020        6267
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        77G  3.8G   73G   5% /
+
+===== [K8s] ota-a =====
+NAME        STATUS   ROLES           AGE     VERSION    INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+cp-a        Ready    control-plane   7d13h   v1.30.14   192.168.56.20   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+worker-a1   Ready    <none>          7d13h   v1.30.14   192.168.56.21   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+--- allocatable / pressure
+NODE        CPU   MEM         MemPressure   DiskPressure
+cp-a        2     1912456Ki   False         False
+worker-a1   4     5965000Ki   False         False
+--- allocated resources (requests / limits 합계)
+Name:               cp-a
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests     Limits
+  --------           --------     ------
+  cpu                1100m (55%)  0 (0%)
+  memory             240Mi (12%)  340Mi (18%)
+  ephemeral-storage  0 (0%)       0 (0%)
+  hugepages-1Gi      0 (0%)       0 (0%)
+  hugepages-2Mi      0 (0%)       0 (0%)
+Name:               worker-a1
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests      Limits
+  --------           --------      ------
+  cpu                910m (22%)    3350m (83%)
+  memory             1696Mi (29%)  4736Mi (81%)
+  ephemeral-storage  0 (0%)        0 (0%)
+  hugepages-1Gi      0 (0%)        0 (0%)
+  hugepages-2Mi      0 (0%)        0 (0%)
+--- pods
+NAMESPACE            NAME                                       READY   STATUS    RESTARTS      AGE     IP              NODE        NOMINATED NODE   READINESS GATES
+argocd               argocd-application-controller-0            1/1     Running   1 (44m ago)   7h22m   10.10.238.61    worker-a1   <none>           <none>
+argocd               argocd-redis-7cc5595759-jnnmn              1/1     Running   1 (44m ago)   7h22m   10.10.238.63    worker-a1   <none>           <none>
+argocd               argocd-repo-server-795ffc79fb-d6nsz        1/1     Running   1 (44m ago)   7h22m   10.10.238.62    worker-a1   <none>           <none>
+argocd               argocd-server-67687bd47f-bzdtx             1/1     Running   1 (44m ago)   7h22m   10.10.238.59    worker-a1   <none>           <none>
+kube-system          calico-kube-controllers-749d8f4b87-bqpt5   1/1     Running   0             31m     10.10.229.141   cp-a        <none>           <none>
+kube-system          calico-node-9n4sp                          1/1     Running   0             31m     192.168.56.21   worker-a1   <none>           <none>
+kube-system          calico-node-nvlps                          1/1     Running   0             30m     192.168.56.20   cp-a        <none>           <none>
+kube-system          coredns-55cb58b774-p8lxm                   1/1     Running   3 (44m ago)   7d13h   10.10.229.140   cp-a        <none>           <none>
+kube-system          coredns-55cb58b774-tr2wb                   1/1     Running   3 (44m ago)   7d13h   10.10.229.139   cp-a        <none>           <none>
+kube-system          etcd-cp-a                                  1/1     Running   4 (44m ago)   7d13h   192.168.56.20   cp-a        <none>           <none>
+kube-system          kube-apiserver-cp-a                        1/1     Running   4 (44m ago)   7d13h   192.168.56.20   cp-a        <none>           <none>
+kube-system          kube-controller-manager-cp-a               1/1     Running   3 (44m ago)   7d13h   192.168.56.20   cp-a        <none>           <none>
+kube-system          kube-proxy-r7q2w                           1/1     Running   3 (44m ago)   7d13h   192.168.56.21   worker-a1   <none>           <none>
+kube-system          kube-proxy-vbblx                           1/1     Running   3 (44m ago)   7d13h   192.168.56.20   cp-a        <none>           <none>
+kube-system          kube-scheduler-cp-a                        1/1     Running   4 (44m ago)   7d13h   192.168.56.20   cp-a        <none>           <none>
+local-path-storage   local-path-provisioner-85d9db4886-rhj5b    1/1     Running   2 (44m ago)   2d13h   10.10.238.58    worker-a1   <none>           <none>
+platform             jenkins-0                                  2/2     Running   2 (44m ago)   17h     10.10.238.60    worker-a1   <none>           <none>
+platform             registry-665db59f88-j79f8                  1/1     Running   2 (44m ago)   42h     10.10.238.57    worker-a1   <none>           <none>
+--- sc / pv / pvc
+NAME                                     PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+storageclass.storage.k8s.io/local-path   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  2d13h
+
+NAME                                                        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                   STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+persistentvolume/pvc-8db7520b-2c94-4079-8ec1-44208ae9c20e   2Gi        RWO            Delete           Bound    ci/trivy-cache          local-path     <unset>                          15h
+persistentvolume/pvc-b5adbe30-8b1c-48fd-95a5-ee5ae8b02686   10Gi       RWO            Delete           Bound    platform/registry-pvc   local-path     <unset>                          2d12h
+persistentvolume/pvc-cf98e752-e413-4b06-9ddf-5b52d46a3b9b   10Gi       RWO            Delete           Bound    platform/jenkins        local-path     <unset>                          36h
+NAMESPACE   NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+ci          trivy-cache    Bound    pvc-8db7520b-2c94-4079-8ec1-44208ae9c20e   2Gi        RWO            local-path     <unset>                 16h
+platform    jenkins        Bound    pvc-cf98e752-e413-4b06-9ddf-5b52d46a3b9b   10Gi       RWO            local-path     <unset>                 36h
+platform    registry-pvc   Bound    pvc-b5adbe30-8b1c-48fd-95a5-ee5ae8b02686   10Gi       RWO            local-path     <unset>                 2d12h
+
+===== [K8s] ota-b =====
+NAME        STATUS   ROLES           AGE     VERSION    INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+cp-b        Ready    control-plane   7d14h   v1.30.14   192.168.56.30   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+worker-b1   Ready    <none>          7d14h   v1.30.14   192.168.56.31   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+worker-b2   Ready    <none>          7d13h   v1.30.14   192.168.56.32   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+--- allocatable / pressure
+NODE        CPU   MEM         MemPressure   DiskPressure
+cp-b        2     2875272Ki   False         False
+worker-b1   4     6997196Ki   False         False
+worker-b2   4     6997200Ki   False         False
+--- allocated resources (requests / limits 합계)
+Name:               cp-b
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests     Limits
+  --------           --------     ------
+  cpu                1100m (55%)  0 (0%)
+  memory             240Mi (8%)   340Mi (12%)
+  ephemeral-storage  0 (0%)       0 (0%)
+  hugepages-1Gi      0 (0%)       0 (0%)
+  hugepages-2Mi      0 (0%)       0 (0%)
+Name:               worker-b1
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests   Limits
+  --------           --------   ------
+  cpu                300m (7%)  250m (6%)
+  memory             64Mi (0%)  128Mi (1%)
+  ephemeral-storage  0 (0%)     0 (0%)
+  hugepages-1Gi      0 (0%)     0 (0%)
+  hugepages-2Mi      0 (0%)     0 (0%)
+Name:               worker-b2
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests   Limits
+  --------           --------   ------
+  cpu                300m (7%)  250m (6%)
+  memory             64Mi (0%)  128Mi (1%)
+  ephemeral-storage  0 (0%)     0 (0%)
+  hugepages-1Gi      0 (0%)     0 (0%)
+  hugepages-2Mi      0 (0%)     0 (0%)
+--- pods
+NAMESPACE     NAME                                       READY   STATUS    RESTARTS      AGE     IP              NODE        NOMINATED NODE   READINESS GATES
+kube-system   calico-kube-controllers-65dcc554ff-m89st   1/1     Running   3 (44m ago)   7d14h   10.20.164.202   cp-b        <none>           <none>
+kube-system   calico-node-b2qj8                          1/1     Running   3 (44m ago)   7d14h   192.168.56.30   cp-b        <none>           <none>
+kube-system   calico-node-bk8v8                          1/1     Running   3 (44m ago)   7d13h   192.168.56.32   worker-b2   <none>           <none>
+kube-system   calico-node-pw64t                          1/1     Running   3 (44m ago)   7d14h   192.168.56.31   worker-b1   <none>           <none>
+kube-system   coredns-55cb58b774-8qtd2                   1/1     Running   3 (44m ago)   7d14h   10.20.164.203   cp-b        <none>           <none>
+kube-system   coredns-55cb58b774-9bk54                   1/1     Running   3 (44m ago)   7d14h   10.20.164.204   cp-b        <none>           <none>
+kube-system   etcd-cp-b                                  1/1     Running   3 (44m ago)   7d14h   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-apiserver-cp-b                        1/1     Running   3 (44m ago)   7d14h   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-controller-manager-cp-b               1/1     Running   3 (44m ago)   7d14h   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-8wdrj                           1/1     Running   3 (44m ago)   7d14h   192.168.56.31   worker-b1   <none>           <none>
+kube-system   kube-proxy-dwst5                           1/1     Running   3 (44m ago)   7d14h   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-p67hw                           1/1     Running   3 (44m ago)   7d13h   192.168.56.32   worker-b2   <none>           <none>
+kube-system   kube-scheduler-cp-b                        1/1     Running   3 (44m ago)   7d14h   192.168.56.30   cp-b        <none>           <none>
+production    ota-demo-86699c58ff-496tf                  1/1     Running   0             22m     10.20.127.136   worker-b2   <none>           <none>
+production    ota-demo-86699c58ff-j72sr                  1/1     Running   0             22m     10.20.214.201   worker-b1   <none>           <none>
+--- sc / pv / pvc
+No resources found
+No resources found
+
+===== COLLECTION =====
+수집 실패: 0

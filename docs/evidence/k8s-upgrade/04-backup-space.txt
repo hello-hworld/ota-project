@@ -1,0 +1,5 @@
+R0-20261012
+R1-20261013-0751
+Filesystem                          Size  Used Avail Use% Mounted on
+/dev/mapper/ubuntu--vg-ota--vm--lv  295G   83G  197G  30% /var/lib/libvirt/ota
+33G	/var/lib/libvirt/ota/vms

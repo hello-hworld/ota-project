@@ -1,0 +1,22 @@
+No errors were found on the image.
+116449/491520 = 23.69% allocated, 25.48% fragmented, 22.06% compressed clusters
+Image end offset: 6500646912
+No errors were found on the image.
+200624/983040 = 20.41% allocated, 16.42% fragmented, 12.56% compressed clusters
+Image end offset: 12046893056
+No errors were found on the image.
+108568/491520 = 22.09% allocated, 26.83% fragmented, 23.72% compressed clusters
+Image end offset: 5981732864
+No errors were found on the image.
+93090/819200 = 11.36% allocated, 30.48% fragmented, 27.73% compressed clusters
+Image end offset: 4964614144
+No errors were found on the image.
+94315/1310720 = 7.20% allocated, 29.88% fragmented, 27.18% compressed clusters
+Image end offset: 5059379200
+cp-a/cp-a.qcow2: OK
+cp-b/cp-b.qcow2: OK
+worker-a1/worker-a1.qcow2: OK
+worker-b1/worker-b1.qcow2: OK
+worker-b2/worker-b2.qcow2: OK
+BACKUP=/var/lib/libvirt/ota/backup/RU-20261014-1957
+RU_BACKUP_OK

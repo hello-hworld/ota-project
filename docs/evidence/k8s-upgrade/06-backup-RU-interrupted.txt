@@ -1,0 +1,12 @@
+/var/lib/libvirt/ota/backup/RU-20261014-1953:
+total 12
+drwxr-xr-x 3 root root 4096 Oct 14 19:53 .
+drwxr-xr-x 5 root root 4096 Oct 14 19:53 ..
+drwxr-xr-x 2 root root 4096 Oct 14 19:53 cp-a
+
+/var/lib/libvirt/ota/backup/RU-20261014-1953/cp-a:
+total 4466380
+drwxr-xr-x 2 root root       4096 Oct 14 19:53 .
+drwxr-xr-x 3 root root       4096 Oct 14 19:53 ..
+-rw-r--r-- 1 root root 4589092864 Oct 14 19:53 cp-a.qcow2
+-rw-r--r-- 1 root root       6550 Oct 14 19:53 cp-a.xml

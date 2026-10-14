@@ -1,0 +1,28 @@
+== vm-power stop at=2026-10-14T19:48:09Z
+worker-b2: running
+worker-b1: running
+worker-a1: running
+cp-b: running
+cp-a: running
+agent(ci)=0 staging=0
+Domain 'worker-b2' is being shutdown
+
+worker-b2 shut off (+91s)
+Domain 'worker-b1' is being shutdown
+
+worker-b1 shut off (+182s)
+Domain 'worker-a1' is being shutdown
+
+worker-a1 shut off (+188s)
+Domain 'cp-b' is being shutdown
+
+cp-b shut off (+198s)
+Domain 'cp-a' is being shutdown
+
+cp-a shut off (+289s)
+worker-b2: shut off
+worker-b1: shut off
+worker-a1: shut off
+cp-b: shut off
+cp-a: shut off
+RESULT=PASS

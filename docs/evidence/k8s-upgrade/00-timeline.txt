@@ -1,1 +1,14 @@
 2026-10-14T19:46:37Z STEP1 start
+2026-10-14T19:48:05Z RU start
+2026-10-14T19:48:09Z vm stop start
+2026-10-14T19:52:58Z vm stop end
+2026-10-14T19:59:39Z vm start start
+2026-10-14T20:00:25Z vm start end (nodes ready)
+2026-10-14T20:12:57Z U1 start
+2026-10-14T20:13:02Z calico v3.29.7 cluster a apply start
+2026-10-14T20:15:55Z calico v3.29.7 cluster a rollout end
+2026-10-14T20:16:18Z U1 start
+2026-10-14T20:18:24Z NOTE 순서 이탈: U1-A(Calico 3.29.7)를 U-P0·STEP3 전에 실행(20:13~20:15Z). 'U1 start'는 A 완료 뒤 기록. B 미변경
+2026-10-14T20:21:26Z B 데모 Pod 2개 하나씩 재생성: VM 재기동으로 남은 restart 이력 정리 (Deployment·Git 변경 없음)
+2026-10-14T20:36:37Z ksm-wait 중단: KSM 스캔 약 2 MiB/s라 안정까지 수 시간 → U-P0·U-P1 모두 재기동 완료 후 같은 경과 시간에 측정
+2026-10-14T20:36:50Z U-P0a 시작: 재기동 완료 +2185s

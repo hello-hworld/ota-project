@@ -1,0 +1,334 @@
+== upgrade-check expect k8s=v1.30.14 calico=v3.28.2 at=2026-10-14T20:18:49Z git=fe311c9
+
+===== ota-host 도구 =====
+kubectl → kubectl is /home/devops/.local/bin/kubectl kubectl is /home/devops/.local/bin/kubectl 
+helm → helm is /home/devops/.local/bin/helm helm is /home/devops/.local/bin/helm 
+argocd → argocd is /home/devops/.local/bin/argocd argocd is /home/devops/.local/bin/argocd 
+ansible-playbook → ansible-playbook is /usr/bin/ansible-playbook ansible-playbook is /bin/ansible-playbook 
+Client Version: v1.30.14
+v3.18.6+gb76a950
+argocd: v3.5.5+a5038b0
+
+===== Cluster a (ota-a) =====
+== server context=ota-a arg=1.30.14 at=2026-10-14T20:18:49Z
+  server v1.30.14 (client v1.30.14)
+CHECK server PASS
+CHECK a-server PASS
+== nodes context=ota-a arg=1.30.14 at=2026-10-14T20:18:49Z
+  node cp-a ready=True unschedulable=False kubelet=v1.30.14 runtime=containerd://2.2.1 kernel=6.8.0-146-generic
+  node worker-a1 ready=True unschedulable=False kubelet=v1.30.14 runtime=containerd://2.2.1 kernel=6.8.0-146-generic
+CHECK nodes PASS
+CHECK a-nodes PASS
+== addons context=ota-a arg=1.30.14 at=2026-10-14T20:18:49Z
+  kube-apiserver kube-apiserver-cp-a image=registry.k8s.io/kube-apiserver:v1.30.14 OK
+  kube-controller-manager kube-controller-manager-cp-a image=registry.k8s.io/kube-controller-manager:v1.30.14 OK
+  kube-scheduler kube-scheduler-cp-a image=registry.k8s.io/kube-scheduler:v1.30.14 OK
+  etcd etcd-cp-a image=registry.k8s.io/etcd:3.5.15-0 OK
+  kube-proxy image=registry.k8s.io/kube-proxy:v1.30.14 desired=2 updated=2 ready=2
+  coredns image=registry.k8s.io/coredns/coredns:v1.11.3 replicas=2 ready=2 updated=2
+CHECK addons PASS
+CHECK a-addons PASS
+== pods context=ota-a arg=- at=2026-10-14T20:18:49Z
+  pods 전체 18개, 문제 0개
+CHECK pods PASS
+CHECK a-pods PASS
+== calico context=ota-a arg=3.28.2 at=2026-10-14T20:18:50Z
+  calico-node images=['docker.io/calico/node:v3.29.7'] desired=2 updated=2 ready=2
+  calico-kube-controllers image=docker.io/calico/kube-controllers:v3.29.7 replicas=1 ready=1 updated=1
+  node cp-a NetworkUnavailable=False CalicoIsUp
+  node worker-a1 NetworkUnavailable=False CalicoIsUp
+  - Calico 이미지 docker.io/calico/node:v3.29.7 태그 != v3.28.2
+  - Calico 이미지 docker.io/calico/kube-controllers:v3.29.7 태그 != v3.28.2
+CHECK calico FAIL
+CHECK a-calico FAIL
+== deprecated context=ota-a arg=36 at=2026-10-14T20:18:50Z
+  deprecated API 요청 기록 없음 (API 서버 시작 이후)
+CHECK deprecated PASS
+CHECK a-deprecated PASS
+== ippools context=ota-a arg=- at=2026-10-14T20:18:50Z
+  ippool default-ipv4-ippool cidr=10.10.0.0/16 blockSize=26 ipipMode=Always vxlanMode=Never natOutgoing=True disabled=False nodeSelector=all()
+CHECK ippools PASS
+cp-a=containerd://2.2.1
+worker-a1=containerd://2.2.1
+CHECK a-runtime PASS
+--- Calico 설치 방식 (kube-system의 calico-node = manifest, calico-system = operator)
+NS            NAME
+kube-system   calico-node
+Error from server (NotFound): namespaces "tigera-operator" not found
+Error from server (NotFound): namespaces "calico-system" not found
+--- kubeadm-config ClusterConfiguration
+apiServer:
+  timeoutForControlPlane: 4m0s
+apiVersion: kubeadm.k8s.io/v1beta3
+certificatesDir: /etc/kubernetes/pki
+clusterName: kubernetes
+controllerManager: {}
+dns: {}
+etcd:
+  local:
+    dataDir: /var/lib/etcd
+imageRepository: registry.k8s.io
+kind: ClusterConfiguration
+kubernetesVersion: v1.30.14
+networking:
+  dnsDomain: cluster.local
+  podSubnet: 10.10.0.0/16
+  serviceSubnet: 10.96.0.0/12
+scheduler: {}
+
+--- kube-proxy mode (빈 값 = iptables)
+mode: ""
+--- kubelet-config (cgroupDriver·failCgroupV1)
+cgroupDriver: systemd
+containerRuntimeEndpoint: ""
+--- PodDisruptionBudget (drain을 막을 수 있다)
+NAMESPACE     NAME                      MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE
+kube-system   calico-kube-controllers   N/A             1                 1                     7d12h
+--- agent(ci)=0 staging=0
+CHECK a-agent-staging-zero PASS
+--- Argo CD Application
+ota-demo-production Synced Healthy
+ota-demo-staging Synced Healthy
+CHECK a-argocd-apps PASS
+--- Registry
+{"name":"day6/demo","tags":["283ab3143bec-day6-ci-2-2","50615d6ab9d2-day6-ci-3","283ab3143bec-day6-ci-8","2f99fb73f694-day6-ci-2"]}
+
+
+===== Node cp-a (192.168.56.20) =====
+kubeadm=v1.30.14 kubelet=Kubernetes v1.30.14 kubectl=Client Version: v1.30.14
+containerd=containerd github.com/containerd/containerd/v2 2.2.1 
+kernel=6.8.0-146-generic cgroup=cgroup2fs
+disk_pct=21
+/dev/vda1        29G  5.8G   23G  21% /
+--- apt 저장소 / hold
+deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /
+kubeadm kubectl kubelet
+--- /var/lib/kubelet/kubeadm-flags.env
+KUBELET_KUBEADM_ARGS="--container-runtime-endpoint=unix:///var/run/containerd/containerd.sock --pod-infra-container-image=registry.k8s.io/pause:3.9"
+instance-config.yaml 없음
+--- 이미지 수 14
+--- 인증서 만료
+CERTIFICATE                EXPIRES                  RESIDUAL TIME   CERTIFICATE AUTHORITY   EXTERNALLY MANAGED
+CERTIFICATE                EXPIRES                  RESIDUAL TIME   CERTIFICATE AUTHORITY   EXTERNALLY MANAGED
+admin.conf                 Oct 07, 2027 07:25 UTC   357d            ca                      no      
+admin.conf                 Oct 07, 2027 07:25 UTC   357d            ca                      no      
+apiserver                  Oct 07, 2027 07:25 UTC   357d            ca                      no      
+apiserver                  Oct 07, 2027 07:25 UTC   357d            ca                      no      
+apiserver-etcd-client      Oct 07, 2027 07:25 UTC   357d            etcd-ca                 no      
+apiserver-etcd-client      Oct 07, 2027 07:25 UTC   357d            etcd-ca                 no      
+apiserver-kubelet-client   Oct 07, 2027 07:25 UTC   357d            ca                      no      
+apiserver-kubelet-client   Oct 07, 2027 07:25 UTC   357d            ca                      no      
+controller-manager.conf    Oct 07, 2027 07:25 UTC   357d            ca                      no      
+controller-manager.conf    Oct 07, 2027 07:25 UTC   357d            ca                      no      
+etcd-healthcheck-client    Oct 07, 2027 07:25 UTC   357d            etcd-ca                 no      
+etcd-healthcheck-client    Oct 07, 2027 07:25 UTC   357d            etcd-ca                 no      
+etcd-peer                  Oct 07, 2027 07:25 UTC   357d            etcd-ca                 no      
+etcd-peer                  Oct 07, 2027 07:25 UTC   357d            etcd-ca                 no      
+etcd-server                Oct 07, 2027 07:25 UTC   357d            etcd-ca                 no      
+etcd-server                Oct 07, 2027 07:25 UTC   357d            etcd-ca                 no      
+front-proxy-client         Oct 07, 2027 07:25 UTC   357d            front-proxy-ca          no      
+front-proxy-client         Oct 07, 2027 07:25 UTC   357d            front-proxy-ca          no      
+scheduler.conf             Oct 07, 2027 07:25 UTC   357d            ca                      no      
+scheduler.conf             Oct 07, 2027 07:25 UTC   357d            ca                      no      
+super-admin.conf           Oct 07, 2027 07:25 UTC   357d            ca                      no      
+super-admin.conf           Oct 07, 2027 07:25 UTC   357d            ca                      no      
+
+
+CERTIFICATE AUTHORITY   EXPIRES                  RESIDUAL TIME   EXTERNALLY MANAGED
+CERTIFICATE AUTHORITY   EXPIRES                  RESIDUAL TIME   EXTERNALLY MANAGED
+ca                      Oct 04, 2036 07:25 UTC   9y              no      
+ca                      Oct 04, 2036 07:25 UTC   9y              no      
+etcd-ca                 Oct 04, 2036 07:25 UTC   9y              no      
+etcd-ca                 Oct 04, 2036 07:25 UTC   9y              no      
+front-proxy-ca          Oct 04, 2036 07:25 UTC   9y              no      
+front-proxy-ca          Oct 04, 2036 07:25 UTC   9y              no      
+--- etcd 데이터·kubeadm 백업 폴더 크기
+378M	/var/lib/etcd
+du: cannot access '/etc/kubernetes/tmp': No such file or directory
+SSH 실패: cp-a
+CHECK cp-a-disk<80 PASS
+CHECK cp-a-cgroup2 PASS
+
+===== Node worker-a1 (192.168.56.21) =====
+kubeadm=v1.30.14 kubelet=Kubernetes v1.30.14 kubectl=Client Version: v1.30.14
+containerd=containerd github.com/containerd/containerd/v2 2.2.1 
+kernel=6.8.0-146-generic cgroup=cgroup2fs
+disk_pct=19
+/dev/vda1        58G   11G   47G  19% /
+--- apt 저장소 / hold
+deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /
+kubeadm kubectl kubelet
+--- /var/lib/kubelet/kubeadm-flags.env
+KUBELET_KUBEADM_ARGS="--container-runtime-endpoint=unix:///var/run/containerd/containerd.sock --pod-infra-container-image=registry.k8s.io/pause:3.9"
+instance-config.yaml 없음
+--- 이미지 수 21
+CHECK worker-a1-disk<80 PASS
+CHECK worker-a1-cgroup2 PASS
+
+===== Cluster b (ota-b) =====
+== server context=ota-b arg=1.30.14 at=2026-10-14T20:18:52Z
+  server v1.30.14 (client v1.30.14)
+CHECK server PASS
+CHECK b-server PASS
+== nodes context=ota-b arg=1.30.14 at=2026-10-14T20:18:53Z
+  node cp-b ready=True unschedulable=False kubelet=v1.30.14 runtime=containerd://2.2.1 kernel=6.8.0-146-generic
+  node worker-b1 ready=True unschedulable=False kubelet=v1.30.14 runtime=containerd://2.2.1 kernel=6.8.0-146-generic
+  node worker-b2 ready=True unschedulable=False kubelet=v1.30.14 runtime=containerd://2.2.1 kernel=6.8.0-146-generic
+CHECK nodes PASS
+CHECK b-nodes PASS
+== addons context=ota-b arg=1.30.14 at=2026-10-14T20:18:53Z
+  kube-apiserver kube-apiserver-cp-b image=registry.k8s.io/kube-apiserver:v1.30.14 OK
+  kube-controller-manager kube-controller-manager-cp-b image=registry.k8s.io/kube-controller-manager:v1.30.14 OK
+  kube-scheduler kube-scheduler-cp-b image=registry.k8s.io/kube-scheduler:v1.30.14 OK
+  etcd etcd-cp-b image=registry.k8s.io/etcd:3.5.15-0 OK
+  kube-proxy image=registry.k8s.io/kube-proxy:v1.30.14 desired=3 updated=3 ready=3
+  coredns image=registry.k8s.io/coredns/coredns:v1.11.3 replicas=2 ready=2 updated=2
+CHECK addons PASS
+CHECK b-addons PASS
+== pods context=ota-b arg=- at=2026-10-14T20:18:53Z
+  pods 전체 15개, 문제 0개
+CHECK pods PASS
+CHECK b-pods PASS
+== calico context=ota-b arg=3.28.2 at=2026-10-14T20:18:53Z
+  calico-node images=['docker.io/calico/node:v3.28.2'] desired=3 updated=3 ready=3
+  calico-kube-controllers image=docker.io/calico/kube-controllers:v3.28.2 replicas=1 ready=1 updated=1
+  node cp-b NetworkUnavailable=False CalicoIsUp
+  node worker-b1 NetworkUnavailable=False CalicoIsUp
+  node worker-b2 NetworkUnavailable=False CalicoIsUp
+CHECK calico PASS
+CHECK b-calico PASS
+== deprecated context=ota-b arg=36 at=2026-10-14T20:18:53Z
+  deprecated API 요청 기록 없음 (API 서버 시작 이후)
+CHECK deprecated PASS
+CHECK b-deprecated PASS
+== ippools context=ota-b arg=- at=2026-10-14T20:18:53Z
+  ippool default-ipv4-ippool cidr=10.20.0.0/16 blockSize=26 ipipMode=Always vxlanMode=Never natOutgoing=True disabled=False nodeSelector=all()
+CHECK ippools PASS
+cp-b=containerd://2.2.1
+worker-b1=containerd://2.2.1
+worker-b2=containerd://2.2.1
+CHECK b-runtime PASS
+--- Calico 설치 방식 (kube-system의 calico-node = manifest, calico-system = operator)
+NS            NAME
+kube-system   calico-node
+Error from server (NotFound): namespaces "tigera-operator" not found
+Error from server (NotFound): namespaces "calico-system" not found
+--- kubeadm-config ClusterConfiguration
+apiServer:
+  timeoutForControlPlane: 4m0s
+apiVersion: kubeadm.k8s.io/v1beta3
+certificatesDir: /etc/kubernetes/pki
+clusterName: kubernetes
+controllerManager: {}
+dns: {}
+etcd:
+  local:
+    dataDir: /var/lib/etcd
+imageRepository: registry.k8s.io
+kind: ClusterConfiguration
+kubernetesVersion: v1.30.14
+networking:
+  dnsDomain: cluster.local
+  podSubnet: 10.20.0.0/16
+  serviceSubnet: 10.96.0.0/12
+scheduler: {}
+
+--- kube-proxy mode (빈 값 = iptables)
+mode: ""
+--- kubelet-config (cgroupDriver·failCgroupV1)
+cgroupDriver: systemd
+containerRuntimeEndpoint: ""
+--- PodDisruptionBudget (drain을 막을 수 있다)
+NAMESPACE     NAME                      MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE
+kube-system   calico-kube-controllers   N/A             1                 1                     7d13h
+
+===== Node cp-b (192.168.56.30) =====
+kubeadm=v1.30.14 kubelet=Kubernetes v1.30.14 kubectl=Client Version: v1.30.14
+containerd=containerd github.com/containerd/containerd/v2 2.2.1 
+kernel=6.8.0-146-generic cgroup=cgroup2fs
+disk_pct=18
+/dev/vda1        29G  4.8G   24G  18% /
+--- apt 저장소 / hold
+deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /
+kubeadm kubectl kubelet
+--- /var/lib/kubelet/kubeadm-flags.env
+KUBELET_KUBEADM_ARGS="--container-runtime-endpoint=unix:///var/run/containerd/containerd.sock --pod-infra-container-image=registry.k8s.io/pause:3.9"
+instance-config.yaml 없음
+--- 이미지 수 11
+--- 인증서 만료
+CERTIFICATE                EXPIRES                  RESIDUAL TIME   CERTIFICATE AUTHORITY   EXTERNALLY MANAGED
+CERTIFICATE                EXPIRES                  RESIDUAL TIME   CERTIFICATE AUTHORITY   EXTERNALLY MANAGED
+admin.conf                 Oct 07, 2027 06:23 UTC   357d            ca                      no      
+admin.conf                 Oct 07, 2027 06:23 UTC   357d            ca                      no      
+apiserver                  Oct 07, 2027 06:23 UTC   357d            ca                      no      
+apiserver                  Oct 07, 2027 06:23 UTC   357d            ca                      no      
+apiserver-etcd-client      Oct 07, 2027 06:23 UTC   357d            etcd-ca                 no      
+apiserver-etcd-client      Oct 07, 2027 06:23 UTC   357d            etcd-ca                 no      
+apiserver-kubelet-client   Oct 07, 2027 06:23 UTC   357d            ca                      no      
+apiserver-kubelet-client   Oct 07, 2027 06:23 UTC   357d            ca                      no      
+controller-manager.conf    Oct 07, 2027 06:23 UTC   357d            ca                      no      
+controller-manager.conf    Oct 07, 2027 06:23 UTC   357d            ca                      no      
+etcd-healthcheck-client    Oct 07, 2027 06:23 UTC   357d            etcd-ca                 no      
+etcd-healthcheck-client    Oct 07, 2027 06:23 UTC   357d            etcd-ca                 no      
+etcd-peer                  Oct 07, 2027 06:23 UTC   357d            etcd-ca                 no      
+etcd-peer                  Oct 07, 2027 06:23 UTC   357d            etcd-ca                 no      
+etcd-server                Oct 07, 2027 06:23 UTC   357d            etcd-ca                 no      
+etcd-server                Oct 07, 2027 06:23 UTC   357d            etcd-ca                 no      
+front-proxy-client         Oct 07, 2027 06:23 UTC   357d            front-proxy-ca          no      
+front-proxy-client         Oct 07, 2027 06:23 UTC   357d            front-proxy-ca          no      
+scheduler.conf             Oct 07, 2027 06:23 UTC   357d            ca                      no      
+scheduler.conf             Oct 07, 2027 06:23 UTC   357d            ca                      no      
+super-admin.conf           Oct 07, 2027 06:23 UTC   357d            ca                      no      
+super-admin.conf           Oct 07, 2027 06:23 UTC   357d            ca                      no      
+
+
+CERTIFICATE AUTHORITY   EXPIRES                  RESIDUAL TIME   EXTERNALLY MANAGED
+CERTIFICATE AUTHORITY   EXPIRES                  RESIDUAL TIME   EXTERNALLY MANAGED
+ca                      Oct 04, 2036 06:23 UTC   9y              no      
+ca                      Oct 04, 2036 06:23 UTC   9y              no      
+etcd-ca                 Oct 04, 2036 06:23 UTC   9y              no      
+etcd-ca                 Oct 04, 2036 06:23 UTC   9y              no      
+front-proxy-ca          Oct 04, 2036 06:23 UTC   9y              no      
+front-proxy-ca          Oct 04, 2036 06:23 UTC   9y              no      
+--- etcd 데이터·kubeadm 백업 폴더 크기
+370M	/var/lib/etcd
+du: cannot access '/etc/kubernetes/tmp': No such file or directory
+SSH 실패: cp-b
+CHECK cp-b-disk<80 PASS
+CHECK cp-b-cgroup2 PASS
+
+===== Node worker-b1 (192.168.56.31) =====
+kubeadm=v1.30.14 kubelet=Kubernetes v1.30.14 kubectl=Client Version: v1.30.14
+containerd=containerd github.com/containerd/containerd/v2 2.2.1 
+kernel=6.8.0-146-generic cgroup=cgroup2fs
+disk_pct=8
+/dev/vda1        48G  3.8G   44G   8% /
+--- apt 저장소 / hold
+deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /
+kubeadm kubectl kubelet
+--- /var/lib/kubelet/kubeadm-flags.env
+KUBELET_KUBEADM_ARGS="--container-runtime-endpoint=unix:///var/run/containerd/containerd.sock --pod-infra-container-image=registry.k8s.io/pause:3.9"
+instance-config.yaml 없음
+--- 이미지 수 7
+CHECK worker-b1-disk<80 PASS
+CHECK worker-b1-cgroup2 PASS
+
+===== Node worker-b2 (192.168.56.32) =====
+kubeadm=v1.30.14 kubelet=Kubernetes v1.30.14 kubectl=Client Version: v1.30.14
+containerd=containerd github.com/containerd/containerd/v2 2.2.1 
+kernel=6.8.0-146-generic cgroup=cgroup2fs
+disk_pct=5
+/dev/vda1        77G  3.8G   73G   5% /
+--- apt 저장소 / hold
+deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /
+kubeadm kubectl kubelet
+--- /var/lib/kubelet/kubeadm-flags.env
+KUBELET_KUBEADM_ARGS="--container-runtime-endpoint=unix:///var/run/containerd/containerd.sock --pod-infra-container-image=registry.k8s.io/pause:3.9"
+instance-config.yaml 없음
+--- 이미지 수 7
+CHECK worker-b2-disk<80 PASS
+CHECK worker-b2-cgroup2 PASS
+
+===== SUMMARY =====
+CHECK FAIL 수: 1
+RESULT=FAIL
