@@ -1,0 +1,5 @@
+== jnlp
+memory.peak_bytes=174649344
+usage_usec 15578421
+nr_throttled 262
+throttled_usec 49090908

@@ -1,0 +1,13 @@
+05:28:25 EVENT      NAME                          READY   STATUS    RESTARTS   AGE   IP       NODE     NOMINATED NODE   READINESS GATES
+05:28:25 ADDED      day6-ci-2-d14t3-fh3pv-gnsd3   0/5     Pending   0          0s    <none>   <none>   <none>           <none>
+05:28:25 MODIFIED   day6-ci-2-d14t3-fh3pv-gnsd3   0/5     Pending   0          0s    <none>   worker-a1   <none>           <none>
+05:28:25 MODIFIED   day6-ci-2-d14t3-fh3pv-gnsd3   0/5     ContainerCreating   0          0s    <none>   worker-a1   <none>           <none>
+05:28:25 MODIFIED   day6-ci-2-d14t3-fh3pv-gnsd3   0/5     ContainerCreating   0          0s    <none>   worker-a1   <none>           <none>
+05:28:26 MODIFIED   day6-ci-2-d14t3-fh3pv-gnsd3   0/5     ContainerCreating   0          1s    <none>   worker-a1   <none>           <none>
+05:28:26 MODIFIED   day6-ci-2-d14t3-fh3pv-gnsd3   5/5     Running             0          1s    10.10.238.40   worker-a1   <none>           <none>
+05:29:26 MODIFIED   day6-ci-2-d14t3-fh3pv-gnsd3   5/5     Running             0          61s   10.10.238.40   worker-a1   <none>           <none>
+05:30:23 MODIFIED   day6-ci-2-d14t3-fh3pv-gnsd3   5/5     Terminating         0          118s   10.10.238.40   worker-a1   <none>           <none>
+05:30:53 MODIFIED   day6-ci-2-d14t3-fh3pv-gnsd3   5/5     Terminating         0          2m28s   10.10.238.40   worker-a1   <none>           <none>
+05:30:53 MODIFIED   day6-ci-2-d14t3-fh3pv-gnsd3   0/5     Terminating         0          2m28s   10.10.238.40   worker-a1   <none>           <none>
+05:30:53 MODIFIED   day6-ci-2-d14t3-fh3pv-gnsd3   0/5     Terminating         0          2m28s   10.10.238.40   worker-a1   <none>           <none>
+05:30:53 DELETED    day6-ci-2-d14t3-fh3pv-gnsd3   0/5     Terminating         0          2m28s   10.10.238.40   worker-a1   <none>           <none>

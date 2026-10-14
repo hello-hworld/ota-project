@@ -1,0 +1,5 @@
+== python
+memory.peak_bytes=25186304
+usage_usec 631987
+nr_throttled 11
+throttled_usec 537701

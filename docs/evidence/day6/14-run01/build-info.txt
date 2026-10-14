@@ -1,0 +1,15 @@
+repo=https://github.com/hello-hworld/ota-project.git
+commit=2f99fb73f694dc8bb3cf3de2deb9a4c814e3e4af
+job=day6-ci build=2
+tag=2f99fb73f694-day6-ci-2
+test-start=2026-10-14T05:28:51Z
+test-exit=0
+build-start=2026-10-14T05:28:53Z
+build-end=2026-10-14T05:29:07Z
+built-digest=sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
+scandb-start=2026-10-14T05:29:08Z
+scan-start=2026-10-14T05:30:17Z
+scan-exit=0 severity=CRITICAL
+push-start=2026-10-14T05:30:18Z
+pushed-digest=sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
+push-end=2026-10-14T05:30:19Z

@@ -1,0 +1,5 @@
+{"name":"day6/demo","tags":["2f99fb73f694-day6-ci-2"]}
+
+HTTP/1.1 200 OK
+Docker-Content-Digest: sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
+expected: sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
