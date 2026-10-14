@@ -1,0 +1,16 @@
+expected: 192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+NAME             READY   STATUS    RESTARTS   AGE   IP              NODE        NOMINATED NODE   READINESS GATES
+demo-worker-b1   1/1     Running   0          6s    10.20.214.194   worker-b1   <none>           <none>
+demo-worker-b2   1/1     Running   0          6s    10.20.127.130   worker-b2   <none>           <none>
+===== demo-worker-b1
+worker-b1
+192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+  Normal   Pulling    6s               kubelet            Pulling image "192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e"
+  Normal   Pulled     5s               kubelet            Successfully pulled image "192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e" in 681ms (681ms including waiting). Image size: 20634679 bytes.
+{"status": "ok", "version": "50615d6ab9d2-day6-ci-3"}
+===== demo-worker-b2
+worker-b2
+192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+  Normal   Pulling    10s              kubelet            Pulling image "192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e"
+  Normal   Pulled     9s               kubelet            Successfully pulled image "192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e" in 635ms (635ms including waiting). Image size: 20634679 bytes.
+{"status": "ok", "version": "50615d6ab9d2-day6-ci-3"}

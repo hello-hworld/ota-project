@@ -1,0 +1,271 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      cni.projectcalico.org/containerID: eed323c8ebcb704251ba0e7aa6c5e061fc2d5a91d5d58e1d490430b4c43ff33e
+      cni.projectcalico.org/podIP: 10.20.214.194/32
+      cni.projectcalico.org/podIPs: 10.20.214.194/32
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"app":"day6-demo"},"name":"demo-worker-b1","namespace":"day6-ci-test"},"spec":{"containers":[{"image":"192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e","imagePullPolicy":"Always","name":"demo","ports":[{"containerPort":8080}],"readinessProbe":{"httpGet":{"path":"/healthz","port":8080},"periodSeconds":3},"resources":{"limits":{"cpu":"200m","memory":"64Mi"},"requests":{"cpu":"50m","memory":"32Mi"}},"securityContext":{"allowPrivilegeEscalation":false,"runAsNonRoot":true}}],"nodeSelector":{"kubernetes.io/hostname":"worker-b1"}}}
+    creationTimestamp: "2026-10-14T05:43:55Z"
+    labels:
+      app: day6-demo
+    name: demo-worker-b1
+    namespace: day6-ci-test
+    resourceVersion: "899606"
+    uid: e86057bf-a379-42b7-8a85-d7b1d84d337f
+  spec:
+    containers:
+    - image: 192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+      imagePullPolicy: Always
+      name: demo
+      ports:
+      - containerPort: 8080
+        protocol: TCP
+      readinessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /healthz
+          port: 8080
+          scheme: HTTP
+        periodSeconds: 3
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources:
+        limits:
+          cpu: 200m
+          memory: 64Mi
+        requests:
+          cpu: 50m
+          memory: 32Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-w55lv
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: worker-b1
+    nodeSelector:
+      kubernetes.io/hostname: worker-b1
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-w55lv
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-14T05:43:56Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-14T05:43:55Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-14T05:44:01Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-14T05:44:01Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-14T05:43:55Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://146b3ac49599772469b25cd66fb9bb49ed77b7f6a88b52d5113c8b5dd53b4770
+      image: sha256:ece50ea150c16b910c4dd5fed89c60af2584de73002841f368cecba9ac0c47ea
+      imageID: 192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+      lastState: {}
+      name: demo
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-10-14T05:43:56Z"
+    hostIP: 192.168.56.31
+    hostIPs:
+    - ip: 192.168.56.31
+    phase: Running
+    podIP: 10.20.214.194
+    podIPs:
+    - ip: 10.20.214.194
+    qosClass: Burstable
+    startTime: "2026-10-14T05:43:55Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      cni.projectcalico.org/containerID: 8e12ddf220a3bbf661ce8d4b4e9ed10ee8dcf094ca90f10b5843001668902e55
+      cni.projectcalico.org/podIP: 10.20.127.130/32
+      cni.projectcalico.org/podIPs: 10.20.127.130/32
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"app":"day6-demo"},"name":"demo-worker-b2","namespace":"day6-ci-test"},"spec":{"containers":[{"image":"192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e","imagePullPolicy":"Always","name":"demo","ports":[{"containerPort":8080}],"readinessProbe":{"httpGet":{"path":"/healthz","port":8080},"periodSeconds":3},"resources":{"limits":{"cpu":"200m","memory":"64Mi"},"requests":{"cpu":"50m","memory":"32Mi"}},"securityContext":{"allowPrivilegeEscalation":false,"runAsNonRoot":true}}],"nodeSelector":{"kubernetes.io/hostname":"worker-b2"}}}
+    creationTimestamp: "2026-10-14T05:43:55Z"
+    labels:
+      app: day6-demo
+    name: demo-worker-b2
+    namespace: day6-ci-test
+    resourceVersion: "899608"
+    uid: b5fc34c5-dc70-43da-8f78-ce01356ade8e
+  spec:
+    containers:
+    - image: 192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+      imagePullPolicy: Always
+      name: demo
+      ports:
+      - containerPort: 8080
+        protocol: TCP
+      readinessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /healthz
+          port: 8080
+          scheme: HTTP
+        periodSeconds: 3
+        successThreshold: 1
+        timeoutSeconds: 1
+      resources:
+        limits:
+          cpu: 200m
+          memory: 64Mi
+        requests:
+          cpu: 50m
+          memory: 32Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-9k2k9
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: worker-b2
+    nodeSelector:
+      kubernetes.io/hostname: worker-b2
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-9k2k9
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-14T05:43:57Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-14T05:43:55Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-14T05:44:01Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-14T05:44:01Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-14T05:43:55Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://499a5c0a02f9d51806d46690dba645bc5c9ee7f81eb5690481674a12debefd67
+      image: sha256:ece50ea150c16b910c4dd5fed89c60af2584de73002841f368cecba9ac0c47ea
+      imageID: 192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+      lastState: {}
+      name: demo
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-10-14T05:43:56Z"
+    hostIP: 192.168.56.32
+    hostIPs:
+    - ip: 192.168.56.32
+    phase: Running
+    podIP: 10.20.127.130
+    podIPs:
+    - ip: 10.20.127.130
+    qosClass: Burstable
+    startTime: "2026-10-14T05:43:55Z"
+kind: List
+metadata:
+  resourceVersion: ""
