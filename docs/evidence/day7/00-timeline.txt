@@ -21,3 +21,7 @@
 2026-10-14T14:21:48Z S2 start
 2026-10-14T14:22:27Z commit bb1d8f4 DAY7 S2: production readiness /not-ready (intended failure)
 2026-10-14T14:25:37Z revert 55e5dc4 (reverts bb1d8f48b6e1)
+2026-10-14T14:34:00Z S3 start
+2026-10-14T14:34:13Z commit 2dcef9f DAY7 S3: production back to G (previous verified image)
+2026-10-14T14:34:51Z commit fb382f3 DAY7 S3: production re-promote C
+2026-10-14T14:35:25Z STEP8 end

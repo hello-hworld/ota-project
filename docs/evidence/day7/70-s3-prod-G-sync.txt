@@ -1,0 +1,75 @@
+== 70-s3-prod-G-sync  app=ota-demo-production  mode=normal  start=2026-10-14T14:34:16Z
+git: HEAD=2dcef9fe6275adae263f7d726fe6d263b36ab804 origin/main=2dcef9fe6275adae263f7d726fe6d263b36ab804
+git: last commit 2dcef9f DAY7 S3: production back to G (previous verified image)
+-- refresh (2026-10-14T14:34:18Z)
+state: sync=OutOfSync health=Healthy compared-rev=2dcef9fe6275adae263f7d726fe6d263b36ab804 op=Succeeded synced-rev=55e5dc4e9911877e4d23e38d5ccc2ca3b4ac04a0 op-start=2026-10-14T14:25:41Z op-end=2026-10-14T14:25:42Z
+-- diff (2026-10-14T14:34:20Z)
+
+===== apps/Deployment production/ota-demo ======
+205c205
+<       - image: 192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+---
+>       - image: 192.168.56.21:32000/day6/demo@sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
+diff: 차이 있음 (rc=1, 정상)
+-- sync
+sync-start=2026-10-14T14:34:20Z
+TIMESTAMP                  GROUP        KIND   NAMESPACE                  NAME    STATUS    HEALTH        HOOK  MESSAGE
+2026-10-14T14:34:20+00:00            Service  production              ota-demo    Synced   Healthy              
+2026-10-14T14:34:20+00:00   apps  Deployment  production              ota-demo  OutOfSync  Healthy              
+2026-10-14T14:34:21+00:00            Service  production              ota-demo    Synced   Healthy              service/ota-demo unchanged
+2026-10-14T14:34:21+00:00   apps  Deployment  production              ota-demo  OutOfSync  Healthy              deployment.apps/ota-demo configured
+
+Name:               argocd/ota-demo-production
+Project:            ota-production
+Server:             https://192.168.56.30:6443
+Namespace:          production
+URL:                https://argocd.example.com/applications/ota-demo-production
+Source:
+- Repo:             https://github.com/hello-hworld/ota-project.git
+  Target:           main
+  Path:             charts/demo
+  Helm Values:      ../../values/production.yaml
+SyncWindow:         Sync Allowed
+Sync Policy:        Manual
+Sync Status:        Synced to main (2dcef9f)
+Health Status:      Progressing
+
+Operation:          Sync
+Sync Revision:      2dcef9fe6275adae263f7d726fe6d263b36ab804
+Phase:              Succeeded
+Start:              2026-10-14 14:34:20 +0000 UTC
+Finished:           2026-10-14 14:34:21 +0000 UTC
+Duration:           1s
+Message:            successfully synced (all tasks run)
+
+GROUP  KIND        NAMESPACE   NAME      STATUS  HEALTH       HOOK  MESSAGE
+       Service     production  ota-demo  Synced  Healthy            service/ota-demo unchanged
+apps   Deployment  production  ota-demo  Synced  Progressing        deployment.apps/ota-demo configured
+sync-end=2026-10-14T14:34:22Z (+2s)
+-- wait
+TIMESTAMP                  GROUP        KIND   NAMESPACE                  NAME    STATUS   HEALTH            HOOK  MESSAGE
+2026-10-14T14:34:22+00:00            Service  production              ota-demo    Synced  Healthy                  service/ota-demo unchanged
+2026-10-14T14:34:22+00:00   apps  Deployment  production              ota-demo    Synced  Progressing              deployment.apps/ota-demo configured
+
+Name:               argocd/ota-demo-production
+Project:            ota-production
+Server:             https://192.168.56.30:6443
+Namespace:          production
+URL:                https://argocd.example.com/applications/ota-demo-production
+Source:
+- Repo:             https://github.com/hello-hworld/ota-project.git
+  Target:           main
+  Path:             charts/demo
+  Helm Values:      ../../values/production.yaml
+SyncWindow:         Sync Allowed
+Sync Policy:        Manual
+Sync Status:        Synced to main (2dcef9f)
+Health Status:      Healthy
+
+
+GROUP  KIND        NAMESPACE   NAME      STATUS  HEALTH   HOOK  MESSAGE
+       Service     production  ota-demo  Synced  Healthy        service/ota-demo unchanged
+apps   Deployment  production  ota-demo  Synced  Healthy        deployment.apps/ota-demo configured
+wait rc=0 end=2026-10-14T14:34:28Z (+8s)
+state: sync=Synced health=Healthy compared-rev=2dcef9fe6275adae263f7d726fe6d263b36ab804 op=Succeeded synced-rev=2dcef9fe6275adae263f7d726fe6d263b36ab804 op-start=2026-10-14T14:34:20Z op-end=2026-10-14T14:34:21Z
+RESULT=PASS
