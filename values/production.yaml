@@ -3,7 +3,7 @@
 replicaCount: 2
 
 image:
-  digest: sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+  digest: sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
 
 probes:
   readiness:
