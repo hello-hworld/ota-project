@@ -1,23 +1,23 @@
-Started by user [8mha:////4MdcC/VvzI3zso3RYhTK2ypIQtWrc5bSl1WUzfU+DiVXAAAAmB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzeEgYe/dLi1CL9lNSy/IJiAPx/PVLBAAAA[0mJenkins Admin
+Started by user Jenkins Admin
 Obtained Jenkinsfile from git https://github.com/hello-hworld/ota-project.git
-[8mha:////4GJF78cyXGfZf2MD3n0VE9KlriIgwNUCWbPh+p4AH+O6AAAAoh+LCAAAAAAAAP9tjTEOwjAQBM8BClpKHuFItIiK1krDC0x8GCfWnbEdkooX8TX+gCESFVvtrLSa5wtWKcKBo5UdUu8otU4GP9jS5Mixv3geZcdn2TIl9igbHBs2eJyx4YwwR1SwULBGaj0nRzbDRnX6rmuvydanHMu2V1A5c4MHCFXMWcf8hSnC9jqYxPTz/BXAFEIGsfuclm8zQVqFvQAAAA==[0m[Pipeline] Start of Pipeline
-[8mha:////4KHt9KCEsrvtYZ1T1UEnWxK/ntvrNL0GNbTuZC2FtR6nAAAApR+LCAAAAAAAAP9tjTEOwjAUQ3+KOrAycohUghExsUZZOEFIQkgb/d8mKe3EibgadyBQiQlLlmxL1nu+oE4RjhQdby12HpP2vA+jK4lPFLtroIm3dOGaMFGwXNpJkrGnpUrKFhaxClYC1hZ1oOTRZdiIVt1VExS65pxj2Q4CKm8GeAAThZxVzN8yR9jeRpMIf5y/AJj7DGxXvP/86jduZBmjwAAAAA==[0m[Pipeline] withEnv
-[8mha:////4EsSN8cm7mjPFMq/ySGEVom+oeF23rnY+Wwnusp6D/1gAAAApR+LCAAAAAAAAP9tjTEOwjAUQ3+KOrAycoh0gA0xsUZZOEFIQkgb/d8mKe3EibgadyBQiQlLlmxL1nu+oE4RjhQdby12HpP2vA+jK4lPFLtroIm3dOGaMFGwXNpJkrGnpUrKFhaxClYC1hZ1oOTRZdiIVt1VExS65pxj2Q4CKm8GeAAThZxVzN8yR9jeRpMIf5y/AJj7DGxXvP/86jfoP95RwAAAAA==[0m[Pipeline] {
-[8mha:////4Fip7tgmu/GeGTNpRZLsn8kBVLdPBSfKwCvkXmOt04DXAAAApR+LCAAAAAAAAP9tjTEOwjAUQ3+KOrAycoh0gQkxsUZZOEFIQkgb/d8mKe3EibgadyBQiQlLlmxL1nu+oE4RjhQdby12HpP2vA+jK4lPFLtroIm3dOGaMFGwXNpJkrGnpUrKFhaxClYC1hZ1oOTRZdiIVt1VExS65pxj2Q4CKm8GeAAThZxVzN8yR9jeRpMIf5y/AJj7DGxXvP/86jc09154wAAAAA==[0m[Pipeline] timeout
+[Pipeline] Start of Pipeline
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timeout
 Timeout set to expire in 45 min
-[8mha:////4AdLOC1+LaRikeOWLesoFpitq0ifoFyJtByuv9tXLduLAAAApR+LCAAAAAAAAP9tjTEOwjAUQ3+KOrAycoh0ggUxsUZZOEFIQkgb/d8mKe3EibgadyBQiQlLlmxL1nu+oE4RjhQdby12HpP2vA+jK4lPFLtroIm3dOGaMFGwXNpJkrGnpUrKFhaxClYC1hZ1oOTRZdiIVt1VExS65pxj2Q4CKm8GeAAThZxVzN8yR9jeRpMIf5y/AJj7DGxXvP/86jek7ggRwAAAAA==[0m[Pipeline] {
-[8mha:////4Dmltg5z9Q10zE24RXgfklAshZLk+Gxj611jKmUEDdphAAAApR+LCAAAAAAAAP9tjTEOwjAUQ3+KOrAycoh0gwExsUZZOEFIQkgb/d8mKe3EibgadyBQiQlLlmxL1nu+oE4RjhQdby12HpP2vA+jK4lPFLtroIm3dOGaMFGwXNpJkrGnpUrKFhaxClYC1hZ1oOTRZdiIVt1VExS65pxj2Q4CKm8GeAAThZxVzN8yR9jeRpMIf5y/AJj7DGxXvP/86jcChmMxwAAAAA==[0m[Pipeline] stage
-[8mha:////4C84nv25Du8KerqGkznAsHEYk6ztdnsRZkERlnSxCovAAAAApR+LCAAAAAAAAP9tjTEOwjAUQ3+KOrAycoh0BAkxsUZZOEFIQkgb/d8mKe3EibgadyBQiQlLlmxL1nu+oE4RjhQdby12HpP2vA+jK4lPFLtroIm3dOGaMFGwXNpJkrGnpUrKFhaxClYC1hZ1oOTRZdiIVt1VExS65pxj2Q4CKm8GeAAThZxVzN8yR9jeRpMIf5y/AJj7DGxXvP/86jfpX/cvwAAAAA==[0m[Pipeline] { (CI)
-[8mha:////4NCh9Rus4NfUQydBJiHUvc7mi0D3VAYKLyXIOoJt/5nkAAAApR+LCAAAAAAAAP9tjTEOwjAUQ3+KOrAycoh0BSEm1igLJwhJCGmj/9skpZ04EVfjDgQqMWHJkm3Jes8X1CnCkaLjrcXOY9Ke92F0JfGJYncNNPGWLlwTJgqWSztJMva0VEnZwiJWwUrA2qIOlDy6DBvRqrtqgkLXnHMs20FA5c0AD2CikLOK+VvmCNvbaBLhj/MXAHOfge2K959f/QbB16AVwAAAAA==[0m[Pipeline] lock
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (CI)
+[Pipeline] lock
 Trying to acquire lock on [Resource: ota-exec-slot]
 Resource [ota-exec-slot] did not exist. Created.
 Lock acquired on [Resource: ota-exec-slot]
-[8mha:////4HrTfQS8n+b5XL65RvPn03SYmD/FAANc4oJaLpuhoG2MAAAAph+LCAAAAAAAAP9tjTEOwjAQBM9BKWgpeYQDJUJUtJYbXmBiY5xYd8G+kFS8iK/xBwKRqNhqZ6XVPF9Q5gQHSl42DtuAuQ6yi72fmhwotZdIg2zoLGvCTNFJ7QZN1h1n1MQO5ogCFgqWDutIOaBnWKnG3E0VDfrqxGna9gqKYG/wAKEmM5vEXxgTrK+9zYQ/z18BjB2D2DEU283nWL4Bsam+msEAAAA=[0m[Pipeline] {
-[8mha:////4FSpyco8ZnfU/vb+WbZe4nRTxvkhsdT0pQAKt6Rbqvk/AAAAox+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOJCakRFa6XhBSYxxo5159gOTsWL+Bp/IBCJii1WO9vM8wXrGODIQaNV1BuKrUHvRj0vzBz6q+OMli/YMkV2ChuVG+7UacGGk4IlRQkrARtFreNoSCfYCivvsnKSdHVOYf4OAkrTDfCAQszmJEP6whRgdxu7yPTz/BXA5BOU9f5TtX8D0loxuL4AAAA=[0m[Pipeline] readTrusted
+[Pipeline] {
+[Pipeline] readTrusted
 Obtained ci/agent-pod.yaml from git https://github.com/hello-hworld/ota-project.git
-[8mha:////4A9zgD2tRt1ICJMHEHoUj5ZuDe9hiY36K8byKUy7NF+aAAAAph+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycogUWBFT1ygLJwhNCGmj/8tPSjtxIq7GHWipxIQHy7ZkvdcbishwInaisdh6jLUXXejdlMRA3F4DDaKhi6gJIwUrlB0UGVstVVGysCjLYSVhbbEOFD26BBvZ6Icug0ZXnhNP21FC7s0dnpDJiZw0p28ZGba33kTCH+cvAMYuQb7fzXaYn8UHr9MkWsIAAAA=[0m[Pipeline] podTemplate
-[8mha:////4CXc96M/3sl61ACDX0eKrpAVhwt7jfzfh8dAaq0k1EPWAAAAph+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUwIiYukZZOEFoQkgb/V9+UtqJE3E17kBLJSY8WLYl673eUESGE7ETjcXWY6y96ELvpiQG4vYaaBANXURNGClYoeygyNhqqYqShUVZDisJa4t1oOjRJdjIRj90GTS68px42o4Scm/u8IRMTuSkOX3LyLC99SYS/jh/ATB2CfLdfrbD/Cw+y7kUycIAAAA=[0m[Pipeline] {
-[8mha:////4B9YzLsdacVylM2Y8SdaHiCeJn/4+99ZChIToj6fqYnxAAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUCDbE1DXKwglCE0La6P/yk9JOnIircQdaKjHhwbItWe/1hiIynIidaCy2HmPtRRd6NyUxELfXQINo6CJqwkjBCmUHRcZWS1WULCzKclhJWFusA0WPLsFGNvqhy6DRlefE03aUkHtzhydkciInzelbRobtrTeR8Mf5C4CxS5Dv9rMd5mfxAbNWnxXCAAAA[0m[Pipeline] node
+[Pipeline] podTemplate
+[Pipeline] {
+[Pipeline] node
 Created Pod: kubernetes ci/day6-ci-2-d14t3-fh3pv-gnsd3
 [PodInfo] ci/day6-ci-2-d14t3-fh3pv-gnsd3
 	Container [buildkit] waiting [ContainerCreating] No message
@@ -40,7 +40,7 @@ Created Pod: kubernetes ci/day6-ci-2-d14t3-fh3pv-gnsd3
 	Container [skopeo] waiting [ContainerCreating] No message
 	Container [trivy] waiting [ContainerCreating] No message
 	Pod [Pending][ContainersNotReady] containers with unready status: [python buildkit trivy skopeo jnlp]
-Agent [8mha:////4ChsTfp7rrz786qv5WoAATA1ZGb3aeM6WvYtGE4gQxORAAAAsR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzpEgZV/eT83ILSktQi/ZTESjPd5ExdI90UQ5MSY920DOOCMt30vOIUYwBj6Mdk2gAAAA==[0mday6-ci-2-d14t3-fh3pv-gnsd3 is provisioned from template day6-ci_2-d14t3-fh3pv
+Agent day6-ci-2-d14t3-fh3pv-gnsd3 is provisioned from template day6-ci_2-d14t3-fh3pv
 ---
 apiVersion: "v1"
 kind: "Pod"
@@ -189,11 +189,11 @@ spec:
     persistentVolumeClaim:
       claimName: "trivy-cache"
 
-Running on [8mha:////4HiCL46N3LTvNh6+WWQ9RMYDxT8mBhPTxStxCNVdWL/8AAAAtx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzpEgYD/eT83ILSktQi/ZTESjNVI5fkTCBhBMQphiYlxkA6LcO4oAxIp+cVpxjrAwAqPJEz5QAAAA==[0mday6-ci-2-d14t3-fh3pv-gnsd3 in /home/jenkins/agent/workspace/day6-ci
-[8mha:////4GoTKaHm6AwRvQaYnkvJAdMXY/5aTOvOWjhl+Ynfxe/IAAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUSDAhpq5RFk4QmhDSRv+Xn5R24kRcjTvQUokJD5ZtyXqvNxSR4UTsRGOx9RhrL7rQuymJgbi9BhpEQxdRE0YKVig7KDK2WqqiZGFRlsNKwtpiHSh6dAk2stEPXQaNrjwnnrajhNybOzwhkxM5aU7fMjJsb72JhD/OXwCMXYJ8t5/tMD+LD5WQ+PfCAAAA[0m[Pipeline] {
-[8mha:////4CAEskphSMheeggRf96Gw5X4d4irnUxW24Iu8hfG+VmaAAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUDLAgpq5RFk4QmhDSRv+Xn5R24kRcjTvQUokJD5ZtyXqvNxSR4UTsRGOx9RhrL7rQuymJgbi9BhpEQxdRE0YKVig7KDK2WqqiZGFRlsNKwtpiHSh6dAk2stEPXQaNrjwnnrajhNybOzwhkxM5aU7fMjJsb72JhD/OXwCMXYJ8t5/tMD+LD/s94rDCAAAA[0m[Pipeline] stage
-[8mha:////4FCxthZEg5/vE5/B+8BPI98n0U5DmWwA3dOugaj/XjsgAAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohULDAgpq5RFk4QmhDSRv+Xn5R24kRcjTvQUokJD5ZtyXqvNxSR4UTsRGOx9RhrL7rQuymJgbi9BhpEQxdRE0YKVig7KDK2WqqiZGFRlsNKwtpiHSh6dAk2stEPXQaNrjwnnrajhNybOzwhkxM5aU7fMjJsb72JhD/OXwCMXYJ8t5/tMD+LD1+IXOLCAAAA[0m[Pipeline] { (Checkout)
-[8mha:////4ORwfzZYQ1SDcoosLF58aZsHPbfoRsqh1d13x46GKp+rAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiKpAQVVrLDS8wsTFOrDtjOyQVL+Jr/IFAJCq2WO1sM88XLFOEI0eLraHOUWocBt/baeHAsbt4HrDlMzZMib1BaQbJ2tQzSs4G5hQlLASsDDWekyObYS1adVeVV2SrU47TdxBQOn2DBxRiMmcV8xfGCJtrrxPTz/NXAGPIUG53n9qHNxXfVKy+AAAA[0m[Pipeline] checkout
+Running on day6-ci-2-d14t3-fh3pv-gnsd3 in /home/jenkins/agent/workspace/day6-ci
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] checkout
 Selected Git installation does not exist. Using Default
 The recommended git tool is: NONE
 No credentials specified
@@ -213,17 +213,17 @@ Checking out Revision 2f99fb73f694dc8bb3cf3de2deb9a4c814e3e4af (refs/remotes/ori
 Commit message: "DAY6 STEP13: demo app, agent pod template, Jenkinsfile"
  > git checkout -f 2f99fb73f694dc8bb3cf3de2deb9a4c814e3e4af # timeout=10
  > git rev-list --no-walk 2f99fb73f694dc8bb3cf3de2deb9a4c814e3e4af # timeout=10
-[8mha:////4C6vKYAobVuWHGnyjSicdc3///VfJ6EXT/gYOJRJQNLnAAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUTAghpq5RFk4QmhDSRv+Xn5R24kRcjTvQUokJD5ZtyXqvNxSR4UTsRGOx9RhrL7rQuymJgbi9BhpEQxdRE0YKVig7KDK2WqqiZGFRlsNKwtpiHSh6dAk2stEPXQaNrjwnnrajhNybOzwhkxM5aU7fMjJsb72JhD/OXwCMXYJ8t5/tMD+LD+822BnCAAAA[0m[Pipeline] script
-[8mha:////4DUunHQabUKGOIQMLA/N2unCxF6sH8luc5l8Yy57qoPGAAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycogU2BDqxBp14QShCSFp9H9JUtKJE3E17kCgEhMeLNuS9Z4vqIKHhrxmVmFvMHSGDW7UObFEvr84SszSmXWEgZxirUotSXWca0tRwayihAWHpcLOUTCoI6y4FXdRO4G6PkWftwOH0sgbPKDgmRyFj98yeVhfRxkIf5y/AJiGCOV2n223+TyrN7xWSV3CAAAA[0m[Pipeline] {
-[8mha:////4LIc6CV2Mu2vRYB0j0SIHlHiOW0KZFvOVq15Np3B+NztAAAAox+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOICtIgqreWGF5jYGCfWnbEdkooX8TX+QCASFVusdraZ5wuWKcKRo8XWUOcoNQ6D7+20cODYXTwP2PIZG6bE3qA0g2Rt6hklZwNzihIWAlaGGs/Jkc2wFq26q8orstUpx+k7CCidvsEDCjGZs4r5C2OEzbXXienn+SuAMWQo99tP7cIbaOP4NL4AAAA=[0m[Pipeline] sh
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
 + git rev-parse HEAD
-[8mha:////4PaifYOTlWBlcZzt/3aE9xk2lMVgUxEGYLXacPRap/hUAAAAox+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOKC0iIqWisNLzCJMXasO8d2cCpexNf4A4FIVGyx2tlmni9YxwBHDhqtot5QbA16N+p5YebQXx1ntHzBlimyU9io3HCnTgs2nBQsKUpYCdgoah1HQzrBVlh5l5WTpKtzCvN3EFCaboAHFGI2JxnSF6YAu9vYRaaf568AJp+grPefqv0bq7DVH74AAAA=[0m[Pipeline] sh
+[Pipeline] sh
 + printf %s day6-ci
 + cut -c1-40
 + tr -c A-Za-z0-9_.- -
-[8mha:////4CMMFPopXmDcKkbr/Ec2mrmMphVZ6buE3Ny0n1FTEjlcAAAAox+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOKCoERUaS03vMDExjix7oztkFS8iK/xBwKRqNhitbPNPF+wTBGOHC22hjpHqXEYfG+nhQPH7uJ5wJbP2DAl9galGSRrU88oORuYU5SwELAy1HhOjmyGtWjVXVVeka1OOU7fQUDp9A0eUIjJnFXMXxgjbK69Tkw/z18BjCFkKHf7T23fSZy7ir4AAAA=[0m[Pipeline] }
-[8mha:////4G0MNKq8BKD0AJSHfFuS0N21KVL4NkNXnop+VgiUUQzqAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiEA1CqWgtN7zAJMY4se6C7eBUvIiv8QcsIlGxxWpnm3m9YRk81OwNdpp6S6GxOLjR5IWJfX91nLDjCzZMgZ1GqZPkVp9mlBw1zClKWAhYaWocB0smwlp06qEqp8hU5+jzdxRQ2vYOTyhENkfl4xcmD5vb2Aamn+evAKZhiFDu9rm2hw+WR0/FvgAAAA==[0m[Pipeline] // script
-[8mha:////4HuHx8DPBCr78s/yPehn+5OHnB9PxVMUIT9vJvP49MC5AAAAph+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIikBAFSkVrueEFJjHGiXUXbAen4kV8jT9gEYmKLVY728zrDcvgoWZvsNPUWwqNxcGNJi9M7Pur44QdX7BhCuw0Sp0kt/o0o+SoYU5RwkLASlPjOFgyEdaiUw9VOUWmOkefv6OA0rZ3eEIhsjkqH78wedjcxjYw/Tx/BTANEcrtIdduP3wAAR+8G74AAAA=[0m[Pipeline] sh
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] sh
 + mkdir -p out
 + chmod 777 out
 + git config --get remote.origin.url
@@ -237,13 +237,13 @@ commit=2f99fb73f694dc8bb3cf3de2deb9a4c814e3e4af
 job=day6-ci build=2
 tag=2f99fb73f694-day6-ci-2
 + chmod 666 out/build-info.txt
-[8mha:////4KcNdihtonKGqWkzgqExc1w1KztHMbPiPTAcia5Bp9lHAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiKKBAqWgtN7zAJMY4se6C7eBUvIiv8QcsIlGxxWpnm3m9YRk81OwNdpp6S6GxOLjR5IWJfX91nLDjCzZMgZ1GqZPkVp9mlBw1zClKWAhYaWocB0smwlp06qEqp8hU5+jzdxRQ2vYOTyhENkfl4xcmD5vb2Aamn+evAKZhiFDu9rm2hw+ayz9vvgAAAA==[0m[Pipeline] }
-[8mha:////4KtoTo9zfKJJviO3+KLNqfo+AqfEf6ZsCYaGVb+rf2FIAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiKKBAqWgtN7zAJMY4se6C7eBUvIiv8QcsIlGxxWpnm3m9YRk81OwNdpp6S6GxOLjR5IWJfX91nLDjCzZMgZ1GqZPkVp9mlBw1zClKWAhYaWocB0smwlp06qEqp8hU5+jzdxRQ2vYOTyhENkfl4xcmD5vb2Aamn+evAKZhiFDuDrm2+w+pKGTTvgAAAA==[0m[Pipeline] // stage
-[8mha:////4IvsZvHlPdex+NLAi5eBjIrf2Q6vs9QXUqRu2EpZP31MAAAAqB+LCAAAAAAAAP9tjUEKwjAURH8rXbh16SFSFARBunIbuvEEsYkxafi/JqnpyhN5Ne9gtODKWQwzA8N7vqAKHhrymlmFvcHQGTa4UefEEvn+4igxS2fWEQZyirUqtSTVca4tRQWzihIWHJYKO0fBoI6w4lbcRe0E6voUfd4OHEojb/CAgmdyFD5+y+RhfR1lIPxx/gJgGiKUm1227f7zrN4WRgC7wgAAAA==[0m[Pipeline] stage
-[8mha:////4LvANAtRZkOb3OgU1L9n7fL61iimc59Jnh06I7gKQhKhAAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUYgIhpq5RFk4QmhDSRv+Xn5R24kRcjTvQUokJD5ZtyXqvNxSR4UTsRGOx9RhrL7rQuymJgbi9BhpEQxdRE0YKVig7KDK2WqqiZGFRlsNKwtpiHSh6dAk2stEPXQaNrjwnnrajhNybOzwhkxM5aU7fMjJsb72JhD/OXwCMXYJ8t5/tMD+LD0QKVszCAAAA[0m[Pipeline] { (Test)
-[8mha:////4DCYhR5cVDaLyiXCq3E1RNxBdKyo3k7jDqiTD8CfJu8SAAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycogUwYRQJ9aoCycITQhJo/9LkpJOnIircQcClZjwYNmWrPd8QRU8NOQ1swp7g6EzbHCjzokl8v3FUWKWzqwjDOQUa1VqSarjXFuKCmYVJSw4LBV2joJBHWHFrbiL2gnU9Sn6vB04lEbe4AEFz+QofPyWycP6OspA+OP8BcA0RCi3+2y7zedZvQH4j6CMwgAAAA==[0m[Pipeline] container
-[8mha:////4FVBEaDhvcNNKGqivP8tRGDpLANA5NrEwPXq4KiuGoriAAAAph+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycogUxIiYukZZOEFoQkgb/V9+UtqJE3E17kBLJSY8WLYl673eUESGE7ETjcXWY6y96ELvpiQG4vYaaBANXURNGClYoeygyNhqqYqShUVZDisJa4t1oOjRJdjIRj90GTS68px42o4Scm/u8IRMTuSkOX3LyLC99SYS/jh/ATB2CfLDbrb9/Cw+ty4Up8IAAAA=[0m[Pipeline] {
-[8mha:////4DFLtgxamAPm5sUOZAz1LNr1y1k/JTYbM3TpUn/Li+T3AAAAox+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIioERUaS03vMDExjix7oztkFS8iK/xBwKRqNhitbPNPF+wTBGOHC22hjpHqXEYfG+nhQPH7uJ5wJbP2DAl9galGSRrU88oORuYU5SwELAy1HhOjmyGtWjVXVVeka1OOU7fQUDp9A0eUIjJnFXMXxgjbK69Tkw/z18BjCFDud9+ahfettHKdL4AAAA=[0m[Pipeline] sh
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
 + date -u '+%FT%TZ'
 + echo 'test-start=2026-10-14T05:28:51Z'
 + python --version
@@ -262,15 +262,15 @@ OK
 + tee -a out/build-info.txt
 test-exit=0
 + exit 0
-[8mha:////4BU8FDrFAc0xHBKSOa32uXHINl7Tu2xuDBXmYyppnd2wAAAAox+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIilBJR0VppeIFJjLFj3Tm2g1PxIr7GHwhEomKL1c4283zBOgY4ctBoFfWGYmvQu1HPCzOH/uo4o+ULtkyRncJG5YY7dVqw4aRgSVHCSsBGUes4GtIJtsLKu6ycJF2dU5i/g4DSdAM8oBCzOcmQvjAF2N3GLjL9PH8FMHmfoKzrT+3fKpbQQr4AAAA=[0m[Pipeline] }
-[8mha:////4N3g0lNXPCQt/js4S19jh7PHZC9zhtt1T5OJpVBcHIcrAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOKCBB2iSmu54QUmNsaJdWdsh6TiRXyNPxCIRMUWq51t5vmCZYpw5GixNdQ5So3D4Hs7LRw4dhfPA7Z8xoYpsTcozSBZm3pGydnAnKKEhYCVocZzcmQzrEWr7qryimx1ynH6DgJKp2/wgEJM5qxi/sIYYXPtdWL6ef4KYAwhQ7nbf2r7BgSW0ii+AAAA[0m[Pipeline] // container
-[8mha:////4L6NC0T058l9ZQWwT5TBNKgTvxYgwbqf0G8GYZG+/D1VAAAAph+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIigSgQSkVrueEFJjHGiXUXbAen4kV8jT9gEYmKLVY728zrDcvgoWZvsNPUWwqNxcGNJi9M7Pur44QdX7BhCuw0Sp0kt/o0o+SoYU5RwkLASlPjOFgyEdaiUw9VOUWmOkefv6OA0rZ3eEIhsjkqH78wedjcxjYw/Tx/BTANQ4Ryt8+1PXwARMxJg74AAAA=[0m[Pipeline] }
-[8mha:////4KLKeqr1TaOlcTkgZ7sFh7SjU3aht6i4KxexRDZJEt0VAAAAph+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIigYSQUCpayw0vMIkxTqy7YDs4FS/ia/wBi0hUbLHa2WZeb1gGDzV7g52m3lJoLA5uNHlhYt9fHSfs+IINU2CnUeokudWnGSVHDXOKEhYCVpoax8GSibAWnXqoyiky1Tn6/B0FlLa9wxMKkc1R+fiFycPmNraB6ef5K4BpGCKUu32u7eEDfI7acr4AAAA=[0m[Pipeline] // stage
-[8mha:////4M2bp0SlndOjlidjdgVje2dwKr4hAH/xHuVMU2ImF02CAAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUCCEG1Ik16sIJQhNC0uj/kqSkEyfiatyBQCUmPFi2Jes9X1AFDw15zazC3mDoDBvcqHNiiXx/cZSYpTPrCAM5xVqVWpLqONeWooJZRQkLDkuFnaNgUEdYcSvuonYCdX2KPm8HDqWRN3hAwTM5Ch+/ZfKwvo4yEP44fwEwDRHKzS7bdv95Vm93/yHswgAAAA==[0m[Pipeline] stage
-[8mha:////4DzwfLN/OQVWC3Rnh0/hy4f7+gU4NUcUMw8woVawP1faAAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycoh0YAAJMXWNsnCC0ISQNvq//KS0EyfiatyBlkpMeLBsS9Z7vaGIDCdiJxqLrcdYe9GF3k1JDMTtNdAgGrqImjBSsELZQZGx1VIVJQuLshxWEtYW60DRo0uwkY1+6DJodOU58bQdJeTe3OEJmZzISXP6lpFhe+tNJPxx/gJg7BLku/1sh/lZfAD8aiCpwgAAAA==[0m[Pipeline] { (Build)
-[8mha:////4DYQDrCkxC48QjZNEvbpfV5mxxxs04eRCkiQNVEidX95AAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycoh0YAEhpq5RFk4QmhDSRv+Xn5R24kRcjTvQUokJD5ZtyXqvNxSR4UTsRGOx9RhrL7rQuymJgbi9BhpEQxdRE0YKVig7KDK2WqqiZGFRlsNKwtpiHSh6dAk2stEPXQaNrjwnnrajhNybOzwhkxM5aU7fMjJsb72JhD/OXwCMXYJ8t5/tMD+LD59NhPHCAAAA[0m[Pipeline] container
-[8mha:////4F2ceIJnWyLVVgwRIz53mn8hJnn6aR4yAiEDbvhmUsxXAAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycogUCRaEOrFGXThBaEJIGv1fkpR04kRcjTsQqMSEB8u2ZL3nC6rgoSGvmVXYGwydYYMbdU4ske8vjhKzdGYdYSCnWKtSS1Id59pSVDCrKGHBYamwcxQM6ggrbsVd1E6grk/R5+3AoTTyBg8oeCZH4eO3TB7W11EGwh/nLwCmIUK53WfbbT7P6g0Z/aLSwgAAAA==[0m[Pipeline] {
-[8mha:////4GL+mCxJ0CIWxhG2PNM49CsIQOGKraFKeIBf5WU8ZymdAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOICEh2iSmu54QUmNsaJdWdsh6TiRXyNPxCIRMUWq51t5vmCZYpw5GixNdQ5So3D4Hs7LRw4dhfPA7Z8xoYpsTcozSBZm3pGydnAnKKEhYCVocZzcmQzrEWr7qryimx1ynH6DgJKp2/wgEJM5qxi/sIYYXPtdWL6ef4KYAwZyv32U7vwBl2WGva+AAAA[0m[Pipeline] sh
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
 + sleep 0
 + seq 1 30
 + buildctl debug workers
@@ -351,9 +351,9 @@ buildctl github.com/moby/buildkit v0.34.0 f5b59a1f2fb25a0cb7072c398cab9aed7835da
 #8 DONE 0.2s
 + date -u '+%FT%TZ'
 + echo 'build-end=2026-10-14T05:29:07Z'
-[8mha:////4NbqXbV3oVe54C6B0N40Jeyw//p+317mH+/AEUanDduoAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOKCEB2iSmu54QUmNsaJdWdsh6TiRXyNPxCIRMUWq51t5vmCZYpw5GixNdQ5So3D4Hs7LRw4dhfPA7Z8xoYpsTcozSBZm3pGydnAnKKEhYCVocZzcmQzrEWr7qryimx1ynH6DgJKp2/wgEJM5qxi/sIYYXPtdWL6ef4KYAwhQ7nffWr7BlDdbXS+AAAA[0m[Pipeline] }
-[8mha:////4BI4lIRKvOQDOSnXwqsUHtIi2Iz00wF3/UhlclhaQ5wiAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOJShAYhqrRWGl5gYmOcWHfGdkgqXsTX+AMWkajYYrWzzbzesI4BThwM9poGS7Gz6N1o8sKJw3B1PGHPF+yYIjuNrZ5aVrpZsOWkYUlRwkrARlPnOFoyCbailw9ZOUmmOqeQv6OA0qo7PKEQ2ZxkSF+YA+xuo4pMP89fAczeJyj3da768AGWIKyJvgAAAA==[0m[Pipeline] // container
-[8mha:////4Io1cxmvPkG+cBV8WKP7SyrVrVrsEUuCQptPqAlkk2h3AAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPMIpSIGEqNJaaXiBiQ/jxLoztkNS8SK+xh+wiETFFqudbeb1hnUMcOJgRI80WIqdFd6NJi8xcRiujifR80V0TJEdihanljU2C7acEJYUJawkbJA6x9GSSbCVvXqoyiky1TmF/B0llFbf4QmFzOakQvrCHGB3G3Vk+nn+CmD2Ccr9IVdd+w9mJUeyvgAAAA==[0m[Pipeline] sh
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] sh
 + mkdir -p out/image-oci
 + tar -xf out/image.tar -C out/image-oci
 + grep -q application/vnd.oci.image.manifest.v1+json out/image-oci/index.json
@@ -369,13 +369,13 @@ buildctl github.com/moby/buildkit v0.34.0 f5b59a1f2fb25a0cb7072c398cab9aed7835da
 + cat out/manifest-digest.txt
 + echo built-digest=sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
 built-digest=sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
-[8mha:////4KiCp/ebOhUYmVJs9KY2sT4Yl/bmRzQIYJqEPqUijZA3AAAAph+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOJSABISSkVrueEFJjHGiXUXbAen4kV8jT9gEYmKLVY728zrDcvgoWZvsNPUWwqNxcGNJi9M7Pur44QdX7BhCuw0Sp0kt/o0o+SoYU5RwkLASlPjOFgyEdaiUw9VOUWmOkefv6OA0rZ3eEIhsjkqH78wedjcxjYw/Tx/BTANQ4Ryt8+1PXwAHfPyKL4AAAA=[0m[Pipeline] }
-[8mha:////4BJsAJdaUEw4IAcgOVEiWxYPJhApjbLnYneQHhGEwL0RAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOJSgKBAqWgtN7zAJMY4se6C7eBUvIiv8QcsIlGxxWpnm3m9YRk81OwNdpp6S6GxOLjR5IWJfX91nLDjCzZMgZ1GqZPkVp9mlBw1zClKWAhYaWocB0smwlp06qEqp8hU5+jzdxRQ2vYOTyhENkfl4xcmD5vb2Aamn+evAKZhiFDu9rm2hw8inNk+vgAAAA==[0m[Pipeline] // stage
-[8mha:////4O47ZT+uNj4YceVnw6RqWBVA4ay4RPN/cjSkGA74S7rxAAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUSCAG1Ik16sIJQhNC0uj/kqSkEyfiatyBQCUmPFi2Jes9X1AFDw15zazC3mDoDBvcqHNiiXx/cZSYpTPrCAM5xVqVWpLqONeWooJZRQkLDkuFnaNgUEdYcSvuonYCdX2KPm8HDqWRN3hAwTM5Ch+/ZfKwvo4yEP44fwEwDRHKzS7bdv95Vm/5wYYpwgAAAA==[0m[Pipeline] stage
-[8mha:////4ImoqYenBLP8G+l/sYa8WSqSymjZFdvCx/iDHK1KSnldAAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycoh0QQIJMXWNsnCC0ISQNvq//KS0EyfiatyBlkpMeLBsS9Z7vaGIDCdiJxqLrcdYe9GF3k1JDMTtNdAgGrqImjBSsELZQZGx1VIVJQuLshxWEtYW60DRo0uwkY1+6DJodOU58bQdJeTe3OEJmZzISXP6lpFhe+tNJPxx/gJg7BLku/1sh/lZfAD9vR8YwgAAAA==[0m[Pipeline] { (Scan DB)
-[8mha:////4N6y4jv9J8UdUebyUmgGFJTkC0D3/gLDqQEYtcPG28f7AAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycoh0YQAhpq5RFk4QmhDSRv+Xn5R24kRcjTvQUokJD5ZtyXqvNxSR4UTsRGOx9RhrL7rQuymJgbi9BhpEQxdRE0YKVig7KDK2WqqiZGFRlsNKwtpiHSh6dAk2stEPXQaNrjwnnrajhNybOzwhkxM5aU7fMjJsb72JhD/OXwCMXYJ8t5/tMD+LD56au0DCAAAA[0m[Pipeline] container
-[8mha:////4DqOsotvzrJQOCZYheqvbSX1KZumYN46hl3eGOtAWylwAAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycoiUAQaEOrFGXThBaEJIGv1fkpR04kRcjTsQqMSEB8u2ZL3nC6rgoSGvmVXYGwydYYMbdU4ske8vjhKzdGYdYSCnWKtSS1Id59pSVDCrKGHBYamwcxQM6ggrbsVd1E6grk/R5+3AoTTyBg8oeCZH4eO3TB7W11EGwh/nLwCmIUK53WfbbT7P6g0iH00AwgAAAA==[0m[Pipeline] {
-[8mha:////4AXx6Dm2ZdeA4h0aWS4uU9hjafBcVHiPlYZCpTjIIDmnAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOICBRWiSmu54QUmNsaJdWdsh6TiRXyNPxCIRMUWq51t5vmCZYpw5GixNdQ5So3D4Hs7LRw4dhfPA7Z8xoYpsTcozSBZm3pGydnAnKKEhYCVocZzcmQzrEWr7qryimx1ynH6DgJKp2/wgEJM5qxi/sIYYXPtdWL6ef4KYAwZyv32U7vwBvT8cju+AAAA[0m[Pipeline] sh
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Scan DB)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
 + date -u '+%FT%TZ'
 + echo 'scandb-start=2026-10-14T05:29:08Z'
 + trivy --version
@@ -394,15 +394,15 @@ Vulnerability DB:
   UpdatedAt: 2026-10-14 01:19:20.78149892 +0000 UTC
   NextUpdate: 2026-10-15 01:19:20.78149865 +0000 UTC
   DownloadedAt: 2026-10-14 05:30:16.376339655 +0000 UTC
-[8mha:////4CobrrLk0Z/Wic4uzJ4JhP08An+wt7Qpxin1BLDJza30AAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOKCkKgQVVrLDS8wsTFOrDtjOyQVL+Jr/IFAJCq2WO1sM88XLFOEI0eLraHOUWocBt/baeHAsbt4HrDlMzZMib1BaQbJ2tQzSs4G5hQlLASsDDWekyObYS1adVeVV2SrU47TdxBQOn2DBxRiMmcV8xfGCJtrrxPTz/NXAGMIGcr97lPbN6XnAcu+AAAA[0m[Pipeline] }
-[8mha:////4NOTkOxtoYb4f2x1s2YxLgkLOGzRYNCVo0+Kpd15yNQiAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOJSAAVCqWgtN7zAJMY4se6C7eBUvIiv8QcsIlGxxWpnm3m9YRk81OwNdpp6S6GxOLjR5IWJfX91nLDjCzZMgZ1GqZPkVp9mlBw1zClKWAhYaWocB0smwlp06qEqp8hU5+jzdxRQ2vYOTyhENkfl4xcmD5vb2Aamn+evAKZhiFDut7l2hw/lvZpgvgAAAA==[0m[Pipeline] // container
-[8mha:////4APUrleUNF5O9L7lQwYhhksuEpNyqBM6ajbGT+6x7S8ZAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOLSBAkJUaW10vACExvjxLoztkNS8SK+xh+wiETFFqudbeb1hnUMcOJgsNc0WIqdRe9GkxdOHIar4wl7vmDHFNlpbPXUstLNgi0nDUuKElYCNpo6x9GSSbAVvXzIykky1TmF/B0FlFbd4QmFyOYkQ/rCHGB3G1Vk+nn+CmD2PkG5r3PVhw/LvZgKvgAAAA==[0m[Pipeline] }
-[8mha:////4D0OuC7deRYq1UZclBKb3mJG2rsy0xZ1Pckc0KG6ZtZmAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPMJpiCgQVVorDS8w8WGcWHfGdkgqXsTX+AMWkajYYrWzzbzesI4BThyM6JEGS7GzwrvR5CUmDsPV8SR6voiOKbJD0eLUssZmwZYTwpKihJWEDVLnOFoyCbayVw9VOUWmOqeQv6OE0uo7PKGQ2ZxUSF+YA+xuo45MP89fAczeJyjrOtf+8AH/c3tRvgAAAA==[0m[Pipeline] // stage
-[8mha:////4HVOYh1hlbrVu9r1kiXpt2JHg3+aoPuROblrxGebBqaIAAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUDGVBTF2jLJwgJCGkjf4vSUo7cSKuxh0IVGLCg2Vbst7zBVUMcKRgWWewdxiVY4MfbU5sotBfPE2sozNThJG8YcJMgrRplyooGVhUlLDisDaoPEWHNsGGd/Iuay/R1qcU8nbgUDp9gwcUPJOTDOlb5gDb66gj4Y/zFwDzkKDcNdma/edZvQHoGa1EwgAAAA==[0m[Pipeline] stage
-[8mha:////4ObYJDxZuRwZIMufTKZqHaoNOkn53+lD7i729c4YvYGhAAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycoh0AgbE1DXKwglCE0La6P/yk9JOnIircQdaKjHhwbItWe/1hiIynIidaCy2HmPtRRd6NyUxELfXQINo6CJqwkjBCmUHRcZWS1WULCzKclhJWFusA0WPLsFGNvqhy6DRlefE03aUkHtzhydkciInzelbRobtrTeR8Mf5C4CxS5Dv9rMd5mfxATOXFRXCAAAA[0m[Pipeline] { (Scan)
-[8mha:////4ATcqJ7DF1yyqAqbhJn4n7b1q5AfNjvD1YNA3LwNwZEoAAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycoh0QiAhpq5RFk4QmhDSRv+Xn5R24kRcjTvQUokJD5ZtyXqvNxSR4UTsRGOx9RhrL7rQuymJgbi9BhpEQxdRE0YKVig7KDK2WqqiZGFRlsNKwtpiHSh6dAk2stEPXQaNrjwnnrajhNybOzwhkxM5aU7fMjJsb72JhD/OXwCMXYJ8t5/tMD+LDyb6zSXCAAAA[0m[Pipeline] container
-[8mha:////4ALoLBEGK5qFBgSU5pBZj72YolUm4sVY+s2ppi43dmUDAAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycoh0QgIhpq5RFk4QmhDSRv+Xn5R24kRcjTvQUokJD5ZtyXqvNxSR4UTsRGOx9RhrL7rQuymJgbi9BhpEQxdRE0YKVig7KDK2WqqiZGFRlsNKwtpiHSh6dAk2stEPXQaNrjwnnrajhNybOzwhkxM5aU7fMjJsb72JhD/OXwCMXYJ8t5/tMD+LD0XdaX3CAAAA[0m[Pipeline] {
-[8mha:////4IYJ8vS+psg3bKBvUuB4PQo7hUh5Wjp8X+KtFQNidCqPAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOJCAxJCqWgtN7zAJMY4se6C7eBUvIiv8QcsIlGxxWpnm3m9YRk81OwNdpp6S6GxOLjR5IWJfX91nLDjCzZMgZ1GqZPkVp9mlBw1zClKWAhYaWocB0smwlp06qEqp8hU5+jzdxRQ2vYOTyhENkfl4xcmD5vb2Aamn+evAKYhQrk75Npvhw8/Nre1vgAAAA==[0m[Pipeline] sh
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Scan)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
 + date -u '+%FT%TZ'
 + echo 'scan-start=2026-10-14T05:30:17Z'
 + CACHE=/trivy-cache
@@ -427,15 +427,15 @@ Vulnerability DB:
 + tee -a out/build-info.txt
 scan-exit=0 severity=CRITICAL
 + exit 0
-[8mha:////4C+RvLNjrBYewQkOctLx7xsMxXBVSbZX01VGiDhqTQ2WAAAAph+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiCpAQSkVrueEFJjHGiXUXbAen4kV8jT9gEYmKLVY728zrDcvgoWZvsNPUWwqNxcGNJi9M7Pur44QdX7BhCuw0Sp0kt/o0o+SoYU5RwkLASlPjOFgyEdaiUw9VOUWmOkefv6OA0rZ3eEIhsjkqH78wedjcxjYw/Tx/BTANQ4Ryv821O3wAMjehBb4AAAA=[0m[Pipeline] }
-[8mha:////4PLoGcwjj79+LbobmAvVo71Li8T5foSiQLBa7hYr0gKXAAAAph+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiIYGQUCpayw0vMIkxTqy7YDs4FS/ia/wBi0hUbLHa2WZeb1gGDzV7g52m3lJoLA5uNHlhYt9fHSfs+IINU2CnUeokudWnGSVHDXOKEhYCVpoax8GSibAWnXqoyiky1Tn6/B0FlLa9wxMKkc1R+fiFycPmNraB6ef5K4BpGCKU+22u3eEDCnUy9L4AAAA=[0m[Pipeline] // container
-[8mha:////4GaAjP9YoVnPAdr0LUmsbovWdPS/1OmU/1pUpYWHq+hFAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOJSIKBAqWgtN7zAJMY4se6C7eBUvIiv8QcsIlGxxWpnm3m9YRk81OwNdpp6S6GxOLjR5IWJfX91nLDjCzZMgZ1GqZPkVp9mlBw1zClKWAhYaWocB0smwlp06qEqp8hU5+jzdxRQ2vYOTyhENkfl4xcmD5vb2Aamn+evAKZhiFDut7l2hw8+u9GvvgAAAA==[0m[Pipeline] }
-[8mha:////4O3fph47zX9HibQOGo5h4r/Dw5wppEpwuOb7u+49YKbvAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOLSQBpEldZKwwtMbIwT687YDknFi/gaf8AiEhVbrHa2mdcb1jHAiYPBXtNgKXYWvRtNXjhxGK6OJ+z5gh1TZKex1VPLSjcLtpw0LClKWAnYaOocR0smwVb08iErJ8lU5xTydxRQWnWHJxQim5MM6QtzgN1tVJHp5/krgNn7BGW9z3WoPxC708W+AAAA[0m[Pipeline] // stage
-[8mha:////4MSZQoIlZpdlRcZ/mPQCmo3Q/+uz1J81Px+cR/Jk1Zv7AAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUDGVBTF2jLJwgJCGkjf4vSUo7cSKuxh0IVGLCg2Vbst7zBVUMcKRgWWewdxiVY4MfbU5sotBfPE2sozNThJG8YcJMgrRplyooGVhUlLDisDaoPEWHNsGGd/Iuay/R1qcU8nbgUDp9gwcUPJOTDOlb5gDb66gj4Y/zFwDzkKDcNdn2zedZvQHbcdHzwgAAAA==[0m[Pipeline] stage
-[8mha:////4FnugWvttVo+rV7JP9H27aEaxgCxuZ6vvM49CpYedfHnAAAAph+LCAAAAAAAAP9tjTEOwjAUQ3+DOrAycoh0ogtiYo26cILQhJA0+r9NUtKJE3E17kBLJSY8WLYl673eUMYAJwqGO42dxdha3vvRzIlnCt3NU+aOrrwljOQ1b3RuSOnzWhtKGlYVDDYCthpbT9GiSbATTj5k5SWa6pLCvB0FMKsGeEIhZnKSIX3LFGB/H1Uk/HH+AmDqE7D6sFi9PMsP+urdAcIAAAA=[0m[Pipeline] { (Push)
-[8mha:////4GOKaAoVTpBAqxlIbHOC0peZsGW3Uq+y2OZ5dhhzDS3hAAAAph+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycoh0KwNiYo2ycILQhJA0+r9NUtKJE3E17kBLJSY8WLYl673eUMUAJwqGOY2dxdha1vvRzIllCt3NU2aOrqwljOQ1EzoLUvq8VkFJw6qihA2HrcbWU7RoEuy4kw9Ze4mmvqQwb0cOpVUDPKHgMznJkL5lCrC/jyoS/jh/ATD1CcqmWeywPKsPXl9jU8IAAAA=[0m[Pipeline] container
-[8mha:////4C975hu7p3D8nXKTA8dl0MHrGYJpClEYYItDE8Bk0aRvAAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycoh0AyTE1DXKwglCE0La6P/yk9JOnIircQdaKjHhwbItWe/1hiIynIidaCy2HmPtRRd6NyUxELfXQINo6CJqwkjBCmUHRcZWS1WULCzKclhJWFusA0WPLsFGNvqhy6DRlefE03aUkHtzhydkciInzelbRobtrTeR8Mf5C4CxS5Dv9rMd5mfxAUsyu2PCAAAA[0m[Pipeline] {
-[8mha:////4BmS29I8N0dtA5Kk/8SlyoPl+Tc33LBOizZsnCnmoY5dAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOLSIRCiSmu54QUmNsaJdWdsh6TiRXyNPxCIRMUWq51t5vmCZYpw5GixNdQ5So3D4Hs7LRw4dhfPA7Z8xoYpsTcozSBZm3pGydnAnKKEhYCVocZzcmQzrEWr7qryimx1ynH6DgJKp2/wgEJM5qxi/sIYYXPtdWL6ef4KYAwZyu3uU/vwBiGBjUy+AAAA[0m[Pipeline] sh
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Push)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
 + DEST=docker://192.168.56.21:32000/day6/demo:2f99fb73f694-day6-ci-2
 ++ date -u +%FT%TZ
 + echo push-start=2026-10-14T05:30:18Z
@@ -455,9 +455,9 @@ Writing manifest to image destination
 + skopeo inspect --raw --tls-verify=false docker://192.168.56.21:32000/day6/demo:2f99fb73f694-day6-ci-2
 + test -s out/pushed-manifest.json
 + skopeo manifest-digest out/pushed-manifest.json
-[8mha:////4KzZeQ6team5FU15fAzdKcxKhqQq9WsYYt33q0YLCUGbAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOJCBUgoFa3lhheYxBgn1l2wHZyKF/E1/oBFJCq2WO1sM683LIOHmr3BTlNvKTQWBzeavDCx76+OE3Z8wYYpsNModZLc6tOMkqOGOUUJCwErTY3jYMlEWItOPVTlFJnqHH3+jgJK297hCYXI5qh8/MLkYXMb28D08/wVwDQMEcr9Ntfu8AF2jKA0vgAAAA==[0m[Pipeline] }
-[8mha:////4Jl4ofwmpA9T+u/mbD/4v931pQgpF8Kmuj+jvLzncJKxAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiGlIgqrRWGl5gYmOcWHfGdkgqXsTX+AMWkajYYrWzzbzesI4BThwM9poGS7Gz6N1o8sKJw3B1PGHPF+yYIjuNrZ5aVrpZsOWkYUlRwkrARlPnOFoyCbailw9ZOUmmOqeQv6OA0qo7PKEQ2ZxkSF+YA+xuo4pMP89fAczeJyjrfa5D/QFCQkNvvgAAAA==[0m[Pipeline] // container
-[8mha:////4CfaZVaCdkjYXwShqvU4NRVLm7UD/o0M8aOKx9aFOScxAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPMKRKEKBqNJaaXiBiQ/jxLoztkNS8SK+xh+wiETFFqudbeb1hnUMcOJgRI80WIqdFd6NJi8xcRiujifR80V0TJEdihanljU2C7acEJYUJawkbJA6x9GSSbCVvXqoyiky1TmF/B0llFbf4QmFzOakQvrCHGB3G3Vk+nn+CmD2Ccq6znXY+w+ASYT+vgAAAA==[0m[Pipeline] sh
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] sh
 + cat out/manifest-digest.txt
 + echo built : sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
 built : sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
@@ -475,14 +475,14 @@ pushed: sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
 + echo pushed-digest=sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
 + date -u +%FT%TZ
 + echo push-end=2026-10-14T05:30:19Z
-[8mha:////4LGT3XB5eGmEGjnxyYB3OOTm/dlMjTBhZnsopKwgbGhHAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPMIpkEKBqNJaaXiBiQ/jxLoztkNS8SK+xh+wiETFFqudbeb1hnUMcOJgRI80WIqdFd6NJi8xcRiujifR80V0TJEdihanljU2C7acEJYUJawkbJA6x9GSSbCVvXqoyiky1TmF/B0llFbf4QmFzOakQvrCHGB3G3Vk+nn+CmD2PkF52Oeq6w/f04xVvgAAAA==[0m[Pipeline] }
-[8mha:////4KfyEFFMgbTwbedMpXkkhfqa81zDdOjdY5PXYXztWPvFAAAApR+LCAAAAAAAAP9tjTsOwjAQRDdBFLSUHGLT8ClQKlrLDScwiTFOrN1gOzgVJ+Jq3AGLSFRMMZo3zXu9YRk81OwNdpp6S6GxOLjR5IWJfX91nLDjCzZMgZ1GqZPkVp9mlBw1zClKWAhYaWocB0smwlp06qEqp8hU5+jzdxRQ2vYOTyhENkfl4xcmD5vb2Aamn+evAKZhiFAetrn2uw/dsoDRvgAAAA==[0m[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // stage
 Post stage
-[8mha:////4COImt6sEp9g1IArqRaTyL4mA8KIiMjyGqUpnySu/cHDAAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUDBUDYuoaZeEEIQkhbfR/SVLaiRNxNe5AoBITHizbkvWeL6higCMFyzqDvcOoHBv8aHNiE4X+4mliHZ2ZIozkDRNmEqRNu1RBycCiooQVh7VB5Sk6tAk2vJN3WXuJtj6lkLcDh9LpGzyg4JmcZEjfMgfYXkcdCX+cvwCYhwTlrsm2bz7P6g1veqZVwgAAAA==[0m[Pipeline] script
-[8mha:////4PFUlIXkqP7DTe9GDzsJso1dneFw1C6ibFFUbOLhzdUYAAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycoh0AgbE1DXKwglCE0La6P/yk9JOnIircQdaKjHhwbItWe/1hiIynIidaCy2HmPtRRd6NyUxELfXQINo6CJqwkjBCmUHRcZWS1WULCzKclhJWFusA0WPLsFGNvqhy6DRlefE03aUkHtzhydkciInzelbRobtrTeR8Mf5C4CxS5AfdrPt52fxASGtDzzCAAAA[0m[Pipeline] {
-[8mha:////4PHyLzgRmfuj2zxgCw1En/slLLaa/sagEgmI/vBYcq3IAAAAph+LCAAAAAAAAP9tjTEOwjAUQ3+DOrAycoh0owNiYo26cILQhJA0+r9NUtKJE3E17kBLJSY8WLYl673eUMYAJwqGO42dxdha3vvRzIlnCt3NU+aOrrwljOQ1b3RuSOnzWhtKGlYVDDYCthpbT9GiSbATTj5k5SWa6pLCvB0FMKsGeEIhZnKSIX3LFGB/H1Uk/HH+AmDqE7D6sFi9PMsPhRixbsIAAAA=[0m[Pipeline] container
-[8mha:////4OVS97vw8KDs0QloRkg4k4ypOUQ3E28tBI++quD6Ax6vAAAAph+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycoh0LBJiYo2ycILQhJA0+r9NUtKJE3E17kBLJSY8WLYl673eUMUAJwqGOY2dxdha1vvRzIllCt3NU2aOrqwljOQ1EzoLUvq8VkFJw6qihA2HrcbWU7RoEuy4kw9Ze4mmvqQwb0cOpVUDPKHgMznJkL5lCrC/jyoS/jh/ATD1CcqmWeywPKsPkHVpXsIAAAA=[0m[Pipeline] {
-[8mha:////4FsXibD5WfDzRt8xnlCfENUDGsI7Kg491YlEYvvGxsLyAAAAox+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOJSAkJUaS03vMDExjix7oztkFS8iK/xBwKRqNhitbPNPF+wTBGOHC22hjpHqXEYfG+nhQPH7uJ5wJbP2DAl9galGSRrU88oORuYU5SwELAy1HhOjmyGtWjVXVVeka1OOU7fQUDp9A0eUIjJnFXMXxgjbK69Tkw/z18BjCFDud19ah/eiOvlgb4AAAA=[0m[Pipeline] sh
+[Pipeline] script
+[Pipeline] {
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
 + set -- jnlp
 + mkdir -p out
 + echo == jnlp
@@ -490,11 +490,11 @@ Post stage
 + cat /sys/fs/cgroup/memory.peak
 + echo memory.peak_bytes=174649344
 + grep -E ^(usage_usec|nr_throttled|throttled_usec) /sys/fs/cgroup/cpu.stat
-[8mha:////4FIgCbCGWn6Zp269aGehCtrfvDOTo2aZpf7m33gXXv+iAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOJCRyREldZKwwtMbIwT687YDknFi/gaf8AiEhVbrHa2mdcb1jHAiYPBXtNgKXYWvRtNXjhxGK6OJ+z5gh1TZKex1VPLSjcLtpw0LClKWAnYaOocR0smwVb08iErJ8lU5xTydxRQWnWHJxQim5MM6QtzgN1tVJHp5/krgNn7BGW9z3WoP97N89u+AAAA[0m[Pipeline] }
-[8mha:////4A4HNEwfmzGETBND3YRBYq9YK+jYftBFJ+W27/X5WvEsAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPMIRVZAQVVorDS8w8WGcWHfGdkgqXsTX+AMWkajYYrWzzbzesI4BThyM6JEGS7GzwrvR5CUmDsPV8SR6voiOKbJD0eLUssZmwZYTwpKihJWEDVLnOFoyCbayVw9VOUWmOqeQv6OE0uo7PKGQ2ZxUSF+YA+xuo45MP89fAczeJygP+1x1/QHqAxCAvgAAAA==[0m[Pipeline] // container
-[8mha:////4LCPk9wq6h9IG54ixZhOyDrhtGXEME6CIAW8wbPNUm/vAAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUYgAk1Ik16sIJQhNC0uj/kqSkEyfiatyBQCUmPFi2Jes9X1AFDw15zazC3mDoDBvcqHNiiXx/cZSYpTPrCAM5xVqVWpLqONeWooJZRQkLDkuFnaNgUEdYcSvuonYCdX2KPm8HDqWRN3hAwTM5Ch+/ZfKwvo4yEP44fwEwDRHK3TbbfvN5Vm/f+TTIwgAAAA==[0m[Pipeline] container
-[8mha:////4Av8typOaW4/Jx62iy2Wa1x/jw5jBMwtwDvnqnyq8uH/AAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUggUJMXWNsnCC0ISQNvq//KS0EyfiatyBlkpMeLBsS9Z7vaGIDCdiJxqLrcdYe9GF3k1JDMTtNdAgGrqImjBSsELZQZGx1VIVJQuLshxWEtYW60DRo0uwkY1+6DJodOU58bQdJeTe3OEJmZzISXP6lpFhe+tNJPxx/gJg7BLkh91s+/lZfACJxiXBwgAAAA==[0m[Pipeline] {
-[8mha:////4Bn0zc5NceVEz5VlWVSEQxs3eExaOeGd/2LAAnuRtg4AAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOJSQIGEqNJabniBiY1xYt0Z2yGpeBFf4w8EIlGxxWpnm3m+YJkiHDlabA11jlLjMPjeTgsHjt3F84Atn7FhSuwNSjNI1qaeUXI2MKcoYSFgZajxnBzZDGvRqruqvCJbnXKcvoOA0ukbPKAQkzmrmL8wRthce52Yfp6/AhhDhnK//dQuvAGulDDkvgAAAA==[0m[Pipeline] sh
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
 + set -- python
 + mkdir -p out
 + echo '== python'
@@ -502,11 +502,11 @@ Post stage
 + cat /sys/fs/cgroup/memory.peak
 + echo 'memory.peak_bytes=25186304'
 + grep -E '^(usage_usec|nr_throttled|throttled_usec)' /sys/fs/cgroup/cpu.stat
-[8mha:////4LxOfusNVtOFijr9GWEHEnfGgQXkJAteDrCpBJwRZLcfAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOJSICQkRJXWcsMLTGyME+vO2A5JxYv4Gn8gEImKLVY728zzBcsU4cjRYmuoc5Qah8H3dlo4cOwungds+YwNU2JvUJpBsjb1jJKzgTlFCQsBK0ON5+TIZliLVt1V5RXZ6pTj9B0ElE7f4AGFmMxZxfyFMcLm2uvE9PP8FcAYQoZyv/vU9g0qmXSbvgAAAA==[0m[Pipeline] }
-[8mha:////4E08UxHru9uUtFVN4vw4XJgqqrPTcwDfXK1gib7LSweeAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiUSAkRJXWcsMLTGyME+vO2A5JxYv4Gn8gEImKLVY728zzBcsU4cjRYmuoc5Qah8H3dlo4cOwungds+YwNU2JvUJpBsjb1jJKzgTlFCQsBK0ON5+TIZliLVt1V5RXZ6pTj9B0ElE7f4AGFmMxZxfyFMcLm2uvE9PP8FcAYQoZyv/vU9g0S2+dqvgAAAA==[0m[Pipeline] // container
-[8mha:////4Cd5Ug5yiQa4ixeqpoBhoc94uQiNju51a6U5z0FBZxI/AAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycoh0o0iIqWuUhROEJIS00f8lSWknTsTVuAOBSkx4sGxL1nu+oIoBjhQs6wz2DqNybPCjzYlNFPqLp4l1dGaKMJI3TJhJkDbtUgUlA4uKElYc1gaVp+jQJtjwTt5l7SXa+pRC3g4cSqdv8ICCZ3KSIX3LHGB7HXUk/HH+AmAeEpTNLtu++TyrN2xo+ZjCAAAA[0m[Pipeline] container
-[8mha:////4LbdKdQ7A1k+/f13p8GsO/pYwIlvKqdc9x+81fqU9prrAAAAph+LCAAAAAAAAP9tjTEOwjAUQ3+DOrAycoh0pBJiYo26cILQhJA0+r9NUtKJE3E17kBLJSY8WLYl673eUMYAJwqGO42dxdha3vvRzIlnCt3NU+aOrrwljOQ1b3RuSOnzWhtKGlYVDDYCthpbT9GiSbATTj5k5SWa6pLCvB0FMKsGeEIhZnKSIX3LFGB/H1Uk/HH+AmDqE7D6sFi9PMsPCJq12sIAAAA=[0m[Pipeline] {
-[8mha:////4G3e5zd617oLO0nNvxcu+BQ9ZIDEzmexN86OJk1baR0RAAAAox+LCAAAAAAAAP9tjTESwiAURH/iWNhaegjSxnGsbBkaT4AJIoT5nwCRVJ7Iq3kH0cxYucXOvm3e8wXrGOBIQTOrcDAYO8O8m3RZLFMYro4ys3RhHWEkp5hQWVCvTgsKSgqWVDWsOGwUdo6iQZ1gy628y8ZJ1M05hfIdONSmH+EBFS/mJEP6whxgd5v6SPjz/BXA7BPUbfupvX8DGb6ZU74AAAA=[0m[Pipeline] sh
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
 + set -- buildkit
 + mkdir -p out
 + echo '== buildkit'
@@ -514,11 +514,11 @@ Post stage
 + cat /sys/fs/cgroup/memory.peak
 + echo 'memory.peak_bytes=174505984'
 + grep -E '^(usage_usec|nr_throttled|throttled_usec)' /sys/fs/cgroup/cpu.stat
-[8mha:////4Cu0Vp61eITkJUeir9/0fFRk4LbspoUy617G3CBX0J61AAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPMKhDEJUaa00vMDEh3Fi3RnbIal4EV/jD1hEomKL1c4283rDOgY4cTCiRxosxc4K70aTl5g4DFfHk+j5IjqmyA5Fi1PLGpsFW04IS4oSVhI2SJ3jaMkk2MpePVTlFJnqnEL+jhJKq+/whEJmc1IhfWEOsLuNOjL9PH8FMHufoDzsc9X1B6XaHPq+AAAA[0m[Pipeline] }
-[8mha:////4HKERVEV6vjjGWM2RYN2Hlea0qQZXWd8gDwC1ajdbBNvAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiKkAoFa3lhheYxBgn1l2wHZyKF/E1/oBFJCq2WO1sM683LIOHmr3BTlNvKTQWBzeavDCx76+OE3Z8wYYpsNModZLc6tOMkqOGOUUJCwErTY3jYMlEWItOPVTlFJnqHH3+jgJK297hCYXI5qh8/MLkYXMb28D08/wVwDQMEcrDNtd+9wGRFP+hvgAAAA==[0m[Pipeline] // container
-[8mha:////4Jy9+9C9uJ/9D10wBvTuk9uUlr6/DLrsQjhQ2Vq4pqigAAAAqB+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUYgAh1Ik16sIJQhNC0uj/kqSkEyfiatyBQCUmPFi2Jes9X1AFDw15zazC3mDoDBvcqHNiiXx/cZSYpTPrCAM5xVqVWpLqONeWooJZRQkLDkuFnaNgUEdYcSvuonYCdX2KPm8HDqWRN3hAwTM5Ch+/ZfKwvo4yEP44fwEwDRHK3TbbfvN5Vm9r8kNuwgAAAA==[0m[Pipeline] container
-[8mha:////4EPaNZM2hqXYCRTzRP3ZnTNraQ5jI5/fHN5TXb4Mito7AAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycohUggkhpq5RFk4QmhDSRv+Xn5R24kRcjTvQUokJD5ZtyXqvNxSR4UTsRGOx9RhrL7rQuymJgbi9BhpEQxdRE0YKVig7KDK2WqqiZGFRlsNKwtpiHSh6dAk2stEPXQaNrjwnnrajhNybOzwhkxM5aU7fMjJsb72JhD/OXwCMXYL8sJttPz+LD1KB9/zCAAAA[0m[Pipeline] {
-[8mha:////4Pg+J/SSMq9UuDhnTWFBPWa+0P9gjXXm0kudeNLP2YArAAAApB+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOJSQIMQVVrLDS8wsTFOrDtjOyQVL+Jr/IFAJCq2WO1sM88XLFOEI0eLraHOUWocBt/baeHAsbt4HrDlMzZMib1BaQbJ2tQzSs4G5hQlLASsDDWekyObYS1adVeVV2SrU47TdxBQOn2DBxRiMmcV8xfGCJtrrxPTz/NXAGPIUO63n9qFNwf+WCm+AAAA[0m[Pipeline] sh
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
 + set -- trivy
 + mkdir -p out
 + echo '== trivy'
@@ -526,11 +526,11 @@ Post stage
 + cat /sys/fs/cgroup/memory.peak
 + echo 'memory.peak_bytes=1073745920'
 + grep -E '^(usage_usec|nr_throttled|throttled_usec)' /sys/fs/cgroup/cpu.stat
-[8mha:////4NCSH2RK+QeItYH9TTYhmE4p4DZvD1aBpvUEOlVxgY/aAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOJSIAqEqNJabniBiY1xYt0Z2yGpeBFf4w8EIlGxxWpnm3m+YJkiHDlabA11jlLjMPjeTgsHjt3F84Atn7FhSuwNSjNI1qaeUXI2MKcoYSFgZajxnBzZDGvRqruqvCJbnXKcvoOA0ukbPKAQkzmrmL8wRthce52Yfp6/AhhDyFDud5/avgHfoxgkvgAAAA==[0m[Pipeline] }
-[8mha:////4HMgdZKwc93Jn7TNh0Vbr8dOQVHLatvfJ3AnY+JaPNiQAAAApR+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOIiUSAhRJXWcsMLTGyME+vO2A5JxYv4Gn8gEImKLVY728zzBcsU4cjRYmuoc5Qah8H3dlo4cOwungds+YwNU2JvUJpBsjb1jJKzgTlFCQsBK0ON5+TIZliLVt1V5RXZ6pTj9B0ElE7f4AGFmMxZxfyFMcLm2uvE9PP8FcAYQoZyv/vU9g3n4YvVvgAAAA==[0m[Pipeline] // container
-[8mha:////4Ar2DY1I8DQh9oCq2SexLPW1FoOrE8gJ2pI3s3dVesxOAAAApx+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycoh0o0KIqWuUhROEJIS00f8lSWknTsTVuAOBSkx4sGxL1nu+oIoBjhQs6wz2DqNybPCjzYlNFPqLp4l1dGaKMJI3TJhJkDbtUgUlA4uKElYc1gaVp+jQJtjwTt5l7SXa+pRC3g4cSqdv8ICCZ3KSIX3LHGB7HXUk/HH+AmAeEpTNLtu++TyrN9hjjj7CAAAA[0m[Pipeline] container
-[8mha:////4IQKyvXbOvlBDkBlTHEecJL9XOPF/Wxoy7xLsqYRA9h6AAAAph+LCAAAAAAAAP9tjTEOwjAUQ3+LOrAycoh0BISYukZZOEFoQkgb/V9+UtqJE3E17kBLJSY8WLYl673eUESGE7ETjcXWY6y96ELvpiQG4vYaaBANXURNGClYoeygyNhqqYqShUVZDisJa4t1oOjRJdjIRj90GTS68px42o4Scm/u8IRMTuSkOX3LyLC99SYS/jh/ATB2CfLDbrb9/Cw+091n58IAAAA=[0m[Pipeline] {
-[8mha:////4Bj0y/sFcMAUbAmNoR3rEhn9j907mFXunnyQ3UAXRKHKAAAAox+LCAAAAAAAAP9tjTEOwjAQBC9BFLSUPOLSEiEqWisNLzCJMXasO8d2cCpexNf4A4FIVGyx2tlmni9YxwBHDhqtot5QbA16N+p5YebQXx1ntHzBlimyU9io3HCnTgs2nBQsKUpYCdgoah1HQzrBVlh5l5WTpKtzCvN3EFCaboAHFGI2JxnSF6YAu9vYRaaf568AJp+grPefqv0bsNTxnr4AAAA=[0m[Pipeline] sh
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
 + set -- skopeo
 + mkdir -p out
 + echo '== skopeo'
@@ -538,24 +538,24 @@ Post stage
 ++ cat /sys/fs/cgroup/memory.peak
 + echo memory.peak_bytes=36397056
 + grep -E '^(usage_usec|nr_throttled|throttled_usec)' /sys/fs/cgroup/cpu.stat
-[8mha:////4ECTVdfEtqVCi47EZMjoqN6h2+mdXrJXu42SnGvHDmyfAAAApR+LCAAAAAAAAP9tjTESgjAQRRcYC1tLDxGw03GobDM0niCGGAOZXUwWofJEXs07mJEZK3/132ve6w2rGKCmYEVnsHcYtRODH216YqLQXz1NoqOL0ISRvBGNmRpqzWnBhtjAsiyHQsLaoPYUHVqGjezUQ5VeoS3PHJI7Sshde4cnZDKVWQX+whxgexvbSPjr/A3APAwMxa6qGPLD/gOhhK2avwAAAA==[0m[Pipeline] }
-[8mha:////4NHXSn+lJDnAJeEnGVJPiIo2Tt/VrEh8allPEtgplmqBAAAApR+LCAAAAAAAAP9tjTESgjAQRRcYC1tLDxGkchyHyjZD4wkiiTGQ2cVkESpP5NW8gxmZsfJX/73mvd6wigFqClZ0BnuHsXVi8KNNT0wU+qunSXR0ES1hJG9EY6aGtDkt2BAbWJblUEhYG2w9RYeWYSM79VClV2jLM4fkjhJyp+/whEymMqvAX5gDbG+jjoS/zt8AzMPAUFS7iiE/7D+VSk7BvwAAAA==[0m[Pipeline] // container
-[8mha:////4AvGdjEv0QQv2/RFkvwln8PpK5zPdjO5PrETCNm+EaixAAAAph+LCAAAAAAAAP9tjTESgjAQRRcYC1tLDxHUQgvGyjZD4wkiiTGQ2cVkESpP5NW8gxmZsfJX/73mvd6wiAGOFKxoDXYOY+NE7webnhgpdFdPo2jpIhrCSN6I2ow1aXOasSY2MC/LoZCwNNh4ig4tw0q26qFKr9CWZw7JVRJyp+/whEymMqvAX5gCrG+DjoS/zt8ATH3PUGw3O4b8sP8AIyVerr8AAAA=[0m[Pipeline] }
-[8mha:////4NsPChMGXihd0wiyPuuRffV1knegwSMWYVyLO/KJuGoNAAAAph+LCAAAAAAAAP9tjTEOwjAQBC+JKGgpeYQDQogioqK10vACExvjxLoL9oWk4kV8jT9gEYmKrXammdcbFjHAkYIVrcHOYWyc6P1g0xMjhe7qaRQtXURDGMkbUZuxJm1OM9bEBuZlORQSlgYbT9GhZVjJVj1U6RXa8swhuUpC7vQdnpDJVGYV+AtTgPVt0JHw1/kbgKnvGYrtZseQH/YfPKcL/L8AAAA=[0m[Pipeline] // script
-[8mha:////4HL7cKtW57Amsi4lII52wE73hvRj+g1+8OC7F5cLv/XLAAAApR+LCAAAAAAAAP9tjTESgjAQRRcYC1tLDxFkRiuHyjZD4wkiiTGQ2cVkESpP5NW8gxmZsfJX/73mvd6wigFqClZ0BnuHsXVi8KNNT0wU+qunSXR0ES1hJG9EY6aGtDkt2BAbWJblUEhYG2w9RYeWYSM79VClV2jLM4fkjhJyp+/whEymMqvAX5gDbG+jjoS/zt8AzANDXh0Yimq3Hz7x2zUKvwAAAA==[0m[Pipeline] archiveArtifacts
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] archiveArtifacts
 Archiving artifacts
-[8mha:////4PNUPF3YSSojcFXXG7XmY22kHt/JEUs/HbmDjvSzIrCDAAAApR+LCAAAAAAAAP9tjTESgjAQRRcYC1tLDxGkoHKsaDM0niCGGAOZXUwWofJEXs07mJEZK3/132ve6w2bGOBEwYre4OAwaidGP9n0xExhuHqaRU8XoQkjeSNaM7fUmWbFltjAuiyHQsLWoPYUHVqGnezVQ5VeoS3PHJI7Sshdd4cnZDKVWQX+whJgf5u6SPjr/A3AMo4MRXWoGfKq/gCn4wh8vwAAAA==[0m[Pipeline] }
-[8mha:////4F8HO0ZlqfzRIiphRSDwzLtsMkjyKcYJ4Ein228dCYFBAAAAph+LCAAAAAAAAP9tjbEOgjAURR8QB1dHP6JIYlwMk2vD4hdUWmuheQ/bhzD5Rf6a/2AjiZN3uucs5/WGVQxQU7CiM9g7jK0Tgx9temKi0F89TaKji2gJI3kjGjM1pM1pwYbYwLIsh0LC2mDrKTq0DBvZqYcqvUJbnjkkd5SQO32HJ2QylVkF/sIcYHsbdST8df4GYB4GhqLaHRjyav8Bn6Gbjb8AAAA=[0m[Pipeline] // node
-[8mha:////4NmTGHfg9/Epoxkd77Y/NOFexsAMHoHi/oXAGS/mKx2nAAAAph+LCAAAAAAAAP9tjTESgjAQRRcYC1tLDxFkLCwcKtsMjSeIJMZAZheTRag8kVfzDmZkxspf/fea93rDKgaoKVjRGewdxtaJwY82PTFR6K+eJtHRRbSEkbwRjZka0ua0YENsYFmWQyFhbbD1FB1aho3s1EOVXqEtzxySO0rInb7DEzKZyqwCf2EOsL2NOhL+On8DMA8DQ1HtDgx5tf8Ameej2L8AAAA=[0m[Pipeline] }
-[8mha:////4EFl6VVEe6aX2tVLGm7hkFTIfTBM+Q4RlMvBs8m8DqZOAAAApR+LCAAAAAAAAP9tjTESgjAQRRcYC1tLDxHEyhmHyjZD4wkiiTGQ2cVkESpP5NW8gxmZsfJX/73mvd6wigFqClZ0BnuHsXVi8KNNT0wU+qunSXR0ES1hJG9EY6aGtDkt2BAbWJblUEhYG2w9RYeWYSM79VClV2jLM4fkjhJyp+/whEymMqvAX5gDbG+jjoS/zt8AzMPAUFS7A0Ne7T/aZfJevwAAAA==[0m[Pipeline] // podTemplate
-[8mha:////4LKgJGHiQEENQsXlHOGO9XVOnsa1IZPyAs11UdZyaynZAAAApB+LCAAAAAAAAP9tjTESgjAQRRcYC1tLDxGgdBwr2gyNJ4hJjIHMLiaLUHkir+YdZGTGyl/995r3esMmRThRdKKz2HtM2oshjG55YqLYXwNNoqOL0ISJghWtnVoytlmxJbawLsuhkLC1qAMlj45hJzv1UGVQ6Mozx8UdJeTe3OEJmVzKrCJ/YY6wv40mEf46fwMwDwNDUVcHhryuPlPXoHu/AAAA[0m[Pipeline] }
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // podTemplate
+[Pipeline] }
 Lock released on resource [Resource: ota-exec-slot]
-[8mha:////4FEnCn2hU1O3xl+ZZnrrCTEZp1odUNyOw4x8+7sUXmhyAAAApB+LCAAAAAAAAP9tjTEOwjAQBC+JKGgpeYRDSoSoaK00vMDExjix7ox9wal4EV/jD0REomKrnWnm9YZVinCkaEVvcHCYOieCH+38RKY4XD1l0dNFdISJvBGtyS1pc1qwJTawrCihkrA22HlKDi3DRvbqoWqv0NZnjrM7SCidvsMTCjmXWUX+whRhext1Ivx1/gZgCoGhapodQ7H/APnnLP2+AAAA[0m[Pipeline] // lock
-[8mha:////4AGyVwwrSJdQn1AGVWdlqZuyeNz2I+u9GrF3B9OI5XMtAAAApB+LCAAAAAAAAP9tjbEOgjAURS8SB1dHP6KEzcQ4uTYsfkGFWgvNe9g+hMkv8tf8B4kkTt7pnrOc1xvrFHHk6FRrqfOUaq/6MLj5qZFjdw08qpYvqmZKHKyq7FhxY08LViwWy7IVco2NpTpw8uQEW92ahymCIVecJc7uoLHyzR1PZHoui4nyhSlidxuaxPTr/A1g6ntBXpalINt/AN/+S7e+AAAA[0m[Pipeline] }
-[8mha:////4EU7WL+ZeHQKrIX8eVaLBCBbo1sO/B6nhPKR3+PNW9c8AAAApB+LCAAAAAAAAP9tjTEOwjAQBM+JKGgpeYSj0FAgKlorDS8wsTFOrLtgX3AqXsTX+AMRkajYameaeb1hlSIcKTrZWew9ptbLIYxufjJT7K+BsuzoIlvCRMHKxuaGjD0t2BBbWCYKKBWsLbaBkkfHsFGdfugqaHTVmePsDgoKb+7wBKHmMuvIX5gibG+jSYS/zt8ATMPAUNb1jkHsP56ZVGC+AAAA[0m[Pipeline] // stage
-[8mha:////4FcRqIA090GdZTHQ4TYZxflS+tc4n8h2Bx7+dmqzUwylAAAApR+LCAAAAAAAAP9tjTEOwjAQBM+JKGgpeYSjCIkGUdFaaXiBiY1xYt0F+4JT8SK+xh+IiETFVjvTzOsNqxThSNHJzmLvMbVeDmF085OZYn8NlGVHF9kSJgpWNjY3ZOxpwYbYwjJRQKlgbbENlDw6ho3q9ENXQaOrzhxnd1BQeHOHJwg1l1lH/sIUYXsbTSL8df4GYBoGhrKudwxi/wG4gDMqvgAAAA==[0m[Pipeline] }
-[8mha:////4NkgW4mgbg4DlLitpaSFI9KQRnMHmRoL3a8h9OTJZAlMAAAApB+LCAAAAAAAAP9tjTEOwjAQBM+JKGgpeYSjSFAhKlorDS8wsTFOrLtgX3AqXsTX+AMRkajYameaeb1hlSIcKTrZWew9ptbLIYxufjJT7K+BsuzoIlvCRMHKxuaGjD0t2BBbWCYKKBWsLbaBkkfHsFGdfugqaHTVmePsDgoKb+7wBKHmMuvIX5gibG+jSYS/zt8ATMPAUNb1jkHsPxINGgG+AAAA[0m[Pipeline] // timeout
-[8mha:////4HQ5d25D1/Vl6B56MAMEg1AlMsj9Ag5oTnmvYzkBKly1AAAApB+LCAAAAAAAAP9tjTEOwjAQBM+JKGgpeYSjSFAhKlorDS8wsTFOrLtgX3AqXsTX+AMRkajYameaeb1hlSIcKTrZWew9ptbLIYxufjJT7K+BsuzoIlvCRMHKxuaGjD0t2BBbWCYKKBWsLbaBkkfHsFGdfugqaHTVmePsDgoKb+7wBKHmMuvIX5gibG+jSYS/zt8ATMPAUNb1nkHsPjQUfUu+AAAA[0m[Pipeline] }
-[8mha:////4P0KXOz9Js8d3CBTvX40+n4fEVkXAY2VeZy5iANmOIfEAAAApR+LCAAAAAAAAP9tjTEOwjAQBM+JKGgpeYSjCIkGUdFaaXiBiY1xYt0F+4JT8SK+xh+IiETFVjvTzOsNqxThSNHJzmLvMbVeDmF085OZYn8NlGVHF9kSJgpWNjY3ZOxpwYbYwjJRQKlgbbENlDw6ho3q9ENXQaOrzhxnd1BQeHOHJwg1l1lH/sIUYXsbTSL8df4GYBoGhrKu9wxi9wFH+7mSvgAAAA==[0m[Pipeline] // withEnv
-[8mha:////4MXzB/ZH0SxJrQ5QVr2Y6A+eSf+89MXmzBMOUzhLMiFyAAAApB+LCAAAAAAAAP9tjTEOwjAQBM+JKGgpeYSj0FAgKlorDS8wsTFOrLtgX3AqXsTX+AMRkajYameaeb1hlSIcKTrZWew9ptbLIYxufjJT7K+BsuzoIlvCRMHKxuaGjD0t2BBbWCYKKBWsLbaBkkfHsFGdfugqaHTVmePsDgoKb+7wBKHmMuvIX5gibG+jSYS/zt8ATMPAUNb1nkHsPmHi3ti+AAAA[0m[Pipeline] End of Pipeline
+[Pipeline] // lock
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] End of Pipeline
 Finished: SUCCESS

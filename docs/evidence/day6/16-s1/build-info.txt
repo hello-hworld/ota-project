@@ -1,0 +1,6 @@
+repo=https://github.com/hello-hworld/ota-project.git
+commit=283ab3143bec77b6b163b1a7b55ca43ea9997d66
+job=day6-ci build=4
+tag=283ab3143bec-day6-ci-4
+test-start=2026-10-14T05:51:00Z
+test-exit=1

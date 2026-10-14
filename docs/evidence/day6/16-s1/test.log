@@ -1,0 +1,16 @@
+test_forced_failure_switch (test_app.HealthTest.test_forced_failure_switch) ... FAIL
+test_health_body (test_app.HealthTest.test_health_body) ... ok
+test_healthz_endpoint (test_app.HealthTest.test_healthz_endpoint) ... ok
+
+======================================================================
+FAIL: test_forced_failure_switch (test_app.HealthTest.test_forced_failure_switch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/jenkins/agent/workspace/day6-ci/demo/tests/test_app.py", line 32, in test_forced_failure_switch
+    self.fail("FORCE_TEST_FAIL=true (의도한 실패)")
+AssertionError: FORCE_TEST_FAIL=true (의도한 실패)
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.520s
+
+FAILED (failures=1)

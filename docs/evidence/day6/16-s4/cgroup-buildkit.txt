@@ -1,0 +1,5 @@
+== buildkit
+memory.peak_bytes=31162368
+usage_usec 156655
+nr_throttled 0
+throttled_usec 0

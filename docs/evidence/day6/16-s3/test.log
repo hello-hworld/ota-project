@@ -1,0 +1,8 @@
+test_forced_failure_switch (test_app.HealthTest.test_forced_failure_switch) ... ok
+test_health_body (test_app.HealthTest.test_health_body) ... ok
+test_healthz_endpoint (test_app.HealthTest.test_healthz_endpoint) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.519s
+
+OK

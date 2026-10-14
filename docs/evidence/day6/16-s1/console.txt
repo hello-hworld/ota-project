@@ -1,0 +1,377 @@
+Started by user Jenkins Admin
+Obtained Jenkinsfile from git https://github.com/hello-hworld/ota-project.git
+[Pipeline] Start of Pipeline
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timeout
+Timeout set to expire in 45 min
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (CI)
+[Pipeline] lock
+Trying to acquire lock on [Resource: ota-exec-slot]
+Resource [ota-exec-slot] did not exist. Created.
+Lock acquired on [Resource: ota-exec-slot]
+[Pipeline] {
+[Pipeline] readTrusted
+Obtained ci/agent-pod.yaml from git https://github.com/hello-hworld/ota-project.git
+[Pipeline] podTemplate
+[Pipeline] {
+[Pipeline] node
+[PodInfo] ci/day6-ci-4-t03sx-4h7nb-265hq
+	Container [buildkit] waiting [ContainerCreating] No message
+	Container [jnlp] waiting [ContainerCreating] No message
+	Container [python] waiting [ContainerCreating] No message
+	Container [skopeo] waiting [ContainerCreating] No message
+	Container [trivy] waiting [ContainerCreating] No message
+	Pod [Pending][ContainersNotReady] containers with unready status: [python buildkit trivy skopeo jnlp]
+Created Pod: kubernetes ci/day6-ci-4-t03sx-4h7nb-265hq
+[PodInfo] ci/day6-ci-4-t03sx-4h7nb-265hq
+	Container [buildkit] waiting [ContainerCreating] No message
+	Container [jnlp] waiting [ContainerCreating] No message
+	Container [python] waiting [ContainerCreating] No message
+	Container [skopeo] waiting [ContainerCreating] No message
+	Container [trivy] waiting [ContainerCreating] No message
+	Pod [Pending][ContainersNotReady] containers with unready status: [python buildkit trivy skopeo jnlp]
+Agent day6-ci-4-t03sx-4h7nb-265hq is provisioned from template day6-ci_4-t03sx-4h7nb
+---
+apiVersion: "v1"
+kind: "Pod"
+metadata:
+  annotations:
+    kubernetes.jenkins.io/last-refresh: "1791957034337"
+    buildUrl: "http://jenkins.platform.svc.cluster.local:8080/job/day6-ci/4/"
+    runUrl: "job/day6-ci/4/"
+  labels:
+    ota-ci-build: "true"
+    ota-ci-agent: "true"
+    jenkins/label: "day6-ci_4-t03sx"
+    jenkins/jenkins-jenkins-agent: "true"
+    jenkins/label-digest: "23fe7f9fd86e432c1d87609482483f6bf8831ed1"
+    kubernetes.jenkins.io/controller: "http___jenkins_platform_svc_cluster_local_8080x"
+  name: "day6-ci-4-t03sx-4h7nb-265hq"
+  namespace: "ci"
+spec:
+  containers:
+  - command:
+    - "cat"
+    image: "docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4"
+    name: "python"
+    resources:
+      limits:
+        cpu: "500m"
+        memory: "256Mi"
+      requests:
+        cpu: "100m"
+        memory: "64Mi"
+    tty: true
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+    workingDir: "/home/jenkins/agent"
+  - args:
+    - "--oci-worker-no-process-sandbox"
+    env:
+    - name: "BUILDKIT_HOST"
+      value: "unix:///run/user/1000/buildkit/buildkitd.sock"
+    image: "docker.io/moby/buildkit:v0.34.0-rootless@sha256:65eca3c01cd1180c8f64565c4e3c5983af5145818b0e6fa863385d099eb73855"
+    name: "buildkit"
+    resources:
+      limits:
+        cpu: "2"
+        memory: "1536Mi"
+      requests:
+        cpu: "500m"
+        memory: "256Mi"
+    securityContext:
+      appArmorProfile:
+        type: "Unconfined"
+      runAsGroup: 1000
+      runAsUser: 1000
+      seccompProfile:
+        type: "Unconfined"
+    volumeMounts:
+    - mountPath: "/home/user/.local/share/buildkit"
+      name: "buildkitd-state"
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+    workingDir: "/home/jenkins/agent"
+  - command:
+    - "cat"
+    image: "docker.io/aquasec/trivy:0.75.0@sha256:af6acf9a6b85dfe389a1941505c0ce9efef52a4719635e1a962f022a3d855daa"
+    name: "trivy"
+    resources:
+      limits:
+        cpu: "1"
+        memory: "1Gi"
+      requests:
+        cpu: "200m"
+        memory: "256Mi"
+    tty: true
+    volumeMounts:
+    - mountPath: "/trivy-cache"
+      name: "trivy-cache"
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+    workingDir: "/home/jenkins/agent"
+  - command:
+    - "cat"
+    image: "quay.io/skopeo/stable:v1.22.3@sha256:22ea3c3baf639147b07fb9f2ea28a6308edf7909e919d91a5d296af0121d7ed9"
+    name: "skopeo"
+    resources:
+      limits:
+        cpu: "500m"
+        memory: "256Mi"
+      requests:
+        cpu: "100m"
+        memory: "64Mi"
+    tty: true
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+    workingDir: "/home/jenkins/agent"
+  - args:
+    - "********"
+    - "day6-ci-4-t03sx-4h7nb-265hq"
+    env:
+    - name: "JENKINS_SECRET"
+      value: "********"
+    - name: "JENKINS_AGENT_NAME"
+      value: "day6-ci-4-t03sx-4h7nb-265hq"
+    - name: "JENKINS_WEB_SOCKET"
+      value: "true"
+    - name: "REMOTING_OPTS"
+      value: "-noReconnectAfter 1d"
+    - name: "JENKINS_NAME"
+      value: "day6-ci-4-t03sx-4h7nb-265hq"
+    - name: "JENKINS_AGENT_WORKDIR"
+      value: "/home/jenkins/agent"
+    - name: "JENKINS_URL"
+      value: "http://jenkins.platform.svc.cluster.local:8080/"
+    image: "jenkins/inbound-agent:3385.vf1123fb_515da_-1-jdk25"
+    imagePullPolicy: "IfNotPresent"
+    name: "jnlp"
+    resources:
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+      requests:
+        memory: "256Mi"
+        cpu: "200m"
+    tty: false
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+    workingDir: "/home/jenkins/agent"
+  nodeSelector:
+    workload: "platform"
+  restartPolicy: "Never"
+  serviceAccountName: "jenkins-agent"
+  volumes:
+  - emptyDir: {}
+    name: "buildkitd-state"
+  - emptyDir:
+      medium: ""
+    name: "workspace-volume"
+  - name: "trivy-cache"
+    persistentVolumeClaim:
+      claimName: "trivy-cache"
+
+Running on day6-ci-4-t03sx-4h7nb-265hq in /home/jenkins/agent/workspace/day6-ci
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/hello-hworld/ota-project.git
+ > git init /home/jenkins/agent/workspace/day6-ci # timeout=10
+Fetching upstream changes from https://github.com/hello-hworld/ota-project.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- https://github.com/hello-hworld/ota-project.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/hello-hworld/ota-project.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+Checking out Revision 283ab3143bec77b6b163b1a7b55ca43ea9997d66 (refs/remotes/origin/main)
+Commit message: "DAY6 STEP15: CI image runs on cluster B by digest"
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 283ab3143bec77b6b163b1a7b55ca43ea9997d66 # timeout=10
+ > git rev-list --no-walk 50615d6ab9d2e5b23c956a8c65ac6fbfae210036 # timeout=10
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ git rev-parse HEAD
+[Pipeline] sh
++ printf %s day6-ci
++ cut -c1-40
++ tr -c A-Za-z0-9_.- -
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] sh
++ mkdir -p out
++ chmod 777 out
++ tee out/build-info.txt
++ git config --get remote.origin.url
++ echo repo=https://github.com/hello-hworld/ota-project.git
++ echo commit=283ab3143bec77b6b163b1a7b55ca43ea9997d66
+repo=https://github.com/hello-hworld/ota-project.git
++ echo job=day6-ci build=4
++ echo tag=283ab3143bec-day6-ci-4
+commit=283ab3143bec77b6b163b1a7b55ca43ea9997d66
+job=day6-ci build=4
+tag=283ab3143bec-day6-ci-4
++ chmod 666 out/build-info.txt
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ date -u '+%FT%TZ'
++ echo 'test-start=2026-10-14T05:51:00Z'
++ python --version
++ rc=0
++ python -m unittest discover -s demo/tests -v
++ rc=1
++ cat out/test.log
+test_forced_failure_switch (test_app.HealthTest.test_forced_failure_switch) ... FAIL
+test_health_body (test_app.HealthTest.test_health_body) ... ok
+test_healthz_endpoint (test_app.HealthTest.test_healthz_endpoint) ... ok
+
+======================================================================
+FAIL: test_forced_failure_switch (test_app.HealthTest.test_forced_failure_switch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/jenkins/agent/workspace/day6-ci/demo/tests/test_app.py", line 32, in test_forced_failure_switch
+    self.fail("FORCE_TEST_FAIL=true (의도한 실패)")
+AssertionError: FORCE_TEST_FAIL=true (의도한 실패)
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.520s
+
+FAILED (failures=1)
++ echo 'test-exit=1'
++ tee -a out/build-info.txt
+test-exit=1
++ exit 1
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+Stage "Build" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Scan DB)
+Stage "Scan DB" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Scan)
+Stage "Scan" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Push)
+Stage "Push" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+Post stage
+[Pipeline] script
+[Pipeline] {
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ set -- jnlp
++ mkdir -p out
++ echo == jnlp
++ [ -r /sys/fs/cgroup/memory.peak ]
++ cat /sys/fs/cgroup/memory.peak
++ echo memory.peak_bytes=153153536
++ grep -E ^(usage_usec|nr_throttled|throttled_usec) /sys/fs/cgroup/cpu.stat
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ set -- python
++ mkdir -p out
++ echo '== python'
++ '[' -r /sys/fs/cgroup/memory.peak ]
++ cat /sys/fs/cgroup/memory.peak
++ echo 'memory.peak_bytes=25190400'
++ grep -E '^(usage_usec|nr_throttled|throttled_usec)' /sys/fs/cgroup/cpu.stat
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ set -- buildkit
++ mkdir -p out
++ echo '== buildkit'
++ '[' -r /sys/fs/cgroup/memory.peak ]
++ cat /sys/fs/cgroup/memory.peak
++ echo 'memory.peak_bytes=30937088'
++ grep -E '^(usage_usec|nr_throttled|throttled_usec)' /sys/fs/cgroup/cpu.stat
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ set -- trivy
++ mkdir -p out
++ echo '== trivy'
++ '[' -r /sys/fs/cgroup/memory.peak ]
++ cat /sys/fs/cgroup/memory.peak
++ echo 'memory.peak_bytes=3936256'
++ grep -E '^(usage_usec|nr_throttled|throttled_usec)' /sys/fs/cgroup/cpu.stat
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ set -- skopeo
++ mkdir -p out
++ echo '== skopeo'
++ '[' -r /sys/fs/cgroup/memory.peak ']'
+++ cat /sys/fs/cgroup/memory.peak
++ echo memory.peak_bytes=2973696
++ grep -E '^(usage_usec|nr_throttled|throttled_usec)' /sys/fs/cgroup/cpu.stat
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] archiveArtifacts
+Archiving artifacts
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // podTemplate
+[Pipeline] }
+Lock released on resource [Resource: ota-exec-slot]
+[Pipeline] // lock
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] End of Pipeline
+ERROR: script returned exit code 1
+Finished: FAILURE

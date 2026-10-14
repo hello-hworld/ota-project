@@ -1,0 +1,553 @@
+Started by user Jenkins Admin
+Obtained Jenkinsfile from git https://github.com/hello-hworld/ota-project.git
+[Pipeline] Start of Pipeline
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timeout
+Timeout set to expire in 45 min
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (CI)
+[Pipeline] lock
+Trying to acquire lock on [Resource: ota-exec-slot]
+The resource [ota-exec-slot] is locked by build day6-ci #8 #8 since Oct 14, 2026, 6:02 AM.
+[Resource: ota-exec-slot] is not free, waiting for execution ...
+[Required resources: [ota-exec-slot]] added into queue at position 0
+Lock acquired on [Resource: ota-exec-slot]
+[Pipeline] {
+[Pipeline] readTrusted
+Obtained ci/agent-pod.yaml from git https://github.com/hello-hworld/ota-project.git
+[Pipeline] podTemplate
+[Pipeline] {
+[Pipeline] node
+Created Pod: kubernetes ci/day6-ci-2-2-mlqzn-rbfv7-2wx3v
+[PodInfo] ci/day6-ci-2-2-mlqzn-rbfv7-2wx3v
+	Container [buildkit] waiting [ContainerCreating] No message
+	Container [jnlp] waiting [ContainerCreating] No message
+	Container [python] waiting [ContainerCreating] No message
+	Container [skopeo] waiting [ContainerCreating] No message
+	Container [trivy] waiting [ContainerCreating] No message
+	Pod [Pending][ContainersNotReady] containers with unready status: [python buildkit trivy skopeo jnlp]
+[PodInfo] ci/day6-ci-2-2-mlqzn-rbfv7-2wx3v
+	Container [buildkit] waiting [ContainerCreating] No message
+	Container [jnlp] waiting [ContainerCreating] No message
+	Container [python] waiting [ContainerCreating] No message
+	Container [skopeo] waiting [ContainerCreating] No message
+	Container [trivy] waiting [ContainerCreating] No message
+	Pod [Pending][ContainersNotReady] containers with unready status: [python buildkit trivy skopeo jnlp]
+Agent day6-ci-2-2-mlqzn-rbfv7-2wx3v is provisioned from template day6-ci-2_2-mlqzn-rbfv7
+---
+apiVersion: "v1"
+kind: "Pod"
+metadata:
+  annotations:
+    kubernetes.jenkins.io/last-refresh: "1791957790541"
+    buildUrl: "http://jenkins.platform.svc.cluster.local:8080/job/day6-ci-2/2/"
+    runUrl: "job/day6-ci-2/2/"
+  labels:
+    ota-ci-build: "true"
+    ota-ci-agent: "true"
+    jenkins/label: "day6-ci-2_2-mlqzn"
+    jenkins/jenkins-jenkins-agent: "true"
+    jenkins/label-digest: "4c7d4e808d656a175e75dd37f100d637b7cbce4d"
+    kubernetes.jenkins.io/controller: "http___jenkins_platform_svc_cluster_local_8080x"
+  name: "day6-ci-2-2-mlqzn-rbfv7-2wx3v"
+  namespace: "ci"
+spec:
+  containers:
+  - command:
+    - "cat"
+    image: "docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4"
+    name: "python"
+    resources:
+      limits:
+        cpu: "500m"
+        memory: "256Mi"
+      requests:
+        cpu: "100m"
+        memory: "64Mi"
+    tty: true
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+    workingDir: "/home/jenkins/agent"
+  - args:
+    - "--oci-worker-no-process-sandbox"
+    env:
+    - name: "BUILDKIT_HOST"
+      value: "unix:///run/user/1000/buildkit/buildkitd.sock"
+    image: "docker.io/moby/buildkit:v0.34.0-rootless@sha256:65eca3c01cd1180c8f64565c4e3c5983af5145818b0e6fa863385d099eb73855"
+    name: "buildkit"
+    resources:
+      limits:
+        cpu: "2"
+        memory: "1536Mi"
+      requests:
+        cpu: "500m"
+        memory: "256Mi"
+    securityContext:
+      appArmorProfile:
+        type: "Unconfined"
+      runAsGroup: 1000
+      runAsUser: 1000
+      seccompProfile:
+        type: "Unconfined"
+    volumeMounts:
+    - mountPath: "/home/user/.local/share/buildkit"
+      name: "buildkitd-state"
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+    workingDir: "/home/jenkins/agent"
+  - command:
+    - "cat"
+    image: "docker.io/aquasec/trivy:0.75.0@sha256:af6acf9a6b85dfe389a1941505c0ce9efef52a4719635e1a962f022a3d855daa"
+    name: "trivy"
+    resources:
+      limits:
+        cpu: "1"
+        memory: "1Gi"
+      requests:
+        cpu: "200m"
+        memory: "256Mi"
+    tty: true
+    volumeMounts:
+    - mountPath: "/trivy-cache"
+      name: "trivy-cache"
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+    workingDir: "/home/jenkins/agent"
+  - command:
+    - "cat"
+    image: "quay.io/skopeo/stable:v1.22.3@sha256:22ea3c3baf639147b07fb9f2ea28a6308edf7909e919d91a5d296af0121d7ed9"
+    name: "skopeo"
+    resources:
+      limits:
+        cpu: "500m"
+        memory: "256Mi"
+      requests:
+        cpu: "100m"
+        memory: "64Mi"
+    tty: true
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+    workingDir: "/home/jenkins/agent"
+  - args:
+    - "********"
+    - "day6-ci-2-2-mlqzn-rbfv7-2wx3v"
+    env:
+    - name: "JENKINS_SECRET"
+      value: "********"
+    - name: "JENKINS_AGENT_NAME"
+      value: "day6-ci-2-2-mlqzn-rbfv7-2wx3v"
+    - name: "JENKINS_WEB_SOCKET"
+      value: "true"
+    - name: "REMOTING_OPTS"
+      value: "-noReconnectAfter 1d"
+    - name: "JENKINS_NAME"
+      value: "day6-ci-2-2-mlqzn-rbfv7-2wx3v"
+    - name: "JENKINS_AGENT_WORKDIR"
+      value: "/home/jenkins/agent"
+    - name: "JENKINS_URL"
+      value: "http://jenkins.platform.svc.cluster.local:8080/"
+    image: "jenkins/inbound-agent:3385.vf1123fb_515da_-1-jdk25"
+    imagePullPolicy: "IfNotPresent"
+    name: "jnlp"
+    resources:
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+      requests:
+        memory: "256Mi"
+        cpu: "200m"
+    tty: false
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+    workingDir: "/home/jenkins/agent"
+  nodeSelector:
+    workload: "platform"
+  restartPolicy: "Never"
+  serviceAccountName: "jenkins-agent"
+  volumes:
+  - emptyDir: {}
+    name: "buildkitd-state"
+  - emptyDir:
+      medium: ""
+    name: "workspace-volume"
+  - name: "trivy-cache"
+    persistentVolumeClaim:
+      claimName: "trivy-cache"
+
+Running on day6-ci-2-2-mlqzn-rbfv7-2wx3v in /home/jenkins/agent/workspace/day6-ci-2
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/hello-hworld/ota-project.git
+ > git init /home/jenkins/agent/workspace/day6-ci-2 # timeout=10
+Fetching upstream changes from https://github.com/hello-hworld/ota-project.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- https://github.com/hello-hworld/ota-project.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/hello-hworld/ota-project.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+Checking out Revision 283ab3143bec77b6b163b1a7b55ca43ea9997d66 (refs/remotes/origin/main)
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 283ab3143bec77b6b163b1a7b55ca43ea9997d66 # timeout=10
+Commit message: "DAY6 STEP15: CI image runs on cluster B by digest"
+ > git rev-list --no-walk 2f99fb73f694dc8bb3cf3de2deb9a4c814e3e4af # timeout=10
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ git rev-parse HEAD
+[Pipeline] sh
++ cut -c1-40
++ + tr -c A-Za-z0-9_.- -
+printf %s day6-ci-2
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] sh
++ mkdir -p out
++ chmod 777 out
++ tee out/build-info.txt
++ git config --get remote.origin.url
++ echo repo=https://github.com/hello-hworld/ota-project.git
++ echo commit=283ab3143bec77b6b163b1a7b55ca43ea9997d66
++ echo job=day6-ci-2 build=2
++ echo tag=283ab3143bec-day6-ci-2-2
+repo=https://github.com/hello-hworld/ota-project.git
+commit=283ab3143bec77b6b163b1a7b55ca43ea9997d66
+job=day6-ci-2 build=2
+tag=283ab3143bec-day6-ci-2-2
++ chmod 666 out/build-info.txt
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ date -u '+%FT%TZ'
++ echo 'test-start=2026-10-14T06:03:38Z'
++ python --version
++ rc=0
++ python -m unittest discover -s demo/tests -v
++ cat out/test.log
+test_forced_failure_switch (test_app.HealthTest.test_forced_failure_switch) ... ok
+test_health_body (test_app.HealthTest.test_health_body) ... ok
+test_healthz_endpoint (test_app.HealthTest.test_healthz_endpoint) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.591s
+
+OK
++ echo 'test-exit=0'
++ tee -a out/build-info.txt
+test-exit=0
++ exit 0
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ sleep 0
++ seq 1 30
++ buildctl debug workers
++ break
++ buildctl --version
++ tee out/buildkit-version.txt
+buildctl github.com/moby/buildkit v0.34.0 f5b59a1f2fb25a0cb7072c398cab9aed7835da4e
++ date -u '+%FT%TZ'
++ echo 'build-start=2026-10-14T06:03:41Z'
++ buildctl build --frontend dockerfile.v0 --local 'context=demo' --local 'dockerfile=demo' --opt 'build-arg:APP_VERSION=283ab3143bec-day6-ci-2-2' --output 'type=oci,dest=out/image.tar,name=192.168.56.21:32000/day6/demo:283ab3143bec-day6-ci-2-2'
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 487B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4
+#2 DONE 2.2s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 1.04kB done
+#4 DONE 0.0s
+
+#5 [1/3] FROM docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4
+#5 resolve docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4 0.0s done
+#5 DONE 0.1s
+
+#5 [1/3] FROM docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4
+#5 sha256:e203d50c86bd38d307585d33fd69e7e7fd91e7535b65af46aa1d663cfb80c0fa 0B / 248B 0.2s
+#5 sha256:e203d50c86bd38d307585d33fd69e7e7fd91e7535b65af46aa1d663cfb80c0fa 248B / 248B 0.2s done
+#5 sha256:bce3d672089f7ccc5125c3f8f95542fa3971138f323fb7f77e338a14396c85aa 0B / 416.28kB 0.3s
+#5 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 0B / 3.85MB 0.2s
+#5 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 0B / 16.36MB 0.2s
+#5 sha256:bce3d672089f7ccc5125c3f8f95542fa3971138f323fb7f77e338a14396c85aa 416.28kB / 416.28kB 0.8s
+#5 sha256:bce3d672089f7ccc5125c3f8f95542fa3971138f323fb7f77e338a14396c85aa 416.28kB / 416.28kB 0.8s done
+#5 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 1.05MB / 3.85MB 2.0s
+#5 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 1.05MB / 16.36MB 2.0s
+#5 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 2.10MB / 3.85MB 3.2s
+#5 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 2.10MB / 16.36MB 3.0s
+#5 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 3.15MB / 16.36MB 4.1s
+#5 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 3.15MB / 3.85MB 4.4s
+#5 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 3.85MB / 3.85MB 5.0s done
+#5 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 4.19MB / 16.36MB 5.1s
+#5 extracting sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5
+#5 extracting sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 0.1s done
+#5 extracting sha256:bce3d672089f7ccc5125c3f8f95542fa3971138f323fb7f77e338a14396c85aa 0.1s done
+#5 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 5.24MB / 16.36MB 5.7s
+#5 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 6.29MB / 16.36MB 6.3s
+#5 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 7.34MB / 16.36MB 6.9s
+#5 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 8.39MB / 16.36MB 7.4s
+#5 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 9.44MB / 16.36MB 7.8s
+#5 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 10.49MB / 16.36MB 8.4s
+#5 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 11.53MB / 16.36MB 9.0s
+#5 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 12.58MB / 16.36MB 9.5s
+#5 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 13.63MB / 16.36MB 9.9s
+#5 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 14.68MB / 16.36MB 10.4s
+#5 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 15.73MB / 16.36MB 10.8s
+#5 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 16.36MB / 16.36MB 11.1s done
+#5 extracting sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935
+#5 extracting sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 0.3s done
+#5 DONE 11.6s
+
+#5 [1/3] FROM docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4
+#5 extracting sha256:e203d50c86bd38d307585d33fd69e7e7fd91e7535b65af46aa1d663cfb80c0fa 0.0s done
+#5 DONE 11.6s
+
+#6 [2/3] WORKDIR /app
+#6 DONE 0.0s
+
+#7 [3/3] COPY app.py .
+#7 DONE 0.0s
+
+#8 exporting to oci image format
+#8 exporting layers 0.1s done
+#8 exporting manifest sha256:03c4189735876b3caeb74951088b14121ff87a9a1ffbc742c916edd7bcfc125d 0.0s done
+#8 exporting config sha256:d84e0eae949c3229248b7acde7a2326054a442ecbc2689ff96ffd4c1dbe94bc7 0.0s done
+#8 sending tarball 0.1s done
+#8 DONE 0.2s
++ date -u '+%FT%TZ'
++ echo 'build-end=2026-10-14T06:03:55Z'
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] sh
++ mkdir -p out/image-oci
++ tar -xf out/image.tar -C out/image-oci
++ grep -q application/vnd.oci.image.manifest.v1+json out/image-oci/index.json
++ grep -oE sha256:[0-9a-f]{64} out/image-oci/index.json
++ wc -l
++ test 1 -eq 1
++ grep -oE sha256:[0-9a-f]{64} out/image-oci/index.json
++ test -s out/manifest-digest.txt
++ sha256sum out/image.tar
++ tee out/image-tar.sha256
+50c2b2df0d9120b2f78dd36da962d1ad4e7de1c9aafb3dcf6b9ebf9482cef382  out/image.tar
++ tee -a out/build-info.txt
++ cat out/manifest-digest.txt
++ echo built-digest=sha256:03c4189735876b3caeb74951088b14121ff87a9a1ffbc742c916edd7bcfc125d
+built-digest=sha256:03c4189735876b3caeb74951088b14121ff87a9a1ffbc742c916edd7bcfc125d
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Scan DB)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ date -u '+%FT%TZ'
++ echo 'scandb-start=2026-10-14T06:03:56Z'
++ tee out/trivy-version.txt
++ trivy --version
+Version: 0.75.0
++ trivy image --download-db-only --cache-dir /trivy-cache --no-progress
++ trivy --cache-dir /trivy-cache version
++ tee -a out/trivy-version.txt
+Version: 0.75.0
+Vulnerability DB:
+  Version: 2
+  UpdatedAt: 2026-10-14 01:19:20.78149892 +0000 UTC
+  NextUpdate: 2026-10-15 01:19:20.78149865 +0000 UTC
+  DownloadedAt: 2026-10-14 05:30:16.376339655 +0000 UTC
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Scan)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ date -u '+%FT%TZ'
++ echo 'scan-start=2026-10-14T06:03:57Z'
++ CACHE=/trivy-cache
++ '[' false '=' true ]
++ rc=0
++ trivy image --input out/image-oci --cache-dir /trivy-cache --skip-db-update --no-progress --severity CRITICAL --ignore-unfixed --exit-code 1 --format json --output out/trivy-report.json
+2026-10-14T06:03:57Z	INFO	[vuln] Vulnerability scanning is enabled
+2026-10-14T06:03:57Z	INFO	[secret] Secret scanning is enabled
+2026-10-14T06:03:57Z	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2026-10-14T06:03:57Z	INFO	[secret] Please see https://trivy.dev/docs/v0.75/guide/scanner/secret#recommendation for faster secret detection
+2026-10-14T06:03:57Z	INFO	Detected OS	family="alpine" version="3.24.2"
+2026-10-14T06:03:57Z	INFO	[alpine] Detecting vulnerabilities...	os_version="3.24" repository="3.24" pkg_num=38
+2026-10-14T06:03:57Z	INFO	Number of language-specific files	num=1
+2026-10-14T06:03:57Z	INFO	[python-pkg] Detecting vulnerabilities...
+2026-10-14T06:03:57Z	WARN	Using severities from other vendors for some vulnerabilities. Read https://trivy.dev/docs/v0.75/guide/scanner/vulnerability#severity-selection for details.
++ '[' -s out/trivy-report.json ]
++ trivy convert --format table out/trivy-report.json
++ tee out/trivy-report.txt
+2026-10-14T06:03:57Z	WARN	[report] No enabled scanners found. Summary table will not be displayed.
++ echo 'scan-exit=0 severity=CRITICAL'
++ tee -a out/build-info.txt
+scan-exit=0 severity=CRITICAL
++ exit 0
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Push)
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ DEST=docker://192.168.56.21:32000/day6/demo:283ab3143bec-day6-ci-2-2
+++ date -u +%FT%TZ
++ echo push-start=2026-10-14T06:03:57Z
++ skopeo --version
++ tee out/skopeo-version.txt
+skopeo version 1.22.3 commit: 92397d5ba399784c6e2f9f229a4244b724743dba
++ skopeo copy --preserve-digests --dest-tls-verify=false oci-archive:out/image.tar docker://192.168.56.21:32000/day6/demo:283ab3143bec-day6-ci-2-2
+Getting image source signatures
+Copying blob sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5
+Copying blob sha256:bce3d672089f7ccc5125c3f8f95542fa3971138f323fb7f77e338a14396c85aa
+Copying blob sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935
+Copying blob sha256:e203d50c86bd38d307585d33fd69e7e7fd91e7535b65af46aa1d663cfb80c0fa
+Copying blob sha256:64583392300d10822666b961ef1e56feb9c01232cc592dabc1b0eb24db315a3f
+Copying blob sha256:088c12d91e123136b3e12293328ea341a801e8c3866995dc3a53e479b9857185
+Copying config sha256:d84e0eae949c3229248b7acde7a2326054a442ecbc2689ff96ffd4c1dbe94bc7
+Writing manifest to image destination
++ skopeo inspect --raw --tls-verify=false docker://192.168.56.21:32000/day6/demo:283ab3143bec-day6-ci-2-2
++ test -s out/pushed-manifest.json
++ skopeo manifest-digest out/pushed-manifest.json
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] sh
++ cat out/manifest-digest.txt
++ echo built : sha256:03c4189735876b3caeb74951088b14121ff87a9a1ffbc742c916edd7bcfc125d
+built : sha256:03c4189735876b3caeb74951088b14121ff87a9a1ffbc742c916edd7bcfc125d
++ cat out/pushed-digest.txt
++ echo pushed: sha256:03c4189735876b3caeb74951088b14121ff87a9a1ffbc742c916edd7bcfc125d
+pushed: sha256:03c4189735876b3caeb74951088b14121ff87a9a1ffbc742c916edd7bcfc125d
++ cat out/manifest-digest.txt
++ cat out/pushed-digest.txt
++ test sha256:03c4189735876b3caeb74951088b14121ff87a9a1ffbc742c916edd7bcfc125d = sha256:03c4189735876b3caeb74951088b14121ff87a9a1ffbc742c916edd7bcfc125d
++ tee out/image-ref.txt
++ cat out/pushed-digest.txt
++ echo 192.168.56.21:32000/day6/demo@sha256:03c4189735876b3caeb74951088b14121ff87a9a1ffbc742c916edd7bcfc125d
+192.168.56.21:32000/day6/demo@sha256:03c4189735876b3caeb74951088b14121ff87a9a1ffbc742c916edd7bcfc125d
++ cat out/pushed-digest.txt
++ echo pushed-digest=sha256:03c4189735876b3caeb74951088b14121ff87a9a1ffbc742c916edd7bcfc125d
++ date -u +%FT%TZ
++ echo push-end=2026-10-14T06:03:58Z
+[Pipeline] }
+[Pipeline] // stage
+Post stage
+[Pipeline] script
+[Pipeline] {
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ set -- jnlp
++ mkdir -p out
++ echo == jnlp
++ [ -r /sys/fs/cgroup/memory.peak ]
++ cat /sys/fs/cgroup/memory.peak
++ echo memory.peak_bytes=177430528
++ grep -E ^(usage_usec|nr_throttled|throttled_usec) /sys/fs/cgroup/cpu.stat
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ set -- python
++ mkdir -p out
++ echo '== python'
++ '[' -r /sys/fs/cgroup/memory.peak ]
++ cat /sys/fs/cgroup/memory.peak
++ echo 'memory.peak_bytes=25305088'
++ grep -E '^(usage_usec|nr_throttled|throttled_usec)' /sys/fs/cgroup/cpu.stat
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ set -- buildkit
++ mkdir -p out
++ echo '== buildkit'
++ '[' -r /sys/fs/cgroup/memory.peak ]
++ cat /sys/fs/cgroup/memory.peak
++ echo 'memory.peak_bytes=172195840'
++ grep -E '^(usage_usec|nr_throttled|throttled_usec)' /sys/fs/cgroup/cpu.stat
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ set -- trivy
++ mkdir -p out
++ echo '== trivy'
++ '[' -r /sys/fs/cgroup/memory.peak ]
++ cat /sys/fs/cgroup/memory.peak
++ echo 'memory.peak_bytes=34521088'
++ grep -E '^(usage_usec|nr_throttled|throttled_usec)' /sys/fs/cgroup/cpu.stat
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] container
+[Pipeline] {
+[Pipeline] sh
++ set -- skopeo
++ mkdir -p out
++ echo '== skopeo'
++ '[' -r /sys/fs/cgroup/memory.peak ']'
+++ cat /sys/fs/cgroup/memory.peak
++ echo memory.peak_bytes=32669696
++ grep -E '^(usage_usec|nr_throttled|throttled_usec)' /sys/fs/cgroup/cpu.stat
+[Pipeline] }
+[Pipeline] // container
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] archiveArtifacts
+Archiving artifacts
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // podTemplate
+[Pipeline] }
+Lock released on resource [Resource: ota-exec-slot]
+[Pipeline] // lock
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] End of Pipeline
+Finished: SUCCESS

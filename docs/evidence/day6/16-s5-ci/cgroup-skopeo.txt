@@ -1,0 +1,5 @@
+== skopeo
+memory.peak_bytes=33267712
+usage_usec 145074
+nr_throttled 1
+throttled_usec 14001

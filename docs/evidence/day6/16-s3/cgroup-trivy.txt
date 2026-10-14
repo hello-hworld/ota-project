@@ -1,0 +1,5 @@
+== trivy
+memory.peak_bytes=35627008
+usage_usec 502105
+nr_throttled 3
+throttled_usec 61268
