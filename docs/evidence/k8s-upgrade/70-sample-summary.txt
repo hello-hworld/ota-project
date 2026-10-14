@@ -1,0 +1,50 @@
+### upg-hops
+[20261014-201215-upg-hops-domstats.csv]
+  Host MemAvailable min=18106.0 MiB at 20:44:31Z; max=20054.9 MiB; samples=420
+  cp-a RSS max=2089.1 MiB at 20:19:27Z
+  cp-b RSS max=2708.0 MiB at 20:47:39Z
+  worker-a1 RSS max=3941.1 MiB at 20:47:39Z
+  worker-b1 RSS max=1865.8 MiB at 20:38:51Z
+  worker-b2 RSS max=1874.7 MiB at 20:45:17Z
+[20261014-201215-upg-hops-host-vmstat.txt]
+  samples=2132 CPU busy(100-id) max=42% at 2026-10-14 20:12:38; si/so 합계=0/0; gu max=27% at 2026-10-14 20:12:38
+[20261014-201215-upg-hops-worker-a1.txt]
+  samples=355 MemAvailable min=4491.8 MiB at 20:35:57; 마지막 시각 20:47:47
+[20261014-201237-upg-hops-b-cp-a.txt]
+  samples=352 MemAvailable min=585.4 MiB at 20:13:27; 마지막 시각 20:47:53; PSI mem some avg10 max=0.14 at 20:13:09
+[20261014-201237-upg-hops-b-cp-b.txt]
+  samples=352 MemAvailable min=1835.7 MiB at 20:34:14; 마지막 시각 20:47:53; PSI mem some avg10 max=0.0 at 20:47:53
+[20261014-201237-upg-hops-b-worker-b1.txt]
+  samples=352 MemAvailable min=6256.9 MiB at 20:18:58; 마지막 시각 20:47:53; PSI mem some avg10 max=0.0 at 20:47:53
+[20261014-201237-upg-hops-b-worker-b2.txt]
+  samples=352 MemAvailable min=6264.4 MiB at 20:19:28; 마지막 시각 20:47:53; PSI mem some avg10 max=0.0 at 20:47:53
+## upg-hops domstats 마지막 줄
+1792010864,cp-b,925906051000,2772948,18589860,0,-88767168
+### upg-hops2
+[20261014-210214-upg-hops2-domstats.csv]
+  Host MemAvailable min=6653.9 MiB at 23:19:28Z; max=18100.9 MiB; samples=1938
+  cp-a RSS max=2099.6 MiB at 21:50:52Z
+  cp-b RSS max=3121.4 MiB at 22:02:52Z
+  worker-a1 RSS max=6196.8 MiB at 22:15:02Z
+  worker-b1 RSS max=6845.1 MiB at 23:19:28Z
+  worker-b2 RSS max=6201.6 MiB at 23:22:45Z
+[20261014-210214-upg-hops2-host-vmstat.txt]
+  samples=9824 CPU busy(100-id) max=54% at 2026-10-14 21:23:35; si/so 합계=880592/4592044; gu max=37% at 2026-10-14 21:23:35
+[20261014-210214-upg-hops2-worker-a1.txt]
+  samples=1634 MemAvailable min=4141.0 MiB at 22:41:20; 마지막 시각 23:46:01
+[20261014-210226-upg-hops2-b-cp-a.txt]
+  samples=1631 MemAvailable min=401.3 MiB at 22:55:58; 마지막 시각 23:46:03; PSI mem some avg10 max=0.85 at 23:33:55
+[20261014-210226-upg-hops2-b-cp-b.txt]
+  samples=1631 MemAvailable min=1510.5 MiB at 23:14:57; 마지막 시각 23:46:04; PSI mem some avg10 max=0.44 at 23:38:51
+[20261014-210226-upg-hops2-b-worker-b1.txt]
+  samples=1631 MemAvailable min=5872.0 MiB at 22:30:28; 마지막 시각 23:46:02; PSI mem some avg10 max=0.0 at 23:46:02
+[20261014-210226-upg-hops2-b-worker-b2.txt]
+  samples=1631 MemAvailable min=5876.2 MiB at 22:04:17; 마지막 시각 23:46:02; PSI mem some avg10 max=0.0 at 23:46:02
+## upg-hops2 domstats 마지막 줄
+1792021561,cp-b,4719493850000,3009664,8344124,19824,-242442944
+## Host swap (STEP 5-1 시점)
+               total        used        free      shared  buff/cache   available
+Mem:           31810       23703         367          10        8218        8106
+Swap:           8191        3847        4344
+NAME      TYPE SIZE USED PRIO
+/swap.img file   8G 3.8G   -2
