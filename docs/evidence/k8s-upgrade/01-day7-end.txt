@@ -1,0 +1,12 @@
+2a0e069 K8S-UPG STEP0: make upgrade scripts executable
+03f86e2 k8s upgrade
+055de6f md
+d02929a docs
+33e785e docs
+?? docs/evidence/k8s-upgrade/00-timeline.txt
+?? docs/evidence/k8s-upgrade/01-day7-end.txt
+agent=0 staging=0
+values/staging.yaml:replicaCount: 0
+values/staging.yaml:  digest: sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+values/production.yaml:replicaCount: 2
+values/production.yaml:  digest: sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e

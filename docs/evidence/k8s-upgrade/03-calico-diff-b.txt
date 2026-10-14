@@ -1,0 +1,2 @@
+== calico-diff context=ota-b manifest=k8s/calico/calico-v3.28.2.yaml
+RESULT=SAME
