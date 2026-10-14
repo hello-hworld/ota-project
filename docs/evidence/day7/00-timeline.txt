@@ -25,3 +25,5 @@
 2026-10-14T14:34:13Z commit 2dcef9f DAY7 S3: production back to G (previous verified image)
 2026-10-14T14:34:51Z commit fb382f3 DAY7 S3: production re-promote C
 2026-10-14T14:35:25Z STEP8 end
+2026-10-14T14:40:19Z STEP9 sampling stopped
+2026-10-14T14:42:32Z P2 wait

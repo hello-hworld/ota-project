@@ -1,0 +1,17 @@
+[20261014-134744-day7-deploy-domstats.csv]
+  Host MemAvailable min=19630.5 MiB at 14:20:20Z; max=19803.2 MiB; samples=618
+  cp-a RSS max=2100.8 MiB at 13:48:19Z
+  cp-b RSS max=2906.2 MiB at 14:05:36Z
+  worker-a1 RSS max=6202.4 MiB at 14:22:47Z
+  worker-b1 RSS max=2004.6 MiB at 14:26:46Z
+  worker-b2 RSS max=2030.6 MiB at 13:57:13Z
+[20261014-134744-day7-deploy-host-vmstat.txt]
+  samples=3134 CPU busy(100-id) max=27% at 2026-10-14 14:05:32; si/so 합계=0/0; gu max=18% at 2026-10-14 14:34:58
+[20261014-134744-day7-deploy-worker-a1.txt]
+  samples=521 MemAvailable min=3938.9 MiB at 14:20:28; 마지막 시각 14:39:56
+[20261014-134750-day7-deploy-b-worker-b1.txt]
+  samples=521 MemAvailable min=6238.9 MiB at 14:09:45; 마지막 시각 14:40:04; PSI mem some avg10 max=0.0 at 14:40:04
+[20261014-134750-day7-deploy-b-worker-b2.txt]
+  samples=521 MemAvailable min=6240.8 MiB at 14:14:40; 마지막 시각 14:40:04; PSI mem some avg10 max=0.0 at 14:40:04
+## domstats 마지막 줄 (sudo 갱신이 끝까지 유지됐는지)
+1791988798,worker-a1,16653156615000,6350928,20201256,1186609,4614949568

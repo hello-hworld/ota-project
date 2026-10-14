@@ -1,0 +1,18 @@
+## applications
+NAME                        CLUSTER                         NAMESPACE   PROJECT         STATUS  HEALTH   SYNCPOLICY  CONDITIONS  REPO                                             PATH         TARGET
+argocd/ota-demo-production  https://192.168.56.30:6443      production  ota-production  Synced  Healthy  Manual      <none>      https://github.com/hello-hworld/ota-project.git  charts/demo  main
+argocd/ota-demo-staging     https://kubernetes.default.svc  staging     ota-staging     Synced  Healthy  Manual      <none>      https://github.com/hello-hworld/ota-project.git  charts/demo  main
+## clusters
+SERVER                                     NAME        VERSION   STATUS      MESSAGE  PROJECT
+https://192.168.56.30:6443 (1 namespaces)  ota-b       v1.30.14  Successful           
+https://kubernetes.default.svc             in-cluster  v1.30.14  Successful           
+## argocd pods
+NAME                                  READY   STATUS    RESTARTS   AGE   IP             NODE        NOMINATED NODE   READINESS GATES
+argocd-application-controller-0       1/1     Running   0          78m   10.10.238.50   worker-a1   <none>           <none>
+argocd-redis-7cc5595759-jnnmn         1/1     Running   0          78m   10.10.238.49   worker-a1   <none>           <none>
+argocd-repo-server-795ffc79fb-d6nsz   1/1     Running   0          78m   10.10.238.51   worker-a1   <none>           <none>
+argocd-server-67687bd47f-bzdtx        1/1     Running   0          78m   10.10.238.52   worker-a1   <none>           <none>
+## agent / staging
+ci=0 staging=0
+## restarts·OOM·eviction (A·B 전체)
+(위에 줄이 없으면 Eviction·OOM 없음)

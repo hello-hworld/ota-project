@@ -1,0 +1,22 @@
+== 192.168.56.21
+CONTAINER           NAME                     CPU %               MEM                 DISK                INODES
+3cb7e6c961484       server                   0.00                28.04MB             61.44kB             14
+5faa7e74f0a55       config-reload            0.03                76.06MB             32.77kB             9
+713de79f984ee       repo-server              0.00                25.12MB             65.54kB             14
+8682b8b7a92de       redis                    0.37                5.296MB             28.67kB             8
+8c4af49a3afb2       jenkins                  0.14                918.6MB             73.73kB             16
+98431f1de1abe       kube-proxy               0.04                65.8MB              65.54kB             24
+990640741ebe0       registry                 0.00                27.25MB             40.96kB             10
+a6dc7fd26d9c9       local-path-provisioner   0.00                52.19MB             45.06kB             14
+dcc9f76951491       application-controller   0.31                99.86MB             40.96kB             9
+e2f9fa010cba7       calico-node              1.78                158.6MB             340kB               103
+== 192.168.56.31
+CONTAINER           NAME                CPU %               MEM                 DISK                INODES
+22b1ee05d94a1       kube-proxy          0.01                65.81MB             65.54kB             24
+4c1fe592951a1       demo                0.43                11.58MB             8.192kB             3
+ac2159a3342a1       calico-node         1.94                156.3MB             340kB               103
+== 192.168.56.32
+CONTAINER           NAME                CPU %               MEM                 DISK                INODES
+58c57d7a78376       demo                0.03                11.58MB             8.192kB             3
+74f8d8e76de58       calico-node         1.75                156.6MB             340kB               103
+778f57d88d8e8       kube-proxy          0.00                67.04MB             65.54kB             24
