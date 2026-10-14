@@ -1,0 +1,12 @@
+## lint staging
+==> Linting charts/demo
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+## lint production
+==> Linting charts/demo
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+## 빈 digest는 렌더링을 거부해야 한다
+OK: 빈 digest 렌더링 거부

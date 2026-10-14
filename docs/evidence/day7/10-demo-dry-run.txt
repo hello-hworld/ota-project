@@ -1,0 +1,4 @@
+service/ota-demo created (server dry run)
+deployment.apps/ota-demo created (server dry run)
+service/ota-demo created (server dry run)
+deployment.apps/ota-demo created (server dry run)

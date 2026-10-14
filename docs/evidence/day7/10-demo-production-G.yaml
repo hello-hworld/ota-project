@@ -1,0 +1,114 @@
+---
+# Source: ota-demo/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: ota-demo
+  labels:
+    app.kubernetes.io/name: ota-demo
+    app.kubernetes.io/instance: ota-demo-production
+    app.kubernetes.io/part-of: ota
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: ota-demo-0.1.0
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: ota-demo
+    app.kubernetes.io/instance: ota-demo-production
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
+      protocol: TCP
+---
+# Source: ota-demo/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ota-demo
+  labels:
+    app.kubernetes.io/name: ota-demo
+    app.kubernetes.io/instance: ota-demo-production
+    app.kubernetes.io/part-of: ota
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: ota-demo-0.1.0
+spec:
+  replicas: 2
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 180
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ota-demo
+      app.kubernetes.io/instance: ota-demo-production
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: ota-demo
+        app.kubernetes.io/instance: ota-demo-production
+    spec:
+      automountServiceAccountToken: false
+      enableServiceLinks: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65534
+        runAsGroup: 65534
+        seccompProfile:
+          type: RuntimeDefault
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - worker-b1
+                - worker-b2
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: ota-demo
+              app.kubernetes.io/instance: ota-demo-production
+          matchLabelKeys:
+            - pod-template-hash
+      containers:
+        - name: demo
+          image: "192.168.56.21:32000/day6/demo@sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 3
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 3
+          resources:
+            limits:
+              cpu: 250m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
