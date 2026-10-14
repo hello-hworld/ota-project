@@ -1,0 +1,76 @@
+== 46-prod-C-sync  app=ota-demo-production  mode=normal  start=2026-10-14T14:10:11Z
+git: HEAD=6e77f208b41bea0b8f5d81379aa6e54bbac9cf82 origin/main=6e77f208b41bea0b8f5d81379aa6e54bbac9cf82
+git: last commit 6e77f20 DAY7 STEP7: promote C to production (staging-verified, same digest, no rebuild)
+-- refresh (2026-10-14T14:10:14Z)
+state: sync=OutOfSync health=Healthy compared-rev=6e77f208b41bea0b8f5d81379aa6e54bbac9cf82 op=Succeeded synced-rev=3980d98b71615e272cf4bc81c9da249c8fb56518 op-start=2026-10-14T14:05:32Z op-end=2026-10-14T14:05:32Z
+-- diff (2026-10-14T14:10:15Z)
+
+===== apps/Deployment production/ota-demo ======
+205c205
+<       - image: 192.168.56.21:32000/day6/demo@sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
+---
+>       - image: 192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+diff: 차이 있음 (rc=1, 정상)
+-- sync
+sync-start=2026-10-14T14:10:15Z
+TIMESTAMP                  GROUP        KIND   NAMESPACE                  NAME    STATUS    HEALTH        HOOK  MESSAGE
+2026-10-14T14:10:16+00:00            Service  production              ota-demo    Synced   Healthy              
+2026-10-14T14:10:16+00:00   apps  Deployment  production              ota-demo  OutOfSync  Healthy              
+2026-10-14T14:10:16+00:00   apps  Deployment  production              ota-demo  OutOfSync  Healthy              deployment.apps/ota-demo configured
+2026-10-14T14:10:16+00:00            Service  production              ota-demo    Synced   Healthy              service/ota-demo unchanged
+2026-10-14T14:10:16+00:00   apps  Deployment  production              ota-demo    Synced  Progressing              deployment.apps/ota-demo configured
+
+Name:               argocd/ota-demo-production
+Project:            ota-production
+Server:             https://192.168.56.30:6443
+Namespace:          production
+URL:                https://argocd.example.com/applications/ota-demo-production
+Source:
+- Repo:             https://github.com/hello-hworld/ota-project.git
+  Target:           main
+  Path:             charts/demo
+  Helm Values:      ../../values/production.yaml
+SyncWindow:         Sync Allowed
+Sync Policy:        Manual
+Sync Status:        Synced to main (6e77f20)
+Health Status:      Progressing
+
+Operation:          Sync
+Sync Revision:      6e77f208b41bea0b8f5d81379aa6e54bbac9cf82
+Phase:              Succeeded
+Start:              2026-10-14 14:10:16 +0000 UTC
+Finished:           2026-10-14 14:10:16 +0000 UTC
+Duration:           0s
+Message:            successfully synced (all tasks run)
+
+GROUP  KIND        NAMESPACE   NAME      STATUS  HEALTH       HOOK  MESSAGE
+       Service     production  ota-demo  Synced  Healthy            service/ota-demo unchanged
+apps   Deployment  production  ota-demo  Synced  Progressing        deployment.apps/ota-demo configured
+sync-end=2026-10-14T14:10:18Z (+3s)
+-- wait
+TIMESTAMP                  GROUP        KIND   NAMESPACE                  NAME    STATUS   HEALTH            HOOK  MESSAGE
+2026-10-14T14:10:18+00:00            Service  production              ota-demo    Synced  Healthy                  service/ota-demo unchanged
+2026-10-14T14:10:18+00:00   apps  Deployment  production              ota-demo    Synced  Progressing              deployment.apps/ota-demo configured
+
+Name:               argocd/ota-demo-production
+Project:            ota-production
+Server:             https://192.168.56.30:6443
+Namespace:          production
+URL:                https://argocd.example.com/applications/ota-demo-production
+Source:
+- Repo:             https://github.com/hello-hworld/ota-project.git
+  Target:           main
+  Path:             charts/demo
+  Helm Values:      ../../values/production.yaml
+SyncWindow:         Sync Allowed
+Sync Policy:        Manual
+Sync Status:        Synced to main (6e77f20)
+Health Status:      Healthy
+
+
+GROUP  KIND        NAMESPACE   NAME      STATUS  HEALTH   HOOK  MESSAGE
+       Service     production  ota-demo  Synced  Healthy        service/ota-demo unchanged
+apps   Deployment  production  ota-demo  Synced  Healthy        deployment.apps/ota-demo configured
+wait rc=0 end=2026-10-14T14:10:23Z (+8s)
+state: sync=Synced health=Healthy compared-rev=6e77f208b41bea0b8f5d81379aa6e54bbac9cf82 op=Succeeded synced-rev=6e77f208b41bea0b8f5d81379aa6e54bbac9cf82 op-start=2026-10-14T14:10:16Z op-end=2026-10-14T14:10:16Z
+RESULT=PASS

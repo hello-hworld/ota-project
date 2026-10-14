@@ -1,0 +1,8 @@
+승격 전 확인 2026-10-14T14:08:11Z — 후보 C sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+PASS CI Test 성공 (day6-ci #3)
+PASS CI Scan 성공
+PASS build digest = pushed digest = C
+PASS Staging에서 실제 C 실행·Health·HTTP·version
+PASS Staging Pod 0개
+PASS Agent Pod 0개
+PASS Production에 넣을 digest = Staging에서 검사한 C

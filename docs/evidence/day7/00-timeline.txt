@@ -9,3 +9,7 @@
 2026-10-14T13:56:24Z commit fe5a281 DAY7 STEP5: staging stop
 2026-10-14T14:03:49Z commit 3980d98 DAY7 STEP6: production G (verified in staging), replicas 2
 2026-10-14T14:04:32Z STEP6 production app
+2026-10-14T14:07:03Z STEP7 start
+2026-10-14T14:07:06Z commit ae5054b DAY7 STEP7: staging C candidate, replicas 1
+2026-10-14T14:07:18Z commit 8f0b00e DAY7 STEP7: staging stop
+2026-10-14T14:10:11Z commit 6e77f20 DAY7 STEP7: promote C to production (staging-verified, same digest, no rebuild)
