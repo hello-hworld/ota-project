@@ -1,0 +1,4 @@
+20s         Normal    Pulled              pod/ota-demo-7d864d779b-27vn7    Successfully pulled image "192.168.56.21:32000/day6/demo@sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478" in 118ms (118ms including waiting). Image size: 20634685 bytes.
+20s         Normal    Pulling             pod/ota-demo-7d864d779b-h5rg6    Pulling image "192.168.56.21:32000/day6/demo@sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478"
+20s         Normal    Pulling             pod/ota-demo-7d864d779b-27vn7    Pulling image "192.168.56.21:32000/day6/demo@sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478"
+20s         Normal    Pulled              pod/ota-demo-7d864d779b-h5rg6    Successfully pulled image "192.168.56.21:32000/day6/demo@sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478" in 125ms (125ms including waiting). Image size: 20634685 bytes.

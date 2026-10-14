@@ -1,0 +1,194 @@
+== 33-prod-G-sync  app=ota-demo-production  mode=normal  start=2026-10-14T14:05:28Z
+git: HEAD=3980d98b71615e272cf4bc81c9da249c8fb56518 origin/main=3980d98b71615e272cf4bc81c9da249c8fb56518
+git: last commit 3980d98 DAY7 STEP6: production G (verified in staging), replicas 2
+-- refresh (2026-10-14T14:05:31Z)
+state: sync=OutOfSync health=Missing compared-rev=3980d98b71615e272cf4bc81c9da249c8fb56518 op= synced-rev= op-start= op-end=
+-- diff (2026-10-14T14:05:31Z)
+
+===== /Service production/ota-demo ======
+0a1,23
+> apiVersion: v1
+> kind: Service
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/tracking-id: ota-demo-production:/Service:production/ota-demo
+>   labels:
+>     app.kubernetes.io/instance: ota-demo-production
+>     app.kubernetes.io/managed-by: Helm
+>     app.kubernetes.io/name: ota-demo
+>     app.kubernetes.io/part-of: ota
+>     helm.sh/chart: ota-demo-0.1.0
+>   name: ota-demo
+>   namespace: production
+> spec:
+>   ports:
+>   - name: http
+>     port: 8080
+>     protocol: TCP
+>     targetPort: http
+>   selector:
+>     app.kubernetes.io/instance: ota-demo-production
+>     app.kubernetes.io/name: ota-demo
+>   type: ClusterIP
+
+===== apps/Deployment production/ota-demo ======
+0a1,94
+> apiVersion: apps/v1
+> kind: Deployment
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/tracking-id: ota-demo-production:apps/Deployment:production/ota-demo
+>   labels:
+>     app.kubernetes.io/instance: ota-demo-production
+>     app.kubernetes.io/managed-by: Helm
+>     app.kubernetes.io/name: ota-demo
+>     app.kubernetes.io/part-of: ota
+>     helm.sh/chart: ota-demo-0.1.0
+>   name: ota-demo
+>   namespace: production
+> spec:
+>   progressDeadlineSeconds: 180
+>   replicas: 2
+>   revisionHistoryLimit: 5
+>   selector:
+>     matchLabels:
+>       app.kubernetes.io/instance: ota-demo-production
+>       app.kubernetes.io/name: ota-demo
+>   strategy:
+>     rollingUpdate:
+>       maxSurge: 1
+>       maxUnavailable: 0
+>     type: RollingUpdate
+>   template:
+>     metadata:
+>       labels:
+>         app.kubernetes.io/instance: ota-demo-production
+>         app.kubernetes.io/name: ota-demo
+>     spec:
+>       affinity:
+>         nodeAffinity:
+>           requiredDuringSchedulingIgnoredDuringExecution:
+>             nodeSelectorTerms:
+>             - matchExpressions:
+>               - key: kubernetes.io/hostname
+>                 operator: In
+>                 values:
+>                 - worker-b1
+>                 - worker-b2
+>       automountServiceAccountToken: false
+>       containers:
+>       - image: 192.168.56.21:32000/day6/demo@sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
+>         imagePullPolicy: IfNotPresent
+>         livenessProbe:
+>           failureThreshold: 3
+>           httpGet:
+>             path: /healthz
+>             port: http
+>           initialDelaySeconds: 5
+>           periodSeconds: 10
+>         name: demo
+>         ports:
+>         - containerPort: 8080
+>           name: http
+>           protocol: TCP
+>         readinessProbe:
+>           failureThreshold: 3
+>           httpGet:
+>             path: /healthz
+>             port: http
+>           periodSeconds: 3
+>         resources:
+>           limits:
+>             cpu: 250m
+>             memory: 128Mi
+>           requests:
+>             cpu: 50m
+>             memory: 64Mi
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>       enableServiceLinks: false
+>       securityContext:
+>         runAsGroup: 65534
+>         runAsNonRoot: true
+>         runAsUser: 65534
+>         seccompProfile:
+>           type: RuntimeDefault
+>       topologySpreadConstraints:
+>       - labelSelector:
+>           matchLabels:
+>             app.kubernetes.io/instance: ota-demo-production
+>             app.kubernetes.io/name: ota-demo
+>         matchLabelKeys:
+>         - pod-template-hash
+>         maxSkew: 1
+>         topologyKey: kubernetes.io/hostname
+>         whenUnsatisfiable: DoNotSchedule
+diff: 차이 있음 (rc=1, 정상)
+-- sync
+sync-start=2026-10-14T14:05:31Z
+TIMESTAMP                  GROUP        KIND   NAMESPACE                  NAME    STATUS    HEALTH        HOOK  MESSAGE
+2026-10-14T14:05:32+00:00   apps  Deployment  production              ota-demo  OutOfSync  Missing              
+2026-10-14T14:05:32+00:00            Service  production              ota-demo  OutOfSync  Missing              
+2026-10-14T14:05:32+00:00            Service  production              ota-demo  OutOfSync  Missing              service/ota-demo created
+2026-10-14T14:05:32+00:00   apps  Deployment  production              ota-demo  OutOfSync  Missing              deployment.apps/ota-demo created
+2026-10-14T14:05:32+00:00            Service  production              ota-demo    Synced  Healthy                  service/ota-demo created
+2026-10-14T14:05:32+00:00   apps  Deployment  production              ota-demo    Synced  Progressing              deployment.apps/ota-demo created
+
+Name:               argocd/ota-demo-production
+Project:            ota-production
+Server:             https://192.168.56.30:6443
+Namespace:          production
+URL:                https://argocd.example.com/applications/ota-demo-production
+Source:
+- Repo:             https://github.com/hello-hworld/ota-project.git
+  Target:           main
+  Path:             charts/demo
+  Helm Values:      ../../values/production.yaml
+SyncWindow:         Sync Allowed
+Sync Policy:        Manual
+Sync Status:        Synced to main (3980d98)
+Health Status:      Progressing
+
+Operation:          Sync
+Sync Revision:      3980d98b71615e272cf4bc81c9da249c8fb56518
+Phase:              Succeeded
+Start:              2026-10-14 14:05:32 +0000 UTC
+Finished:           2026-10-14 14:05:32 +0000 UTC
+Duration:           0s
+Message:            successfully synced (all tasks run)
+
+GROUP  KIND        NAMESPACE   NAME      STATUS  HEALTH       HOOK  MESSAGE
+       Service     production  ota-demo  Synced  Healthy            service/ota-demo created
+apps   Deployment  production  ota-demo  Synced  Progressing        deployment.apps/ota-demo created
+sync-end=2026-10-14T14:05:33Z (+2s)
+-- wait
+TIMESTAMP                  GROUP        KIND   NAMESPACE                  NAME    STATUS   HEALTH            HOOK  MESSAGE
+2026-10-14T14:05:33+00:00            Service  production              ota-demo    Synced  Healthy                  service/ota-demo created
+2026-10-14T14:05:33+00:00   apps  Deployment  production              ota-demo    Synced  Progressing              deployment.apps/ota-demo created
+
+Name:               argocd/ota-demo-production
+Project:            ota-production
+Server:             https://192.168.56.30:6443
+Namespace:          production
+URL:                https://argocd.example.com/applications/ota-demo-production
+Source:
+- Repo:             https://github.com/hello-hworld/ota-project.git
+  Target:           main
+  Path:             charts/demo
+  Helm Values:      ../../values/production.yaml
+SyncWindow:         Sync Allowed
+Sync Policy:        Manual
+Sync Status:        Synced to main (3980d98)
+Health Status:      Healthy
+
+
+GROUP  KIND        NAMESPACE   NAME      STATUS  HEALTH   HOOK  MESSAGE
+       Service     production  ota-demo  Synced  Healthy        service/ota-demo created
+apps   Deployment  production  ota-demo  Synced  Healthy        deployment.apps/ota-demo created
+wait rc=0 end=2026-10-14T14:05:35Z (+4s)
+state: sync=Synced health=Healthy compared-rev=3980d98b71615e272cf4bc81c9da249c8fb56518 op=Succeeded synced-rev=3980d98b71615e272cf4bc81c9da249c8fb56518 op-start=2026-10-14T14:05:32Z op-end=2026-10-14T14:05:32Z
+RESULT=PASS

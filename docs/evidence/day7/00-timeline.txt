@@ -7,3 +7,5 @@
 2026-10-14T13:48:31Z commit 5c2f890 DAY7 STEP5: staging stop
 2026-10-14T13:50:37Z revert 5883c09 (reverts 5c2f890)
 2026-10-14T13:56:24Z commit fe5a281 DAY7 STEP5: staging stop
+2026-10-14T14:03:49Z commit 3980d98 DAY7 STEP6: production G (verified in staging), replicas 2
+2026-10-14T14:04:32Z STEP6 production app

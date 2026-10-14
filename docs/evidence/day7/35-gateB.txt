@@ -1,0 +1,4 @@
+관문 B 2026-10-14T14:05:59Z
+/home/devops/ota-project/docs/evidence/day7/33-prod-G-sync.txt:RESULT=PASS
+/home/devops/ota-project/docs/evidence/day7/34-prod-G-check.txt:RESULT=PASS
+https://192.168.56.30:6443 (1 namespaces)  ota-b       v1.30.14  Successful           

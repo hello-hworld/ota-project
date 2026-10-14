@@ -1,0 +1,23 @@
+## B에 생성된 것
+NAME             SECRETS   AGE
+argocd-manager   0         34s
+kubernetes.io/service-account-token
+NAME                                                 CREATED AT
+role.rbac.authorization.k8s.io/argocd-manager-role   2026-10-14T13:58:14Z
+
+NAME                                                                ROLE                       AGE
+rolebinding.rbac.authorization.k8s.io/argocd-manager-role-binding   Role/argocd-manager-role   34s
+(argocd-manager ClusterRole·Binding 없음)
+## 권한 — 기대: yes yes no no no no
+create deployments.apps -n production    yes
+delete services -n production            yes
+create deployments.apps -n default       no
+get secrets -n kube-system               no
+list namespaces                          Warning: resource 'namespaces' is not namespace scoped
+
+no
+list nodes                               Warning: resource 'nodes' is not namespace scoped
+
+no
+## Argo CD에 저장된 B 등록 정보 (6-3b 교체 후)
+name=ota-b server=https://192.168.56.30:6443 namespaces=production clusterResources=false insecure=False caData=있음 bearerToken=있음 certData=없음 keyData=없음

@@ -1,0 +1,10 @@
+SERVER                          NAME        VERSION   STATUS      MESSAGE  PROJECT
+https://kubernetes.default.svc  in-cluster  v1.30.14  Successful           
+{"level":"info","msg":"ServiceAccount \"argocd-manager\" created in namespace \"kube-system\"","time":"2026-10-14T13:58:14Z"}
+{"level":"info","msg":"Role \"production/argocd-manager-role\" created","time":"2026-10-14T13:58:14Z"}
+{"level":"info","msg":"RoleBinding \"production/argocd-manager-role-binding\" created","time":"2026-10-14T13:58:14Z"}
+{"level":"info","msg":"Created bearer token secret \"argocd-manager-long-lived-token\" for ServiceAccount \"argocd-manager\"","time":"2026-10-14T13:58:14Z"}
+Cluster 'https://192.168.56.30:6443' added
+SERVER                                     NAME        VERSION   STATUS      MESSAGE                                                  PROJECT
+https://192.168.56.30:6443 (1 namespaces)  ota-b                 Unknown     Cluster has no applications and is not being monitored.  
+https://kubernetes.default.svc             in-cluster  v1.30.14  Successful                                                           
