@@ -1,0 +1,8 @@
+Image is up to date for sha256:28a8a19f9dd9e63eb5b00e62e385739e9727aacdf1275a037ab52e517c419ded
+pulled ecr-public.aws.com/docker/library/redis:8.6.4-alpine in 23s
+Image is up to date for sha256:0e2af35127f8c55a702c0eaaf8485c9153a73a621a88486e1572e7d90c69654f
+pulled quay.io/argoproj/argocd:v3.5.5 in 135s
+ecr-public.aws.com/docker/library/redis    8.6.4-alpine                   2cc044fc5a07c       28a8a19f9dd9e       34.5MB
+quay.io/argoproj/argocd                    v3.5.5                         13db7b10db232       0e2af35127f8c       222MB
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        58G  9.4G   48G  17% /

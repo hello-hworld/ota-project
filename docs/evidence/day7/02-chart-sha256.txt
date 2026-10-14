@@ -1,0 +1,6 @@
+index digest     : fa03517a9f8165e2f4b3b6755a7871af9dd6a36aeddc8ad948be5d45f56bf6b8
+index appVersion : v3.5.5
+index kubeVersion: >=1.25.0-0
+index created    : 2026-10-12T13:37:34.84740163Z
+index url      : https://github.com/argoproj/argo-helm/releases/download/argo-cd-10.10.3/argo-cd-10.10.3.tgz
+fa03517a9f8165e2f4b3b6755a7871af9dd6a36aeddc8ad948be5d45f56bf6b8  /home/devops/ota-project/helm/argocd/chart/argo-cd-10.10.3.tgz

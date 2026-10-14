@@ -1,0 +1,9 @@
+c3ddfa606fc3e89ab14f55bda6600b207c355b028f8eaabe69b817a4c4621aba  argocd-linux-amd64
+argocd-linux-amd64: OK
+argocd: v3.5.5+a5038b0
+  BuildDate: 2026-10-12T10:37:42Z
+  GitCommit: a5038b0e2bbac1715754380ae0084df8e3d5b48c
+  GitTreeState: clean
+  GoVersion: go1.26.9
+  Compiler: gc
+  Platform: linux/amd64

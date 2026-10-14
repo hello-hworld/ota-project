@@ -1,0 +1,20 @@
+kinds: {'ClusterRole': 2, 'ClusterRoleBinding': 2, 'ConfigMap': 7, 'CustomResourceDefinition': 3, 'Deployment': 4, 'Job': 1, 'NetworkPolicy': 4, 'Role': 5, 'RoleBinding': 5, 'Secret': 1, 'Service': 4, 'ServiceAccount': 5, 'StatefulSet': 1}
+Deployment  argocd-applicationset-controller   replicas=0 nodeSelector={'kubernetes.io/os': 'linux', 'workload': 'platform'}
+   cont applicationset-controller quay.io/argoproj/argocd:v3.5.5  req=None lim=None
+Deployment  argocd-repo-server                 replicas=1 nodeSelector={'kubernetes.io/os': 'linux', 'workload': 'platform'}
+   init copyutil                 quay.io/argoproj/argocd:v3.5.5  req={'cpu': '100m', 'memory': '256Mi'} lim={'cpu': '500m', 'memory': '768Mi'}
+   cont repo-server              quay.io/argoproj/argocd:v3.5.5  req={'cpu': '100m', 'memory': '256Mi'} lim={'cpu': '500m', 'memory': '768Mi'}
+Deployment  argocd-server                      replicas=1 nodeSelector={'kubernetes.io/os': 'linux', 'workload': 'platform'}
+   cont server                   quay.io/argoproj/argocd:v3.5.5  req={'cpu': '50m', 'memory': '128Mi'} lim={'cpu': '500m', 'memory': '512Mi'}
+Deployment  argocd-redis                       replicas=1 nodeSelector={'kubernetes.io/os': 'linux', 'workload': 'platform'}
+   cont redis                    ecr-public.aws.com/docker/library/redis:8.6.4-alpine  req={'cpu': '50m', 'memory': '128Mi'} lim={'cpu': '250m', 'memory': '256Mi'}
+StatefulSet argocd-application-controller      replicas=1 nodeSelector={'kubernetes.io/os': 'linux', 'workload': 'platform'}
+   cont application-controller   quay.io/argoproj/argocd:v3.5.5  req={'cpu': '100m', 'memory': '256Mi'} lim={'cpu': '500m', 'memory': '1Gi'}
+Job         argocd-redis-secret-init           replicas=- nodeSelector={'kubernetes.io/os': 'linux', 'workload': 'platform'}
+   cont secret-init              quay.io/argoproj/argocd:v3.5.5  req={'cpu': '50m', 'memory': '64Mi'} lim={'cpu': '250m', 'memory': '256Mi'}
+Secret argocd-secret 값 있는 키: 없음
+Service argocd-applicationset-controller ClusterIP [7000]
+Service argocd-repo-server ClusterIP [8081]
+Service argocd-server ClusterIP [80, 443]
+Service argocd-redis ClusterIP [6379]
+상시 Pod memory requests 합계: 768Mi  (init container는 Pod 단위로 max(init, 합계)라 더하지 않는다. Job 제외)
