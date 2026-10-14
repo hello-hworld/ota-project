@@ -43,3 +43,8 @@
 2026-10-14T21:59:45Z hop v1.32.13 cluster b ansible start
 2026-10-14T22:05:06Z hop v1.32.13 cluster b ansible end rc=0
 2026-10-14T22:05:39Z H2 end
+2026-10-14T22:08:51Z U3 start
+2026-10-14T22:08:56Z calico v3.31.7 cluster a apply start
+2026-10-14T22:11:55Z calico v3.31.7 cluster a rollout end
+2026-10-14T22:12:18Z calico v3.31.7 cluster b apply start
+2026-10-14T22:17:20Z calico v3.31.7 cluster b rollout end

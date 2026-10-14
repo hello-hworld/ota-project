@@ -1,0 +1,3 @@
+== ippools context=ota-b arg=- at=2026-10-14T22:12:18Z
+  ippool default-ipv4-ippool cidr=10.20.0.0/16 blockSize=26 ipipMode=Always vxlanMode=Never natOutgoing=True disabled=False nodeSelector=all()
+CHECK ippools PASS
