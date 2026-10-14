@@ -1,0 +1,78 @@
+pod/buildkit-check condition met
+ID				PLATFORMS
+t02nn8dnumptf3kn2srd9gxnx	linux/amd64,linux/amd64/v2,linux/amd64/v3,linux/386
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 174B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4
+#2 DONE 2.3s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/2] FROM docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4
+#4 resolve docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4 0.0s done
+#4 DONE 0.1s
+
+#4 [1/2] FROM docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4
+#4 sha256:e203d50c86bd38d307585d33fd69e7e7fd91e7535b65af46aa1d663cfb80c0fa 0B / 248B 0.2s
+#4 sha256:e203d50c86bd38d307585d33fd69e7e7fd91e7535b65af46aa1d663cfb80c0fa 248B / 248B 0.2s done
+#4 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 0B / 16.36MB 0.2s
+#4 sha256:bce3d672089f7ccc5125c3f8f95542fa3971138f323fb7f77e338a14396c85aa 0B / 416.28kB 0.2s
+#4 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 0B / 3.85MB 0.2s
+#4 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 1.05MB / 16.36MB 1.4s
+#4 sha256:bce3d672089f7ccc5125c3f8f95542fa3971138f323fb7f77e338a14396c85aa 416.28kB / 416.28kB 1.3s done
+#4 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 2.10MB / 16.36MB 1.8s
+#4 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 3.15MB / 16.36MB 2.4s
+#4 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 1.05MB / 3.85MB 2.7s
+#4 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 4.19MB / 16.36MB 3.0s
+#4 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 5.24MB / 16.36MB 3.8s
+#4 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 6.29MB / 16.36MB 4.4s
+#4 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 2.10MB / 3.85MB 4.2s
+#4 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 7.34MB / 16.36MB 5.1s
+#4 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 3.15MB / 3.85MB 5.3s
+#4 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 8.39MB / 16.36MB 5.7s
+#4 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 3.85MB / 3.85MB 5.9s done
+#4 extracting sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5
+#4 extracting sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 0.1s done
+#4 extracting sha256:bce3d672089f7ccc5125c3f8f95542fa3971138f323fb7f77e338a14396c85aa 0.1s done
+#4 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 9.44MB / 16.36MB 6.3s
+#4 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 10.49MB / 16.36MB 6.9s
+#4 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 11.53MB / 16.36MB 7.4s
+#4 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 12.58MB / 16.36MB 8.0s
+#4 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 13.63MB / 16.36MB 8.4s
+#4 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 14.68MB / 16.36MB 8.9s
+#4 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 15.73MB / 16.36MB 9.3s
+#4 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 16.36MB / 16.36MB 9.5s done
+#4 extracting sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935
+#4 extracting sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 0.3s done
+#4 DONE 10.0s
+
+#4 [1/2] FROM docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4
+#4 extracting sha256:e203d50c86bd38d307585d33fd69e7e7fd91e7535b65af46aa1d663cfb80c0fa 0.0s done
+#4 DONE 10.0s
+
+#5 [2/2] RUN echo run-step-ok
+#5 0.050 run-step-ok
+#5 DONE 0.1s
+
+#6 exporting to oci image format
+#6 exporting layers 0.1s done
+#6 exporting manifest sha256:d318ae829c4b6760b0ccae5d1cea3a31ab8f9a77481cbb303b3677d806d1b6fc 0.0s done
+#6 exporting config sha256:6ef0f8b03d81ad9d56537f210376d156049a1d144ebc0aa72c89a4ac4392dac1 0.0s done
+#6 sending tarball 0.1s done
+#6 DONE 0.2s
+-rw-rw-rw-    1 user     user      20643328 Oct 14 04:56 /tmp/t/out.tar
+time="2026-10-14T04:56:35Z" level=info msg="auto snapshotter: using overlayfs"
+time="2026-10-14T04:56:35Z" level=warning msg="NoProcessSandbox is enabled. Note that NoProcessSandbox allows build containers to kill (and potentially ptrace) an arbitrary process in the BuildKit host namespace. NoProcessSandbox should be enabled only when the BuildKit is running in a container as an unprivileged user."
+time="2026-10-14T04:56:35Z" level=warning msg="CDI setup error /var/run/cdi: failed to monitor for changes: no such file or directory"
+time="2026-10-14T04:56:35Z" level=warning msg="CDI setup error /etc/buildkit/cdi: failed to monitor for changes: no such file or directory"
+time="2026-10-14T04:56:35Z" level=warning msg="CDI setup error /etc/cdi: failed to monitor for changes: no such file or directory"
+time="2026-10-14T04:56:35Z" level=warning msg="failed check for fsverity support" error="enable fsverity failed: operation not supported" path=/home/user/.local/share/buildkit/runc-overlayfs/content
+time="2026-10-14T04:56:35Z" level=info msg="found worker \"t02nn8dnumptf3kn2srd9gxnx\", labels=map[org.mobyproject.buildkit.worker.executor:oci org.mobyproject.buildkit.worker.hostname:buildkit-check org.mobyproject.buildkit.worker.network:host org.mobyproject.buildkit.worker.oci.process-mode:no-sandbox org.mobyproject.buildkit.worker.selinux.enabled:false org.mobyproject.buildkit.worker.snapshotter:overlayfs], platforms=[linux/amd64 linux/amd64/v2 linux/amd64/v3 linux/386]"
+time="2026-10-14T04:56:35Z" level=warning msg="skipping containerd worker, as \"/run/containerd/containerd.sock\" does not exist"
+time="2026-10-14T04:56:35Z" level=info msg="found 1 workers, default=\"t02nn8dnumptf3kn2srd9gxnx\""
+time="2026-10-14T04:56:35Z" level=warning msg="currently, only the default worker can be used."
+time="2026-10-14T04:56:35Z" level=info msg="running server on /run/user/1000/buildkit/buildkitd.sock"

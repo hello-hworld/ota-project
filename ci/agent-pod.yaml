@@ -10,7 +10,7 @@ metadata:
 spec:
   containers:
     - name: python
-      image: docker.io/library/python:3.12-alpine@sha256:<PYTHON_DIGEST>
+      image: docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4
       command: ["cat"]
       tty: true
       resources:
@@ -18,7 +18,7 @@ spec:
         limits: {cpu: "500m", memory: "256Mi"}
     # 전환안 A·B는 STEP 13-3 참고. 기본은 rootless.
     - name: buildkit
-      image: docker.io/moby/buildkit:<BUILDKIT_TAG>-rootless@sha256:<BUILDKIT_ROOTLESS_DIGEST>
+      image: docker.io/moby/buildkit:v0.34.0-rootless@sha256:65eca3c01cd1180c8f64565c4e3c5983af5145818b0e6fa863385d099eb73855
       args: ["--oci-worker-no-process-sandbox"]
       env:
         - name: BUILDKIT_HOST
@@ -35,7 +35,7 @@ spec:
         requests: {cpu: "500m", memory: "256Mi"}
         limits: {cpu: "2", memory: "1536Mi"}
     - name: trivy
-      image: docker.io/aquasec/trivy:<TRIVY_TAG>@sha256:<TRIVY_DIGEST>
+      image: docker.io/aquasec/trivy:0.75.0@sha256:af6acf9a6b85dfe389a1941505c0ce9efef52a4719635e1a962f022a3d855daa
       command: ["cat"]
       tty: true
       volumeMounts:
@@ -45,7 +45,7 @@ spec:
         requests: {cpu: "200m", memory: "256Mi"}
         limits: {cpu: "1", memory: "1Gi"}
     - name: skopeo
-      image: quay.io/skopeo/stable:<SKOPEO_TAG>@sha256:<SKOPEO_DIGEST>
+      image: quay.io/skopeo/stable:v1.22.3@sha256:22ea3c3baf639147b07fb9f2ea28a6308edf7909e919d91a5d296af0121d7ed9
       command: ["cat"]
       tty: true
       resources:
