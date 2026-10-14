@@ -2,8 +2,8 @@
 
 | 구성요소 | 버전 | 출처 · 확인값 |
 | --- | --- | --- |
-| Kubernetes A/B | v1.30.14 | Argo CD 3.5 공식 테스트 범위(v1.33~v1.36) 밖 → 이 프로젝트의 실습 검증 조건 |
-| kubectl / Helm (ota-host) | v1.30.14 / v3.18.6 | docs/evidence/day6/00-tools.txt |
+| Kubernetes A/B | v1.36.5 | 2026-10 업그레이드 (이전 v1.30.14). Argo CD 3.5 공식 테스트 범위(v1.33~v1.36) 안 |
+| kubectl / Helm (ota-host) | v1.36.5 / v3.22.0 | docs/evidence/k8s-upgrade/62-kubectl-1.36.5.txt, 71-helm-3.22.0.txt |
 | Argo CD Helm Chart | argo-cd 10.10.3 (appVersion v3.5.5, kubeVersion `>=1.25.0-0`) | https://argoproj.github.io/argo-helm · 파일 sha256 = index.yaml digest `fa03517a9f8165e2f4b3b6755a7871af9dd6a36aeddc8ad948be5d45f56bf6b8` (docs/evidence/day7/02-chart-sha256.txt) |
 | Argo CD 서버 이미지 | quay.io/argoproj/argocd:v3.5.5 | 실제 digest: docs/evidence/day7/06-image-prepull.txt |
 | Redis (Argo CD 내부 캐시) | ecr-public.aws.com/docker/library/redis:8.6.4-alpine | Chart 기본값. 실제 digest: 06-image-prepull.txt |

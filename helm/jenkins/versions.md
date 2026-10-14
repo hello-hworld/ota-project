@@ -1,8 +1,8 @@
 # helm/jenkins/versions.md
 | 구성요소 | 버전 / 태그 | digest (STEP 8·12에서 기록) |
 | --- | --- | --- |
-| Kubernetes (A/B) | v1.30.14 | — |
-| kubectl / Helm (ota-host) | v1.30.14 / v3.18.x | — |
+| Kubernetes (A/B) | v1.36.5 | 2026-10 업그레이드 (이전 v1.30.14). docs/evidence/k8s-upgrade/ |
+| kubectl / Helm (ota-host) | v1.36.5 / v3.22.0 | docs/evidence/k8s-upgrade/62-kubectl-1.36.5.txt, 71-helm-3.22.0.txt |
 | Jenkins Chart | 5.9.68 (sha256: 07-chart-sha256.txt) | — |
 | Jenkins Controller | jenkins/jenkins:2.580.1-jdk25 | |
 | Config reload sidecar | kiwigrid/k8s-sidecar:2.11.2 | |

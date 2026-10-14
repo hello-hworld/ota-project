@@ -3,6 +3,9 @@
   hosts: k8s_nodes
   become: true
   gather_facts: true
+  vars:
+    # 새 Node를 만들 때 설치할 Kubernetes minor. 2026-10 업그레이드 후 1.36 (기존 Node의 버전 변경은 08-k8s-upgrade.yml)
+    k8s_minor: "1.36"
 
   tasks:
     - name: Disable swap immediately
@@ -83,7 +86,7 @@
 
     - name: Download Kubernetes repository signing key
       ansible.builtin.shell: |
-        curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key |
+        curl -fsSL https://pkgs.k8s.io/core:/stable:/v{{ k8s_minor }}/deb/Release.key |
         gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
       args:
         creates: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
@@ -93,7 +96,7 @@
         dest: /etc/apt/sources.list.d/kubernetes.list
         mode: "0644"
         content: |
-          deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /
+          deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v{{ k8s_minor }}/deb/ /
 
     - name: Install Kubernetes packages
       ansible.builtin.apt:
