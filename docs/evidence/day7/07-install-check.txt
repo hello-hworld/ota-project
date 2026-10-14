@@ -1,0 +1,79 @@
+## helm
+NAME: argocd
+LAST DEPLOYED: Wed Oct 14 13:21:58 2026
+NAMESPACE: argocd
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+In order to access the server UI you have the following options:
+## pods
+NAME                                  READY   STATUS    RESTARTS   AGE     IP             NODE        NOMINATED NODE   READINESS GATES
+argocd-application-controller-0       1/1     Running   0          2m35s   10.10.238.50   worker-a1   <none>           <none>
+argocd-redis-7cc5595759-jnnmn         1/1     Running   0          2m35s   10.10.238.49   worker-a1   <none>           <none>
+argocd-repo-server-795ffc79fb-d6nsz   1/1     Running   0          2m35s   10.10.238.51   worker-a1   <none>           <none>
+argocd-server-67687bd47f-bzdtx        1/1     Running   0          2m35s   10.10.238.52   worker-a1   <none>           <none>
+## restarts / 이전 종료 사유
+argocd-application-controller-0 node=worker-a1 restarts=0 last=
+argocd-redis-7cc5595759-jnnmn node=worker-a1 restarts=0 last=
+argocd-repo-server-795ffc79fb-d6nsz node=worker-a1 restarts=0 last=
+argocd-server-67687bd47f-bzdtx node=worker-a1 restarts=0 last=
+## workloads
+NAME                                               READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/argocd-applicationset-controller   0/0     0            0           2m35s
+deployment.apps/argocd-redis                       1/1     1            1           2m35s
+deployment.apps/argocd-repo-server                 1/1     1            1           2m35s
+deployment.apps/argocd-server                      1/1     1            1           2m35s
+
+NAME                                             READY   AGE
+statefulset.apps/argocd-application-controller   1/1     2m35s
+
+NAME                                       TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+service/argocd-applicationset-controller   ClusterIP   10.107.60.60     <none>        7000/TCP         2m35s
+service/argocd-redis                       ClusterIP   10.99.124.185    <none>        6379/TCP         2m35s
+service/argocd-repo-server                 ClusterIP   10.102.43.60     <none>        8081/TCP         2m35s
+service/argocd-server                      ClusterIP   10.108.115.184   <none>        80/TCP,443/TCP   2m35s
+
+NAME                                                            POD-SELECTOR                                                                             AGE
+networkpolicy.networking.k8s.io/argocd-application-controller   app.kubernetes.io/instance=argocd,app.kubernetes.io/name=argocd-application-controller   2m36s
+networkpolicy.networking.k8s.io/argocd-redis                    app.kubernetes.io/instance=argocd,app.kubernetes.io/name=argocd-redis                    2m36s
+networkpolicy.networking.k8s.io/argocd-repo-server              app.kubernetes.io/instance=argocd,app.kubernetes.io/name=argocd-repo-server              2m36s
+networkpolicy.networking.k8s.io/argocd-server                   app.kubernetes.io/instance=argocd,app.kubernetes.io/name=argocd-server                   2m36s
+## Redis Secret (초기화 hook Job의 결과. Job 자체는 TTL 60초로 사라진다)
+secret/argocd-redis
+## warning events
+LAST SEEN   TYPE      REASON        OBJECT                                    MESSAGE
+2m34s       Warning   FailedMount   pod/argocd-application-controller-0       MountVolume.SetUp failed for volume "argocd-cmd-params-cm" : failed to sync configmap cache: timed out waiting for the condition
+2m34s       Warning   FailedMount   pod/argocd-application-controller-0       MountVolume.SetUp failed for volume "argocd-repo-server-tls" : failed to sync secret cache: timed out waiting for the condition
+2m34s       Warning   FailedMount   pod/argocd-repo-server-795ffc79fb-d6nsz   MountVolume.SetUp failed for volume "argocd-repo-server-tls" : failed to sync secret cache: timed out waiting for the condition
+2m34s       Warning   FailedMount   pod/argocd-repo-server-795ffc79fb-d6nsz   MountVolume.SetUp failed for volume "ssh-known-hosts" : failed to sync configmap cache: timed out waiting for the condition
+2m34s       Warning   FailedMount   pod/argocd-repo-server-795ffc79fb-d6nsz   MountVolume.SetUp failed for volume "gpg-keys" : failed to sync configmap cache: timed out waiting for the condition
+2m34s       Warning   FailedMount   pod/argocd-server-67687bd47f-bzdtx        MountVolume.SetUp failed for volume "argocd-cmd-params-cm" : failed to sync configmap cache: timed out waiting for the condition
+2m34s       Warning   FailedMount   pod/argocd-server-67687bd47f-bzdtx        MountVolume.SetUp failed for volume "argocd-repo-server-tls" : failed to sync secret cache: timed out waiting for the condition
+2m34s       Warning   FailedMount   pod/argocd-server-67687bd47f-bzdtx        MountVolume.SetUp failed for volume "ssh-known-hosts" : failed to sync configmap cache: timed out waiting for the condition
+2m34s       Warning   FailedMount   pod/argocd-server-67687bd47f-bzdtx        MountVolume.SetUp failed for volume "argocd-dex-server-tls" : failed to sync secret cache: timed out waiting for the condition
+2m34s       Warning   FailedMount   pod/argocd-server-67687bd47f-bzdtx        MountVolume.SetUp failed for volume "styles" : failed to sync configmap cache: timed out waiting for the condition
+## CRD
+applications.argoproj.io                              2026-10-14T13:22:04Z
+applicationsets.argoproj.io                           2026-10-14T13:22:04Z
+appprojects.argoproj.io                               2026-10-14T13:22:04Z
+## worker-a1
+Conditions:
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----                 ------  -----------------                 ------------------                ------                       -------
+  NetworkUnavailable   False   Tue, 13 Oct 2026 07:57:20 +0000   Tue, 13 Oct 2026 07:57:20 +0000   CalicoIsUp                   Calico is running on this node
+  MemoryPressure       False   Wed, 14 Oct 2026 13:20:42 +0000   Tue, 13 Oct 2026 07:57:15 +0000   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Wed, 14 Oct 2026 13:20:42 +0000   Tue, 13 Oct 2026 07:57:15 +0000   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Wed, 14 Oct 2026 13:20:42 +0000   Tue, 13 Oct 2026 07:57:15 +0000   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Wed, 14 Oct 2026 13:20:42 +0000   Tue, 13 Oct 2026 07:57:15 +0000   KubeletReady                 kubelet is posting ready status
+Addresses:
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests      Limits
+  --------           --------      ------
+  cpu                910m (22%)    3350m (83%)
+  memory             1696Mi (29%)  4736Mi (81%)
+  ephemeral-storage  0 (0%)        0 (0%)
+  hugepages-1Gi      0 (0%)        0 (0%)
+  hugepages-2Mi      0 (0%)        0 (0%)
+Events:              <none>

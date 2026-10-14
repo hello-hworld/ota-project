@@ -1,0 +1,11 @@
+CONTAINER           NAME                     CPU %               MEM                 DISK                INODES
+3cb7e6c961484       server                   1.18                24.88MB             61.44kB             14
+5faa7e74f0a55       config-reload            0.02                76.06MB             32.77kB             9
+713de79f984ee       repo-server              1.19                20.23MB             65.54kB             14
+8682b8b7a92de       redis                    0.36                5.161MB             28.67kB             8
+8c4af49a3afb2       jenkins                  0.11                890.4MB             73.73kB             16
+98431f1de1abe       kube-proxy               0.09                65.76MB             65.54kB             24
+990640741ebe0       registry                 0.00                29.49MB             40.96kB             10
+a6dc7fd26d9c9       local-path-provisioner   0.12                52.74MB             45.06kB             14
+dcc9f76951491       application-controller   0.26                24.8MB              40.96kB             9
+e2f9fa010cba7       calico-node              1.66                158.5MB             340kB               103

@@ -1,0 +1,9 @@
+argocd: v3.5.5+a5038b0
+  BuildDate: 2026-10-12T10:37:42Z
+  GitCommit: a5038b0e2bbac1715754380ae0084df8e3d5b48c
+  GitTreeState: clean
+  GoVersion: go1.26.9
+  Compiler: gc
+  Platform: linux/amd64
+
+Error from server (NotFound): secrets "argocd-initial-admin-secret" not found
