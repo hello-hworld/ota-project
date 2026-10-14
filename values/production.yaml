@@ -1,0 +1,22 @@
+# values/production.yaml — Cluster B / production (worker-b1·worker-b2)
+# image.digest는 Staging 검증을 통과한 값만 넣는다. 비어 있으면 렌더링이 실패한다(STEP 6 전 오등록 방지)
+replicaCount: 2
+
+image:
+  digest: ""                      # STEP 6에서 Staging을 통과한 digest를 넣는다
+
+probes:
+  readiness:
+    path: /healthz
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values: ["worker-b1", "worker-b2"]
+
+topologySpread:
+  enabled: true                   # pod-template-hash 단위로 hostname 분산 → 새 ReplicaSet도 1대씩

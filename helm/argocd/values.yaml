@@ -1,0 +1,50 @@
+# helm/argocd/values.yaml — DAY7 Argo CD (Chart argo-cd 10.10.3 / Argo CD v3.5.5)
+# 기준: 고정 Chart의 기본 values (docs/evidence/day7/02-chart-default-values.yaml)와 대조해 바꾼 키만 적는다.
+# 주의: 이 Chart에는 applicationSet.enabled 키가 없다. ApplicationSet 컨트롤러는 replicas: 0으로 끈다.
+
+global:
+  nodeSelector:
+    workload: platform          # 추가. Chart 기본 kubernetes.io/os: linux 와 합쳐진다
+
+redis-ha:
+  enabled: false                # 기본값과 같음(명시)
+
+dex:
+  enabled: false                # 변경: SSO 미사용
+
+notifications:
+  enabled: false                # 변경: 오늘 미사용
+
+applicationSet:
+  replicas: 0                   # 변경: enabled 키가 없으므로 0으로 끈다 (Deployment·CRD는 남는다)
+
+controller:
+  replicas: 1
+  resources:
+    requests: {cpu: 100m, memory: 256Mi}
+    limits:   {cpu: 500m, memory: 1Gi}
+
+repoServer:
+  replicas: 1
+  resources:
+    requests: {cpu: 100m, memory: 256Mi}
+    limits:   {cpu: 500m, memory: 768Mi}
+
+server:
+  replicas: 1
+  service:
+    type: ClusterIP             # 기본값과 같음(명시). 접속은 ota-host localhost port-forward
+  resources:
+    requests: {cpu: 50m, memory: 128Mi}
+    limits:   {cpu: 500m, memory: 512Mi}
+
+redis:
+  enabled: true
+  resources:
+    requests: {cpu: 50m, memory: 128Mi}
+    limits:   {cpu: 250m, memory: 256Mi}
+
+redisSecretInit:
+  resources:
+    requests: {cpu: 50m, memory: 64Mi}
+    limits:   {cpu: 250m, memory: 256Mi}

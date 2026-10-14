@@ -1,0 +1,41 @@
+# charts/demo/values.yaml — Chart 기본값. 환경별 값은 values/staging.yaml, values/production.yaml에서만 바꾼다
+replicaCount: 0
+
+image:
+  repository: 192.168.56.21:32000/day6/demo
+  digest: ""                      # 필수. sha256:<64자리 hex>. 비어 있거나 형식이 틀리면 렌더링이 실패한다
+  pullPolicy: IfNotPresent        # digest 참조는 내용이 바뀌지 않으므로 캐시를 재사용한다
+
+containerPort: 8080
+
+service:
+  port: 8080
+
+probes:
+  readiness:
+    path: /healthz
+    periodSeconds: 3
+    failureThreshold: 3
+  liveness:
+    path: /healthz
+    initialDelaySeconds: 5
+    periodSeconds: 10
+    failureThreshold: 3
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 250m
+    memory: 128Mi
+
+progressDeadlineSeconds: 180
+
+nodeSelector: {}
+affinity: {}
+
+topologySpread:
+  enabled: false
+  maxSkew: 1
+  whenUnsatisfiable: DoNotSchedule

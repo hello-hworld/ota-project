@@ -1,0 +1,20 @@
+# gitops/projects/production.yaml — Production 관리 범위: 이 저장소 → Cluster B / production, Deployment·Service만
+# server 값은 STEP 6-1에서 kubeconfig의 ota-b 주소와 같은지 확인한다
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: ota-production
+  namespace: argocd
+spec:
+  description: DAY7 Production (Cluster B / production)
+  sourceRepos:
+    - https://github.com/hello-hworld/ota-project.git
+  destinations:
+    - server: https://192.168.56.30:6443
+      namespace: production
+  clusterResourceWhitelist: []
+  namespaceResourceWhitelist:
+    - group: apps
+      kind: Deployment
+    - group: ""
+      kind: Service

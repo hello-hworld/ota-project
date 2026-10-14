@@ -1,0 +1,18 @@
+# gitops/applications/staging.yaml — 수동 Sync (syncPolicy.automated 없음)
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ota-demo-staging
+  namespace: argocd
+spec:
+  project: ota-staging
+  source:
+    repoURL: https://github.com/hello-hworld/ota-project.git
+    targetRevision: main
+    path: charts/demo
+    helm:
+      valueFiles:
+        - ../../values/staging.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: staging

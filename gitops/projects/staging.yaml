@@ -1,0 +1,19 @@
+# gitops/projects/staging.yaml — Staging 관리 범위: 이 저장소 → Cluster A(in-cluster) / staging, Deployment·Service만
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: ota-staging
+  namespace: argocd
+spec:
+  description: DAY7 Staging (Cluster A / staging)
+  sourceRepos:
+    - https://github.com/hello-hworld/ota-project.git
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: staging
+  clusterResourceWhitelist: []
+  namespaceResourceWhitelist:
+    - group: apps
+      kind: Deployment
+    - group: ""
+      kind: Service

@@ -1,0 +1,5 @@
+apiVersion: v2
+name: ota-demo
+description: DAY7 GitOps 배포·승격·복귀 검증용 데모 HTTP 앱 (demo/ 이미지, DAY6 CI 산출물)
+type: application
+version: 0.1.0

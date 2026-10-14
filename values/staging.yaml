@@ -1,0 +1,13 @@
+# values/staging.yaml — Cluster A / staging (worker-a1)
+# 바꾸는 값: image.digest, replicaCount(검증 중 1, 평소 0), probes.readiness.path(STEP 8 실패 시나리오만)
+replicaCount: 0
+
+image:
+  digest: ""                      # STEP 5에서 검증할 digest를 넣는다
+
+probes:
+  readiness:
+    path: /healthz
+
+nodeSelector:
+  workload: platform

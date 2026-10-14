@@ -1,0 +1,18 @@
+# gitops/applications/production.yaml — 수동 Sync (syncPolicy.automated 없음). STEP 6에서 관문 A 통과 후에만 등록한다
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ota-demo-production
+  namespace: argocd
+spec:
+  project: ota-production
+  source:
+    repoURL: https://github.com/hello-hworld/ota-project.git
+    targetRevision: main
+    path: charts/demo
+    helm:
+      valueFiles:
+        - ../../values/production.yaml
+  destination:
+    server: https://192.168.56.30:6443
+    namespace: production
