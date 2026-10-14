@@ -3,7 +3,7 @@
 replicaCount: 2
 
 image:
-  digest: ""                      # STEP 6에서 Staging을 통과한 digest를 넣는다
+  digest: sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
 
 probes:
   readiness:
