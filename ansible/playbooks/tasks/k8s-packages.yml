@@ -1,0 +1,57 @@
+---
+# =====================================================================
+# tasks/k8s-packages.yml — 08-k8s-upgrade.yml이 include 한다. 직접 실행하지 않는다
+# 입력   : k8s_version(예 1.31.14), k8s_minor(예 1.31), k8s_pkgs(예 [kubeadm] 또는 [kubelet, kubectl])
+# 하는 일: apt 저장소를 v<minor>로 바꾸고(공식 'Changing The Kubernetes Package Repository'와 같다)
+#          apt-cache madison에서 <버전>-* 패키지를 찾아 hold 해제 → 설치 → hold
+# 실패   : 해당 버전 패키지가 저장소에 없거나 설치 후 버전이 다르면 멈춘다
+# =====================================================================
+- name: Point apt at Kubernetes v{{ k8s_minor }}
+  ansible.builtin.copy:
+    dest: /etc/apt/sources.list.d/kubernetes.list
+    mode: "0644"
+    content: |
+      deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v{{ k8s_minor }}/deb/ /
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    lock_timeout: 120
+
+- name: Find the {{ k8s_version }} package revision
+  ansible.builtin.shell: |
+    set -o pipefail
+    apt-cache madison {{ item }} | awk -v v="{{ k8s_version }}-" 'index($3, v) == 1 {print $3; exit}'
+  args:
+    executable: /bin/bash
+  loop: "{{ k8s_pkgs }}"
+  register: k8s_madison
+  changed_when: false
+  failed_when: k8s_madison.rc != 0 or k8s_madison.stdout == ''
+
+- name: Unhold {{ k8s_pkgs | join(', ') }}
+  ansible.builtin.dpkg_selections:
+    name: "{{ item }}"
+    selection: install
+  loop: "{{ k8s_pkgs }}"
+
+- name: Install {{ k8s_pkgs | join(', ') }} {{ k8s_version }}
+  ansible.builtin.apt:
+    name: "{{ k8s_madison.results | map(attribute='item') | zip(k8s_madison.results | map(attribute='stdout')) | map('join', '=') | list }}"
+    state: present
+    lock_timeout: 120
+
+- name: Hold {{ k8s_pkgs | join(', ') }}
+  ansible.builtin.dpkg_selections:
+    name: "{{ item }}"
+    selection: hold
+  loop: "{{ k8s_pkgs }}"
+
+- name: Verify installed package versions
+  ansible.builtin.command: dpkg-query -W -f=${Version} {{ item.item }}
+  loop: "{{ k8s_madison.results }}"
+  loop_control:
+    label: "{{ item.item }}={{ item.stdout }}"
+  register: k8s_installed
+  changed_when: false
+  failed_when: k8s_installed.stdout != item.stdout
