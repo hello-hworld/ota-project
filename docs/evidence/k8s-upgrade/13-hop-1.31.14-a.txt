@@ -1,0 +1,89 @@
+== k8s-hop cluster=a context=ota-a target=v1.31.14 start=2026-10-14T21:11:44Z
+-- 사전 관문
+kubectl client minor=31 OK
+API 서버 v1.30.14 → v1.31.14 (minor 30 → 31)
+== nodes context=ota-a arg=- at=2026-10-14T21:11:44Z
+  node cp-a ready=True unschedulable=False kubelet=v1.30.14 runtime=containerd://2.2.1 kernel=6.8.0-146-generic
+  node worker-a1 ready=True unschedulable=False kubelet=v1.30.14 runtime=containerd://2.2.1 kernel=6.8.0-146-generic
+CHECK nodes PASS
+== pods context=ota-a arg=- at=2026-10-14T21:11:45Z
+  pods 전체 18개, 문제 0개
+CHECK pods PASS
+Calico v3.29.7 (테스트 범위 1.29~1.32) OK
+== deprecated context=ota-a arg=31 at=2026-10-14T21:11:45Z
+  deprecated API 요청 기록 없음 (API 서버 시작 이후)
+CHECK deprecated PASS
+agent(ci)=0 staging=0
+cp-a disk=21% cgroup=cgroup2fs
+worker-a1 disk=19% cgroup=cgroup2fs
+사전 관문 통과 (2026-10-14T21:11:46Z)
+-- 변경 전 Node·제어부 이미지
+NAME        STATUS   ROLES           AGE     VERSION    INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+cp-a        Ready    control-plane   7d13h   v1.30.14   192.168.56.20   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+worker-a1   Ready    <none>          7d13h   v1.30.14   192.168.56.21   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
+NAME                                       NODE        IMAGE
+calico-kube-controllers-749d8f4b87-bqpt5   cp-a        docker.io/calico/kube-controllers:v3.29.7
+coredns-55cb58b774-p8lxm                   cp-a        registry.k8s.io/coredns/coredns:v1.11.3
+coredns-55cb58b774-tr2wb                   cp-a        registry.k8s.io/coredns/coredns:v1.11.3
+etcd-cp-a                                  cp-a        registry.k8s.io/etcd:3.5.15-0
+kube-apiserver-cp-a                        cp-a        registry.k8s.io/kube-apiserver:v1.30.14
+kube-controller-manager-cp-a               cp-a        registry.k8s.io/kube-controller-manager:v1.30.14
+kube-proxy-r7q2w                           worker-a1   registry.k8s.io/kube-proxy:v1.30.14
+kube-proxy-vbblx                           cp-a        registry.k8s.io/kube-proxy:v1.30.14
+kube-scheduler-cp-a                        cp-a        registry.k8s.io/kube-scheduler:v1.30.14
+-- Ansible 08-k8s-upgrade.yml (2026-10-14T21:11:46Z)
+
+PLAY [Check input] *************************************************************
+
+TASK [Validate cluster and version] ********************************************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+PLAY [Upgrade control plane] ***************************************************
+
+TASK [Read API server version] *************************************************
+ok: [cp-a]
+
+TASK [Decide what to do] *******************************************************
+ok: [cp-a]
+
+TASK [No minor skipping] *******************************************************
+ok: [cp-a] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [Read this node's kubelet version] ****************************************
+ok: [cp-a]
+
+TASK [Check cgroup v2 (kubelet 1.35+)] *****************************************
+skipping: [cp-a]
+
+TASK [Timestamp] ***************************************************************
+ok: [cp-a] => {
+    "msg": "cp-a control plane start 2026-10-14T21:11:47Z"
+}
+
+TASK [Install kubeadm 1.31.14] *************************************************
+included: /home/devops/ota-project/ansible/playbooks/tasks/k8s-packages.yml for cp-a
+
+TASK [Point apt at Kubernetes v1.31] *******************************************
+changed: [cp-a]
+
+TASK [Update apt cache] ********************************************************
+changed: [cp-a]
+
+TASK [Find the 1.31.14 package revision] ***************************************
+failed: [cp-a] (item=kubeadm) => {"ansible_loop_var": "item", "changed": false, "cmd": "set -o pipefail\napt-cache madison kubeadm | awk -v v=\"1.31.14-\" 'index($3, v) == 1 {print $3; exit}'\n", "delta": "0:00:00.020918", "end": "2026-10-14 21:11:59.488143", "failed_when_result": true, "item": "kubeadm", "msg": "non-zero return code", "rc": 141, "start": "2026-10-14 21:11:59.467225", "stderr": "", "stderr_lines": [], "stdout": "1.31.14-1.1", "stdout_lines": ["1.31.14-1.1"]}
+
+NO MORE HOSTS LEFT *************************************************************
+
+PLAY RECAP *********************************************************************
+cp-a                       : ok=8    changed=2    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+localhost                  : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+ansible rc=2 end=2026-10-14T21:11:59Z (+15s)
+STOP: Ansible 실패 (위 출력의 마지막 실패 작업부터 본다. cordon된 Node가 있는지 확인)
+RESULT=STOP
