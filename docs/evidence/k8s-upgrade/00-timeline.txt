@@ -81,3 +81,10 @@
 2026-10-15T00:00:25Z STEP6 gitops round trip
 2026-10-15T00:00:51Z commit 73ec1cd K8S-UPG STEP6: staging C up on 1.36.5
 2026-10-15T00:01:42Z commit 3dcc09a K8S-UPG STEP6: staging stop
+2026-10-15T00:14:18Z STEP7 restart
+2026-10-15T00:14:26Z vm stop start
+2026-10-15T00:18:04Z vm stop end
+2026-10-15T00:26:27Z vm start start
+2026-10-15T00:27:14Z vm start end (nodes ready)
+2026-10-15T00:31:09Z 92 1차 FAIL: ota-demo-production Synced·Progressing (재기동 직후, Argo CD 재계산 전). 나머지 CHECK 모두 PASS
+2026-10-15T00:32:09Z B 데모 Pod 2개 하나씩 재생성: VM 재기동으로 남은 restart 이력 정리 (Deployment·Git 변경 없음)
