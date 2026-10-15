@@ -66,3 +66,23 @@ Production은 worker-b1·b2만 대상으로 하고, hostname topology spread에
 
 컴포넌트 비용은 Guest MemAvailable, K8s requests/limits, 컨테이너 사용량(`crictl stats`)으로 판단한다.
 Host MemAvailable·QEMU PSS/RSS는 시간 경과와 KSM 재배치가 섞이므로 보조 지표로 쓴다.
+
+## D12. Kubernetes 1.30.14 → 1.36.5 제자리 업그레이드 (2026-10)
+
+### 판단
+1.30은 2025-07-15 지원 종료. DAY8 이후 구성요소(Metrics Server 0.8+, KEDA 2.18+, Argo Rollouts 공식 지원)가 1.30을 벗어난다.
+재구축 대신 제자리 업그레이드: kubeadm init/join이 코드에 없고, Jenkins Job·Registry 이미지가 PVC에 있다.
+
+### 방법
+kubeadm 공식 절차로 minor 하나씩 6단계(각 minor 마지막 patch), A → B. Calico는 3.28.2 → 3.32.2를 minor 하나씩,
+각 시점의 Kubernetes가 Calico 테스트 범위 안에 있도록 교차. 시작 전 복구 지점 RU.
+Node 패키지·Static Pod·Calico는 손으로 바꾸지 않고 `k8s-hop.sh`·`calico-upgrade.sh`(사전·사후 관문)로만 바꿨다.
+
+### 결과
+10개 단계 모두 PASS(H1은 스크립트 버그 수정 후 재실행). B 데모 서비스 요청 9,026건 중 실패 0.
+업그레이드 후 Argo CD·Staging 왕복·CI 1회·VM 재기동 모두 정상. 근거: `docs/baseline/k8s-upgrade.md`, `docs/evidence/k8s-upgrade/`.
+
+### 이후 규칙
+- 버전을 다시 밀리지 않게 minor 출시마다(약 4개월) 한 단계씩 올린다. 같은 스크립트로 한 단계 약 20분.
+- 새 Node는 `04-base-config.yml`의 `k8s_minor`(현재 1.36)로 설치한다.
+- 업그레이드 뒤 Control Plane 디스크(이미지·`/etc/kubernetes/tmp`)와 Host swap을 확인한다.

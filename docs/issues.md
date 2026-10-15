@@ -138,3 +138,45 @@ cp-a 컨테이너별 측정이 없어 확정하지 않았다.
 ### 상태
 
 관찰. 다음 측정부터 cp-a 컨테이너별 사용량을 함께 기록한다.
+
+## Issue — K8s 업그레이드 중 Host swap 증가
+
+### 증상
+
+업그레이드 연속 수집(`upg-hops2`)에서 Host swap 사용량이 3 MiB(21:30Z 이전) → 2,872 MiB(H5 끝) → 3,847 MiB(STEP 5-1)로 늘었다.
+swap-in 합계 약 860 MiB, swap-out 합계 약 4.4 GiB. Host MemAvailable 최저 6,654 MiB. DAY1~7의 모든 측정은 si/so 0이었다.
+
+### 원인 (추정)
+
+STEP 2 콜드 재기동 뒤 KSM이 거의 병합하지 않은 상태(절약량 음수)에서, 단계마다 이미지 Pull과 drain으로 게스트가 새 메모리를 건드려
+VM RSS가 할당 상한 근처까지 올라갔다(worker-b1 6,845, worker-a1·b2 약 6,200 MiB). 커널이 페이지 캐시 일부와 함께
+오래 쓰지 않은 VM 페이지를 swap으로 보냈다.
+
+### 조치
+
+B 데모 서비스 영향 없음(모든 단계 fail 0). VM 정지 상태에서 swap 82 MiB로 돌아오는 것을 확인했다(`90-host-mem-vms-stopped`).
+
+### 상태
+
+열림. DAY8 부하·Autoscaling 실험에서 Host swap(si/so)을 주 관찰 항목에 넣는다. 반복되면 VM 할당 합(25 GiB)·swappiness·KSM 설정을 검토한다.
+
+## Issue — K8s 업그레이드 후 Control Plane 디스크 증가
+
+### 증상
+
+cp-a 4.9G → 14G (18% → 50%), cp-b 4.8G → 14G (18% → 48%), 이미지 수 11 → 57·53. Worker도 이미지 7~19 → 31~44.
+`/etc/kubernetes/tmp`(kubeadm 업그레이드 백업) cp-a 2.3G, cp-b 2.2G.
+
+### 원인
+
+단계마다 제어부·kube-proxy·Calico·CoreDNS 새 이미지를 받았고 이전 이미지가 남았다. kubelet 이미지 GC는 디스크 85%부터 동작한다.
+kubeadm은 업그레이드마다 etcd 데이터와 manifest 백업을 `/etc/kubernetes/tmp`에 남긴다.
+
+### 조치
+
+지우지 않았다(되돌리기 근거 보존).
+
+### 상태
+
+열림. 정리 방법을 결정한다: 사용하지 않는 이미지 정리(`crictl rmi --prune`), `/etc/kubernetes/tmp`는 마지막 단계만 남기기.
+cp 디스크는 29G라 다음 업그레이드 전에 정리한다.
