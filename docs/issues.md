@@ -54,7 +54,8 @@ VM 5대 생성 후 `cp-a`만 일반 DHCP Pool의
 ```yaml
 when:
   - item.mac not in ota_net_xml.stdout
-  - item.ip not in ota_net_xml.stdout```
+  - item.ip not in ota_net_xml.stdout
+```
 
 (이 Issue의 나머지 원인·조치 기록은 원본에서 코드 블록이 닫히지 않은 채 끝나 있었다. DAY7 추가 시 블록만 닫았다.)
 
@@ -139,6 +140,8 @@ cp-a 컨테이너별 측정이 없어 확정하지 않았다.
 
 관찰. 다음 측정부터 cp-a 컨테이너별 사용량을 함께 기록한다.
 
+DAY8부터 기록(`docs/evidence/day8/03`·`51`·`59`): kube-apiserver 608 → 620 → 605MB. cp-a Guest MemAvailable P0 734 → P1 665 → P2 691 MiB, 설치·CI 구간 최저 645 MiB, PSI 0.0.
+
 ## Issue — K8s 업그레이드 중 Host swap 증가
 
 ### 증상
@@ -160,6 +163,8 @@ B 데모 서비스 영향 없음(모든 단계 fail 0). VM 정지 상태에서 s
 
 열림. DAY8 부하·Autoscaling 실험에서 Host swap(si/so)을 주 관찰 항목에 넣는다. 반복되면 VM 할당 합(25 GiB)·swappiness·KSM 설정을 검토한다.
 
+DAY8 관찰: 설치·CI 연속 수집에서 si 합계 16·8, so 0, Swap Used 65.5 MiB 그대로였다. 설치 중 worker-a1 QEMU RSS가 할당 상한(6 GiB) 근처까지 올랐지만, KSM 절약량이 5,477 MiB까지 늘어 있던 상태라 swap-out은 없었다.
+
 ## Issue — K8s 업그레이드 후 Control Plane 디스크 증가
 
 ### 증상
@@ -180,3 +185,146 @@ kubeadm은 업그레이드마다 etcd 데이터와 manifest 백업을 `/etc/kube
 
 열림. 정리 방법을 결정한다: 사용하지 않는 이미지 정리(`crictl rmi --prune`), `/etc/kubernetes/tmp`는 마지막 단계만 남기기.
 cp 디스크는 29G라 다음 업그레이드 전에 정리한다.
+
+DAY8 관찰: cp-a 50 → 51%, worker-a1 26 → 30%(관측 이미지·PV), worker-b2 12 → 13%.
+
+## Issue — DAY8 붙여넣은 명령에서 `$` 앞 공백이 사라짐
+
+### 증상
+
+STEP 3의 lint·template 반복문이 경로가 깨진 채 실행돼 `helm lint`가 한 번도 실행되지 않았다(`docs/evidence/day8/22-helm-lint.txt`).
+이미지 미리 받기는 5 Node 모두 `syntax error near unexpected token`으로 실패했다(`25-image-prepull.txt`). `01-state-before.txt`의 소제목도 `## nodesota-a`처럼 붙었다.
+
+### 원인
+
+붙여 넣은 명령에서 `$` 바로 앞의 공백이 사라졌다: `for i in $IMGS` → `for i in$IMGS`, `## lint $v` → `## lint$v`, `"... $PROM_CHART"` → 앞 단어와 붙음.
+복사한 화면이 `$…$` 사이를 수식으로 처리한 것으로 추정한다. 오류 없이 다른 값으로 실행되는 경우가 있어 결과만으로는 알아차리기 어렵다.
+
+### 조치
+
+렌더링은 따로 실행돼 `22-*-rendered.yaml`·렌더링 검토·서버 dry-run·실제 설치가 정상이었다. 이미지는 설치 중에 받았다(Grafana 약 196초).
+lint는 실행되지 않은 것으로 남긴다.
+
+### 상태
+
+열림. `helm lint` 3개를 다시 실행해 `22-helm-lint-r2`로 남긴다. 명령은 원본 텍스트(GitHub Raw, 편집기, `less`)에서 복사하고, 변수가 들어간 줄은 붙여 넣은 뒤 공백을 눈으로 확인한다.
+
+## Issue — DAY8 STEP1이 DAY7 증거 파일을 덮어씀
+
+### 증상
+
+커밋 `66f1a77`(DAY8 STEP1)이 `docs/evidence/day7/00-timeline.txt`에 `2026-10-15T03:00:06Z STEP1 start`를 더하고 `docs/evidence/day7/01-state-before.txt`를 DAY8 시작 상태로 덮어썼다.
+
+### 원인
+
+`EV`가 day7인 셸에서 1-1을 실행했다(`day8-session.env` 적용 전으로 추정). `mark`와 증거 경로의 기본값이 day7이다.
+
+### 조치
+
+DAY8 보고서 커밋과 함께 두 파일을 `66f1a77^` 내용으로 복구했다. 잘못 들어간 03:00Z 상태는 Git 이력(`66f1a77`)에 남아 있다.
+
+### 상태
+
+해결. 새 세션 첫 명령 전에 `echo "$EV"`로 증거 경로를 확인한다. 다음 세션 env 파일은 이전 세션 증거 디렉터리를 가리키면 멈추게 한다.
+
+## Issue — DAY8 GitHub 웹 업로드 스크립트의 실행 비트 없음
+
+### 증상
+
+STEP 2 1차에서 `./scripts/storage-test.sh`가 Permission denied로 실행되지 않았다.
+
+### 원인
+
+새 스크립트 4개(`storage-test.sh`, `chart-defaults.py`, `prom-check.py`, `grafana-check.py`)를 GitHub 웹으로 올려 Git 모드가 100644였다.
+
+### 조치
+
+`git update-index --chmod=+x`로 고쳐 커밋(`69015d3`)하고 STEP1·2를 다시 했다.
+
+### 상태
+
+해결. 웹으로 올린 뒤에는 `git ls-files -s scripts/`에서 실행 파일이 `100755`인지 확인한다.
+
+## Issue — DAY8 kube-state-metrics Target 2개로 prom-check FAIL
+
+### 증상
+
+`40`·`41`·`42` 1차가 `kube-state-metrics Target 2개 (기대 1)`로 FAIL. 다른 항목은 모두 정상이었다.
+
+### 원인
+
+KSM Service가 8080(객체 지표)·8081(KSM 자체 지표) 두 포트를 노출하고, `kubernetes-service-endpoints`의 endpointslice SD는 포트마다 Target을 만든다. 수집은 정상이었고 `prom-check.py`의 기대값이 틀렸다.
+
+### 조치
+
+`4c5d0cd`: `:8080` Target이 1개인지로 판정하고 Target 목록을 기록. `-r2` 3개 PASS.
+
+### 상태
+
+해결.
+
+## Issue — DAY8 worker-a1 limits 합이 allocatable을 넘음
+
+### 증상
+
+Prometheus·Grafana 설치 후 worker-a1 limits 합이 memory 6,176Mi(106%)·CPU 4,550m(113%)다. CI Agent가 붙으면 9,760Mi(168%)·9,050m(226%)다.
+
+### 원인
+
+limits는 예약이 아니고 스케줄은 requests(설치 후 39%, CI 중 55%)로 한다. 플랫폼·관측·CI가 모두 worker-a1 한 대에 있다.
+
+### 조치
+
+그대로 두고 실사용으로 판단했다. CI 중 worker-a1 Guest MemAvailable 최저 3,831 MiB, OOM·Eviction 없음.
+
+### 상태
+
+열림. 자원 예산·Quota/LimitRange 세션에서 다룬다.
+
+## Issue — DAY8 Grafana 실사용이 requests보다 큼
+
+### 증상
+
+Grafana 컨테이너 working set 208MB(약 199 MiB, `crictl`), requests 128Mi의 155%다(limit 384Mi의 52%).
+
+### 원인
+
+values의 예산이 실사용보다 작다. 나머지 관측 컴포넌트는 requests의 20% 안팎이다.
+
+### 상태
+
+열림. requests 조정 후보(실사용을 몇 번 더 잰 뒤 정한다).
+
+## Issue — DAY8 관측 구성의 권한·노출 (Chart 기본값)
+
+### 증상
+
+1. Prometheus 서버 ClusterRole에 클러스터 전체 `configmaps` get/list/watch가 있다.
+2. B Prometheus NodePort 30909로 lifecycle API(`/-/reload`, `/-/quit`)가 인증 없이 열린다.
+
+### 원인
+
+1. Chart 29.37.0 `templates/clusterrole.yaml`에 고정된 규칙이다(values로 뺄 수 없음). 오늘 수집 job 4개에는 필요 없다. 실행 문서의 권한 검토는 `nodes/proxy`·`secrets`만 봤다.
+2. Chart 기본 플래그 `--web.enable-lifecycle`(config reloader가 사용).
+
+### 조치
+
+기록만 했다. 2는 libvirt NAT 내부망이라 Host·VM만 닿는다.
+
+### 상태
+
+열림. 1은 직접 만든 ClusterRole + `server.useExistingClusterRoleName`으로 줄일지 결정한다. 2는 B를 내부망 밖에 열 일이 생기면 먼저 다룬다.
+
+## Issue — DAY8 CI trivy memory.peak가 limit에 닿음
+
+### 증상
+
+`day6-ci` #10에서 trivy 컨테이너 `memory.peak` 1,073,745,920 B = limit 1Gi + 4 KiB. DB 준비 69초. 검사는 성공했다.
+
+### 원인
+
+Trivy DB 갱신 다운로드(DownloadedAt 04:43:52Z). DAY6 run01(첫 다운로드)과 같은 형태이고, DB가 있던 #9(00:07Z)는 138.7 MiB였다.
+
+### 상태
+
+열림 (DAY6부터 조정 후보). trivy limit과 `memory.events` 기록을 함께 정한다.

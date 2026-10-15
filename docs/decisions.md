@@ -86,3 +86,33 @@ Node 패키지·Static Pod·Calico는 손으로 바꾸지 않고 `k8s-hop.sh`·`
 - 버전을 다시 밀리지 않게 minor 출시마다(약 4개월) 한 단계씩 올린다. 같은 스크립트로 한 단계 약 20분.
 - 새 Node는 `04-base-config.yml`의 `k8s_minor`(현재 1.36)로 설치한다.
 - 업그레이드 뒤 Control Plane 디스크(이미지·`/etc/kubernetes/tmp`)와 Host swap을 확인한다.
+
+## D13. kubelet 지표 수집의 TLS·권한 (DAY8)
+
+### 판단
+Prometheus Chart 29.37.0의 kubelet·cAdvisor 수집(`kubernetes-nodes`, `kubernetes-nodes-cadvisor`)은 kubelet(10250)에 직접 붙고
+서버 인증서 검증을 생략한다(`insecure_skip_verify: true`, Chart 기본값). kubeadm의 kubelet 서빙 인증서는 클러스터 CA 서명이 아니어서 검증을 켜면 실패한다.
+검증을 유지하는 대안인 API 서버 프록시(`/api/v1/nodes/<node>/proxy/metrics/...`)는 `nodes/proxy` get 권한이 필요하고,
+이 권한으로 kubelet WebSocket exec가 가능하다(Kubernetes 보안팀: 의도된 동작).
+
+### 결정
+Chart 기본값을 유지한다. 검증 생략 범위는 kubelet 2개 job, 권한은 `nodes/metrics`만, 경로는 libvirt NAT 내부망이다. `nodes/proxy`는 주지 않는다.
+DAY8 렌더링·설치에서 확인: Prometheus ClusterRole에 `nodes/proxy`·`secrets` 없음(`docs/evidence/day8/22-scrape-review.txt`), kubelet Target 5개 모두 up.
+
+### 이후
+kubelet 서빙 인증서를 클러스터 CA로 발급(`serverTLSBootstrap` + CSR 승인)한 뒤 검증을 켠다. 5 Node kubelet 설정 변경이라 별도 변경으로 잡는다.
+
+## D14. 관측 구성 (DAY8)
+
+Prometheus는 클러스터마다 하나(A: worker-a1, B: worker-b2), 각자 자기 클러스터만 수집한다. Grafana는 A에 하나이고 A·B를 별도 Data Source로 조회한다.
+B는 NodePort 30909 + `externalTrafficPolicy: Local`(worker-b2만 응답)로 실습 내부망에 연다. 보존 48h·3GB, 수집 30s, job 4개(`prometheus`, kubelet, cAdvisor, service-endpoints).
+설치·변경은 고정 Chart + values 파일(`helm/monitoring/`)로만 하고 Argo CD에 등록하지 않는다. Data Source·대시보드는 파일, 관리자 비밀번호는 Secret 참조.
+kube-state-metrics는 secrets를 수집하지 않는다(collectors 17개). Control Plane 별도 지표는 수집하지 않는다. 컴포넌트 비용 판단은 D11을 따른다.
+
+### 결과 (DAY8)
+Target A 11개·B 14개 모두 up, Grafana 서버가 두 Data Source 조회 성공, 설치 후 CI 1회 SUCCESS.
+상시 비용: memory requests A +656Mi·B +560Mi, 실사용(`crictl`) A 319MB·B 116MB, Guest MemAvailable worker-a1 −447 MiB·worker-b2 −152 MiB.
+근거: `docs/baseline/day8.md`, `docs/evidence/day8/`.
+
+### 열린 점
+Grafana 실사용이 requests보다 크다. Prometheus 서버 ClusterRole의 클러스터 전체 ConfigMap 조회, B NodePort의 lifecycle API 노출은 Chart 기본값으로 남아 있다(`docs/issues.md`).
