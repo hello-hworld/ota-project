@@ -1,0 +1,93 @@
+## git
+464a9bf5a2601853e7ab9200fa046bf6969e64aa
+ M docs/evidence/day7/00-timeline.txt
+ M docs/evidence/day7/01-state-before.txt
+?? docs/evidence/day8/00-timeline.txt
+?? docs/evidence/day8/01-state-before.txt
+?? docs/evidence/day8/03-crictl-stats-P0.txt
+?? docs/evidence/measure/20261015-030245-day8-P0.txt
+## tools
+Client Version: v1.36.5
+v3.22.0+g144ca65
+## nodesota-a
+NAME        STATUS   ROLES           AGE     VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION              CONTAINER-RUNTIME
+cp-a        Ready    control-plane   7d19h   v1.36.5   192.168.56.20   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic (amd64)   containerd://2.2.1
+worker-a1   Ready    <none>          7d19h   v1.36.5   192.168.56.21   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic (amd64)   containerd://2.2.1
+## not runningota-a
+(없음)
+## namespacesota-a
+NAME                 STATUS   AGE
+argocd               Active   18h
+ci                   Active   42h
+default              Active   7d19h
+kube-node-lease      Active   7d19h
+kube-public          Active   7d19h
+kube-system          Active   7d19h
+local-path-storage   Active   2d19h
+monitoring           Active   7d18h
+platform             Active   7d18h
+staging              Active   7d18h
+## sc / pvota-a
+NAME                                     PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+storageclass.storage.k8s.io/local-path   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  2d19h
+
+NAME                                                        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                   STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+persistentvolume/pvc-8db7520b-2c94-4079-8ec1-44208ae9c20e   2Gi        RWO            Delete           Bound    ci/trivy-cache          local-path     <unset>                          21h
+persistentvolume/pvc-b5adbe30-8b1c-48fd-95a5-ee5ae8b02686   10Gi       RWO            Delete           Bound    platform/registry-pvc   local-path     <unset>                          2d18h
+persistentvolume/pvc-cf98e752-e413-4b06-9ddf-5b52d46a3b9b   10Gi       RWO            Delete           Bound    platform/jenkins        local-path     <unset>                          42h
+## pvcota-a
+NAMESPACE   NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+ci          trivy-cache    Bound    pvc-8db7520b-2c94-4079-8ec1-44208ae9c20e   2Gi        RWO            local-path     <unset>                 23h
+platform    jenkins        Bound    pvc-cf98e752-e413-4b06-9ddf-5b52d46a3b9b   10Gi       RWO            local-path     <unset>                 42h
+platform    registry-pvc   Bound    pvc-b5adbe30-8b1c-48fd-95a5-ee5ae8b02686   10Gi       RWO            local-path     <unset>                 2d18h
+## helmota-a
+NAME   	NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART          	APP VERSION
+argocd 	argocd   	1       	2026-10-14 13:21:58.32048848 +0000 UTC 	deployed	argo-cd-10.10.3	v3.5.5     
+jenkins	platform 	5       	2026-10-14 03:15:23.355968586 +0000 UTC	deployed	jenkins-5.9.68 	2.580.1    
+## monitoring 내용ota-a
+(없음)
+## 이름 충돌 ClusterRoleota-a
+(없음)
+## 사용 중 NodePortota-a
+platform/registry 32000
+## nodesota-b
+NAME        STATUS   ROLES           AGE     VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION              CONTAINER-RUNTIME
+cp-b        Ready    control-plane   7d20h   v1.36.5   192.168.56.30   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic (amd64)   containerd://2.2.1
+worker-b1   Ready    <none>          7d20h   v1.36.5   192.168.56.31   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic (amd64)   containerd://2.2.1
+worker-b2   Ready    <none>          7d20h   v1.36.5   192.168.56.32   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic (amd64)   containerd://2.2.1
+## not runningota-b
+(없음)
+## namespacesota-b
+NAME              STATUS   AGE
+default           Active   7d20h
+kube-node-lease   Active   7d20h
+kube-public       Active   7d20h
+kube-system       Active   7d20h
+production        Active   13h
+## sc / pvota-b
+No resources found
+## pvcota-b
+No resources found
+## helmota-b
+NAME	NAMESPACE	REVISION	UPDATED	STATUS	CHART	APP VERSION
+## monitoring 내용ota-b
+No resources found in monitoring namespace.
+## 이름 충돌 ClusterRoleota-b
+(없음)
+## 사용 중 NodePortota-b
+## agent / staging
+agent=0 staging=0
+## Node: 기동 시각·디스크·9100 포트(node-exporter hostNetwork)
+-- 192.168.56.20 boot=2026-10-15 00:26:28 disk=50% port9100=0
+-- 192.168.56.21 boot=2026-10-15 00:26:53 disk=26% port9100=0
+-- 192.168.56.30 boot=2026-10-15 00:26:28 disk=48% port9100=0
+-- 192.168.56.31 boot=2026-10-15 00:26:54 disk=19% port9100=0
+-- 192.168.56.32 boot=2026-10-15 00:26:54 disk=12% port9100=0
+## ota-host 포트 13000·18080·19090 (port-forward용)
+0
+## Host swap
+               total        used        free      shared  buff/cache   available
+Mem:           31810       13187        6335          11       12768       18622
+Swap:           8191          65        8126
+NAME      TYPE SIZE  USED PRIO
+/swap.img file   8G 65.5M   -2

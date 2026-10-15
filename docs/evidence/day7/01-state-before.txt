@@ -1,74 +1,254 @@
 ## git
-6ae9dfeb7d722d168facdca16f1aade15fede58a
-?? docs/evidence/day7/00-timeline.txt
-?? docs/evidence/day7/01-state-before.txt
+464a9bf5a2601853e7ab9200fa046bf6969e64aa
+ M docs/evidence/day7/00-timeline.txt
+ M docs/evidence/day7/01-state-before.txt
 ## tools
-Client Version: v1.30.14
-v3.18.6+gb76a950
-argocd CLI 없음
-## nodes ota-a
-NAME        STATUS   ROLES           AGE   VERSION    INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
-cp-a        Ready    control-plane   7d    v1.30.14   192.168.56.20   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
-worker-a1   Ready    <none>          7d    v1.30.14   192.168.56.21   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
-## namespaces ota-a
+Client Version: v1.36.5
+v3.22.0+g144ca65
+## nodesota-a
+NAME        STATUS   ROLES           AGE     VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION              CONTAINER-RUNTIME
+cp-a        Ready    control-plane   7d19h   v1.36.5   192.168.56.20   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic (amd64)   containerd://2.2.1
+worker-a1   Ready    <none>          7d19h   v1.36.5   192.168.56.21   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic (amd64)   containerd://2.2.1
+## not runningota-a
+(없음)
+## namespacesota-a
 NAME                 STATUS   AGE
-ci                   Active   23h
-default              Active   7d
-kube-node-lease      Active   7d
-kube-public          Active   7d
-kube-system          Active   7d
-local-path-storage   Active   2d
-monitoring           Active   6d23h
-platform             Active   6d23h
-staging              Active   6d23h
-stagins              Active   2d
-## not running ota-a
+argocd               Active   18h
+ci                   Active   42h
+default              Active   7d19h
+kube-node-lease      Active   7d19h
+kube-public          Active   7d19h
+kube-system          Active   7d19h
+local-path-storage   Active   2d19h
+monitoring           Active   7d18h
+platform             Active   7d18h
+staging              Active   7d18h
+## sc / pvota-a
+NAME                                     PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+storageclass.storage.k8s.io/local-path   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  2d19h
+
+NAME                                                        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                   STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+persistentvolume/pvc-8db7520b-2c94-4079-8ec1-44208ae9c20e   2Gi        RWO            Delete           Bound    ci/trivy-cache          local-path     <unset>                          21h
+persistentvolume/pvc-b5adbe30-8b1c-48fd-95a5-ee5ae8b02686   10Gi       RWO            Delete           Bound    platform/registry-pvc   local-path     <unset>                          2d18h
+persistentvolume/pvc-cf98e752-e413-4b06-9ddf-5b52d46a3b9b   10Gi       RWO            Delete           Bound    platform/jenkins        local-path     <unset>                          42h
+## pvcota-a
+NAMESPACE   NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+ci          trivy-cache    Bound    pvc-8db7520b-2c94-4079-8ec1-44208ae9c20e   2Gi        RWO            local-path     <unset>                 23h
+platform    jenkins        Bound    pvc-cf98e752-e413-4b06-9ddf-5b52d46a3b9b   10Gi       RWO            local-path     <unset>                 42h
+platform    registry-pvc   Bound    pvc-b5adbe30-8b1c-48fd-95a5-ee5ae8b02686   10Gi       RWO            local-path     <unset>                 2d18h
+## helmota-a
+NAME   	NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART          	APP VERSION
+argocd 	argocd   	1       	2026-10-14 13:21:58.32048848 +0000 UTC 	deployed	argo-cd-10.10.3	v3.5.5     
+jenkins	platform 	5       	2026-10-14 03:15:23.355968586 +0000 UTC	deployed	jenkins-5.9.68 	2.580.1    
+## monitoring 내용ota-a
 (없음)
-## nodes ota-b
-NAME        STATUS   ROLES           AGE    VERSION    INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
-cp-b        Ready    control-plane   7d1h   v1.30.14   192.168.56.30   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
-worker-b1   Ready    <none>          7d1h   v1.30.14   192.168.56.31   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
-worker-b2   Ready    <none>          7d1h   v1.30.14   192.168.56.32   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic   containerd://2.2.1
-## namespaces ota-b
+## 이름 충돌 ClusterRoleota-a
+(없음)
+## 사용 중 NodePortota-a
+platform/registry 32000
+## nodesota-b
+NAME        STATUS   ROLES           AGE     VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION              CONTAINER-RUNTIME
+cp-b        Ready    control-plane   7d20h   v1.36.5   192.168.56.30   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic (amd64)   containerd://2.2.1
+worker-b1   Ready    <none>          7d20h   v1.36.5   192.168.56.31   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic (amd64)   containerd://2.2.1
+worker-b2   Ready    <none>          7d20h   v1.36.5   192.168.56.32   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic (amd64)   containerd://2.2.1
+## not runningota-b
+(없음)
+## namespacesota-b
 NAME              STATUS   AGE
-default           Active   7d1h
-kube-node-lease   Active   7d1h
-kube-public       Active   7d1h
-kube-system       Active   7d1h
-## not running ota-b
+default           Active   7d20h
+kube-node-lease   Active   7d20h
+kube-public       Active   7d20h
+kube-system       Active   7d20h
+production        Active   13h
+## sc / pvota-b
+No resources found
+## pvcota-b
+No resources found
+## helmota-b
+NAME	NAMESPACE	REVISION	UPDATED	STATUS	CHART	APP VERSION
+## monitoring 내용ota-b
+No resources found in monitoring namespace.
+## 이름 충돌 ClusterRoleota-b
 (없음)
-## A platform
-NAME                            READY   STATUS    RESTARTS      AGE    IP             NODE        NOMINATED NODE   READINESS GATES
-pod/jenkins-0                   2/2     Running   0             5h8m   10.10.238.33   worker-a1   <none>           <none>
-pod/registry-665db59f88-j79f8   1/1     Running   1 (24h ago)   30h    10.10.238.22   worker-a1   <none>           <none>
-
-NAME                                 STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE   VOLUMEMODE
-persistentvolumeclaim/jenkins        Bound    pvc-cf98e752-e413-4b06-9ddf-5b52d46a3b9b   10Gi       RWO            local-path     <unset>                 23h   Filesystem
-persistentvolumeclaim/registry-pvc   Bound    pvc-b5adbe30-8b1c-48fd-95a5-ee5ae8b02686   10Gi       RWO            local-path     <unset>                 47h   Filesystem
-## A ci (Agent 0개)
-NAME                                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
-persistentvolumeclaim/trivy-cache   Bound    pvc-8db7520b-2c94-4079-8ec1-44208ae9c20e   2Gi        RWO            local-path     <unset>                 4h13m
-## A argocd staging
-No resources found in argocd namespace.
-No resources found in staging namespace.
-## B production
-Error from server (NotFound): namespaces "production" not found
-## A helm releases
-NAME   	NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART         	APP VERSION
-jenkins	platform 	5       	2026-10-14 03:15:23.355968586 +0000 UTC	deployed	jenkins-5.9.68	2.580.1    
-## A argoproj CRD
-(없음)
-## registry
-{"name":"day6/demo","tags":["283ab3143bec-day6-ci-2-2","50615d6ab9d2-day6-ci-3","283ab3143bec-day6-ci-8","2f99fb73f694-day6-ci-2"]}
-
-HTTP/1.1 200 OK
-Docker-Content-Digest: sha256:2db15224ca3bc50e20cc3869a91978235d6a4f1a25d613260d0bc15d29ea0478
-HTTP/1.1 200 OK
-Docker-Content-Digest: sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
-## demo 이미지 캐시 (노드별 개수와 digest)
-== 192.168.56.21
-(없음)
-== 192.168.56.31
-192.168.56.21:32000/day6/demo      <none>              6068b90a242e7       ece50ea150c16       20.6MB
-== 192.168.56.32
-192.168.56.21:32000/day6/demo      <none>              6068b90a242e7       ece50ea150c16       20.6MB
+## 사용 중 NodePortota-b
+## agent / staging
+agent=0 staging=0
+## Node: 기동 시각·디스크·9100 포트(node-exporter hostNetwork)
+Command 'vssh' not found, did you mean:
+  command 'kssh' from snap kssh (0.1.0)
+  command 'bssh' from deb avahi-ui-utils (0.8-13ubuntu6.2)
+  command 'sssh' from deb guile-ssh (0.16.4-1)
+  command 'ssh' from deb openssh-client (1:9.6p1-3ubuntu13.16)
+  command 'cssh' from deb clusterssh (4.16-4)
+  command 'vcsh' from deb vcsh (1.20190621-5)
+  command 'zssh' from deb zssh (1.5c.debian.1-9)
+  command 'mssh' from deb mssh (2.2-5.1)
+  command 'vish' from deb vish (0.0.20130812-1build2)
+See 'snap info <snapname>' for additional versions.
+Command 'vssh' not found, did you mean:
+  command 'kssh' from snap kssh (0.1.0)
+  command 'mssh' from deb mssh (2.2-5.1)
+  command 'vcsh' from deb vcsh (1.20190621-5)
+  command 'vish' from deb vish (0.0.20130812-1build2)
+  command 'cssh' from deb clusterssh (4.16-4)
+  command 'ssh' from deb openssh-client (1:9.6p1-3ubuntu13.16)
+  command 'bssh' from deb avahi-ui-utils (0.8-13ubuntu6.2)
+  command 'sssh' from deb guile-ssh (0.16.4-1)
+  command 'zssh' from deb zssh (1.5c.debian.1-9)
+See 'snap info <snapname>' for additional versions.
+Command 'vssh' not found, did you mean:
+  command 'kssh' from snap kssh (0.1.0)
+  command 'bssh' from deb avahi-ui-utils (0.8-13ubuntu6.2)
+  command 'sssh' from deb guile-ssh (0.16.4-1)
+  command 'cssh' from deb clusterssh (4.16-4)
+  command 'mssh' from deb mssh (2.2-5.1)
+  command 'vcsh' from deb vcsh (1.20190621-5)
+  command 'vish' from deb vish (0.0.20130812-1build2)
+  command 'ssh' from deb openssh-client (1:9.6p1-3ubuntu13.16)
+  command 'zssh' from deb zssh (1.5c.debian.1-9)
+See 'snap info <snapname>' for additional versions.
+-- 192.168.56.20 boot= disk= port9100=
+Command 'vssh' not found, did you mean:
+  command 'kssh' from snap kssh (0.1.0)
+  command 'vcsh' from deb vcsh (1.20190621-5)
+  command 'bssh' from deb avahi-ui-utils (0.8-13ubuntu6.2)
+  command 'ssh' from deb openssh-client (1:9.6p1-3ubuntu13.16)
+  command 'mssh' from deb mssh (2.2-5.1)
+  command 'zssh' from deb zssh (1.5c.debian.1-9)
+  command 'vish' from deb vish (0.0.20130812-1build2)
+  command 'cssh' from deb clusterssh (4.16-4)
+  command 'sssh' from deb guile-ssh (0.16.4-1)
+See 'snap info <snapname>' for additional versions.
+Command 'vssh' not found, did you mean:
+  command 'kssh' from snap kssh (0.1.0)
+  command 'sssh' from deb guile-ssh (0.16.4-1)
+  command 'vish' from deb vish (0.0.20130812-1build2)
+  command 'mssh' from deb mssh (2.2-5.1)
+  command 'vcsh' from deb vcsh (1.20190621-5)
+  command 'cssh' from deb clusterssh (4.16-4)
+  command 'zssh' from deb zssh (1.5c.debian.1-9)
+  command 'bssh' from deb avahi-ui-utils (0.8-13ubuntu6.2)
+  command 'ssh' from deb openssh-client (1:9.6p1-3ubuntu13.16)
+See 'snap info <snapname>' for additional versions.
+Command 'vssh' not found, did you mean:
+  command 'kssh' from snap kssh (0.1.0)
+  command 'bssh' from deb avahi-ui-utils (0.8-13ubuntu6.2)
+  command 'vcsh' from deb vcsh (1.20190621-5)
+  command 'ssh' from deb openssh-client (1:9.6p1-3ubuntu13.16)
+  command 'vish' from deb vish (0.0.20130812-1build2)
+  command 'sssh' from deb guile-ssh (0.16.4-1)
+  command 'zssh' from deb zssh (1.5c.debian.1-9)
+  command 'mssh' from deb mssh (2.2-5.1)
+  command 'cssh' from deb clusterssh (4.16-4)
+See 'snap info <snapname>' for additional versions.
+-- 192.168.56.21 boot= disk= port9100=
+Command 'vssh' not found, did you mean:
+  command 'kssh' from snap kssh (0.1.0)
+  command 'vish' from deb vish (0.0.20130812-1build2)
+  command 'cssh' from deb clusterssh (4.16-4)
+  command 'ssh' from deb openssh-client (1:9.6p1-3ubuntu13.16)
+  command 'zssh' from deb zssh (1.5c.debian.1-9)
+  command 'mssh' from deb mssh (2.2-5.1)
+  command 'sssh' from deb guile-ssh (0.16.4-1)
+  command 'vcsh' from deb vcsh (1.20190621-5)
+  command 'bssh' from deb avahi-ui-utils (0.8-13ubuntu6.2)
+See 'snap info <snapname>' for additional versions.
+Command 'vssh' not found, did you mean:
+  command 'kssh' from snap kssh (0.1.0)
+  command 'ssh' from deb openssh-client (1:9.6p1-3ubuntu13.16)
+  command 'vish' from deb vish (0.0.20130812-1build2)
+  command 'mssh' from deb mssh (2.2-5.1)
+  command 'vcsh' from deb vcsh (1.20190621-5)
+  command 'sssh' from deb guile-ssh (0.16.4-1)
+  command 'cssh' from deb clusterssh (4.16-4)
+  command 'bssh' from deb avahi-ui-utils (0.8-13ubuntu6.2)
+  command 'zssh' from deb zssh (1.5c.debian.1-9)
+See 'snap info <snapname>' for additional versions.
+Command 'vssh' not found, did you mean:
+  command 'kssh' from snap kssh (0.1.0)
+  command 'bssh' from deb avahi-ui-utils (0.8-13ubuntu6.2)
+  command 'sssh' from deb guile-ssh (0.16.4-1)
+  command 'cssh' from deb clusterssh (4.16-4)
+  command 'zssh' from deb zssh (1.5c.debian.1-9)
+  command 'vcsh' from deb vcsh (1.20190621-5)
+  command 'vish' from deb vish (0.0.20130812-1build2)
+  command 'ssh' from deb openssh-client (1:9.6p1-3ubuntu13.16)
+  command 'mssh' from deb mssh (2.2-5.1)
+See 'snap info <snapname>' for additional versions.
+-- 192.168.56.30 boot= disk= port9100=
+Command 'vssh' not found, did you mean:
+  command 'kssh' from snap kssh (0.1.0)
+  command 'vish' from deb vish (0.0.20130812-1build2)
+  command 'sssh' from deb guile-ssh (0.16.4-1)
+  command 'vcsh' from deb vcsh (1.20190621-5)
+  command 'mssh' from deb mssh (2.2-5.1)
+  command 'bssh' from deb avahi-ui-utils (0.8-13ubuntu6.2)
+  command 'ssh' from deb openssh-client (1:9.6p1-3ubuntu13.16)
+  command 'zssh' from deb zssh (1.5c.debian.1-9)
+  command 'cssh' from deb clusterssh (4.16-4)
+See 'snap info <snapname>' for additional versions.
+Command 'vssh' not found, did you mean:
+  command 'kssh' from snap kssh (0.1.0)
+  command 'bssh' from deb avahi-ui-utils (0.8-13ubuntu6.2)
+  command 'zssh' from deb zssh (1.5c.debian.1-9)
+  command 'mssh' from deb mssh (2.2-5.1)
+  command 'ssh' from deb openssh-client (1:9.6p1-3ubuntu13.16)
+  command 'vish' from deb vish (0.0.20130812-1build2)
+  command 'vcsh' from deb vcsh (1.20190621-5)
+  command 'cssh' from deb clusterssh (4.16-4)
+  command 'sssh' from deb guile-ssh (0.16.4-1)
+See 'snap info <snapname>' for additional versions.
+Command 'vssh' not found, did you mean:
+  command 'kssh' from snap kssh (0.1.0)
+  command 'ssh' from deb openssh-client (1:9.6p1-3ubuntu13.16)
+  command 'vcsh' from deb vcsh (1.20190621-5)
+  command 'cssh' from deb clusterssh (4.16-4)
+  command 'zssh' from deb zssh (1.5c.debian.1-9)
+  command 'bssh' from deb avahi-ui-utils (0.8-13ubuntu6.2)
+  command 'mssh' from deb mssh (2.2-5.1)
+  command 'sssh' from deb guile-ssh (0.16.4-1)
+  command 'vish' from deb vish (0.0.20130812-1build2)
+See 'snap info <snapname>' for additional versions.
+-- 192.168.56.31 boot= disk= port9100=
+Command 'vssh' not found, did you mean:
+  command 'kssh' from snap kssh (0.1.0)
+  command 'mssh' from deb mssh (2.2-5.1)
+  command 'zssh' from deb zssh (1.5c.debian.1-9)
+  command 'vcsh' from deb vcsh (1.20190621-5)
+  command 'bssh' from deb avahi-ui-utils (0.8-13ubuntu6.2)
+  command 'vish' from deb vish (0.0.20130812-1build2)
+  command 'sssh' from deb guile-ssh (0.16.4-1)
+  command 'ssh' from deb openssh-client (1:9.6p1-3ubuntu13.16)
+  command 'cssh' from deb clusterssh (4.16-4)
+See 'snap info <snapname>' for additional versions.
+Command 'vssh' not found, did you mean:
+  command 'kssh' from snap kssh (0.1.0)
+  command 'zssh' from deb zssh (1.5c.debian.1-9)
+  command 'ssh' from deb openssh-client (1:9.6p1-3ubuntu13.16)
+  command 'bssh' from deb avahi-ui-utils (0.8-13ubuntu6.2)
+  command 'vcsh' from deb vcsh (1.20190621-5)
+  command 'sssh' from deb guile-ssh (0.16.4-1)
+  command 'vish' from deb vish (0.0.20130812-1build2)
+  command 'cssh' from deb clusterssh (4.16-4)
+  command 'mssh' from deb mssh (2.2-5.1)
+See 'snap info <snapname>' for additional versions.
+Command 'vssh' not found, did you mean:
+  command 'kssh' from snap kssh (0.1.0)
+  command 'zssh' from deb zssh (1.5c.debian.1-9)
+  command 'ssh' from deb openssh-client (1:9.6p1-3ubuntu13.16)
+  command 'cssh' from deb clusterssh (4.16-4)
+  command 'vcsh' from deb vcsh (1.20190621-5)
+  command 'sssh' from deb guile-ssh (0.16.4-1)
+  command 'mssh' from deb mssh (2.2-5.1)
+  command 'bssh' from deb avahi-ui-utils (0.8-13ubuntu6.2)
+  command 'vish' from deb vish (0.0.20130812-1build2)
+See 'snap info <snapname>' for additional versions.
+-- 192.168.56.32 boot= disk= port9100=
+## ota-host 포트 13000·18080·19090 (port-forward용)
+0
+## Host swap
+               total        used        free      shared  buff/cache   available
+Mem:           31810       13602        5927          11       12760       18207
+Swap:           8191          65        8126
+NAME      TYPE SIZE  USED PRIO
+/swap.img file   8G 65.5M   -2
