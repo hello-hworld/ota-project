@@ -1,44 +1,45 @@
 == 192.168.56.20
 CONTAINER           NAME                      CPU %               MEM                 DISK                INODES
-093730e812556       etcd                      2.63                69.26MB             20.48kB             8
-2259e4ced12b3       coredns                   0.16                13.07MB             36.86kB             11
-34c2024436a54       kube-scheduler            0.93                35.4MB              12.29kB             7
-50e3289378441       kube-proxy                0.00                27.71MB             65.54kB             24
-6247d670e427f       coredns                   0.14                49.05MB             36.86kB             11
-83c957808a233       calico-node               4.37                80.65MB             262.1kB             78
-8b420a40eb272       calico-kube-controllers   1.38                60.77MB             40.96kB             11
-f5e6374959ef6       kube-apiserver            4.90                604.5MB             49.15kB             14
-f94a9d7be9c14       kube-controller-manager   1.19                80.26MB             69.63kB             20
+093730e812556       etcd                      3.11                69.48MB             20.48kB             8
+2259e4ced12b3       coredns                   0.13                13.09MB             36.86kB             11
+34c2024436a54       kube-scheduler            1.27                35.43MB             12.29kB             7
+50e3289378441       kube-proxy                0.00                27.83MB             65.54kB             24
+6247d670e427f       coredns                   0.25                49.09MB             36.86kB             11
+83c957808a233       calico-node               1.15                80.67MB             262.1kB             78
+8b420a40eb272       calico-kube-controllers   1.42                61.36MB             40.96kB             11
+f5e6374959ef6       kube-apiserver            6.43                608.1MB             49.15kB             14
+f94a9d7be9c14       kube-controller-manager   0.99                80.83MB             69.63kB             20
 == 192.168.56.21
 CONTAINER           NAME                     CPU %               MEM                 DISK                INODES
-0b1c39e324538       server                   0.10                132.1MB             61.44kB             14
-0b973de16f68b       local-path-provisioner   0.00                51.82MB             45.06kB             14
-1bf876f0d3a24       kube-proxy               0.02                59.13MB             65.54kB             24
-46b6c91599bb2       calico-node              9.41                105.1MB             262.1kB             78
-65bbab0dd9723       redis                    0.34                30.5MB              28.67kB             8
-7431c774a1449       application-controller   0.44                119.6MB             40.96kB             9
-8185079aff7c9       jenkins                  0.28                467.5MB             73.73kB             16
-dcf5a10ce1961       registry                 0.43                25.33MB             40.96kB             10
-e2b1eaa9c1d17       config-reload            0.91                76.04MB             32.77kB             9
-f2ac7be9d84b5       repo-server              0.04                97.98MB             65.54kB             14
+0b1c39e324538       server                   0.16                132.4MB             61.44kB             14
+0b973de16f68b       local-path-provisioner   0.00                51.95MB             45.06kB             14
+1bf876f0d3a24       kube-proxy               0.00                59.14MB             65.54kB             24
+46b6c91599bb2       calico-node              1.37                105.5MB             262.1kB             78
+65bbab0dd9723       redis                    0.40                30.51MB             28.67kB             8
+7431c774a1449       application-controller   0.61                162.3MB             40.96kB             9
+8185079aff7c9       jenkins                  0.15                468.1MB             73.73kB             16
+dcf5a10ce1961       registry                 0.42                25.57MB             40.96kB             10
+e2b1eaa9c1d17       config-reload            0.02                76.04MB             32.77kB             9
+f2ac7be9d84b5       repo-server              0.01                100.3MB             65.54kB             14
 == 192.168.56.30
 CONTAINER           NAME                      CPU %               MEM                 DISK                INODES
-0852a49234255       etcd                      4.15                95.52MB             20.48kB             8
-272e3c4dd5148       kube-apiserver            6.57                453.9MB             49.15kB             14
-51b60f9aa4f48       kube-proxy                0.00                57.81MB             65.54kB             24
-71f9625e63a4c       kube-controller-manager   1.54                120.9MB             69.63kB             20
-9a16aa09f65a8       coredns                   0.18                69.17MB             36.86kB             11
-e5365cc3d5359       calico-node               1.46                102.2MB             262.1kB             78
-e8ec782167aaa       kube-scheduler            1.04                66.99MB             12.29kB             7
+0852a49234255       etcd                      2.99                96.31MB             20.48kB             8
+272e3c4dd5148       kube-apiserver            6.09                460.4MB             49.15kB             14
+51b60f9aa4f48       kube-proxy                0.00                57.8MB              65.54kB             24
+71f9625e63a4c       kube-controller-manager   1.53                121.2MB             69.63kB             20
+9a16aa09f65a8       coredns                   0.20                69.12MB             36.86kB             11
+e5365cc3d5359       calico-node               1.42                102.6MB             262.1kB             78
+e8ec782167aaa       kube-scheduler            1.22                67.02MB             12.29kB             7
 == 192.168.56.31
 CONTAINER           NAME                      CPU %               MEM                 DISK                INODES
-0ba36fecd2c82       calico-kube-controllers   0.05                105.2MB             40.96kB             11
-23b6ff54753ae       demo                      0.21                11.58MB             8.192kB             3
-43a982eafecc2       coredns                   0.35                69.74MB             36.86kB             11
-82e279b6b6465       kube-proxy                0.00                58.62MB             65.54kB             24
-a1d5e8d16124c       calico-node               1.59                104.2MB             262.1kB             78
+0ba36fecd2c82       calico-kube-controllers   0.00                105.3MB             40.96kB             11
+23b6ff54753ae       demo                      0.02                11.58MB             8.192kB             3
+43a982eafecc2       coredns                   0.30                69.77MB             36.86kB             11
+82e279b6b6465       kube-proxy                0.04                58.62MB             65.54kB             24
+a1d5e8d16124c       calico-node               1.56                105.1MB             262.1kB             78
 == 192.168.56.32
-CONTAINER           NAME                CPU %               MEM                 DISK                INODES
-6376a6d8d731c       kube-proxy          0.02                58.29MB             65.54kB             24
-69b575973b5b5       calico-node         2.72                105.1MB             262.1kB             78
-72b3a836b4176       demo                0.21                11.58MB             8.192kB             3
+CONTAINER           NAME                     CPU %               MEM                 DISK                INODES
+6376a6d8d731c       kube-proxy               0.05                58.31MB             65.54kB             24
+69b575973b5b5       calico-node              1.99                105MB               262.1kB             78
+72b3a836b4176       demo                     0.03                11.58MB             8.192kB             3
+ef7ef930bf3fc       local-path-provisioner   0.00                10.6MB              45.06kB             14

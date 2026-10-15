@@ -1,5 +1,5 @@
-== demo-check production expect=C digest=sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e version=50615d6ab9d2-day6-ci-3 at=2026-10-15T03:07:37Z
--- application ota-demo-production: sync=Synced health=Healthy compared-rev=464a9bf5a2601853e7ab9200fa046bf6969e64aa op=Succeeded synced-rev=fb382f3794de5be73c7155cf6a89baa1325d8150
+== demo-check production expect=C digest=sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e version=50615d6ab9d2-day6-ci-3 at=2026-10-15T03:26:22Z
+-- application ota-demo-production: sync=Synced health=Healthy compared-rev=69015d3266392dbbe1e96b5d21db7aad923945c1 op=Succeeded synced-rev=fb382f3794de5be73c7155cf6a89baa1325d8150
 -- deployment: replicas=2 ready=2 updated=2 available=2 readinessPath=/healthz conditions={'Progressing': 'True/NewReplicaSetAvailable', 'Available': 'True/MinimumReplicasAvailable'}
    image=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
 -- pods (NAME NODE PHASE READY RESTARTS IP / image / imageID)
