@@ -1,0 +1,22 @@
+agent=0 staging=0
+## ota-a
+NAME      	NAMESPACE 	REVISION	UPDATED                                	STATUS  	CHART             	APP VERSION
+argocd    	argocd    	1       	2026-10-14 13:21:58.32048848 +0000 UTC 	deployed	argo-cd-10.10.3   	v3.5.5     
+grafana   	monitoring	1       	2026-10-15 04:22:51.242924351 +0000 UTC	deployed	grafana-13.6.0    	13.2.4     
+jenkins   	platform  	5       	2026-10-14 03:15:23.355968586 +0000 UTC	deployed	jenkins-5.9.68    	2.580.1    
+prometheus	monitoring	1       	2026-10-15 04:12:18.534493395 +0000 UTC	deployed	prometheus-29.37.0	v3.15.0    
+## ota-b
+NAME      	NAMESPACE 	REVISION	UPDATED                                	STATUS  	CHART             	APP VERSION
+prometheus	monitoring	1       	2026-10-15 04:16:40.479912348 +0000 UTC	deployed	prometheus-29.37.0	v3.15.0    
+NAME                        READY   STATUS    RESTARTS       AGE     IP             NODE        NOMINATED NODE   READINESS GATES
+jenkins-0                   2/2     Running   2 (4h1m ago)   4h54m   10.10.238.31   worker-a1   <none>           <none>
+registry-665db59f88-5jmpp   1/1     Running   1 (4h1m ago)   4h54m   10.10.238.30   worker-a1   <none>           <none>
+NAME                                  READY   STATUS    RESTARTS       AGE     IP             NODE        NOMINATED NODE   READINESS GATES
+argocd-application-controller-0       1/1     Running   1 (4h1m ago)   4h54m   10.10.238.29   worker-a1   <none>           <none>
+argocd-redis-7cc5595759-79mnt         1/1     Running   1 (4h1m ago)   4h54m   10.10.238.11   worker-a1   <none>           <none>
+argocd-repo-server-795ffc79fb-pswxl   1/1     Running   1 (4h1m ago)   4h54m   10.10.238.24   worker-a1   <none>           <none>
+argocd-server-67687bd47f-jvz72        1/1     Running   1 (4h1m ago)   4h54m   10.10.238.19   worker-a1   <none>           <none>
+ota-demo-production Synced Healthy
+ota-demo-staging Synced Healthy
+{"name":"day6/demo","tags":["283ab3143bec-day6-ci-2-2","50615d6ab9d2-day6-ci-3","283ab3143bec-day6-ci-8","2f99fb73f694-day6-ci-2","3dcc09a88986-day6-ci-9"]}
+

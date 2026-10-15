@@ -1,0 +1,39 @@
+## promtool check config (ota-a, Pod 안 — SA 토큰 파일까지 확인)
+Checking /etc/config/prometheus.yml
+  SUCCESS: 4 rule files found
+ SUCCESS: /etc/config/prometheus.yml is valid prometheus config file syntax
+
+Checking /etc/config/recording_rules.yml
+  SUCCESS: 0 rules found
+
+Checking /etc/config/alerting_rules.yml
+  SUCCESS: 0 rules found
+
+Checking /etc/config/rules
+  SUCCESS: 0 rules found
+
+Checking /etc/config/alerts
+  SUCCESS: 0 rules found
+
+## promtool check config (ota-b, Pod 안 — SA 토큰 파일까지 확인)
+Checking /etc/config/prometheus.yml
+  SUCCESS: 4 rule files found
+ SUCCESS: /etc/config/prometheus.yml is valid prometheus config file syntax
+
+Checking /etc/config/recording_rules.yml
+  SUCCESS: 0 rules found
+
+Checking /etc/config/alerting_rules.yml
+  SUCCESS: 0 rules found
+
+Checking /etc/config/rules
+  SUCCESS: 0 rules found
+
+Checking /etc/config/alerts
+  SUCCESS: 0 rules found
+
+## B NodePort 30909: worker-b2만 응답해야 한다 (externalTrafficPolicy Local)
+192.168.56.30:30909/-/ready → 000
+192.168.56.31:30909/-/ready → 000
+192.168.56.32:30909/-/ready → 200
+worker-a1 Node → 192.168.56.32:30909 → 200

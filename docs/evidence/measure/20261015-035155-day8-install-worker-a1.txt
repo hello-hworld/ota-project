@@ -1,0 +1,3 @@
+time MemAvailable_MiB MemFree_MiB r b us sy id wa st
+03:51:56 4597.4 3225.7 0 0 1 1 99 0 0
+03:52:02 4610.3 3238.4 0 0 2 2 97 0 0
