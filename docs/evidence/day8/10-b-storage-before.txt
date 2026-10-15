@@ -1,14 +1,15 @@
 ## B storage 현재
-No resources found
-Error from server (NotFound): namespaces "local-path-storage" not found
+NAME                                     PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+storageclass.storage.k8s.io/local-path   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  16m
+NAME                 STATUS   AGE
+local-path-storage   Active   16m
 ## B Worker 디스크와 /opt/local-path-provisioner
 -- 192.168.56.31
 /dev/vda1        48G  8.8G   39G  19% /
 ls: cannot access '/opt/local-path-provisioner': No such file or directory
 -- 192.168.56.32
-/dev/vda1        77G  8.8G   68G  12% /
+/dev/vda1        77G  8.9G   68G  12% /
 ls: cannot access '/opt/local-path-provisioner': No such file or directory
-k8s/platform/local-path-b/local-path-storage.yaml: OK
 k8s/platform/local-path-b/local-path-storage.yaml: OK
 ## A local-path-config vs v0.0.37 manifest
   config.json: SAME

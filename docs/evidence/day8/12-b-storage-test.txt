@@ -1,0 +1,40 @@
+== storage-test context=ota-b node=worker-b2 mode=test start=2026-10-15T03:30:44Z
+-- 시작 조건
+NAME         PROVISIONER             RECLAIM   BINDING
+local-path   rancher.io/local-path   Delete    WaitForFirstConsumer
+deployment "local-path-provisioner" successfully rolled out
+NAME                                      READY   STATUS    RESTARTS   AGE   IP              NODE        NOMINATED NODE   READINESS GATES
+local-path-provisioner-54745b98cf-7cgls   1/1     Running   0          16m   10.20.127.166   worker-b2   <none>           <none>
+시험 Pod 이미지 = helperPod 이미지: docker.io/library/busybox
+-- PVC 생성 (2026-10-15T03:30:45Z)
+namespace/day8-storage-test created
+persistentvolumeclaim/t-data created
+소비 Pod 전 PVC: Pending (WaitForFirstConsumer면 Pending이 정상)
+-- Pod1 (nodeSelector worker-b2) (2026-10-15T03:30:48Z)
+pod/t-writer created
+pod/t-writer condition met
+NAME       READY   STATUS    RESTARTS   AGE   IP              NODE        NOMINATED NODE   READINESS GATES
+t-writer   1/1     Running   0          12s   10.20.127.168   worker-b2   <none>           <none>
+day8-20261015T033100Z-10055
+기록한 식별 문자열: day8-20261015T033100Z-10055
+-- PV
+NAME                                       CAP   RECLAIM   STATUS   CLAIM    SC
+pvc-a21658b7-3b28-458d-932c-df1a1acdd09a   1Gi   Delete    Bound    t-data   local-path
+nodeAffinity: kubernetes.io/hostname=["worker-b2"]
+실제 경로: /opt/local-path-provisioner/pvc-a21658b7-3b28-458d-932c-df1a1acdd09a_day8-storage-test_t-data
+-- worker-b2(192.168.56.32)의 실제 디렉터리
+drwxrwxrwx 2 root root 4096 Oct 15 03:31 /opt/local-path-provisioner/pvc-a21658b7-3b28-458d-932c-df1a1acdd09a_day8-storage-test_t-data
+day8-20261015T033100Z-10055
+/dev/vda1        77G  8.9G   68G  12% /
+-- Pod1만 삭제 (2026-10-15T03:31:01Z)
+pod "t-writer" deleted from day8-storage-test namespace
+Pod1 삭제 후 PVC=Bound PV=Bound
+-- Pod2 (Node 지정 없음 → PV NodeAffinity가 배치를 정해야 한다) (2026-10-15T03:31:04Z)
+pod/t-reader created
+pod/t-reader condition met
+NAME       READY   STATUS    RESTARTS   AGE   IP              NODE        NOMINATED NODE   READINESS GATES
+t-reader   1/1     Running   0          3s    10.20.127.169   worker-b2   <none>           <none>
+Pod2 node=worker-b2, 읽은 값: day8-20261015T033100Z-10055
+image digest: docker.io/library/busybox@sha256:fd7dc98638c8e305f4dc34e979f1c0fdfdcaeb0fbf8fcff77ae834b6da3d7e6e
+end=2026-10-15T03:31:08Z (+24s)
+RESULT=PASS

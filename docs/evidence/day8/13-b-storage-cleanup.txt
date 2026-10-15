@@ -1,0 +1,9 @@
+== storage-test context=ota-b node=worker-b2 mode=--cleanup start=2026-10-15T03:31:18Z
+PV=pvc-a21658b7-3b28-458d-932c-df1a1acdd09a DIR=/opt/local-path-provisioner/pvc-a21658b7-3b28-458d-932c-df1a1acdd09a_day8-storage-test_t-data
+pod "t-reader" deleted from day8-storage-test namespace
+persistentvolumeclaim "t-data" deleted from day8-storage-test namespace
+PV pvc-a21658b7-3b28-458d-932c-df1a1acdd09a 삭제됨 (reclaimPolicy Delete)
+Node 디렉터리 /opt/local-path-provisioner/pvc-a21658b7-3b28-458d-932c-df1a1acdd09a_day8-storage-test_t-data: 없음
+namespace "day8-storage-test" deleted
+end=2026-10-15T03:31:31Z (+13s)
+RESULT=PASS

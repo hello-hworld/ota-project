@@ -1,27 +1,25 @@
-namespace/local-path-storage created (server dry run)
-clusterrole.rbac.authorization.k8s.io/local-path-provisioner-role created (server dry run)
-clusterrolebinding.rbac.authorization.k8s.io/local-path-provisioner-bind created (server dry run)
-storageclass.storage.k8s.io/local-path created (server dry run)
-Error from server (NotFound): error when creating "k8s/platform/local-path-b/local-path-storage.yaml": namespaces "local-path-storage" not found
-Error from server (NotFound): error when creating "k8s/platform/local-path-b/local-path-storage.yaml": namespaces "local-path-storage" not found
-Error from server (NotFound): error when creating "k8s/platform/local-path-b/local-path-storage.yaml": namespaces "local-path-storage" not found
-Error from server (NotFound): error when creating "k8s/platform/local-path-b/local-path-storage.yaml": namespaces "local-path-storage" not found
-Error from server (NotFound): error when creating "k8s/platform/local-path-b/local-path-storage.yaml": namespaces "local-path-storage" not found
-2026-10-15T03:13:58Z STEP2 local-path B apply
-namespace/local-path-storage created
-serviceaccount/local-path-provisioner-service-account created
-role.rbac.authorization.k8s.io/local-path-provisioner-role created
-clusterrole.rbac.authorization.k8s.io/local-path-provisioner-role created
-rolebinding.rbac.authorization.k8s.io/local-path-provisioner-bind created
-clusterrolebinding.rbac.authorization.k8s.io/local-path-provisioner-bind created
-deployment.apps/local-path-provisioner created
-storageclass.storage.k8s.io/local-path created
-configmap/local-path-config created
-Waiting for deployment "local-path-provisioner" rollout to finish: 0 out of 1 new replicas have been updated...
-Waiting for deployment "local-path-provisioner" rollout to finish: 0 of 1 updated replicas are available...
+namespace/local-path-storage unchanged (server dry run)
+serviceaccount/local-path-provisioner-service-account unchanged (server dry run)
+role.rbac.authorization.k8s.io/local-path-provisioner-role unchanged (server dry run)
+clusterrole.rbac.authorization.k8s.io/local-path-provisioner-role unchanged (server dry run)
+rolebinding.rbac.authorization.k8s.io/local-path-provisioner-bind unchanged (server dry run)
+clusterrolebinding.rbac.authorization.k8s.io/local-path-provisioner-bind unchanged (server dry run)
+deployment.apps/local-path-provisioner unchanged (server dry run)
+storageclass.storage.k8s.io/local-path unchanged (server dry run)
+configmap/local-path-config unchanged (server dry run)
+2026-10-15T03:30:37Z STEP2 local-path B apply
+namespace/local-path-storage unchanged
+serviceaccount/local-path-provisioner-service-account unchanged
+role.rbac.authorization.k8s.io/local-path-provisioner-role unchanged
+clusterrole.rbac.authorization.k8s.io/local-path-provisioner-role unchanged
+rolebinding.rbac.authorization.k8s.io/local-path-provisioner-bind unchanged
+clusterrolebinding.rbac.authorization.k8s.io/local-path-provisioner-bind unchanged
+deployment.apps/local-path-provisioner unchanged
+storageclass.storage.k8s.io/local-path unchanged
+configmap/local-path-config unchanged
 deployment "local-path-provisioner" successfully rolled out
 NAME                                      READY   STATUS    RESTARTS   AGE   IP              NODE        NOMINATED NODE   READINESS GATES
-local-path-provisioner-54745b98cf-7cgls   1/1     Running   0          16s   10.20.127.166   worker-b2   <none>           <none>
+local-path-provisioner-54745b98cf-7cgls   1/1     Running   0          16m   10.20.127.166   worker-b2   <none>           <none>
 docker.io/rancher/local-path-provisioner:v0.0.37 docker.io/rancher/local-path-provisioner@sha256:e757967a5ec338f6a9b371c5a9688bedaa8c3578ea3dd4db329ea0084be0a86f
 NAME         PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
-local-path   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  16s
+local-path   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  16m
