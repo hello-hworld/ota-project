@@ -1,0 +1,27 @@
+argocd: v3.5.5+a5038b0
+  BuildDate: 2026-10-12T10:37:42Z
+  GitCommit: a5038b0e2bbac1715754380ae0084df8e3d5b48c
+  GitTreeState: clean
+  GoVersion: go1.26.9
+  Compiler: gc
+  Platform: linux/amd64
+argocd-server: v3.5.5
+  BuildDate: 2026-10-12T10:12:38Z
+  GitCommit: a5038b0e2bbac1715754380ae0084df8e3d5b48c
+  GitTreeState: clean
+  GitTag: v3.5.5
+  GoVersion: go1.26.9
+  Compiler: gc
+  Platform: linux/amd64
+  Kustomize Version: v5.8.1 2026-02-09T16:15:27Z
+  Helm Version: v4.2.1+gd591a19
+  Kubectl Version: v0.36.1
+  Jsonnet Version: v0.22.0
+
+SERVER                                     NAME        VERSION  STATUS      MESSAGE  PROJECT
+https://192.168.56.30:6443 (1 namespaces)  ota-b       v1.35.9  Successful           
+https://kubernetes.default.svc             in-cluster  v1.36.5  Successful           
+
+NAME                        CLUSTER                         NAMESPACE   PROJECT         STATUS  HEALTH   SYNCPOLICY  CONDITIONS  REPO                                             PATH         TARGET
+argocd/ota-demo-production  https://192.168.56.30:6443      production  ota-production  Synced  Healthy  Manual      <none>      https://github.com/hello-hworld/ota-project.git  charts/demo  main
+argocd/ota-demo-staging     https://kubernetes.default.svc  staging     ota-staging     Synced  Healthy  Manual      <none>      https://github.com/hello-hworld/ota-project.git  charts/demo  main

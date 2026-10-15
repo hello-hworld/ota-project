@@ -78,3 +78,6 @@
 2026-10-14T23:45:02Z hop v1.36.5 cluster b ansible end rc=0
 2026-10-14T23:45:23Z H6 end
 2026-10-14T23:46:12Z STEP5 sampling stopped
+2026-10-15T00:00:25Z STEP6 gitops round trip
+2026-10-15T00:00:51Z commit 73ec1cd K8S-UPG STEP6: staging C up on 1.36.5
+2026-10-15T00:01:42Z commit 3dcc09a K8S-UPG STEP6: staging stop
