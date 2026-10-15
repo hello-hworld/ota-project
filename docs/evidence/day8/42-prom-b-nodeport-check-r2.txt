@@ -1,0 +1,45 @@
+== prom-check cluster=b via=http://192.168.56.32:30909 at=2026-10-15T04:32:40Z 기대 Node=['cp-b', 'worker-b1', 'worker-b2']
+-- ready: Prometheus Server is Ready.
+-- version: 3.15.0 (go go1.27.1)
+-- retention: time=2d size=3GiB lifecycle=true
+-- targets (활성 14개)
+   kubernetes-nodes                 up      cp-b                                                  age=15s dur=0.030s 
+   kubernetes-nodes                 up      worker-b1                                             age=24s dur=0.028s 
+   kubernetes-nodes                 up      worker-b2                                             age=2s dur=0.015s 
+   kubernetes-nodes-cadvisor        up      cp-b                                                  age=20s dur=0.021s 
+   kubernetes-nodes-cadvisor        up      worker-b1                                             age=24s dur=0.037s 
+   kubernetes-nodes-cadvisor        up      worker-b2                                             age=16s dur=0.022s 
+   kubernetes-service-endpoints     up      worker-b1    kube-dns                                 age=11s dur=0.006s 
+   kubernetes-service-endpoints     up      worker-b2    prometheus-kube-state-metrics            age=25s dur=0.003s 
+   kubernetes-service-endpoints     up      worker-b2    prometheus-kube-state-metrics            age=21s dur=0.002s 
+   kubernetes-service-endpoints     up      cp-b         prometheus-prometheus-node-exporter      age=5s dur=0.192s 
+   kubernetes-service-endpoints     up      worker-b2    prometheus-prometheus-node-exporter      age=16s dur=0.065s 
+   kubernetes-service-endpoints     up      worker-b1    prometheus-prometheus-node-exporter      age=6s dur=0.279s 
+   kubernetes-service-endpoints     up      cp-b         kube-dns                                 age=25s dur=0.010s 
+   prometheus                       up      localhost:9090                                          age=11s dur=0.012s 
+   (kube-state-metrics Target: ['10.20.127.171:8080', '10.20.127.171:8081'] — :8081은 KSM 자체 지표)
+   (service-endpoints의 그 밖의 Service: ['kube-dns'])
+-- 실제 샘플
+   node-exporter Node=['cp-b', 'worker-b1', 'worker-b2'] 시계열=[1, 1, 1]
+   kubelet       Node=['cp-b', 'worker-b1', 'worker-b2'] 시계열=[1, 1, 1]
+   cAdvisor      Node=['cp-b', 'worker-b1', 'worker-b2'] 시계열=[6, 8, 8]
+   node-exporter 최신       샘플 3개, 가장 오래된 샘플 -0s 전
+   cAdvisor 최신            샘플 3개, 가장 오래된 샘플 -0s 전
+   kube-state-metrics 최신  샘플 3개, 가장 오래된 샘플 -0s 전
+   kube-state-metrics kube_node_info Node: 3
+   kube-state-metrics kube_pod_info Pod: 21
+   kube-state-metrics memory requests 시계열: 11
+   kube-state-metrics Pod Ready 시계열: 21
+   kube-state-metrics Node 조건 시계열: 9
+-- 기록만 (판정 아님)
+   Control Plane 별도 job: 수집 안 함 (오늘 범위 밖)
+   TSDB head 시계열: 15879
+   TSDB 블록 bytes: 0
+   WAL bytes: 3264616
+   Prometheus RSS bytes: 133316608
+   수집 샘플/scrape 합: 15803
+   scrape 시간 최대 kubernetes-service-endpoints: 0.279s
+   scrape 시간 최대 kubernetes-nodes: 0.030s
+   scrape 시간 최대 kubernetes-nodes-cadvisor: 0.037s
+   scrape 시간 최대 prometheus: 0.012s
+RESULT=PASS

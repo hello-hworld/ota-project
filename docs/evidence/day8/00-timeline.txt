@@ -16,3 +16,6 @@
 2026-10-15T04:19:05Z STEP4 B prometheus installed
 2026-10-15T04:22:44Z STEP4 grafana install
 2026-10-15T04:26:52Z STEP4 grafana installed
+2026-10-15T04:29:35Z STEP5 start
+2026-10-15T04:32:36Z NOTE: 40·41·42 FAIL = KSM Target 2개(:8080 객체 지표, :8081 KSM 자체 지표). 수집 정상, prom-check 기대값 오류 → 판정 수정 후 -r2
+2026-10-15T04:35:08Z STEP5 end
