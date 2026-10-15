@@ -1,0 +1,34 @@
+########prometheus-a
+kinds: {'ClusterRole': 2, 'ClusterRoleBinding': 2, 'ConfigMap': 1, 'DaemonSet': 1, 'Deployment': 2, 'PersistentVolumeClaim': 1, 'Service': 3, 'ServiceAccount': 3}
+DaemonSet   prometheus-prometheus-node-exporter replicas=DaemonSet nodeSelector={'kubernetes.io/os': 'linux'} tolerations=[{'effect': 'NoSchedule', 'operator': 'Exists'}]
+   cont node-exporter            quay.io/prometheus/node-exporter:v1.12.1  req={'cpu': '20m', 'memory': '32Mi'} lim={'cpu': '100m', 'memory': '96Mi'}
+Deployment  prometheus-kube-state-metrics      replicas=1 nodeSelector={'workload': 'platform'}
+   cont kube-state-metrics       registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.20.0  req={'cpu': '50m', 'memory': '64Mi'} lim={'cpu': '200m', 'memory': '128Mi'}
+Deployment  prometheus-server                  replicas=1 nodeSelector={'workload': 'platform'}
+   cont prometheus-server-configmap-reload quay.io/prometheus-operator/prometheus-config-reloader:v0.94.1  req={'cpu': '10m', 'memory': '16Mi'} lim={'cpu': '100m', 'memory': '64Mi'}
+   cont prometheus-server        quay.io/prometheus/prometheus:v3.15.0  req={'cpu': '100m', 'memory': '384Mi'} lim={'cpu': '500m', 'memory': '768Mi'}
+Service prometheus-kube-state-metrics ClusterIP [8080]
+Service prometheus-prometheus-node-exporter ClusterIP [9100]
+Service prometheus-server ClusterIP [80]
+상시 Pod memory requests 합계: 464Mi  (init container는 Pod 단위로 max(init, 합계)라 더하지 않는다. Job 제외)
+DaemonSet Pod당 memory requests 합계: 32Mi  (Node마다 하나씩 더해진다)
+########prometheus-b
+kinds: {'ClusterRole': 2, 'ClusterRoleBinding': 2, 'ConfigMap': 1, 'DaemonSet': 1, 'Deployment': 2, 'PersistentVolumeClaim': 1, 'Service': 3, 'ServiceAccount': 3}
+DaemonSet   prometheus-prometheus-node-exporter replicas=DaemonSet nodeSelector={'kubernetes.io/os': 'linux'} tolerations=[{'effect': 'NoSchedule', 'operator': 'Exists'}]
+   cont node-exporter            quay.io/prometheus/node-exporter:v1.12.1  req={'cpu': '20m', 'memory': '32Mi'} lim={'cpu': '100m', 'memory': '96Mi'}
+Deployment  prometheus-kube-state-metrics      replicas=1 nodeSelector={'kubernetes.io/hostname': 'worker-b2'}
+   cont kube-state-metrics       registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.20.0  req={'cpu': '50m', 'memory': '64Mi'} lim={'cpu': '200m', 'memory': '128Mi'}
+Deployment  prometheus-server                  replicas=1 nodeSelector={'kubernetes.io/hostname': 'worker-b2'}
+   cont prometheus-server-configmap-reload quay.io/prometheus-operator/prometheus-config-reloader:v0.94.1  req={'cpu': '10m', 'memory': '16Mi'} lim={'cpu': '100m', 'memory': '64Mi'}
+   cont prometheus-server        quay.io/prometheus/prometheus:v3.15.0  req={'cpu': '100m', 'memory': '384Mi'} lim={'cpu': '500m', 'memory': '768Mi'}
+Service prometheus-kube-state-metrics ClusterIP [8080]
+Service prometheus-prometheus-node-exporter ClusterIP [9100]
+Service prometheus-server NodePort [80]
+상시 Pod memory requests 합계: 464Mi  (init container는 Pod 단위로 max(init, 합계)라 더하지 않는다. Job 제외)
+DaemonSet Pod당 memory requests 합계: 32Mi  (Node마다 하나씩 더해진다)
+########grafana
+kinds: {'ClusterRole': 1, 'ClusterRoleBinding': 1, 'ConfigMap': 1, 'Deployment': 1, 'PersistentVolumeClaim': 1, 'Service': 1, 'ServiceAccount': 1}
+Deployment  grafana                            replicas=1 nodeSelector={'workload': 'platform'}
+   cont grafana                  docker.io/grafana/grafana:13.2.4-distroless  req={'cpu': '50m', 'memory': '128Mi'} lim={'cpu': '300m', 'memory': '384Mi'}
+Service grafana ClusterIP [80]
+상시 Pod memory requests 합계: 128Mi  (init container는 Pod 단위로 max(init, 합계)라 더하지 않는다. Job 제외)

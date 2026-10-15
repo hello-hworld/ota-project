@@ -1,0 +1,10 @@
+##prometheus-a
+Chart 기본 values에 없는 키: server.persistentVolume.storageClass
+##prometheus-b
+Chart 기본 values에 없는 키: server.persistentVolume.storageClass, server.service.nodePort
+## grafana
+Chart 기본 values에 없는 키: persistence.storageClassName
+## 주석으로만 있는 키가 템플릿에서 쓰이는지
+21:{{- if .Values.server.persistentVolume.storageClass }}
+44:    {{- if ( and (eq .Values.server.service.type "NodePort" ) (not (empty .Values.server.service.nodePort)) ) }}
+33:  {{- with .Values.persistence.storageClassName }}

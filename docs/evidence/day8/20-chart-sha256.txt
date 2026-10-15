@@ -1,0 +1,8 @@
+prometheus 29.37.0 app=v3.15.0 kubeVersion=>=1.19.0-0 created=2026-10-14T04:55:57.344852043Z latest=29.37.0
+  index digest = df07dce99f49ea300c5bb8dadb167a09141bb7dbdc6609727157677434e4fbe5
+  file sha256  = df07dce99f49ea300c5bb8dadb167a09141bb7dbdc6609727157677434e4fbe5
+  MATCH  https://github.com/prometheus-community/helm-charts/releases/download/prometheus-29.37.0/prometheus-29.37.0.tgz
+grafana 13.6.0 app=13.2.4 kubeVersion=^1.25.0-0 created=2026-10-14T10:39:21.283146411Z latest=13.6.0
+  index digest = 228fbe6e28f1eabd634ec7b7baa71665477a1adc8d37b80bef59d60ca251a7d6
+  file sha256  = 228fbe6e28f1eabd634ec7b7baa71665477a1adc8d37b80bef59d60ca251a7d6
+  MATCH  https://github.com/grafana-community/helm-charts/releases/download/grafana-13.6.0/grafana-13.6.0.tgz

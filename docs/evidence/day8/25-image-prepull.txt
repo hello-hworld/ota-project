@@ -1,0 +1,15 @@
+== worker-a1
+bash: -c: line 1: syntax error near unexpected token `inquay.io/prometheus/prometheus:v3.15.0'
+bash: -c: line 1: `for i inquay.io/prometheus/prometheus:v3.15.0 quay.io/prometheus-operator/prometheus-config-reloader:v0.94.1 registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.20.0quay.io/prometheus/node-exporter:v1.12.1 docker.io/grafana/grafana:13.2.4-distroless; do s=$(date +%s);sudo crictl --runtime-endpoint unix:///run/containerd/containerd.sock pull$i >/dev/null && echo"pulled$i$(($(date +%s)-s))s" || echo"FAIL$i"; done; df -h / | tail -1'
+== worker-b2
+bash: -c: line 1: syntax error near unexpected token `inquay.io/prometheus/prometheus:v3.15.0'
+bash: -c: line 1: `for i inquay.io/prometheus/prometheus:v3.15.0 quay.io/prometheus-operator/prometheus-config-reloader:v0.94.1 registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.20.0quay.io/prometheus/node-exporter:v1.12.1; do s=$(date +%s);sudo crictl --runtime-endpoint unix:///run/containerd/containerd.sock pull$i >/dev/null && echo"pulled$i$(($(date +%s)-s))s" || echo"FAIL$i"; done; df -h / | tail -1'
+== 192.168.56.20
+bash: -c: line 1: syntax error near unexpected token `inquay.io/prometheus/node-exporter:v1.12.1'
+bash: -c: line 1: `for i inquay.io/prometheus/node-exporter:v1.12.1; do s=$(date +%s);sudo crictl --runtime-endpoint unix:///run/containerd/containerd.sock pull$i >/dev/null && echo"pulled$i$(($(date +%s)-s))s" || echo"FAIL$i"; done; df -h / | tail -1'
+== 192.168.56.30
+bash: -c: line 1: syntax error near unexpected token `inquay.io/prometheus/node-exporter:v1.12.1'
+bash: -c: line 1: `for i inquay.io/prometheus/node-exporter:v1.12.1; do s=$(date +%s);sudo crictl --runtime-endpoint unix:///run/containerd/containerd.sock pull$i >/dev/null && echo"pulled$i$(($(date +%s)-s))s" || echo"FAIL$i"; done; df -h / | tail -1'
+== 192.168.56.31
+bash: -c: line 1: syntax error near unexpected token `inquay.io/prometheus/node-exporter:v1.12.1'
+bash: -c: line 1: `for i inquay.io/prometheus/node-exporter:v1.12.1; do s=$(date +%s);sudo crictl --runtime-endpoint unix:///run/containerd/containerd.sock pull$i >/dev/null && echo"pulled$i$(($(date +%s)-s))s" || echo"FAIL$i"; done; df -h / | tail -1'

@@ -1,0 +1,301 @@
+---
+# Source: grafana/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+automountServiceAccountToken: false
+metadata:
+  labels:
+    helm.sh/chart: grafana-13.6.0
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana
+    app.kubernetes.io/version: "13.2.4"
+  name: grafana
+  namespace: monitoring
+---
+# Source: grafana/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana
+  namespace: monitoring
+  labels:
+    helm.sh/chart: grafana-13.6.0
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana
+    app.kubernetes.io/version: "13.2.4"
+data:
+  
+  grafana.ini: |
+    [analytics]
+    check_for_plugin_updates = false
+    check_for_updates = false
+    reporting_enabled = false
+    [log]
+    mode = console
+    [paths]
+    data = /var/lib/grafana/
+    logs = /var/log/grafana
+    plugins = /var/lib/grafana/plugins
+    provisioning = /etc/grafana/provisioning
+    [plugins]
+    preinstall_auto_update = false
+    [server]
+    domain = ''
+    [unified_storage]
+    index_path = /var/lib/grafana-search/bleve
+  datasources.yaml: |
+    apiVersion: 1
+    datasources:
+    - access: proxy
+      editable: false
+      isDefault: true
+      jsonData:
+        httpMethod: POST
+        timeInterval: 30s
+      name: prometheus-a
+      type: prometheus
+      uid: prometheus-a
+      url: http://prometheus-server.monitoring.svc.cluster.local
+    - access: proxy
+      editable: false
+      jsonData:
+        httpMethod: POST
+        timeInterval: 30s
+      name: prometheus-b
+      type: prometheus
+      uid: prometheus-b
+      url: http://192.168.56.32:30909
+  dashboardproviders.yaml: |
+    apiVersion: 1
+    providers:
+    - allowUiUpdates: false
+      disableDeletion: true
+      folder: OTA
+      name: ota
+      options:
+        path: /var/lib/grafana/dashboards/ota
+      orgId: 1
+      type: file
+      updateIntervalSeconds: 30
+---
+# Source: grafana/templates/pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana
+  namespace: monitoring
+  labels:
+    helm.sh/chart: grafana-13.6.0
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana
+    app.kubernetes.io/version: "13.2.4"
+  finalizers:
+    - kubernetes.io/pvc-protection
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "1Gi"
+  storageClassName: local-path
+---
+# Source: grafana/templates/clusterrole.yaml
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  labels:
+    helm.sh/chart: grafana-13.6.0
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana
+    app.kubernetes.io/version: "13.2.4"
+  name: grafana-clusterrole
+rules: []
+---
+# Source: grafana/templates/clusterrolebinding.yaml
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: grafana-clusterrolebinding
+  labels:
+    helm.sh/chart: grafana-13.6.0
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana
+    app.kubernetes.io/version: "13.2.4"
+subjects:
+  - kind: ServiceAccount
+    name: grafana
+    namespace: monitoring
+roleRef:
+  kind: ClusterRole
+  name: grafana-clusterrole
+  apiGroup: rbac.authorization.k8s.io
+---
+# Source: grafana/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  namespace: monitoring
+  labels:
+    helm.sh/chart: grafana-13.6.0
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana
+    app.kubernetes.io/version: "13.2.4"
+spec:
+  type: ClusterIP
+  ports:
+    - name: service
+      port: 80
+      protocol: TCP
+      targetPort: grafana
+  selector:
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana
+---
+# Source: grafana/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: monitoring
+  labels:
+    helm.sh/chart: grafana-13.6.0
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana
+    app.kubernetes.io/version: "13.2.4"
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: grafana
+      app.kubernetes.io/instance: grafana
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: grafana-13.6.0
+        app.kubernetes.io/name: grafana
+        app.kubernetes.io/instance: grafana
+        app.kubernetes.io/version: "13.2.4"
+      annotations:
+        checksum/config: 816c1907bdb8de28fab2758ce6b8a9693bb3de7f3a8c307c83d75d9dcb9d05f3
+        checksum/sc-dashboard-provider-config: e70bf6a851099d385178a76de9757bb0bef8299da6d8443602590e44f05fdf24
+        kubectl.kubernetes.io/default-container: grafana
+    spec:
+      
+      serviceAccountName: grafana
+      automountServiceAccountToken: false
+      shareProcessNamespace: false
+      securityContext:
+        fsGroup: 472
+        runAsGroup: 472
+        runAsNonRoot: true
+        runAsUser: 472
+      enableServiceLinks: true
+      containers:
+        - name: grafana
+          image: "docker.io/grafana/grafana:13.2.4-distroless"
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            privileged: false
+            readOnlyRootFilesystem: true
+            seccompProfile:
+              type: RuntimeDefault
+          volumeMounts:
+            - name: tmp
+              mountPath: "/tmp"
+            - name: config
+              mountPath: "/etc/grafana/grafana.ini"
+              subPath: grafana.ini
+            - name: storage
+              mountPath: "/var/lib/grafana"
+            - name: search
+              mountPath: "/var/lib/grafana-search"
+            - name: dashboards-ota
+              mountPath: "/var/lib/grafana/dashboards/ota"
+            - name: config
+              mountPath: "/etc/grafana/provisioning/datasources/datasources.yaml"
+              subPath: "datasources.yaml"
+            - name: config
+              mountPath: "/etc/grafana/provisioning/dashboards/dashboardproviders.yaml"
+              subPath: "dashboardproviders.yaml"
+          ports:
+            - name: grafana
+              containerPort: 3000
+              protocol: TCP
+            - name: gossip-tcp
+              containerPort: 9094
+              protocol: TCP
+            - name: gossip-udp
+              containerPort: 9094
+              protocol: UDP
+            - name: profiling
+              containerPort: 6060
+              protocol: TCP
+          env:
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: GF_SECURITY_ADMIN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: grafana-admin
+                  key: admin-user
+            - name: GF_SECURITY_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: grafana-admin
+                  key: admin-password
+            - name: GF_PATHS_DATA
+              value: /var/lib/grafana/
+            - name: GF_PATHS_LOGS
+              value: /var/log/grafana
+            - name: GF_PATHS_PLUGINS
+              value: /var/lib/grafana/plugins
+            - name: GF_PATHS_PROVISIONING
+              value: /etc/grafana/provisioning
+            - name: GF_UNIFIED_STORAGE_INDEX_PATH
+              value: /var/lib/grafana-search/bleve
+            - name: GOMEMLIMIT
+              value: "345MiB"
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /api/health
+              port: grafana
+            initialDelaySeconds: 60
+            timeoutSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: grafana
+          resources:
+            limits:
+              cpu: 300m
+              memory: 384Mi
+            requests:
+              cpu: 50m
+              memory: 128Mi
+      nodeSelector:
+        workload: platform
+      volumes:
+        - name: tmp
+          emptyDir: {}
+        - name: config
+          configMap:
+            name: grafana
+        - name: dashboards-ota
+          configMap:
+            name: grafana-dashboards-ota
+        - name: storage
+          persistentVolumeClaim:
+            claimName: grafana
+        - name: search
+          emptyDir: {}

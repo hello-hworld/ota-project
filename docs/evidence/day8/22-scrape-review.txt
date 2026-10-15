@@ -1,0 +1,22 @@
+#### prometheus-a
+global {'evaluation_interval': '30s', 'scrape_interval': '30s', 'scrape_timeout': '10s'}
+  job kubernetes-nodes               tls={'ca_file': '/var/run/secrets/kubernetes.io/serviceaccount/ca.crt', 'insecure_skip_verify': True} sd=['node']
+  job kubernetes-nodes-cadvisor      tls={'ca_file': '/var/run/secrets/kubernetes.io/serviceaccount/ca.crt', 'insecure_skip_verify': True} sd=['node']
+  job kubernetes-service-endpoints   tls=None sd=['endpointslice']
+  job prometheus                     tls=None sd=[]
+PVC prometheus-server local-path {'storage': '5Gi'}
+ClusterRole prometheus-kube-state-metrics [['cronjobs'], ['daemonsets'], ['deployments'], ['horizontalpodautoscalers'], ['jobs'], ['limitranges'], ['namespaces'], ['nodes'], ['persistentvolumeclaims'], ['persistentvolumes'], ['poddisruptionbudgets'], ['pods'], ['replicasets'], ['resourcequotas'], ['services'], ['statefulsets'], ['storageclasses']]
+ClusterRole prometheus-server [['nodes', 'nodes/metrics', 'services', 'endpoints', 'pods', 'ingresses', 'configmaps'], ['ingresses/status', 'ingresses'], ['endpointslices'], ['/metrics']]
+Service ClusterIP None [{'name': 'http', 'port': 80, 'protocol': 'TCP', 'targetPort': 9090}]
+args ['--storage.tsdb.retention.time=48h', '--storage.tsdb.retention.size=3GB', '--config.file=/etc/config/prometheus.yml', '--storage.tsdb.path=/data', '--web.console.libraries=/etc/prometheus/console_libraries', '--web.console.templates=/etc/prometheus/consoles', '--web.enable-lifecycle']
+#### prometheus-b
+global {'evaluation_interval': '30s', 'scrape_interval': '30s', 'scrape_timeout': '10s'}
+  job kubernetes-nodes               tls={'ca_file': '/var/run/secrets/kubernetes.io/serviceaccount/ca.crt', 'insecure_skip_verify': True} sd=['node']
+  job kubernetes-nodes-cadvisor      tls={'ca_file': '/var/run/secrets/kubernetes.io/serviceaccount/ca.crt', 'insecure_skip_verify': True} sd=['node']
+  job kubernetes-service-endpoints   tls=None sd=['endpointslice']
+  job prometheus                     tls=None sd=[]
+PVC prometheus-server local-path {'storage': '5Gi'}
+ClusterRole prometheus-kube-state-metrics [['cronjobs'], ['daemonsets'], ['deployments'], ['horizontalpodautoscalers'], ['jobs'], ['limitranges'], ['namespaces'], ['nodes'], ['persistentvolumeclaims'], ['persistentvolumes'], ['poddisruptionbudgets'], ['pods'], ['replicasets'], ['resourcequotas'], ['services'], ['statefulsets'], ['storageclasses']]
+ClusterRole prometheus-server [['nodes', 'nodes/metrics', 'services', 'endpoints', 'pods', 'ingresses', 'configmaps'], ['ingresses/status', 'ingresses'], ['endpointslices'], ['/metrics']]
+Service NodePort Local [{'name': 'http', 'port': 80, 'protocol': 'TCP', 'targetPort': 9090, 'nodePort': 30909}]
+args ['--storage.tsdb.retention.time=48h', '--storage.tsdb.retention.size=3GB', '--config.file=/etc/config/prometheus.yml', '--storage.tsdb.path=/data', '--web.console.libraries=/etc/prometheus/console_libraries', '--web.console.templates=/etc/prometheus/consoles', '--web.enable-lifecycle']

@@ -1,0 +1,12 @@
+## lintprometheus-a/home/devops/ota-project/helm/monitoring/chart/prometheus-29.37.0.tgz
+Error: open helm/monitoring/prometheus-a/home/devops/ota-project/helm/monitoring/chart/prometheus-29.37.0.tgz.yaml: no such file or directory
+-bash: /home/devops/ota-project/docs/evidence/day8/22-prometheus-a/home/devops/ota-project/helm/monitoring/chart/prometheus-29.37.0.tgz-rendered.yaml: No such file or directory
+templateprometheus-a/home/devops/ota-project/helm/monitoring/chart/prometheus-29.37.0.tgz exit=1
+## lintprometheus-b/home/devops/ota-project/helm/monitoring/chart/prometheus-29.37.0.tgz
+Error: open helm/monitoring/prometheus-b/home/devops/ota-project/helm/monitoring/chart/prometheus-29.37.0.tgz.yaml: no such file or directory
+-bash: /home/devops/ota-project/docs/evidence/day8/22-prometheus-b/home/devops/ota-project/helm/monitoring/chart/prometheus-29.37.0.tgz-rendered.yaml: No such file or directory
+templateprometheus-b/home/devops/ota-project/helm/monitoring/chart/prometheus-29.37.0.tgz exit=1
+## lintgrafana/home/devops/ota-project/helm/monitoring/chart/grafana-13.6.0.tgz
+Error: open helm/monitoring/grafana/home/devops/ota-project/helm/monitoring/chart/grafana-13.6.0.tgz.yaml: no such file or directory
+-bash: /home/devops/ota-project/docs/evidence/day8/22-grafana/home/devops/ota-project/helm/monitoring/chart/grafana-13.6.0.tgz-rendered.yaml: No such file or directory
+templategrafana/home/devops/ota-project/helm/monitoring/chart/grafana-13.6.0.tgz exit=1
