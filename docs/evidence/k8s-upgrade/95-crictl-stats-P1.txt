@@ -1,0 +1,44 @@
+== 192.168.56.20
+CONTAINER           NAME                      CPU %               MEM                 DISK                INODES
+093730e812556       etcd                      2.58                68.12MB             20.48kB             8
+2259e4ced12b3       coredns                   0.14                12.89MB             36.86kB             11
+34c2024436a54       kube-scheduler            0.89                39.32MB             12.29kB             7
+50e3289378441       kube-proxy                0.00                27.34MB             65.54kB             24
+6247d670e427f       coredns                   0.17                41.17MB             36.86kB             11
+83c957808a233       calico-node               1.32                97.07MB             262.1kB             78
+8b420a40eb272       calico-kube-controllers   0.00                51.54MB             40.96kB             11
+f5e6374959ef6       kube-apiserver            4.41                541.9MB             49.15kB             14
+f94a9d7be9c14       kube-controller-manager   1.16                76.21MB             69.63kB             20
+== 192.168.56.21
+CONTAINER           NAME                     CPU %               MEM                 DISK                INODES
+0b1c39e324538       server                   0.11                120.8MB             61.44kB             14
+0b973de16f68b       local-path-provisioner   0.00                51.23MB             45.06kB             14
+1bf876f0d3a24       kube-proxy               0.07                59.01MB             65.54kB             24
+46b6c91599bb2       calico-node              3.28                104.6MB             262.1kB             78
+65bbab0dd9723       redis                    0.29                30.49MB             28.67kB             8
+7431c774a1449       application-controller   0.36                125.2MB             40.96kB             9
+8185079aff7c9       jenkins                  0.05                441MB               73.73kB             16
+dcf5a10ce1961       registry                 0.05                24.86MB             40.96kB             10
+e2b1eaa9c1d17       config-reload            0.02                76.03MB             32.77kB             9
+f2ac7be9d84b5       repo-server              0.00                96.51MB             65.54kB             14
+== 192.168.56.30
+CONTAINER           NAME                      CPU %               MEM                 DISK                INODES
+0852a49234255       etcd                      2.15                96.96MB             20.48kB             8
+272e3c4dd5148       kube-apiserver            8.56                444.1MB             49.15kB             14
+51b60f9aa4f48       kube-proxy                0.00                57.75MB             65.54kB             24
+71f9625e63a4c       kube-controller-manager   1.35                120.4MB             69.63kB             20
+9a16aa09f65a8       coredns                   0.32                68.66MB             36.86kB             11
+e5365cc3d5359       calico-node               1.33                101.5MB             262.1kB             78
+e8ec782167aaa       kube-scheduler            0.99                66.76MB             12.29kB             7
+== 192.168.56.31
+CONTAINER           NAME                      CPU %               MEM                 DISK                INODES
+0ba36fecd2c82       calico-kube-controllers   0.03                104.8MB             40.96kB             11
+23b6ff54753ae       demo                      0.35                11.58MB             8.192kB             3
+43a982eafecc2       coredns                   0.07                69.63MB             36.86kB             11
+82e279b6b6465       kube-proxy                0.00                58.48MB             65.54kB             24
+a1d5e8d16124c       calico-node               6.63                104.3MB             262.1kB             78
+== 192.168.56.32
+CONTAINER           NAME                CPU %               MEM                 DISK                INODES
+6376a6d8d731c       kube-proxy          0.00                58.11MB             65.54kB             24
+69b575973b5b5       calico-node         1.61                104.9MB             262.1kB             78
+72b3a836b4176       demo                0.02                11.57MB             8.192kB             3

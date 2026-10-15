@@ -1,0 +1,524 @@
+
+===== META =====
+label  : upg-P1a
+date   : 2026-10-15 01:25:36 UTC
+git    : 595cf00 K8S-UPG STEP7: restart on 1.36.5, U-P1
+kernel : 6.8.0-139-generic
+vms    : cp-a cp-b worker-a1 worker-b1 worker-b2
+k8s    : A v1.36.5 / B v1.36.5
+
+===== SUMMARY (비교표 입력용) =====
+Host MemAvailable (주 지표)  :   17799.9 MiB
+Host RAM Used (Total-Avail) :   14010.2 MiB
+Swap Used                   :      80.8 MiB
+KSM 절약량 (general_profit) :    -104.1 MiB
+KSM 보정 사용량 (보조 추정) :   13906.0 MiB
+KSM run / use_zero_pages / ksm_zero_pages : 1 / 0 / 0
+Load 1m / 5m / 15m          : 1.83 / 1.43 / 1.21
+CPU us / sy / id / wa (%)   : 0.0 / 2.2 / 91.2 / 0.0
+Guest CPU gu (%)            : 6.2
+Swap si / so (평균)         : 0.0 / 0.0
+CPU 평균 샘플 수            : 12
+Root Used                   : 14G / 98G
+VM Storage Used (du)        : 73G
+Total QEMU RSS              : 12875.4 MiB
+Total QEMU PSS              : 12787.4 MiB
+ksmd (%cpu time)            : 0.1 00:18:03
+
+===== [Host] free -m =====
+               total        used        free      shared  buff/cache   available
+Mem:           31810       14022        5620          11       12647       17787
+Swap:           8191          80        8111
+
+===== [Host] meminfo (kB) =====
+MemTotal:       32573540 kB
+MemAvailable:   18227124 kB
+SwapTotal:       8388604 kB
+SwapFree:        8305916 kB
+
+===== [Host] uptime =====
+ 01:25:36 up 9 days, 20:28, 14 users,  load average: 1.83, 1.43, 1.21
+
+===== [Host] vmstat 5 13 =====
+procs -----------memory---------- ---swap-- -----io---- -system-- -------cpu-------
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st gu
+ 1  0  82688 5770644  69104 12881196    1    5   252   374 12419   14  0  2 93  0  0  5
+ 0  0  82688 5770392  69120 12881280    0    0     0   155 15160 19905  0  2 92  0  0  6
+ 1  0  82688 5769636  69144 12881384    0    0     0   191 15078 19668  0  3 89  0  0  8
+ 2  0  82688 5769384  69168 12881400    0    0     0   151 15171 19799  0  2 92  0  0  6
+ 2  0  82688 5769384  69184 12881412    0    0     0   122 15250 20049  0  2 92  0  0  6
+ 1  0  82688 5769132  69212 12881416    0    0    73   194 15069 19777  0  2 91  0  0  6
+ 2  0  82688 5768880  69228 12881840    0    0     0    98 14778 19661  0  2 92  0  0  5
+ 1  0  82688 5768880  69260 12881872    0    0     0   250 15068 19834  0  2 91  0  0  6
+ 0  0  82688 5768628  69276 12881940    0    0     0   197 14957 19340  0  2 92  0  0  6
+ 0  0  82688 5768628  69300 12881956    0    0     0   144 15475 20224  0  2 90  0  0  7
+ 3  0  82688 5768376  69324 12881968    0    0     0   142 15801 20444  0  3 90  0  0  7
+ 1  0  82688 5768376  69332 12881984    0    0     0   110 14863 19613  0  2 92  0  0  5
+ 0  0  82688 5767872  69356 12882044    0    0     0   100 15165 19878  0  2 92  0  0  6
+
+===== [Host] df =====
+Filesystem                          Size  Used Avail Use% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv    98G   14G   80G  15% /
+/dev/mapper/ubuntu--vg-ota--vm--lv  295G  155G  125G  56% /var/lib/libvirt/ota
+
+===== [Host] du (항목별) =====
+83G	/var/lib/libvirt/ota/backup
+597M	/var/lib/libvirt/ota/images
+16K	/var/lib/libvirt/ota/lost+found
+72G	/var/lib/libvirt/ota/vms
+
+===== [Host] KSM =====
+run=1
+pages_shared=0
+pages_sharing=0
+pages_unshared=0
+pages_volatile=1706109
+full_scans=207
+general_profit=-109190976
+use_zero_pages=0
+ksm_zero_pages=0
+
+===== [Host] QEMU RSS (VM별, virsh dommemstat) =====
+cp-a           2101.4 MiB
+cp-b           2969.6 MiB
+worker-a1      3213.5 MiB
+worker-b1      2436.4 MiB
+worker-b2      2151.0 MiB
+TOTAL QEMU RSS: 12875.4 MiB
+
+===== [Host] QEMU PSS (VM별, smaps_rollup) =====
+cp-a           2085.0 MiB
+cp-b           2952.9 MiB
+worker-a1      3196.1 MiB
+worker-b1      2419.5 MiB
+worker-b2      2133.9 MiB
+TOTAL QEMU PSS: 12787.4 MiB
+
+===== [Host] 자동 업데이트 =====
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Unattended-Upgrade "0";
+apt-daily.timer=disabled/inactive
+apt-daily-upgrade.timer=disabled/inactive
+
+===== [Host] timers (다음 실행 예정) =====
+NEXT                             LEFT LAST                              PASSED UNIT                           ACTIVATES
+Thu 2026-10-15 01:30:00 UTC  4min 22s Thu 2026-10-15 01:20:29 UTC     5min ago sysstat-collect.timer          sysstat-collect.service
+Thu 2026-10-15 02:55:31 UTC  1h 29min Thu 2026-10-15 01:13:48 UTC    11min ago fwupd-refresh.timer            fwupd-refresh.service
+Thu 2026-10-15 04:52:21 UTC  3h 26min Wed 2026-10-14 04:50:22 UTC      20h ago man-db.timer                   man-db.service
+Thu 2026-10-15 05:04:28 UTC  3h 38min Wed 2026-10-14 05:04:28 UTC      20h ago update-notifier-download.timer update-notifier-download.service
+Thu 2026-10-15 05:13:30 UTC  3h 47min Wed 2026-10-14 05:13:30 UTC      20h ago systemd-tmpfiles-clean.timer   systemd-tmpfiles-clean.service
+Thu 2026-10-15 05:55:45 UTC  4h 30min Wed 2026-10-14 21:50:21 UTC 3h 35min ago motd-news.timer                motd-news.service
+Fri 2026-10-16 00:00:00 UTC       22h Thu 2026-10-15 00:00:08 UTC 1h 25min ago dpkg-db-backup.timer           dpkg-db-backup.service
+Fri 2026-10-16 00:00:00 UTC       22h Thu 2026-10-15 00:00:08 UTC 1h 25min ago logrotate.timer                logrotate.service
+Fri 2026-10-16 00:07:00 UTC       22h Thu 2026-10-15 00:07:20 UTC 1h 18min ago sysstat-summary.timer          sysstat-summary.service
+Fri 2026-10-16 12:55:48 UTC 1 day 11h -                                      - update-notifier-motd.timer     update-notifier-motd.service
+Sun 2026-10-18 03:10:06 UTC    3 days Sun 2026-10-11 03:10:18 UTC   3 days ago e2scrub_all.timer              e2scrub_all.service
+Mon 2026-10-19 01:20:11 UTC    3 days Mon 2026-10-12 01:20:28 UTC   3 days ago fstrim.timer                   fstrim.service
+
+12 timers listed.
+Pass --all to see loaded but inactive timers, too.
+
+===== [Guest] cp-a (192.168.56.20) =====
+kernel : 6.8.0-146-generic
+loadavg: 0.78 0.45 0.36 1/402 39031
+MemTotal:        2014860 kB
+MemAvailable:     774168 kB
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Unattended-Upgrade "0";
+apt-daily.timer=disabled/inactive
+apt-daily-upgrade.timer=disabled/inactive
+               total        used        free      shared  buff/cache   available
+Mem:            1967        1210          73           2         837         756
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        29G   14G   15G  50% /
+
+===== [Guest] worker-a1 (192.168.56.21) =====
+kernel : 6.8.0-146-generic
+loadavg: 0.06 0.06 0.01 1/469 26242
+MemTotal:        6067400 kB
+MemAvailable:    4765084 kB
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Unattended-Upgrade "0";
+apt-daily.timer=disabled/inactive
+apt-daily-upgrade.timer=disabled/inactive
+               total        used        free      shared  buff/cache   available
+Mem:            5925        1265        3325           2        1579        4660
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        58G   15G   43G  26% /
+--- /opt/local-path-provisioner 실제 사용량
+1.8G	/opt/local-path-provisioner
+
+===== [Guest] cp-b (192.168.56.30) =====
+kernel : 6.8.0-146-generic
+loadavg: 0.25 0.34 0.33 2/349 23204
+MemTotal:        2977668 kB
+MemAvailable:    1897408 kB
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Unattended-Upgrade "0";
+apt-daily.timer=disabled/inactive
+apt-daily-upgrade.timer=disabled/inactive
+               total        used        free      shared  buff/cache   available
+Mem:            2907        1047         424           2        1658        1860
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        29G   14G   15G  48% /
+
+===== [Guest] worker-b1 (192.168.56.31) =====
+kernel : 6.8.0-146-generic
+loadavg: 0.06 0.11 0.07 1/357 42563
+MemTotal:        7099600 kB
+MemAvailable:    6417280 kB
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Unattended-Upgrade "0";
+apt-daily.timer=disabled/inactive
+apt-daily-upgrade.timer=disabled/inactive
+               total        used        free      shared  buff/cache   available
+Mem:            6933         666        5265           2        1241        6267
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        48G  8.8G   39G  19% /
+
+===== [Guest] worker-b2 (192.168.56.32) =====
+kernel : 6.8.0-146-generic
+loadavg: 1.14 0.39 0.13 1/289 25911
+MemTotal:        7099596 kB
+MemAvailable:    6484428 kB
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Unattended-Upgrade "0";
+apt-daily.timer=disabled/inactive
+apt-daily-upgrade.timer=disabled/inactive
+               total        used        free      shared  buff/cache   available
+Mem:            6933         601        5460           1        1109        6331
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        77G  8.8G   68G  12% /
+
+===== [K8s] ota-a =====
+NAME        STATUS   ROLES           AGE     VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION              CONTAINER-RUNTIME
+cp-a        Ready    control-plane   7d18h   v1.36.5   192.168.56.20   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic (amd64)   containerd://2.2.1
+worker-a1   Ready    <none>          7d17h   v1.36.5   192.168.56.21   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic (amd64)   containerd://2.2.1
+--- allocatable / pressure
+NODE        CPU   MEM         MemPressure   DiskPressure
+cp-a        2     1912460Ki   False         False
+worker-a1   4     5965000Ki   False         False
+--- allocated resources (requests / limits 합계)
+Name:               cp-a
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests     Limits
+  --------           --------     ------
+  cpu                1100m (55%)  0 (0%)
+  memory             240Mi (12%)  340Mi (18%)
+  ephemeral-storage  0 (0%)       0 (0%)
+  hugepages-1Gi      0 (0%)       0 (0%)
+  hugepages-2Mi      0 (0%)       0 (0%)
+
+
+Name:               worker-a1
+Name:               worker-a1
+Roles:              <none>
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=worker-a1
+                    kubernetes.io/os=linux
+                    workload=platform
+Annotations:        node.alpha.kubernetes.io/ttl: 0
+                    projectcalico.org/IPv4Address: 192.168.56.21/24
+                    projectcalico.org/IPv4IPIPTunnelAddr: 10.10.238.0
+                    projectcalico.org/Interfaces: [{"name":"enp1s0","addresses":["192.168.56.21"]}]
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Wed, 07 Oct 2026 07:33:25 +0000
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  worker-a1
+  AcquireTime:     <unset>
+  RenewTime:       Thu, 15 Oct 2026 01:25:33 +0000
+Conditions:
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----                 ------  -----------------                 ------------------                ------                       -------
+  NetworkUnavailable   False   Thu, 15 Oct 2026 00:27:20 +0000   Thu, 15 Oct 2026 00:27:20 +0000   CalicoIsUp                   Calico is running on this node
+  MemoryPressure       False   Thu, 15 Oct 2026 01:23:17 +0000   Tue, 13 Oct 2026 07:57:15 +0000   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Thu, 15 Oct 2026 01:23:17 +0000   Tue, 13 Oct 2026 07:57:15 +0000   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Thu, 15 Oct 2026 01:23:17 +0000   Tue, 13 Oct 2026 07:57:15 +0000   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Thu, 15 Oct 2026 01:23:17 +0000   Tue, 13 Oct 2026 07:57:15 +0000   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:  192.168.56.21
+  Hostname:    worker-a1
+Capacity:
+  cpu:                4
+  ephemeral-storage:  59848952Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             6067400Ki
+  pods:               110
+Allocatable:
+  cpu:                4
+  ephemeral-storage:  55156794072
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             5965000Ki
+  pods:               110
+System Info:
+  Machine ID:                 a0e0c1fe09a9423691a682e3e7e9933c
+  System UUID:                a0e0c1fe-09a9-4236-91a6-82e3e7e9933c
+  Boot ID:                    8fbec4b7-dcd4-4fbb-9d15-a33cc8db74e2
+  Kernel Version:             6.8.0-146-generic
+  OS Image:                   Ubuntu 24.04.5 LTS
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  containerd://2.2.1
+  Kubelet Version:            v1.36.5
+PodCIDR:                      10.10.1.0/24
+PodCIDRs:                     10.10.1.0/24
+Non-terminated Pods:          (9 in total)
+  Namespace                   Name                                       CPU Requests  CPU Limits   Memory Requests  Memory Limits  Age
+  ---------                   ----                                       ------------  ----------   ---------------  -------------  ---
+  argocd                      argocd-application-controller-0            100m (2%)     500m (12%)   256Mi (4%)       1Gi (17%)      111m
+  argocd                      argocd-redis-7cc5595759-79mnt              50m (1%)      250m (6%)    128Mi (2%)       256Mi (4%)     111m
+  argocd                      argocd-repo-server-795ffc79fb-pswxl        100m (2%)     500m (12%)   256Mi (4%)       768Mi (13%)    111m
+  argocd                      argocd-server-67687bd47f-jvz72             50m (1%)      500m (12%)   128Mi (2%)       512Mi (8%)     111m
+  kube-system                 calico-node-vwx8m                          250m (6%)     0 (0%)       0 (0%)           0 (0%)         150m
+  kube-system                 kube-proxy-5p8mv                           0 (0%)        0 (0%)       0 (0%)           0 (0%)         112m
+  local-path-storage          local-path-provisioner-85d9db4886-n6wwt    0 (0%)        0 (0%)       0 (0%)           0 (0%)         111m
+  platform                    jenkins-0                                  260m (6%)     1100m (27%)  800Mi (13%)      1664Mi (28%)   111m
+  platform                    registry-665db59f88-5jmpp                  100m (2%)     500m (12%)   128Mi (2%)       512Mi (8%)     111m
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests      Limits
+  --------           --------      ------
+  cpu                910m (22%)    3350m (83%)
+  memory             1696Mi (29%)  4736Mi (81%)
+  ephemeral-storage  0 (0%)        0 (0%)
+  hugepages-1Gi      0 (0%)        0 (0%)
+  hugepages-2Mi      0 (0%)        0 (0%)
+--- pods
+NAMESPACE            NAME                                       READY   STATUS    RESTARTS      AGE    IP              NODE        NOMINATED NODE   READINESS GATES
+argocd               argocd-application-controller-0            1/1     Running   1 (58m ago)   111m   10.10.238.29    worker-a1   <none>           <none>
+argocd               argocd-redis-7cc5595759-79mnt              1/1     Running   1 (58m ago)   111m   10.10.238.11    worker-a1   <none>           <none>
+argocd               argocd-repo-server-795ffc79fb-pswxl        1/1     Running   1 (58m ago)   111m   10.10.238.24    worker-a1   <none>           <none>
+argocd               argocd-server-67687bd47f-jvz72             1/1     Running   1 (58m ago)   111m   10.10.238.19    worker-a1   <none>           <none>
+kube-system          calico-kube-controllers-855c4cc49d-6s5q9   1/1     Running   1 (59m ago)   111m   10.10.229.161   cp-a        <none>           <none>
+kube-system          calico-node-mzgcl                          1/1     Running   1 (59m ago)   149m   192.168.56.20   cp-a        <none>           <none>
+kube-system          calico-node-vwx8m                          1/1     Running   1 (58m ago)   150m   192.168.56.21   worker-a1   <none>           <none>
+kube-system          coredns-589f44dc88-89bnl                   1/1     Running   1 (59m ago)   111m   10.10.229.163   cp-a        <none>           <none>
+kube-system          coredns-589f44dc88-b4d79                   1/1     Running   1 (59m ago)   111m   10.10.229.162   cp-a        <none>           <none>
+kube-system          etcd-cp-a                                  1/1     Running   2 (59m ago)   111m   192.168.56.20   cp-a        <none>           <none>
+kube-system          kube-apiserver-cp-a                        1/1     Running   2 (59m ago)   111m   192.168.56.20   cp-a        <none>           <none>
+kube-system          kube-controller-manager-cp-a               1/1     Running   2 (59m ago)   111m   192.168.56.20   cp-a        <none>           <none>
+kube-system          kube-proxy-5p8mv                           1/1     Running   1 (58m ago)   112m   192.168.56.21   worker-a1   <none>           <none>
+kube-system          kube-proxy-nvcmj                           1/1     Running   1 (59m ago)   112m   192.168.56.20   cp-a        <none>           <none>
+kube-system          kube-scheduler-cp-a                        1/1     Running   2 (59m ago)   111m   192.168.56.20   cp-a        <none>           <none>
+local-path-storage   local-path-provisioner-85d9db4886-n6wwt    1/1     Running   1 (58m ago)   111m   10.10.238.28    worker-a1   <none>           <none>
+platform             jenkins-0                                  2/2     Running   2 (58m ago)   111m   10.10.238.31    worker-a1   <none>           <none>
+platform             registry-665db59f88-5jmpp                  1/1     Running   1 (58m ago)   111m   10.10.238.30    worker-a1   <none>           <none>
+--- sc / pv / pvc
+NAME                                     PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+storageclass.storage.k8s.io/local-path   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  2d17h
+
+NAME                                                        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                   STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+persistentvolume/pvc-8db7520b-2c94-4079-8ec1-44208ae9c20e   2Gi        RWO            Delete           Bound    ci/trivy-cache          local-path     <unset>                          20h
+persistentvolume/pvc-b5adbe30-8b1c-48fd-95a5-ee5ae8b02686   10Gi       RWO            Delete           Bound    platform/registry-pvc   local-path     <unset>                          2d17h
+persistentvolume/pvc-cf98e752-e413-4b06-9ddf-5b52d46a3b9b   10Gi       RWO            Delete           Bound    platform/jenkins        local-path     <unset>                          40h
+NAMESPACE   NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+ci          trivy-cache    Bound    pvc-8db7520b-2c94-4079-8ec1-44208ae9c20e   2Gi        RWO            local-path     <unset>                 21h
+platform    jenkins        Bound    pvc-cf98e752-e413-4b06-9ddf-5b52d46a3b9b   10Gi       RWO            local-path     <unset>                 40h
+platform    registry-pvc   Bound    pvc-b5adbe30-8b1c-48fd-95a5-ee5ae8b02686   10Gi       RWO            local-path     <unset>                 2d17h
+
+===== [K8s] ota-b =====
+NAME        STATUS   ROLES           AGE     VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION              CONTAINER-RUNTIME
+cp-b        Ready    control-plane   7d19h   v1.36.5   192.168.56.30   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic (amd64)   containerd://2.2.1
+worker-b1   Ready    <none>          7d18h   v1.36.5   192.168.56.31   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic (amd64)   containerd://2.2.1
+worker-b2   Ready    <none>          7d18h   v1.36.5   192.168.56.32   <none>        Ubuntu 24.04.5 LTS   6.8.0-146-generic (amd64)   containerd://2.2.1
+--- allocatable / pressure
+NODE        CPU   MEM         MemPressure   DiskPressure
+cp-b        2     2875268Ki   False         False
+worker-b1   4     6997200Ki   False         False
+worker-b2   4     6997196Ki   False         False
+--- allocated resources (requests / limits 합계)
+Name:               cp-b
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests    Limits
+  --------           --------    ------
+  cpu                1 (50%)     0 (0%)
+  memory             170Mi (6%)  170Mi (6%)
+  ephemeral-storage  0 (0%)      0 (0%)
+  hugepages-1Gi      0 (0%)      0 (0%)
+  hugepages-2Mi      0 (0%)      0 (0%)
+
+
+Name:               worker-b1
+Name:               worker-b1
+Roles:              <none>
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=worker-b1
+                    kubernetes.io/os=linux
+Annotations:        node.alpha.kubernetes.io/ttl: 0
+                    projectcalico.org/IPv4Address: 192.168.56.31/24
+                    projectcalico.org/IPv4IPIPTunnelAddr: 10.20.214.192
+                    projectcalico.org/Interfaces: [{"name":"enp1s0","addresses":["192.168.56.31"]}]
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Wed, 07 Oct 2026 06:41:08 +0000
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  worker-b1
+  AcquireTime:     <unset>
+  RenewTime:       Thu, 15 Oct 2026 01:25:40 +0000
+Conditions:
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----                 ------  -----------------                 ------------------                ------                       -------
+  NetworkUnavailable   False   Thu, 15 Oct 2026 00:27:22 +0000   Thu, 15 Oct 2026 00:27:22 +0000   CalicoIsUp                   Calico is running on this node
+  MemoryPressure       False   Thu, 15 Oct 2026 01:21:48 +0000   Thu, 15 Oct 2026 00:27:10 +0000   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Thu, 15 Oct 2026 01:21:48 +0000   Thu, 15 Oct 2026 00:27:10 +0000   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Thu, 15 Oct 2026 01:21:48 +0000   Thu, 15 Oct 2026 00:27:10 +0000   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Thu, 15 Oct 2026 01:21:48 +0000   Thu, 15 Oct 2026 00:27:10 +0000   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:  192.168.56.31
+  Hostname:    worker-b1
+Capacity:
+  cpu:                4
+  ephemeral-storage:  49691512Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             7099600Ki
+  pods:               110
+Allocatable:
+  cpu:                4
+  ephemeral-storage:  45795697384
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             6997200Ki
+  pods:               110
+System Info:
+  Machine ID:                 919e69cc4b9747088524542acacc66e2
+  System UUID:                919e69cc-4b97-4708-8524-542acacc66e2
+  Boot ID:                    3253ee1d-fedb-4698-b6d4-76927ae63520
+  Kernel Version:             6.8.0-146-generic
+  OS Image:                   Ubuntu 24.04.5 LTS
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  containerd://2.2.1
+  Kubelet Version:            v1.36.5
+PodCIDR:                      10.20.1.0/24
+PodCIDRs:                     10.20.1.0/24
+Non-terminated Pods:          (5 in total)
+  Namespace                   Name                                        CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                                        ------------  ----------  ---------------  -------------  ---
+  kube-system                 calico-kube-controllers-855c4cc49d-5fbtn    0 (0%)        0 (0%)      0 (0%)           0 (0%)         101m
+  kube-system                 calico-node-hrtlw                           250m (6%)     0 (0%)      0 (0%)           0 (0%)         144m
+  kube-system                 coredns-589f44dc88-x9zd5                    100m (2%)     0 (0%)      70Mi (1%)        170Mi (2%)     101m
+  kube-system                 kube-proxy-cfvlw                            0 (0%)        0 (0%)      0 (0%)           0 (0%)         103m
+  production                  ota-demo-86699c58ff-nj8d5                   50m (1%)      250m (6%)   64Mi (0%)        128Mi (1%)     53m
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests    Limits
+  --------           --------    ------
+  cpu                400m (10%)  250m (6%)
+  memory             134Mi (1%)  298Mi (4%)
+  ephemeral-storage  0 (0%)      0 (0%)
+  hugepages-1Gi      0 (0%)      0 (0%)
+  hugepages-2Mi      0 (0%)      0 (0%)
+
+
+Name:               worker-b2
+Name:               worker-b2
+Roles:              <none>
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=worker-b2
+                    kubernetes.io/os=linux
+Annotations:        node.alpha.kubernetes.io/ttl: 0
+                    projectcalico.org/IPv4Address: 192.168.56.32/24
+                    projectcalico.org/IPv4IPIPTunnelAddr: 10.20.127.128
+                    projectcalico.org/Interfaces: [{"name":"enp1s0","addresses":["192.168.56.32"]}]
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Wed, 07 Oct 2026 06:44:45 +0000
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  worker-b2
+  AcquireTime:     <unset>
+  RenewTime:       Thu, 15 Oct 2026 01:25:36 +0000
+Conditions:
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----                 ------  -----------------                 ------------------                ------                       -------
+  NetworkUnavailable   False   Thu, 15 Oct 2026 00:27:22 +0000   Thu, 15 Oct 2026 00:27:22 +0000   CalicoIsUp                   Calico is running on this node
+  MemoryPressure       False   Thu, 15 Oct 2026 01:20:34 +0000   Thu, 15 Oct 2026 00:27:10 +0000   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Thu, 15 Oct 2026 01:20:34 +0000   Thu, 15 Oct 2026 00:27:10 +0000   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Thu, 15 Oct 2026 01:20:34 +0000   Thu, 15 Oct 2026 00:27:10 +0000   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Thu, 15 Oct 2026 01:20:34 +0000   Thu, 15 Oct 2026 00:27:10 +0000   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:  192.168.56.32
+  Hostname:    worker-b2
+Capacity:
+  cpu:                4
+  ephemeral-storage:  80162804Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             7099596Ki
+  pods:               110
+Allocatable:
+  cpu:                4
+  ephemeral-storage:  73878040045
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             6997196Ki
+  pods:               110
+System Info:
+  Machine ID:                 de9e0b8bfae44df3bd065a67ef58de44
+  System UUID:                de9e0b8b-fae4-4df3-bd06-5a67ef58de44
+  Boot ID:                    aae77f0d-5a3b-4dac-822f-4a79c3a35d39
+  Kernel Version:             6.8.0-146-generic
+  OS Image:                   Ubuntu 24.04.5 LTS
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  containerd://2.2.1
+  Kubelet Version:            v1.36.5
+PodCIDR:                      10.20.2.0/24
+PodCIDRs:                     10.20.2.0/24
+Non-terminated Pods:          (3 in total)
+  Namespace                   Name                         CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                         ------------  ----------  ---------------  -------------  ---
+  kube-system                 calico-node-4bx8k            250m (6%)     0 (0%)      0 (0%)           0 (0%)         143m
+  kube-system                 kube-proxy-72smq             0 (0%)        0 (0%)      0 (0%)           0 (0%)         103m
+  production                  ota-demo-86699c58ff-xdsrp    50m (1%)      250m (6%)   64Mi (0%)        128Mi (1%)     52m
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests   Limits
+  --------           --------   ------
+  cpu                300m (7%)  250m (6%)
+  memory             64Mi (0%)  128Mi (1%)
+  ephemeral-storage  0 (0%)     0 (0%)
+  hugepages-1Gi      0 (0%)     0 (0%)
+  hugepages-2Mi      0 (0%)     0 (0%)
+--- pods
+NAMESPACE     NAME                                       READY   STATUS    RESTARTS      AGE    IP              NODE        NOMINATED NODE   READINESS GATES
+kube-system   calico-kube-controllers-855c4cc49d-5fbtn   1/1     Running   1 (58m ago)   101m   10.20.214.230   worker-b1   <none>           <none>
+kube-system   calico-node-4bx8k                          1/1     Running   1 (58m ago)   143m   192.168.56.32   worker-b2   <none>           <none>
+kube-system   calico-node-dpxjs                          1/1     Running   1 (59m ago)   146m   192.168.56.30   cp-b        <none>           <none>
+kube-system   calico-node-hrtlw                          1/1     Running   1 (58m ago)   144m   192.168.56.31   worker-b1   <none>           <none>
+kube-system   coredns-589f44dc88-442lx                   1/1     Running   1 (59m ago)   102m   10.20.164.211   cp-b        <none>           <none>
+kube-system   coredns-589f44dc88-x9zd5                   1/1     Running   1 (58m ago)   101m   10.20.214.232   worker-b1   <none>           <none>
+kube-system   etcd-cp-b                                  1/1     Running   3 (59m ago)   103m   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-apiserver-cp-b                        1/1     Running   3 (59m ago)   102m   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-controller-manager-cp-b               1/1     Running   2 (59m ago)   103m   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-proxy-72smq                           1/1     Running   1 (58m ago)   103m   192.168.56.32   worker-b2   <none>           <none>
+kube-system   kube-proxy-cfvlw                           1/1     Running   1 (58m ago)   103m   192.168.56.31   worker-b1   <none>           <none>
+kube-system   kube-proxy-sfpjf                           1/1     Running   1 (59m ago)   103m   192.168.56.30   cp-b        <none>           <none>
+kube-system   kube-scheduler-cp-b                        1/1     Running   2 (59m ago)   102m   192.168.56.30   cp-b        <none>           <none>
+production    ota-demo-86699c58ff-nj8d5                  1/1     Running   0             53m    10.20.214.233   worker-b1   <none>           <none>
+production    ota-demo-86699c58ff-xdsrp                  1/1     Running   0             52m    10.20.127.165   worker-b2   <none>           <none>
+--- sc / pv / pvc
+No resources found
+No resources found
+
+===== COLLECTION =====
+수집 실패: 0
