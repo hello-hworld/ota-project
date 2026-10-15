@@ -1,0 +1,79 @@
+# helm/monitoring/prometheus-b.yaml — DAY8 Cluster B Prometheus (Chart prometheus 29.37.0 / Prometheus v3.15.0)
+# prometheus-a.yaml과 다른 곳: 배치(worker-b2), Service(NodePort 30909, externalTrafficPolicy Local)
+# B의 Worker에는 workload 라벨이 없다 → hostname으로 고정한다. worker-b2는 디스크가 가장 크다(77G, 12%)
+
+server:
+  nodeSelector:
+    kubernetes.io/hostname: worker-b2
+  global:
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    evaluation_interval: 30s
+  retention: 48h
+  retentionSize: 3GB
+  persistentVolume:
+    enabled: true
+    size: 5Gi
+    storageClass: local-path      # STEP 2에서 B에 만든 StorageClass
+  resources:
+    requests: {cpu: 100m, memory: 384Mi}
+    limits:   {cpu: 500m, memory: 768Mi}
+  service:
+    type: NodePort                # A의 Grafana가 실습 내부망(192.168.56.0/24)으로 조회
+    nodePort: 30909               # 기본값 파일에는 없는 키. 템플릿 service.yaml이 사용 → 렌더링으로 확인
+    externalTrafficPolicy: Local  # Pod가 있는 worker-b2만 응답한다(cp-b·worker-b1의 30909는 응답하지 않음), 출발지 IP 유지
+
+configmapReload:
+  prometheus:
+    resources:
+      requests: {cpu: 10m, memory: 16Mi}
+      limits:   {cpu: 100m, memory: 64Mi}
+
+alertmanager:
+  enabled: false
+prometheus-pushgateway:
+  enabled: false
+
+kube-state-metrics:
+  nodeSelector:
+    kubernetes.io/hostname: worker-b2
+  resources:
+    requests: {cpu: 50m, memory: 64Mi}
+    limits:   {cpu: 200m, memory: 128Mi}
+  collectors:
+    - cronjobs
+    - daemonsets
+    - deployments
+    - horizontalpodautoscalers
+    - jobs
+    - limitranges
+    - namespaces
+    - nodes
+    - persistentvolumeclaims
+    - persistentvolumes
+    - poddisruptionbudgets
+    - pods
+    - replicasets
+    - resourcequotas
+    - services
+    - statefulsets
+    - storageclasses
+
+prometheus-node-exporter:
+  resources:
+    requests: {cpu: 20m, memory: 32Mi}
+    limits:   {cpu: 100m, memory: 96Mi}
+
+scrapeConfigs:
+  kubernetes-api-servers:
+    enabled: false
+  kubernetes-service-endpoints-slow:
+    enabled: false
+  prometheus-pushgateway:
+    enabled: false
+  kubernetes-services:
+    enabled: false
+  kubernetes-pods:
+    enabled: false
+  kubernetes-pods-slow:
+    enabled: false

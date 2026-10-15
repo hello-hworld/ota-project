@@ -1,0 +1,478 @@
+{
+  "uid": "ota-infra-overview",
+  "title": "OTA Infra Overview",
+  "description": "DAY8 최소 대시보드: Data Source(prometheus-a/b)로 클러스터를 고른다. 원본 helm/monitoring/dashboards/ota-infra-overview.json",
+  "tags": ["ota", "day8"],
+  "timezone": "utc",
+  "editable": false,
+  "graphTooltip": 1,
+  "refresh": "30s",
+  "time": {"from": "now-3h", "to": "now"},
+  "schemaVersion": 41,
+  "version": 1,
+  "templating": {
+    "list": [
+      {
+        "name": "ds",
+        "label": "Cluster (Data Source)",
+        "type": "datasource",
+        "query": "prometheus",
+        "regex": "/^prometheus-[ab]$/",
+        "current": {"text": "prometheus-a", "value": "prometheus-a"},
+        "hide": 0,
+        "refresh": 1
+      },
+      {
+        "name": "node",
+        "label": "Node",
+        "type": "query",
+        "datasource": {"type": "prometheus", "uid": "${ds}"},
+        "query": {
+          "query": "label_values(node_uname_info{job=\"kubernetes-service-endpoints\"}, node)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "definition": "label_values(node_uname_info{job=\"kubernetes-service-endpoints\"}, node)",
+        "refresh": 2,
+        "includeAll": true,
+        "multi": true,
+        "allValue": ".*",
+        "current": {"text": ["All"], "value": ["$__all"]},
+        "sort": 1,
+        "hide": 0
+      },
+      {
+        "name": "namespace",
+        "label": "Namespace",
+        "type": "query",
+        "datasource": {"type": "prometheus", "uid": "${ds}"},
+        "query": {
+          "query": "label_values(kube_pod_info, namespace)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "definition": "label_values(kube_pod_info, namespace)",
+        "refresh": 2,
+        "includeAll": true,
+        "multi": true,
+        "allValue": ".*",
+        "current": {"text": ["All"], "value": ["$__all"]},
+        "sort": 1,
+        "hide": 0
+      }
+    ]
+  },
+  "annotations": {"list": []},
+  "panels": [
+    {
+      "id": 1,
+      "type": "row",
+      "title": "수집 상태",
+      "collapsed": false,
+      "gridPos": {"x": 0, "y": 0, "w": 24, "h": 1},
+      "panels": []
+    },
+    {
+      "id": 2,
+      "type": "table",
+      "title": "Scrape 대상 (job별 UP / 전체)",
+      "description": "Prometheus 자신의 up 지표. UP 수가 전체보다 작으면 Targets 화면에서 오류 내용을 본다. 결과가 비면 조회 자체가 실패한 것이다(0으로 읽지 않는다).",
+      "datasource": {"type": "prometheus", "uid": "${ds}"},
+      "gridPos": {"x": 0, "y": 1, "w": 12, "h": 6},
+      "fieldConfig": {"defaults": {"unit": "short"}, "overrides": []},
+      "options": {"showHeader": true, "sortBy": [{"displayName": "UP", "desc": true}]},
+      "targets": [
+        {
+          "datasource": {"type": "prometheus", "uid": "${ds}"},
+          "refId": "A",
+          "format": "table",
+          "instant": true,
+          "range": false,
+          "expr": "sum by (job) (up)",
+          "legendFormat": "{{job}}"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${ds}"},
+          "refId": "B",
+          "format": "table",
+          "instant": true,
+          "range": false,
+          "expr": "count by (job) (up)",
+          "legendFormat": "{{job}}"
+        }
+      ],
+      "transformations": [
+        {"id": "merge", "options": {}},
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {"Time": true},
+            "renameByName": {"Value #A": "UP", "Value #B": "전체", "job": "job"}
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "timeseries",
+      "title": "Node별 수집 시계열 수 (node-exporter)",
+      "description": "Node 식별 확인용: A는 cp-a·worker-a1, B는 cp-b·worker-b1·worker-b2가 보여야 한다.",
+      "datasource": {"type": "prometheus", "uid": "${ds}"},
+      "gridPos": {"x": 12, "y": 1, "w": 12, "h": 6},
+      "fieldConfig": {
+        "defaults": {"unit": "short", "custom": {"lineWidth": 1, "fillOpacity": 0, "showPoints": "never"}},
+        "overrides": []
+      },
+      "options": {
+        "legend": {"displayMode": "table", "placement": "right", "calcs": ["lastNotNull", "max"]},
+        "tooltip": {"mode": "multi", "sort": "desc"}
+      },
+      "targets": [
+        {
+          "datasource": {"type": "prometheus", "uid": "${ds}"},
+          "refId": "A",
+          "expr": "count by (node) ({job=\"kubernetes-service-endpoints\", node=~\"$node\", __name__=~\"node_.+\"})",
+          "legendFormat": "{{node}}"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "row",
+      "title": "Node",
+      "collapsed": false,
+      "gridPos": {"x": 0, "y": 7, "w": 24, "h": 1},
+      "panels": []
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "Node CPU 사용률",
+      "description": "100 × (1 − idle 비율), node-exporter. Node의 vCPU 전체 기준.",
+      "datasource": {"type": "prometheus", "uid": "${ds}"},
+      "gridPos": {"x": 0, "y": 8, "w": 12, "h": 8},
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "custom": {"lineWidth": 1, "fillOpacity": 0, "showPoints": "never"},
+          "min": 0,
+          "max": 100
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {"displayMode": "table", "placement": "right", "calcs": ["lastNotNull", "max"]},
+        "tooltip": {"mode": "multi", "sort": "desc"}
+      },
+      "targets": [
+        {
+          "datasource": {"type": "prometheus", "uid": "${ds}"},
+          "refId": "A",
+          "expr": "100 * (1 - avg by (node) (rate(node_cpu_seconds_total{job=\"kubernetes-service-endpoints\", mode=\"idle\", node=~\"$node\"}[$__rate_interval])))",
+          "legendFormat": "{{node}}"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "timeseries",
+      "title": "Node MemAvailable",
+      "description": "Guest MemAvailable (node-exporter). measure.sh의 Guest MemAvailable과 같은 값의 시계열.",
+      "datasource": {"type": "prometheus", "uid": "${ds}"},
+      "gridPos": {"x": 12, "y": 8, "w": 12, "h": 8},
+      "fieldConfig": {
+        "defaults": {"unit": "bytes", "custom": {"lineWidth": 1, "fillOpacity": 0, "showPoints": "never"}, "min": 0},
+        "overrides": []
+      },
+      "options": {
+        "legend": {"displayMode": "table", "placement": "right", "calcs": ["lastNotNull", "max"]},
+        "tooltip": {"mode": "multi", "sort": "desc"}
+      },
+      "targets": [
+        {
+          "datasource": {"type": "prometheus", "uid": "${ds}"},
+          "refId": "A",
+          "expr": "node_memory_MemAvailable_bytes{job=\"kubernetes-service-endpoints\", node=~\"$node\"}",
+          "legendFormat": "{{node}}"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "row",
+      "title": "Pod 사용량",
+      "collapsed": false,
+      "gridPos": {"x": 0, "y": 16, "w": 24, "h": 1},
+      "panels": []
+    },
+    {
+      "id": 8,
+      "type": "timeseries",
+      "title": "Pod CPU (cores)",
+      "description": "cAdvisor container_cpu_usage_seconds_total, 컨테이너 합 (pause 제외).",
+      "datasource": {"type": "prometheus", "uid": "${ds}"},
+      "gridPos": {"x": 0, "y": 17, "w": 12, "h": 8},
+      "fieldConfig": {
+        "defaults": {"unit": "short", "custom": {"lineWidth": 1, "fillOpacity": 0, "showPoints": "never"}},
+        "overrides": []
+      },
+      "options": {
+        "legend": {"displayMode": "table", "placement": "right", "calcs": ["lastNotNull", "max"]},
+        "tooltip": {"mode": "multi", "sort": "desc"}
+      },
+      "targets": [
+        {
+          "datasource": {"type": "prometheus", "uid": "${ds}"},
+          "refId": "A",
+          "expr": "sum by (namespace, pod) (rate(container_cpu_usage_seconds_total{container!=\"\", container!=\"POD\", namespace=~\"$namespace\"}[$__rate_interval]))",
+          "legendFormat": "{{namespace}}/{{pod}}"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "type": "timeseries",
+      "title": "Pod 메모리 working set",
+      "description": "cAdvisor container_memory_working_set_bytes, 컨테이너 합 (pause 제외). kubelet 축출·OOM 판단에 쓰이는 값.",
+      "datasource": {"type": "prometheus", "uid": "${ds}"},
+      "gridPos": {"x": 12, "y": 17, "w": 12, "h": 8},
+      "fieldConfig": {
+        "defaults": {"unit": "bytes", "custom": {"lineWidth": 1, "fillOpacity": 0, "showPoints": "never"}},
+        "overrides": []
+      },
+      "options": {
+        "legend": {"displayMode": "table", "placement": "right", "calcs": ["lastNotNull", "max"]},
+        "tooltip": {"mode": "multi", "sort": "desc"}
+      },
+      "targets": [
+        {
+          "datasource": {"type": "prometheus", "uid": "${ds}"},
+          "refId": "A",
+          "expr": "sum by (namespace, pod) (container_memory_working_set_bytes{container!=\"\", container!=\"POD\", namespace=~\"$namespace\"})",
+          "legendFormat": "{{namespace}}/{{pod}}"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "type": "row",
+      "title": "requests / limits 대비 사용량",
+      "collapsed": false,
+      "gridPos": {"x": 0, "y": 25, "w": 24, "h": 1},
+      "panels": []
+    },
+    {
+      "id": 11,
+      "type": "table",
+      "title": "Namespace별 메모리: 사용 / requests / limits",
+      "description": "사용 = cAdvisor working set 합, requests·limits = kube-state-metrics(Pending·Running Pod만). limits가 없는 컨테이너는 limits 합에 들어가지 않는다.",
+      "datasource": {"type": "prometheus", "uid": "${ds}"},
+      "gridPos": {"x": 0, "y": 26, "w": 12, "h": 8},
+      "fieldConfig": {"defaults": {"unit": "bytes"}, "overrides": []},
+      "options": {"showHeader": true, "sortBy": [{"displayName": "사용(working set)", "desc": true}]},
+      "targets": [
+        {
+          "datasource": {"type": "prometheus", "uid": "${ds}"},
+          "refId": "A",
+          "format": "table",
+          "instant": true,
+          "range": false,
+          "expr": "sum by (namespace) (container_memory_working_set_bytes{container!=\"\", container!=\"POD\", namespace=~\"$namespace\"})"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${ds}"},
+          "refId": "B",
+          "format": "table",
+          "instant": true,
+          "range": false,
+          "expr": "sum by (namespace) (kube_pod_container_resource_requests{resource=\"memory\", namespace=~\"$namespace\"} * on (namespace, pod) group_left () max by (namespace, pod) (kube_pod_status_phase{phase=~\"Pending|Running\"}))"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${ds}"},
+          "refId": "C",
+          "format": "table",
+          "instant": true,
+          "range": false,
+          "expr": "sum by (namespace) (kube_pod_container_resource_limits{resource=\"memory\", namespace=~\"$namespace\"} * on (namespace, pod) group_left () max by (namespace, pod) (kube_pod_status_phase{phase=~\"Pending|Running\"}))"
+        }
+      ],
+      "transformations": [
+        {"id": "merge", "options": {}},
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {"Time": true},
+            "renameByName": {
+              "Value #A": "사용(working set)",
+              "Value #B": "requests",
+              "Value #C": "limits",
+              "namespace": "namespace"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "type": "timeseries",
+      "title": "Node별 메모리 requests·limits (allocatable 대비 %)",
+      "description": "kubectl describe node의 Allocated resources와 같은 기준(Pending·Running Pod). limits는 100%를 넘을 수 있다(overcommit).",
+      "datasource": {"type": "prometheus", "uid": "${ds}"},
+      "gridPos": {"x": 12, "y": 26, "w": 12, "h": 8},
+      "fieldConfig": {
+        "defaults": {"unit": "percent", "custom": {"lineWidth": 1, "fillOpacity": 0, "showPoints": "never"}, "min": 0},
+        "overrides": []
+      },
+      "options": {
+        "legend": {"displayMode": "table", "placement": "right", "calcs": ["lastNotNull", "max"]},
+        "tooltip": {"mode": "multi", "sort": "desc"}
+      },
+      "targets": [
+        {
+          "datasource": {"type": "prometheus", "uid": "${ds}"},
+          "refId": "A",
+          "expr": "100 * sum by (node) (kube_pod_container_resource_requests{resource=\"memory\", node=~\"$node\"} * on (namespace, pod) group_left () max by (namespace, pod) (kube_pod_status_phase{phase=~\"Pending|Running\"})) / sum by (node) (kube_node_status_allocatable{resource=\"memory\", node=~\"$node\"})",
+          "legendFormat": "{{node}} requests"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${ds}"},
+          "refId": "B",
+          "expr": "100 * sum by (node) (kube_pod_container_resource_limits{resource=\"memory\", node=~\"$node\"} * on (namespace, pod) group_left () max by (namespace, pod) (kube_pod_status_phase{phase=~\"Pending|Running\"})) / sum by (node) (kube_node_status_allocatable{resource=\"memory\", node=~\"$node\"})",
+          "legendFormat": "{{node}} limits"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "type": "row",
+      "title": "Pod 상태",
+      "collapsed": false,
+      "gridPos": {"x": 0, "y": 34, "w": 24, "h": 1},
+      "panels": []
+    },
+    {
+      "id": 14,
+      "type": "timeseries",
+      "title": "Ready가 아닌 Pod 수 (Pending·Running 중)",
+      "description": "kube_pod_status_ready에는 kube-state-metrics Pod가 있는 Node 이름이 node 라벨로 붙는다(Service 관측 relabel). 그래서 Node가 아니라 namespace로 묶는다.",
+      "datasource": {"type": "prometheus", "uid": "${ds}"},
+      "gridPos": {"x": 0, "y": 35, "w": 12, "h": 8},
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "custom": {"lineWidth": 1, "fillOpacity": 0, "showPoints": "never"},
+          "min": 0,
+          "decimals": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {"displayMode": "table", "placement": "right", "calcs": ["lastNotNull", "max"]},
+        "tooltip": {"mode": "multi", "sort": "desc"}
+      },
+      "targets": [
+        {
+          "datasource": {"type": "prometheus", "uid": "${ds}"},
+          "refId": "A",
+          "expr": "sum by (namespace) ((1 - max by (namespace, pod) (kube_pod_status_ready{condition=\"true\", namespace=~\"$namespace\"})) * on (namespace, pod) max by (namespace, pod) (kube_pod_status_phase{phase=~\"Pending|Running\"}))",
+          "legendFormat": "{{namespace}}"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "type": "timeseries",
+      "title": "컨테이너 재시작 누계",
+      "description": "kube_pod_container_status_restarts_total의 namespace 합. 값이 계단처럼 오르면 그 시각에 재시작이 있었다.",
+      "datasource": {"type": "prometheus", "uid": "${ds}"},
+      "gridPos": {"x": 12, "y": 35, "w": 12, "h": 8},
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "custom": {"lineWidth": 1, "fillOpacity": 0, "showPoints": "never"},
+          "min": 0,
+          "decimals": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {"displayMode": "table", "placement": "right", "calcs": ["lastNotNull", "max"]},
+        "tooltip": {"mode": "multi", "sort": "desc"}
+      },
+      "targets": [
+        {
+          "datasource": {"type": "prometheus", "uid": "${ds}"},
+          "refId": "A",
+          "expr": "sum by (namespace) (kube_pod_container_status_restarts_total{namespace=~\"$namespace\"})",
+          "legendFormat": "{{namespace}}"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "type": "row",
+      "title": "Node Pressure",
+      "collapsed": false,
+      "gridPos": {"x": 0, "y": 43, "w": 24, "h": 1},
+      "panels": []
+    },
+    {
+      "id": 17,
+      "type": "timeseries",
+      "title": "Node 조건 (Pressure = 1)",
+      "description": "kube_node_status_condition, status=true인 Pressure 조건. 평소에는 모두 0.",
+      "datasource": {"type": "prometheus", "uid": "${ds}"},
+      "gridPos": {"x": 0, "y": 44, "w": 12, "h": 8},
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "custom": {"lineWidth": 1, "fillOpacity": 0, "showPoints": "never"},
+          "min": 0,
+          "max": 1,
+          "decimals": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {"displayMode": "table", "placement": "right", "calcs": ["lastNotNull", "max"]},
+        "tooltip": {"mode": "multi", "sort": "desc"}
+      },
+      "targets": [
+        {
+          "datasource": {"type": "prometheus", "uid": "${ds}"},
+          "refId": "A",
+          "expr": "max by (node, condition) (kube_node_status_condition{condition=~\"MemoryPressure|DiskPressure|PIDPressure\", status=\"true\", node=~\"$node\"})",
+          "legendFormat": "{{node}} {{condition}}"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "type": "timeseries",
+      "title": "메모리 PSI (stall 시간 비율)",
+      "description": "node-exporter pressure 수집기. some = 일부 작업이 메모리를 기다린 시간 비율, full = 모든 작업이 멈춘 시간 비율. sample-guests.sh의 psi avg10과 같은 원천.",
+      "datasource": {"type": "prometheus", "uid": "${ds}"},
+      "gridPos": {"x": 12, "y": 44, "w": 12, "h": 8},
+      "fieldConfig": {
+        "defaults": {"unit": "percent", "custom": {"lineWidth": 1, "fillOpacity": 0, "showPoints": "never"}, "min": 0},
+        "overrides": []
+      },
+      "options": {
+        "legend": {"displayMode": "table", "placement": "right", "calcs": ["lastNotNull", "max"]},
+        "tooltip": {"mode": "multi", "sort": "desc"}
+      },
+      "targets": [
+        {
+          "datasource": {"type": "prometheus", "uid": "${ds}"},
+          "refId": "A",
+          "expr": "100 * rate(node_pressure_memory_waiting_seconds_total{job=\"kubernetes-service-endpoints\", node=~\"$node\"}[$__rate_interval])",
+          "legendFormat": "{{node}} some"
+        },
+        {
+          "datasource": {"type": "prometheus", "uid": "${ds}"},
+          "refId": "B",
+          "expr": "100 * rate(node_pressure_memory_stalled_seconds_total{job=\"kubernetes-service-endpoints\", node=~\"$node\"}[$__rate_interval])",
+          "legendFormat": "{{node}} full"
+        }
+      ]
+    }
+  ]
+}

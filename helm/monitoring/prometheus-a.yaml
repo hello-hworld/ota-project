@@ -1,0 +1,84 @@
+# helm/monitoring/prometheus-a.yaml — DAY8 Cluster A Prometheus (Chart prometheus 29.37.0 / Prometheus v3.15.0)
+# 기준: 고정 Chart의 기본 values(docs/evidence/day8/20-prometheus-defaults.yaml, 하위 Chart 포함)와 대조해 바꾼 키만 적는다.
+# 배치: 상시 서버(Prometheus·kube-state-metrics)는 worker-a1(workload=platform). node-exporter만 DaemonSet으로 Node 2대 모두.
+
+server:
+  nodeSelector:
+    workload: platform            # worker-a1. Control Plane(cp-a)에 두지 않는다
+  global:
+    scrape_interval: 30s          # 기본 1m
+    scrape_timeout: 10s           # 기본값과 같음(명시)
+    evaluation_interval: 30s      # 기본 1m (오늘 규칙 없음)
+  retention: 48h                  # 기본 15d
+  retentionSize: 3GB              # 기본 없음. 5Gi PVC에 WAL·Head 여유를 남긴다 (local-path는 크기를 강제하지 않는다)
+  persistentVolume:
+    enabled: true                 # 기본값과 같음(명시)
+    size: 5Gi                     # 기본 8Gi
+    storageClass: local-path      # 기본값 파일에는 주석으로만 있다. 템플릿 pvc.yaml이 사용 → 렌더링으로 확인
+  resources:
+    requests: {cpu: 100m, memory: 384Mi}
+    limits:   {cpu: 500m, memory: 768Mi}
+  service:
+    type: ClusterIP               # 기본값과 같음(명시). A의 Grafana가 클러스터 안에서 조회
+
+configmapReload:
+  prometheus:
+    resources:                    # 기본 {} → requests 합계·측정에 들어가도록 명시
+      requests: {cpu: 10m, memory: 16Mi}
+      limits:   {cpu: 100m, memory: 64Mi}
+
+alertmanager:
+  enabled: false                  # 오늘 미사용
+prometheus-pushgateway:
+  enabled: false                  # 오늘 미사용
+
+kube-state-metrics:
+  nodeSelector:
+    workload: platform
+  resources:
+    requests: {cpu: 50m, memory: 64Mi}
+    limits:   {cpu: 200m, memory: 128Mi}
+  # 기본 목록에서 secrets·configmaps·certificatesigningrequests·webhook·leases·ingresses·networkpolicies·
+  # volumeattachments·endpointslices·replicationcontrollers를 뺐다. 특히 secrets는 클러스터 전체 Secret list/watch 권한을 만든다
+  # (A에는 Argo CD의 B 토큰·Jenkins 관리자 Secret이 있다). 남긴 것: 오늘 패널 + 다음 세션(Quota·LimitRange·HPA)에 필요한 것
+  collectors:
+    - cronjobs
+    - daemonsets
+    - deployments
+    - horizontalpodautoscalers
+    - jobs
+    - limitranges
+    - namespaces
+    - nodes
+    - persistentvolumeclaims
+    - persistentvolumes
+    - poddisruptionbudgets
+    - pods
+    - replicasets
+    - resourcequotas
+    - services
+    - statefulsets
+    - storageclasses
+
+prometheus-node-exporter:
+  resources:
+    requests: {cpu: 20m, memory: 32Mi}
+    limits:   {cpu: 100m, memory: 96Mi}
+  # tolerations 기본값(NoSchedule Exists)으로 Control Plane에도 뜬다 → A 2개
+
+# 오늘 필요한 job만 남긴다: prometheus, kubernetes-nodes(kubelet), kubernetes-nodes-cadvisor, kubernetes-service-endpoints
+# (node-exporter·kube-state-metrics·CoreDNS가 prometheus.io/scrape Service 주석으로 잡힌다)
+# kubernetes-api-servers는 끈다: Control Plane 지표는 오늘 범위 밖이고 API 서버 /metrics가 가장 큰 시계열 출처다(cp-a 여유 약 776 MiB)
+scrapeConfigs:
+  kubernetes-api-servers:
+    enabled: false
+  kubernetes-service-endpoints-slow:
+    enabled: false
+  prometheus-pushgateway:
+    enabled: false
+  kubernetes-services:
+    enabled: false                # blackbox exporter가 없다
+  kubernetes-pods:
+    enabled: false
+  kubernetes-pods-slow:
+    enabled: false
