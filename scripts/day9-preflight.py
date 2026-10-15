@@ -15,7 +15,7 @@ for ctx,names in [('ota-a',{'cp-a','worker-a1'}),('ota-b',{'cp-b','worker-b1','w
   assert jobs[j]['tls_config'].get('insecure_skip_verify') is True, 'DAY8 option (a) differs: inspect before continuing'
  assert 'kubernetes-api-servers' not in jobs
  sa=kj(ctx,'-n','monitoring','get','deployment','prometheus-server')['spec']['template']['spec']['serviceAccountName']
- r=subprocess.run(['kubectl','--context',ctx,'auth','can-i','get','nodes/proxy','--as=system:serviceaccount:monitoring:'+sa],capture_output=True,text=True)
+ r=subprocess.run(['kubectl','--context',ctx,'auth','can-i','get','nodes','--subresource=proxy','--as=system:serviceaccount:monitoring:'+sa],capture_output=True,text=True)
  assert r.stdout.strip()=='no' and r.returncode==1,'Unexpected nodes/proxy permission or failed RBAC lookup'
  print(ctx,'Node health / DAY8 option (a) / no nodes/proxy: PASS')
  for ns in (['ci','staging'] if ctx=='ota-a' else []): assert not kj(ctx,'-n',ns,'get','pods')['items'],ns+' must be empty'

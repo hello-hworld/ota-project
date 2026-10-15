@@ -12,8 +12,8 @@ testFramework:
 automountServiceAccountToken: false   # 기본 true. Grafana는 Kubernetes API를 쓰지 않는다(sidecar 모두 꺼짐)
 
 resources:
-  requests: {cpu: 50m, memory: 128Mi}
-  limits:   {cpu: 300m, memory: 384Mi}  # Chart가 GOMEMLIMIT = 0.9 × limit 을 넣는다(goMemLimit 기본)
+  requests: {cpu: 50m, memory: 256Mi}
+  limits:   {cpu: 300m, memory: 768Mi}  # Chart가 GOMEMLIMIT = 0.9 × limit 을 넣는다(goMemLimit 기본)
 
 persistence:
   enabled: true                   # 기본 false
