@@ -168,8 +168,12 @@ def main():
         ksm = [t for t in se if t["labels"].get("service", "").endswith("kube-state-metrics")]
         if {t["labels"].get("node", "") for t in ne} != want or len(ne) != len(want):
             fails.append(f"node-exporter Target {sorted(t['labels'].get('node', '') for t in ne)} != 기대 {sorted(want)}")
-        if len(ksm) != 1:
-            fails.append(f"kube-state-metrics Target {len(ksm)}개 (기대 1)")
+        # KSM Pod는 8080(객체 지표)과 8081(KSM 자체 지표) 두 포트를 연다. endpointslice SD는 Service에 없는 컨테이너 포트도
+        # Target으로 만든다 → Target 2개가 정상. 판정은 객체 지표 포트(:8080) Target이 정확히 1개인지로 한다
+        ksm_main = [t for t in ksm if t["labels"].get("instance", "").endswith(":8080")]
+        out(f"   (kube-state-metrics Target: {sorted(t['labels'].get('instance', '') for t in ksm)} — :8081은 KSM 자체 지표)")
+        if len(ksm_main) != 1:
+            fails.append(f"kube-state-metrics 객체 지표 Target(:8080) {len(ksm_main)}개 (기대 1)")
         other = sorted({t["labels"].get("service", "") for t in se} - {t["labels"].get("service", "") for t in ne + ksm})
         out(f"   (service-endpoints의 그 밖의 Service: {other or '없음'})")
 
