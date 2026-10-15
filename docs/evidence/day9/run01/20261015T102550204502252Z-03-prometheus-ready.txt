@@ -1,0 +1,2 @@
+deployment "prometheus-server" successfully rolled out
+command_exit=0 log_exit=0

@@ -1,0 +1,125 @@
+Oct 15 09:12:20 worker-a1 kernel: grafana invoked oom-killer: gfp_mask=0xcc0(GFP_KERNEL), order=0, oom_score_adj=979
+Oct 15 09:12:20 worker-a1 kernel: CPU: 3 PID: 100530 Comm: grafana Not tainted 6.8.0-146-generic #146-Ubuntu
+Oct 15 09:12:20 worker-a1 kernel: Hardware name: QEMU Ubuntu 24.04 PC (Q35 + ICH9, 2009), BIOS 1.16.3-debian-1.16.3-2 04/01/2014
+Oct 15 09:12:20 worker-a1 kernel: Call Trace:
+Oct 15 09:12:20 worker-a1 kernel:  <TASK>
+Oct 15 09:12:20 worker-a1 kernel:  dump_stack_lvl+0x76/0xa0
+Oct 15 09:12:20 worker-a1 kernel:  dump_stack+0x10/0x20
+Oct 15 09:12:20 worker-a1 kernel:  dump_header+0x49/0x210
+Oct 15 09:12:20 worker-a1 kernel:  oom_kill_process+0x118/0x280
+Oct 15 09:12:20 worker-a1 kernel:  out_of_memory+0x103/0x350
+Oct 15 09:12:20 worker-a1 kernel:  mem_cgroup_out_of_memory+0x145/0x170
+Oct 15 09:12:20 worker-a1 kernel:  try_charge_memcg+0x6d6/0x7d0
+Oct 15 09:12:20 worker-a1 kernel:  ? vma_alloc_folio+0x7a/0xd0
+Oct 15 09:12:20 worker-a1 kernel:  __mem_cgroup_charge+0x45/0xc0
+Oct 15 09:12:20 worker-a1 kernel:  do_anonymous_page+0xb2/0x430
+Oct 15 09:12:20 worker-a1 kernel:  handle_pte_fault+0x1cb/0x1d0
+Oct 15 09:12:20 worker-a1 kernel:  __handle_mm_fault+0x654/0x790
+Oct 15 09:12:20 worker-a1 kernel:  handle_mm_fault+0x18a/0x380
+Oct 15 09:12:20 worker-a1 kernel:  do_user_addr_fault+0x169/0x670
+Oct 15 09:12:20 worker-a1 kernel:  exc_page_fault+0x83/0x1b0
+Oct 15 09:12:20 worker-a1 kernel:  asm_exc_page_fault+0x27/0x30
+Oct 15 09:12:20 worker-a1 kernel: RIP: 0033:0x4985b9
+Oct 15 09:12:20 worker-a1 kernel: Code: fe 7f 44 1f 80 c5 f8 77 c3 80 3d 45 30 bb 16 01 75 0d c5 f9 ef c0 48 81 fb 00 00 00 02 73 13 48 89 d9 48 c1 e9 03 48 83 e3 07 <f3> 48 ab e9 65 fe ff ff c5 fe 7f 07 48 89 fe 48 83 c7 20 48 83 e7
+Oct 15 09:12:20 worker-a1 kernel: RSP: 002b:0000048bbb0a9f98 EFLAGS: 00010246
+Oct 15 09:12:20 worker-a1 kernel: RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000002c00
+Oct 15 09:12:20 worker-a1 kernel: RDX: 0000000000040000 RSI: 0000048bbfaa1008 RDI: 0000048bca820000
+Oct 15 09:12:20 worker-a1 kernel: RBP: 0000048bbb0a9fc0 R08: 0000000000000000 R09: 0000048bca736000
+Oct 15 09:12:20 worker-a1 kernel: R10: 0000000000000088 R11: 0000048bb7468680 R12: 0000048bb7466008
+Oct 15 09:12:20 worker-a1 kernel: R13: 0000000000000003 R14: 0000048bbab05860 R15: 0000000015618ca0
+Oct 15 09:12:20 worker-a1 kernel:  </TASK>
+Oct 15 09:12:20 worker-a1 kernel: memory: usage 393216kB, limit 393216kB, failcnt 1324
+Oct 15 09:12:20 worker-a1 kernel: swap: usage 0kB, limit 9007199254740988kB, failcnt 0
+Oct 15 09:12:20 worker-a1 kernel: Memory cgroup stats for /kubepods.slice/kubepods-burstable.slice/kubepods-burstable-podc4d464f1_e3da_4fa1_9c3d_68f76e770ed1.slice:
+Oct 15 09:12:20 worker-a1 kernel: anon 391663616
+Oct 15 09:12:20 worker-a1 kernel: file 4096
+Oct 15 09:12:20 worker-a1 kernel: kernel 10981376
+Oct 15 09:12:20 worker-a1 kernel: kernel_stack 1753088
+Oct 15 09:12:20 worker-a1 kernel: pagetables 3563520
+Oct 15 09:12:20 worker-a1 kernel: sec_pagetables 0
+Oct 15 09:12:20 worker-a1 kernel: percpu 26064
+Oct 15 09:12:20 worker-a1 kernel: sock 0
+Oct 15 09:12:20 worker-a1 kernel: vmalloc 24576
+Oct 15 09:12:20 worker-a1 kernel: shmem 0
+Oct 15 09:12:20 worker-a1 kernel: zswap 0
+Oct 15 09:12:20 worker-a1 kernel: zswapped 0
+Oct 15 09:12:20 worker-a1 kernel: file_mapped 0
+Oct 15 09:12:20 worker-a1 kernel: file_dirty 0
+Oct 15 09:12:20 worker-a1 kernel: file_writeback 0
+Oct 15 09:12:20 worker-a1 kernel: swapcached 0
+Oct 15 09:12:20 worker-a1 kernel: anon_thp 0
+Oct 15 09:12:20 worker-a1 kernel: file_thp 0
+Oct 15 09:12:20 worker-a1 kernel: shmem_thp 0
+Oct 15 09:12:20 worker-a1 kernel: inactive_anon 389795840
+Oct 15 09:12:20 worker-a1 kernel: active_anon 1863680
+Oct 15 09:12:20 worker-a1 kernel: inactive_file 4096
+Oct 15 09:12:20 worker-a1 kernel: active_file 0
+Oct 15 09:12:20 worker-a1 kernel: unevictable 0
+Oct 15 09:12:20 worker-a1 kernel: slab_reclaimable 3610264
+Oct 15 09:12:20 worker-a1 kernel: slab_unreclaimable 1761032
+Oct 15 09:12:20 worker-a1 kernel: slab 5371296
+Oct 15 09:12:20 worker-a1 kernel: workingset_refault_anon 0
+Oct 15 09:12:20 worker-a1 kernel: workingset_refault_file 107
+Oct 15 09:12:20 worker-a1 kernel: workingset_activate_anon 0
+Oct 15 09:12:20 worker-a1 kernel: workingset_activate_file 107
+Oct 15 09:12:20 worker-a1 kernel: workingset_restore_anon 0
+Oct 15 09:12:20 worker-a1 kernel: workingset_restore_file 22
+Oct 15 09:12:20 worker-a1 kernel: workingset_nodereclaim 0
+Oct 15 09:12:20 worker-a1 kernel: pgscan 13929
+Oct 15 09:12:20 worker-a1 kernel: pgsteal 13916
+Oct 15 09:12:20 worker-a1 kernel: pgscan_kswapd 8576
+Oct 15 09:12:20 worker-a1 kernel: pgscan_direct 5353
+Oct 15 09:12:20 worker-a1 kernel: pgscan_khugepaged 0
+Oct 15 09:12:20 worker-a1 kernel: pgsteal_kswapd 8576
+Oct 15 09:12:20 worker-a1 kernel: pgsteal_direct 5340
+Oct 15 09:12:20 worker-a1 kernel: pgsteal_khugepaged 0
+Oct 15 09:12:20 worker-a1 kernel: pgfault 155665
+Oct 15 09:12:20 worker-a1 kernel: pgmajfault 13
+Oct 15 09:12:20 worker-a1 kernel: pgrefill 524
+Oct 15 09:12:20 worker-a1 kernel: pgactivate 11
+Oct 15 09:12:20 worker-a1 kernel: pgdeactivate 0
+Oct 15 09:12:20 worker-a1 kernel: pglazyfree 0
+Oct 15 09:12:20 worker-a1 kernel: pglazyfreed 0
+Oct 15 09:12:20 worker-a1 kernel: zswpin 0
+Oct 15 09:12:20 worker-a1 kernel: zswpout 0
+Oct 15 09:12:20 worker-a1 kernel: zswpwb 0
+Oct 15 09:12:20 worker-a1 kernel: thp_fault_alloc 0
+Oct 15 09:12:20 worker-a1 kernel: thp_collapse_alloc 0
+Oct 15 09:12:20 worker-a1 kernel: thp_swpout 0
+Oct 15 09:12:20 worker-a1 kernel: thp_swpout_fallback 0
+Oct 15 09:12:20 worker-a1 kernel: Tasks state (memory values in pages):
+Oct 15 09:12:20 worker-a1 kernel: [  pid  ]   uid  tgid total_vm      rss rss_anon rss_file rss_shmem pgtables_bytes swapents oom_score_adj name
+Oct 15 09:12:20 worker-a1 kernel: [  98638]   472 98638      255      160        0      160         0    28672        0          -998 pause
+Oct 15 09:12:20 worker-a1 kernel: [ 100237]   472 100237   508719   129887    80287    49600         0  1466368        0           979 grafana
+Oct 15 09:12:20 worker-a1 kernel: [ 100313]   472 100313   324248     7008     1376     5632         0   172032        0           979 gpx_grafana_ela
+Oct 15 09:12:20 worker-a1 kernel: [ 100320]   472 100320   322937     5984      896     5088         0   155648        0           979 gpx_grafana_pos
+Oct 15 09:12:20 worker-a1 kernel: [ 100327]   472 100327   322908     6144      896     5248         0   151552        0           979 gpx_grafana-pyr
+Oct 15 09:12:20 worker-a1 kernel: [ 100334]   472 100334   322853     6112      928     5184         0   155648        0           979 gpx_grafana_inf
+Oct 15 09:12:20 worker-a1 kernel: [ 100366]   472 100366   321907     5600      832     4768         0   147456        0           979 gpx_grafana-jae
+Oct 15 09:12:20 worker-a1 kernel: [ 100401]   472 100401   325451     8992     1728     7264         0   184320        0           979 gpx_grafana-lok
+Oct 15 09:12:20 worker-a1 kernel: [ 100407]   472 100407   322943     6048      928     5120         0   159744        0           979 gpx_grafana-mss
+Oct 15 09:12:20 worker-a1 kernel: [ 100414]   472 100414   322063     5824      864     4960         0   151552        0           979 gpx_grafana-mys
+Oct 15 09:12:20 worker-a1 kernel: [ 100421]   472 100421   321902     5632      896     4736         0   151552        0           979 gpx_grafana-ope
+Oct 15 09:12:20 worker-a1 kernel: [ 100428]   472 100428   323742     9137     2737     6400         0   188416        0           979 gpx_grafana-pro
+Oct 15 09:12:20 worker-a1 kernel: [ 100435]   472 100435   322471     5824      928     4896         0   151552        0           979 gpx_grafana_clo
+Oct 15 09:12:20 worker-a1 kernel: [ 100442]   472 100442   322169     5632      896     4736         0   151552        0           979 gpx_grafana-tem
+Oct 15 09:12:20 worker-a1 kernel: [ 100449]   472 100449   321950     5632      832     4800         0   147456        0           979 gpx_grafana-zip
+Oct 15 09:12:20 worker-a1 kernel: oom-kill:constraint=CONSTRAINT_MEMCG,nodemask=(null),cpuset=cri-containerd-4a05f7611a7e2e41082eab216e4ac069725af80d4601da6a1d610cefa7028e24.scope,mems_allowed=0,oom_memcg=/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-podc4d464f1_e3da_4fa1_9c3d_68f76e770ed1.slice,task_memcg=/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-podc4d464f1_e3da_4fa1_9c3d_68f76e770ed1.slice/cri-containerd-4a05f7611a7e2e41082eab216e4ac069725af80d4601da6a1d610cefa7028e24.scope,task=grafana,pid=100237,uid=472
+Oct 15 09:12:20 worker-a1 kernel: Memory cgroup out of memory: Killed process 100237 (grafana) total-vm:2034876kB, anon-rss:321148kB, file-rss:198400kB, shmem-rss:0kB, UID:472 pgtables:1432kB oom_score_adj:979
+Oct 15 09:12:20 worker-a1 kernel: Tasks in /kubepods.slice/kubepods-burstable.slice/kubepods-burstable-podc4d464f1_e3da_4fa1_9c3d_68f76e770ed1.slice/cri-containerd-4a05f7611a7e2e41082eab216e4ac069725af80d4601da6a1d610cefa7028e24.scope are going to be killed due to memory.oom.group set
+Oct 15 09:12:20 worker-a1 kernel: Memory cgroup out of memory: Killed process 100313 (gpx_grafana_ela) total-vm:1296992kB, anon-rss:5504kB, file-rss:22528kB, shmem-rss:0kB, UID:472 pgtables:168kB oom_score_adj:979
+Oct 15 09:12:20 worker-a1 kernel: Memory cgroup out of memory: Killed process 100320 (gpx_grafana_pos) total-vm:1291748kB, anon-rss:3584kB, file-rss:20352kB, shmem-rss:0kB, UID:472 pgtables:152kB oom_score_adj:979
+Oct 15 09:12:20 worker-a1 kernel: Memory cgroup out of memory: Killed process 100327 (gpx_grafana-pyr) total-vm:1291632kB, anon-rss:3584kB, file-rss:20992kB, shmem-rss:0kB, UID:472 pgtables:148kB oom_score_adj:979
+Oct 15 09:12:20 worker-a1 kernel: Memory cgroup out of memory: Killed process 100334 (gpx_grafana_inf) total-vm:1291412kB, anon-rss:3712kB, file-rss:20736kB, shmem-rss:0kB, UID:472 pgtables:152kB oom_score_adj:979
+Oct 15 09:12:20 worker-a1 kernel: Memory cgroup out of memory: Killed process 100366 (gpx_grafana-jae) total-vm:1287628kB, anon-rss:3328kB, file-rss:19072kB, shmem-rss:0kB, UID:472 pgtables:144kB oom_score_adj:979
+Oct 15 09:12:20 worker-a1 kernel: Memory cgroup out of memory: Killed process 100401 (gpx_grafana-lok) total-vm:1301804kB, anon-rss:6912kB, file-rss:29056kB, shmem-rss:0kB, UID:472 pgtables:180kB oom_score_adj:979
+Oct 15 09:12:20 worker-a1 kernel: Memory cgroup out of memory: Killed process 100407 (gpx_grafana-mss) total-vm:1291772kB, anon-rss:3712kB, file-rss:20480kB, shmem-rss:0kB, UID:472 pgtables:156kB oom_score_adj:979
+Oct 15 09:12:21 worker-a1 kernel: Memory cgroup out of memory: Killed process 100414 (gpx_grafana-mys) total-vm:1288252kB, anon-rss:3456kB, file-rss:19840kB, shmem-rss:0kB, UID:472 pgtables:148kB oom_score_adj:979
+Oct 15 09:12:21 worker-a1 kernel: Memory cgroup out of memory: Killed process 100421 (gpx_grafana-ope) total-vm:1287608kB, anon-rss:3584kB, file-rss:18944kB, shmem-rss:0kB, UID:472 pgtables:148kB oom_score_adj:979
+Oct 15 09:12:21 worker-a1 kernel: Memory cgroup out of memory: Killed process 100428 (gpx_grafana-pro) total-vm:1294968kB, anon-rss:10948kB, file-rss:25600kB, shmem-rss:0kB, UID:472 pgtables:184kB oom_score_adj:979
+Oct 15 09:12:21 worker-a1 kernel: Memory cgroup out of memory: Killed process 100435 (gpx_grafana_clo) total-vm:1289884kB, anon-rss:3712kB, file-rss:19584kB, shmem-rss:0kB, UID:472 pgtables:148kB oom_score_adj:979
+Oct 15 09:12:21 worker-a1 kernel: Memory cgroup out of memory: Killed process 100442 (gpx_grafana-tem) total-vm:1288676kB, anon-rss:3584kB, file-rss:18944kB, shmem-rss:0kB, UID:472 pgtables:148kB oom_score_adj:979
+Oct 15 09:12:21 worker-a1 kernel: Memory cgroup out of memory: Killed process 100449 (gpx_grafana-zip) total-vm:1287800kB, anon-rss:3328kB, file-rss:19200kB, shmem-rss:0kB, UID:472 pgtables:144kB oom_score_adj:979
+Oct 15 09:12:21 worker-a1 kernel: Memory cgroup out of memory: Killed process 100530 (grafana) total-vm:2034876kB, anon-rss:321148kB, file-rss:198400kB, shmem-rss:0kB, UID:472 pgtables:1432kB oom_score_adj:979
+Oct 15 09:12:21 worker-a1 kernel: Memory cgroup out of memory: OOM victim 100435 (gpx_grafana_clo) is already exiting. Skip killing the task
+command_exit=0 log_exit=0

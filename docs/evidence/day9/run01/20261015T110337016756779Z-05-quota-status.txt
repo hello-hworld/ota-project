@@ -1,0 +1,10 @@
+Name:            ota-demo-budget
+Namespace:       production
+Resource         Used       Hard
+--------         ----       ----
+limits.cpu       500m       1
+limits.memory    268435456  536870912
+pods             2          4
+requests.cpu     100m       200m
+requests.memory  134217728  268435456
+command_exit=0 log_exit=0

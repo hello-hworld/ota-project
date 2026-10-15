@@ -1,0 +1,3 @@
+LimitRange defaults applied; excessive request rejected by quota; no probe Pod created
+RESULT=PASS
+command_exit=0 log_exit=0

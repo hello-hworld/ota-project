@@ -1,0 +1,10 @@
+/home/devops/ota-project/k8s/policies/day9-production.yaml
+{
+  "pods": "4",
+  "requests.cpu": "200m",
+  "requests.memory": "268435456",
+  "limits.cpu": "1000m",
+  "limits.memory": "536870912"
+}
+RESULT=PREPARED (not applied)
+command_exit=0 log_exit=0

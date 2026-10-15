@@ -1,0 +1,7 @@
+NAME                                            UID                                    READY       RESTARTS
+grafana-c78955987-xljg8                         336f4192-8f9a-43e6-a342-b8f9155685fa   true        0
+prometheus-kube-state-metrics-794f575fb-bd77w   3bffbab5-faf1-4bed-aa5a-81eebe832854   true        0
+prometheus-prometheus-node-exporter-4qllq       dd94c742-451a-4cc2-91a7-1b5ca593757d   true        0
+prometheus-prometheus-node-exporter-x9tv6       309541c3-4828-4775-b314-dc6a0c8f0a46   true        0
+prometheus-server-7f9cfd5964-ntvdt              eb9fe741-fc30-4b79-8fe6-e27a6cb5c464   true,true   0,0
+command_exit=0 log_exit=0

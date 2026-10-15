@@ -1,0 +1,4 @@
+==> Linting /home/devops/ota-project/helm/monitoring/chart/grafana-13.6.0.tgz
+
+1 chart(s) linted, 0 chart(s) failed
+command_exit=0 log_exit=0

@@ -1,0 +1,21 @@
+● ota-node-exporter.service - OTA physical host Node Exporter 1.12.1
+     Loaded: loaded (/etc/systemd/system/ota-node-exporter.service; enabled; preset: enabled)
+     Active: active (running) since Thu 2026-10-15 10:24:55 UTC; 73ms ago
+   Main PID: 536395 (ota-node-export)
+      Tasks: 5 (limit: 37916)
+     Memory: 7.1M (peak: 7.5M)
+        CPU: 33ms
+     CGroup: /system.slice/ota-node-exporter.service
+             └─536395 /usr/local/libexec/ota-node-exporter-1.12.1 --web.listen-address=192.168.56.1:19100
+
+Oct 15 10:24:55 ota-host ota-node-exporter-1.12.1[536395]: time=2026-10-15T10:24:55.431Z level=INFO source=node_exporter.go:142 msg=time
+Oct 15 10:24:55 ota-host ota-node-exporter-1.12.1[536395]: time=2026-10-15T10:24:55.431Z level=INFO source=node_exporter.go:142 msg=timex
+Oct 15 10:24:55 ota-host ota-node-exporter-1.12.1[536395]: time=2026-10-15T10:24:55.431Z level=INFO source=node_exporter.go:142 msg=udp_queues
+Oct 15 10:24:55 ota-host ota-node-exporter-1.12.1[536395]: time=2026-10-15T10:24:55.431Z level=INFO source=node_exporter.go:142 msg=uname
+Oct 15 10:24:55 ota-host ota-node-exporter-1.12.1[536395]: time=2026-10-15T10:24:55.431Z level=INFO source=node_exporter.go:142 msg=vmstat
+Oct 15 10:24:55 ota-host ota-node-exporter-1.12.1[536395]: time=2026-10-15T10:24:55.431Z level=INFO source=node_exporter.go:142 msg=watchdog
+Oct 15 10:24:55 ota-host ota-node-exporter-1.12.1[536395]: time=2026-10-15T10:24:55.431Z level=INFO source=node_exporter.go:142 msg=xfs
+Oct 15 10:24:55 ota-host ota-node-exporter-1.12.1[536395]: time=2026-10-15T10:24:55.431Z level=INFO source=node_exporter.go:142 msg=zfs
+Oct 15 10:24:55 ota-host ota-node-exporter-1.12.1[536395]: time=2026-10-15T10:24:55.432Z level=INFO source=tls_config.go:372 msg="Listening on" address=192.168.56.1:19100
+Oct 15 10:24:55 ota-host ota-node-exporter-1.12.1[536395]: time=2026-10-15T10:24:55.432Z level=INFO source=tls_config.go:375 msg="TLS is disabled." http2=false address=192.168.56.1:19100
+command_exit=0 log_exit=0

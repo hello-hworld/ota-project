@@ -1,0 +1,3 @@
+Host target UP, correct physical endpoint, all panel samples present
+RESULT=PASS
+command_exit=0 log_exit=0

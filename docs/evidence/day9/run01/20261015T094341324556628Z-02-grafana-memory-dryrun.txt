@@ -1,0 +1,15 @@
+Warning: resource serviceaccounts/grafana is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create --save-config or kubectl apply. The missing annotation will be patched automatically.
+serviceaccount/grafana configured (server dry run)
+Warning: resource configmaps/grafana is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create --save-config or kubectl apply. The missing annotation will be patched automatically.
+configmap/grafana configured (server dry run)
+Warning: resource persistentvolumeclaims/grafana is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create --save-config or kubectl apply. The missing annotation will be patched automatically.
+persistentvolumeclaim/grafana configured (server dry run)
+Warning: resource clusterroles/grafana-clusterrole is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create --save-config or kubectl apply. The missing annotation will be patched automatically.
+clusterrole.rbac.authorization.k8s.io/grafana-clusterrole configured (server dry run)
+Warning: resource clusterrolebindings/grafana-clusterrolebinding is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create --save-config or kubectl apply. The missing annotation will be patched automatically.
+clusterrolebinding.rbac.authorization.k8s.io/grafana-clusterrolebinding configured (server dry run)
+Warning: resource services/grafana is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create --save-config or kubectl apply. The missing annotation will be patched automatically.
+service/grafana configured (server dry run)
+Warning: resource deployments/grafana is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create --save-config or kubectl apply. The missing annotation will be patched automatically.
+deployment.apps/grafana configured (server dry run)
+command_exit=0 log_exit=0

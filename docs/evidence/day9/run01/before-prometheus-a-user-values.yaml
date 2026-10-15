@@ -1,0 +1,84 @@
+alertmanager:
+  enabled: false
+configmapReload:
+  prometheus:
+    resources:
+      limits:
+        cpu: 100m
+        memory: 64Mi
+      requests:
+        cpu: 10m
+        memory: 16Mi
+kube-state-metrics:
+  collectors:
+  - cronjobs
+  - daemonsets
+  - deployments
+  - horizontalpodautoscalers
+  - jobs
+  - limitranges
+  - namespaces
+  - nodes
+  - persistentvolumeclaims
+  - persistentvolumes
+  - poddisruptionbudgets
+  - pods
+  - replicasets
+  - resourcequotas
+  - services
+  - statefulsets
+  - storageclasses
+  nodeSelector:
+    workload: platform
+  resources:
+    limits:
+      cpu: 200m
+      memory: 128Mi
+    requests:
+      cpu: 50m
+      memory: 64Mi
+prometheus-node-exporter:
+  resources:
+    limits:
+      cpu: 100m
+      memory: 96Mi
+    requests:
+      cpu: 20m
+      memory: 32Mi
+prometheus-pushgateway:
+  enabled: false
+scrapeConfigs:
+  kubernetes-api-servers:
+    enabled: false
+  kubernetes-pods:
+    enabled: false
+  kubernetes-pods-slow:
+    enabled: false
+  kubernetes-service-endpoints-slow:
+    enabled: false
+  kubernetes-services:
+    enabled: false
+  prometheus-pushgateway:
+    enabled: false
+server:
+  global:
+    evaluation_interval: 30s
+    scrape_interval: 30s
+    scrape_timeout: 10s
+  nodeSelector:
+    workload: platform
+  persistentVolume:
+    enabled: true
+    size: 5Gi
+    storageClass: local-path
+  resources:
+    limits:
+      cpu: 500m
+      memory: 768Mi
+    requests:
+      cpu: 100m
+      memory: 384Mi
+  retention: 48h
+  retentionSize: 3GB
+  service:
+    type: ClusterIP

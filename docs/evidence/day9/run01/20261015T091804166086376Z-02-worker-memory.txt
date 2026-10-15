@@ -1,0 +1,4 @@
+               total        used        free      shared  buff/cache   available
+Mem:            5925        2001         229           3        3998        3923
+Swap:              0           0           0
+command_exit=0 log_exit=0

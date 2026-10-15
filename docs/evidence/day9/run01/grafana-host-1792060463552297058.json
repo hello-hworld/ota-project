@@ -1,0 +1,53 @@
+{
+  "uid": "ota-host-overview",
+  "panels": [
+    {
+      "panel": "CPU busy",
+      "values": [
+        12.034259259256686
+      ]
+    },
+    {
+      "panel": "MemAvailable",
+      "values": [
+        19226316800
+      ]
+    },
+    {
+      "panel": "Swap used",
+      "values": [
+        67108864
+      ]
+    },
+    {
+      "panel": "Swap in / out pages per second",
+      "values": [
+        0
+      ]
+    },
+    {
+      "panel": "Swap out pages per second",
+      "values": [
+        0
+      ]
+    },
+    {
+      "panel": "Memory PSI waiting",
+      "values": [
+        1.3755555555553892e-05
+      ]
+    },
+    {
+      "panel": "Root disk available",
+      "values": [
+        85312823296
+      ]
+    },
+    {
+      "panel": "Load 1m",
+      "values": [
+        2.41
+      ]
+    }
+  ]
+}

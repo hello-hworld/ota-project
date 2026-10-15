@@ -1,0 +1,2 @@
+No resources found in production namespace.
+command_exit=0 log_exit=0

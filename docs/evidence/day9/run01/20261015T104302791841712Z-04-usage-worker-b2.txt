@@ -1,0 +1,10 @@
+CONTAINER           NAME                                 CPU %               MEM                 DISK                INODES
+6376a6d8d731c       kube-proxy                           0.00                58.72MB             65.54kB             24
+69b575973b5b5       calico-node                          6.53                108.3MB             262.1kB             78
+72b3a836b4176       demo                                 0.25                11.57MB             8.192kB             3
+8cb9c424943e3       prometheus-server-configmap-reload   0.09                7.987MB             40.96kB             13
+a9a9af753a923       node-exporter                        0.00                10.18MB             32.77kB             11
+ab467d1984840       kube-state-metrics                   0.04                15.7MB              32.77kB             10
+b0e669753394c       prometheus-server                    0.32                89.26MB             36.86kB             12
+ef7ef930bf3fc       local-path-provisioner               0.00                11.33MB             45.06kB             14
+command_exit=0 log_exit=0

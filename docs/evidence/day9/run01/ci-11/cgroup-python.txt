@@ -1,0 +1,13 @@
+== python
+memory.peak_bytes=28233728
+memory.events_begin
+low 0
+high 0
+max 0
+oom 0
+oom_kill 0
+oom_group_kill 0
+memory.events_end
+usage_usec 739682
+nr_throttled 13
+throttled_usec 600930

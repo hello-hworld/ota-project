@@ -1,0 +1,546 @@
+{
+  "time": 1792055261.7331312,
+  "clusters": {
+    "ota-a": {
+      "flags": {
+        "agent": "false",
+        "alertmanager.drain-notification-queue-on-shutdown": "true",
+        "alertmanager.notification-batch-size": "256",
+        "alertmanager.notification-queue-capacity": "10000",
+        "auto-gomaxprocs": "true",
+        "auto-gomemlimit": "true",
+        "auto-gomemlimit.ratio": "0.9",
+        "auto-gomemlimit.refresh-interval": "0s",
+        "config.auto-reload": "false",
+        "config.auto-reload-interval": "30s",
+        "config.file": "/etc/config/prometheus.yml",
+        "enable-feature": "",
+        "log.format": "logfmt",
+        "log.level": "info",
+        "query.lookback-delta": "5m",
+        "query.max-concurrency": "20",
+        "query.max-samples": "50000000",
+        "query.timeout": "2m",
+        "rules.alert.for-grace-period": "10m",
+        "rules.alert.for-outage-tolerance": "1h",
+        "rules.alert.resend-delay": "1m",
+        "rules.max-concurrent-evals": "4",
+        "scrape.adjust-timestamps": "true",
+        "scrape.discovery-reload-interval": "5s",
+        "scrape.timestamp-tolerance": "2ms",
+        "storage.agent.checkpoint-batch-size": "1000",
+        "storage.agent.checkpoint-from-in-memory-series": "false",
+        "storage.agent.no-lockfile": "false",
+        "storage.agent.path": "data-agent/",
+        "storage.agent.retention.max-time": "4h",
+        "storage.agent.retention.min-time": "5m",
+        "storage.agent.wal-compression": "true",
+        "storage.agent.wal-compression-type": "snappy",
+        "storage.agent.wal-segment-size": "0B",
+        "storage.agent.wal-truncate-frequency": "0s",
+        "storage.remote.flush-deadline": "1m",
+        "storage.remote.read-concurrent-limit": "10",
+        "storage.remote.read-max-bytes-in-frame": "1048576",
+        "storage.remote.read-sample-limit": "50000000",
+        "storage.tsdb.allow-overlapping-compaction": "true",
+        "storage.tsdb.block-reload-interval": "1m",
+        "storage.tsdb.delay-compact-file.path": "",
+        "storage.tsdb.delayed-compaction.max-percent": "10",
+        "storage.tsdb.head-chunks-write-queue-size": "0",
+        "storage.tsdb.max-block-chunk-segment-size": "0B",
+        "storage.tsdb.max-block-duration": "4h48m",
+        "storage.tsdb.min-block-duration": "2h",
+        "storage.tsdb.no-lockfile": "false",
+        "storage.tsdb.path": "/data",
+        "storage.tsdb.retention.size": "3GiB",
+        "storage.tsdb.retention.time": "2d",
+        "storage.tsdb.samples-per-chunk": "120",
+        "storage.tsdb.wal-compression": "true",
+        "storage.tsdb.wal-compression-type": "snappy",
+        "storage.tsdb.wal-segment-size": "0B",
+        "web.config.file": "",
+        "web.console.libraries": "/etc/prometheus/console_libraries",
+        "web.console.templates": "/etc/prometheus/consoles",
+        "web.cors.origin": ".*",
+        "web.enable-admin-api": "false",
+        "web.enable-lifecycle": "true",
+        "web.enable-otlp-receiver": "false",
+        "web.enable-remote-write-receiver": "false",
+        "web.external-url": "",
+        "web.listen-address": "0.0.0.0:9090",
+        "web.max-connections": "512",
+        "web.max-notifications-subscribers": "16",
+        "web.page-title": "Prometheus Time Series Collection and Processing Server",
+        "web.read-timeout": "5m",
+        "web.remote-write-receiver.accepted-protobuf-messages": "prometheus.WriteRequest,io.prometheus.write.v2.Request",
+        "web.route-prefix": "/",
+        "web.search.max-limit": "10000",
+        "web.user-assets": "",
+        "write-documentation": "false"
+      },
+      "tsdb": {
+        "headStats": {
+          "numSeries": 14391,
+          "numLabelPairs": 2735,
+          "chunkCount": 28773,
+          "minTime": 1792051201638,
+          "maxTime": 1792055257200
+        },
+        "seriesCountByMetricName": [
+          {
+            "name": "kubelet_runtime_operations_duration_seconds_bucket",
+            "value": 540
+          },
+          {
+            "name": "kubernetes_feature_enabled",
+            "value": 484
+          },
+          {
+            "name": "container_tasks_state",
+            "value": 405
+          },
+          {
+            "name": "container_memory_failures_total",
+            "value": 324
+          },
+          {
+            "name": "storage_operation_duration_seconds_bucket",
+            "value": 280
+          },
+          {
+            "name": "container_blkio_device_usage_total",
+            "value": 132
+          },
+          {
+            "name": "rest_client_request_duration_seconds_bucket",
+            "value": 130
+          },
+          {
+            "name": "rest_client_response_size_bytes_bucket",
+            "value": 120
+          },
+          {
+            "name": "rest_client_request_size_bytes_bucket",
+            "value": 120
+          },
+          {
+            "name": "kube_pod_status_phase",
+            "value": 115
+          }
+        ],
+        "labelValueCountByLabelName": [
+          {
+            "name": "__name__",
+            "value": 1112
+          },
+          {
+            "name": "name",
+            "value": 314
+          },
+          {
+            "name": "le",
+            "value": 211
+          },
+          {
+            "name": "id",
+            "value": 77
+          },
+          {
+            "name": "handler",
+            "value": 65
+          },
+          {
+            "name": "collector",
+            "value": 49
+          },
+          {
+            "name": "uid",
+            "value": 40
+          },
+          {
+            "name": "container_id",
+            "value": 34
+          },
+          {
+            "name": "owner_name",
+            "value": 28
+          },
+          {
+            "name": "container",
+            "value": 27
+          }
+        ],
+        "memoryInBytesByLabelName": [
+          {
+            "name": "id",
+            "value": 781141
+          },
+          {
+            "name": "__name__",
+            "value": 640297
+          },
+          {
+            "name": "job",
+            "value": 391836
+          },
+          {
+            "name": "kubernetes_io_hostname",
+            "value": 293420
+          },
+          {
+            "name": "instance",
+            "value": 291019
+          },
+          {
+            "name": "beta_kubernetes_io_arch",
+            "value": 285450
+          },
+          {
+            "name": "beta_kubernetes_io_os",
+            "value": 266420
+          },
+          {
+            "name": "name",
+            "value": 252465
+          },
+          {
+            "name": "kubernetes_io_arch",
+            "value": 237875
+          },
+          {
+            "name": "kubernetes_io_os",
+            "value": 218845
+          }
+        ],
+        "seriesCountByLabelValuePair": [
+          {
+            "name": "beta_kubernetes_io_os=linux",
+            "value": 9515
+          },
+          {
+            "name": "beta_kubernetes_io_arch=amd64",
+            "value": 9515
+          },
+          {
+            "name": "kubernetes_io_arch=amd64",
+            "value": 9515
+          },
+          {
+            "name": "kubernetes_io_os=linux",
+            "value": 9515
+          },
+          {
+            "name": "instance=worker-a1",
+            "value": 5400
+          },
+          {
+            "name": "workload=platform",
+            "value": 5400
+          },
+          {
+            "name": "kubernetes_io_hostname=worker-a1",
+            "value": 5400
+          },
+          {
+            "name": "job=kubernetes-nodes-cadvisor",
+            "value": 5355
+          },
+          {
+            "name": "metrics_path=/metrics/cadvisor",
+            "value": 5355
+          },
+          {
+            "name": "job=kubernetes-nodes",
+            "value": 4160
+          }
+        ]
+      },
+      "blockList": "BLOCK ULID                  MIN TIME       MAX TIME       DURATION      NUM SAMPLES  NUM CHUNKS   NUM SERIES   SIZE\n01M4Z6HJ2CZE197WBCEJ2HC7JF  1792037616627  1792044000000  1h46m23.373s  3044477      15799        14986        7252771\n01M4ZCMFKDGRS00S5PWWC8X2P5  1792044001638  1792051200000  1h59m58.362s  3451188      29051        14382        8114989\n",
+      "dataDirectory": "69148\t/data\n",
+      "effectivePermissions": "Resources                                       Non-Resource URLs                      Resource Names   Verbs\nselfsubjectreviews.authentication.k8s.io        []                                     []               [create]\nselfsubjectaccessreviews.authorization.k8s.io   []                                     []               [create]\nselfsubjectrulesreviews.authorization.k8s.io    []                                     []               [create]\nconfigmaps                                      []                                     []               [get list watch]\nendpoints                                       []                                     []               [get list watch]\ningresses                                       []                                     []               [get list watch]\nnodes/metrics                                   []                                     []               [get list watch]\nnodes                                           []                                     []               [get list watch]\npods                                            []                                     []               [get list watch]\nservices                                        []                                     []               [get list watch]\nendpointslices.discovery.k8s.io                 []                                     []               [get list watch]\ningresses.networking.k8s.io/status              []                                     []               [get list watch]\ningresses.networking.k8s.io                     []                                     []               [get list watch]\n                                                [/.well-known/openid-configuration/]   []               [get]\n                                                [/.well-known/openid-configuration]    []               [get]\n                                                [/api/*]                               []               [get]\n                                                [/api]                                 []               [get]\n                                                [/apis/*]                              []               [get]\n                                                [/apis]                                []               [get]\n                                                [/healthz]                             []               [get]\n                                                [/healthz]                             []               [get]\n                                                [/livez]                               []               [get]\n                                                [/livez]                               []               [get]\n                                                [/metrics]                             []               [get]\n                                                [/openapi/*]                           []               [get]\n                                                [/openapi]                             []               [get]\n                                                [/openid/v1/jwks/]                     []               [get]\n                                                [/openid/v1/jwks]                      []               [get]\n                                                [/readyz]                              []               [get]\n                                                [/readyz]                              []               [get]\n                                                [/version/]                            []               [get]\n                                                [/version/]                            []               [get]\n                                                [/version]                             []               [get]\n                                                [/version]                             []               [get]\n"
+    },
+    "ota-b": {
+      "flags": {
+        "agent": "false",
+        "alertmanager.drain-notification-queue-on-shutdown": "true",
+        "alertmanager.notification-batch-size": "256",
+        "alertmanager.notification-queue-capacity": "10000",
+        "auto-gomaxprocs": "true",
+        "auto-gomemlimit": "true",
+        "auto-gomemlimit.ratio": "0.9",
+        "auto-gomemlimit.refresh-interval": "0s",
+        "config.auto-reload": "false",
+        "config.auto-reload-interval": "30s",
+        "config.file": "/etc/config/prometheus.yml",
+        "enable-feature": "",
+        "log.format": "logfmt",
+        "log.level": "info",
+        "query.lookback-delta": "5m",
+        "query.max-concurrency": "20",
+        "query.max-samples": "50000000",
+        "query.timeout": "2m",
+        "rules.alert.for-grace-period": "10m",
+        "rules.alert.for-outage-tolerance": "1h",
+        "rules.alert.resend-delay": "1m",
+        "rules.max-concurrent-evals": "4",
+        "scrape.adjust-timestamps": "true",
+        "scrape.discovery-reload-interval": "5s",
+        "scrape.timestamp-tolerance": "2ms",
+        "storage.agent.checkpoint-batch-size": "1000",
+        "storage.agent.checkpoint-from-in-memory-series": "false",
+        "storage.agent.no-lockfile": "false",
+        "storage.agent.path": "data-agent/",
+        "storage.agent.retention.max-time": "4h",
+        "storage.agent.retention.min-time": "5m",
+        "storage.agent.wal-compression": "true",
+        "storage.agent.wal-compression-type": "snappy",
+        "storage.agent.wal-segment-size": "0B",
+        "storage.agent.wal-truncate-frequency": "0s",
+        "storage.remote.flush-deadline": "1m",
+        "storage.remote.read-concurrent-limit": "10",
+        "storage.remote.read-max-bytes-in-frame": "1048576",
+        "storage.remote.read-sample-limit": "50000000",
+        "storage.tsdb.allow-overlapping-compaction": "true",
+        "storage.tsdb.block-reload-interval": "1m",
+        "storage.tsdb.delay-compact-file.path": "",
+        "storage.tsdb.delayed-compaction.max-percent": "10",
+        "storage.tsdb.head-chunks-write-queue-size": "0",
+        "storage.tsdb.max-block-chunk-segment-size": "0B",
+        "storage.tsdb.max-block-duration": "4h48m",
+        "storage.tsdb.min-block-duration": "2h",
+        "storage.tsdb.no-lockfile": "false",
+        "storage.tsdb.path": "/data",
+        "storage.tsdb.retention.size": "3GiB",
+        "storage.tsdb.retention.time": "2d",
+        "storage.tsdb.samples-per-chunk": "120",
+        "storage.tsdb.wal-compression": "true",
+        "storage.tsdb.wal-compression-type": "snappy",
+        "storage.tsdb.wal-segment-size": "0B",
+        "web.config.file": "",
+        "web.console.libraries": "/etc/prometheus/console_libraries",
+        "web.console.templates": "/etc/prometheus/consoles",
+        "web.cors.origin": ".*",
+        "web.enable-admin-api": "false",
+        "web.enable-lifecycle": "true",
+        "web.enable-otlp-receiver": "false",
+        "web.enable-remote-write-receiver": "false",
+        "web.external-url": "",
+        "web.listen-address": "0.0.0.0:9090",
+        "web.max-connections": "512",
+        "web.max-notifications-subscribers": "16",
+        "web.page-title": "Prometheus Time Series Collection and Processing Server",
+        "web.read-timeout": "5m",
+        "web.remote-write-receiver.accepted-protobuf-messages": "prometheus.WriteRequest,io.prometheus.write.v2.Request",
+        "web.route-prefix": "/",
+        "web.search.max-limit": "10000",
+        "web.user-assets": "",
+        "write-documentation": "false"
+      },
+      "tsdb": {
+        "headStats": {
+          "numSeries": 15864,
+          "numLabelPairs": 2571,
+          "chunkCount": 31710,
+          "minTime": 1792051200019,
+          "maxTime": 1792055259284
+        },
+        "seriesCountByMetricName": [
+          {
+            "name": "kubelet_runtime_operations_duration_seconds_bucket",
+            "value": 795
+          },
+          {
+            "name": "kubernetes_feature_enabled",
+            "value": 726
+          },
+          {
+            "name": "container_tasks_state",
+            "value": 395
+          },
+          {
+            "name": "container_memory_failures_total",
+            "value": 316
+          },
+          {
+            "name": "storage_operation_duration_seconds_bucket",
+            "value": 280
+          },
+          {
+            "name": "rest_client_request_duration_seconds_bucket",
+            "value": 195
+          },
+          {
+            "name": "rest_client_response_size_bytes_bucket",
+            "value": 180
+          },
+          {
+            "name": "rest_client_request_size_bytes_bucket",
+            "value": 180
+          },
+          {
+            "name": "rest_client_rate_limiter_duration_seconds_bucket",
+            "value": 156
+          },
+          {
+            "name": "node_scrape_collector_duration_seconds",
+            "value": 147
+          }
+        ],
+        "labelValueCountByLabelName": [
+          {
+            "name": "__name__",
+            "value": 1098
+          },
+          {
+            "name": "name",
+            "value": 305
+          },
+          {
+            "name": "le",
+            "value": 211
+          },
+          {
+            "name": "id",
+            "value": 70
+          },
+          {
+            "name": "handler",
+            "value": 65
+          },
+          {
+            "name": "collector",
+            "value": 49
+          },
+          {
+            "name": "container_id",
+            "value": 31
+          },
+          {
+            "name": "uid",
+            "value": 31
+          },
+          {
+            "name": "operation_type",
+            "value": 24
+          },
+          {
+            "name": "resource",
+            "value": 23
+          }
+        ],
+        "memoryInBytesByLabelName": [
+          {
+            "name": "__name__",
+            "value": 713067
+          },
+          {
+            "name": "id",
+            "value": 667850
+          },
+          {
+            "name": "job",
+            "value": 419511
+          },
+          {
+            "name": "kubernetes_io_hostname",
+            "value": 344721
+          },
+          {
+            "name": "beta_kubernetes_io_arch",
+            "value": 329910
+          },
+          {
+            "name": "instance",
+            "value": 323243
+          },
+          {
+            "name": "beta_kubernetes_io_os",
+            "value": 307916
+          },
+          {
+            "name": "kubernetes_io_arch",
+            "value": 274925
+          },
+          {
+            "name": "kubernetes_io_os",
+            "value": 252931
+          },
+          {
+            "name": "name",
+            "value": 227747
+          }
+        ],
+        "seriesCountByLabelValuePair": [
+          {
+            "name": "beta_kubernetes_io_arch=amd64",
+            "value": 10997
+          },
+          {
+            "name": "kubernetes_io_arch=amd64",
+            "value": 10997
+          },
+          {
+            "name": "beta_kubernetes_io_os=linux",
+            "value": 10997
+          },
+          {
+            "name": "kubernetes_io_os=linux",
+            "value": 10997
+          },
+          {
+            "name": "job=kubernetes-nodes",
+            "value": 5992
+          },
+          {
+            "name": "metrics_path=/metrics/cadvisor",
+            "value": 5005
+          },
+          {
+            "name": "job=kubernetes-nodes-cadvisor",
+            "value": 5005
+          },
+          {
+            "name": "job=kubernetes-service-endpoints",
+            "value": 3918
+          },
+          {
+            "name": "kubernetes_io_hostname=worker-b2",
+            "value": 3918
+          },
+          {
+            "name": "instance=worker-b2",
+            "value": 3918
+          }
+        ]
+      },
+      "blockList": "BLOCK ULID                  MIN TIME       MAX TIME       DURATION      NUM SAMPLES  NUM CHUNKS   NUM SERIES   SIZE\n01M4Z6SQQ6S52F03ZD2YWM3ZDN  1792037881267  1792044000000  1h41m58.733s  3231009      16736        15880        7204233\n01M4ZCMG8QBAKPCMGP07468NP0  1792044000019  1792051200000  1h59m59.981s  3803040      31989        15846        8477841\n",
+      "dataDirectory": "72720\t/data\n",
+      "effectivePermissions": "Resources                                       Non-Resource URLs                      Resource Names   Verbs\nselfsubjectreviews.authentication.k8s.io        []                                     []               [create]\nselfsubjectaccessreviews.authorization.k8s.io   []                                     []               [create]\nselfsubjectrulesreviews.authorization.k8s.io    []                                     []               [create]\nconfigmaps                                      []                                     []               [get list watch]\nendpoints                                       []                                     []               [get list watch]\ningresses                                       []                                     []               [get list watch]\nnodes/metrics                                   []                                     []               [get list watch]\nnodes                                           []                                     []               [get list watch]\npods                                            []                                     []               [get list watch]\nservices                                        []                                     []               [get list watch]\nendpointslices.discovery.k8s.io                 []                                     []               [get list watch]\ningresses.networking.k8s.io/status              []                                     []               [get list watch]\ningresses.networking.k8s.io                     []                                     []               [get list watch]\n                                                [/.well-known/openid-configuration/]   []               [get]\n                                                [/.well-known/openid-configuration]    []               [get]\n                                                [/api/*]                               []               [get]\n                                                [/api]                                 []               [get]\n                                                [/apis/*]                              []               [get]\n                                                [/apis]                                []               [get]\n                                                [/healthz]                             []               [get]\n                                                [/healthz]                             []               [get]\n                                                [/livez]                               []               [get]\n                                                [/livez]                               []               [get]\n                                                [/metrics]                             []               [get]\n                                                [/openapi/*]                           []               [get]\n                                                [/openapi]                             []               [get]\n                                                [/openid/v1/jwks/]                     []               [get]\n                                                [/openid/v1/jwks]                      []               [get]\n                                                [/readyz]                              []               [get]\n                                                [/readyz]                              []               [get]\n                                                [/version/]                            []               [get]\n                                                [/version/]                            []               [get]\n                                                [/version]                             []               [get]\n                                                [/version]                             []               [get]\n"
+    }
+  },
+  "grafana15mMaxWorkingSet": [
+    {
+      "metric": {
+        "beta_kubernetes_io_arch": "amd64",
+        "beta_kubernetes_io_os": "linux",
+        "container": "grafana",
+        "id": "/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-podc4d464f1_e3da_4fa1_9c3d_68f76e770ed1.slice/cri-containerd-4a05f7611a7e2e41082eab216e4ac069725af80d4601da6a1d610cefa7028e24.scope",
+        "image": "docker.io/grafana/grafana:13.2.4-distroless",
+        "instance": "worker-a1",
+        "job": "kubernetes-nodes-cadvisor",
+        "kubernetes_io_arch": "amd64",
+        "kubernetes_io_hostname": "worker-a1",
+        "kubernetes_io_os": "linux",
+        "metrics_path": "/metrics/cadvisor",
+        "name": "4a05f7611a7e2e41082eab216e4ac069725af80d4601da6a1d610cefa7028e24",
+        "namespace": "monitoring",
+        "pod": "grafana-784d47b5-dh6jj",
+        "workload": "platform"
+      },
+      "value": [
+        1792055262.399,
+        "210841600"
+      ]
+    }
+  ]
+}

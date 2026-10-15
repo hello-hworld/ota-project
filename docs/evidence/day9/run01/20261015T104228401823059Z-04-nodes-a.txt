@@ -1,0 +1,165 @@
+Name:               cp-a
+Roles:              control-plane
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=cp-a
+                    kubernetes.io/os=linux
+                    node-role.kubernetes.io/control-plane=
+                    node.kubernetes.io/exclude-from-external-load-balancers=
+Annotations:        node.alpha.kubernetes.io/ttl: 0
+                    projectcalico.org/IPv4Address: 192.168.56.20/24
+                    projectcalico.org/IPv4IPIPTunnelAddr: 10.10.229.128
+                    projectcalico.org/Interfaces: [{"name":"enp1s0","addresses":["192.168.56.20"]}]
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Wed, 07 Oct 2026 07:25:38 +0000
+Taints:             node-role.kubernetes.io/control-plane:NoSchedule
+Unschedulable:      false
+Lease:
+  HolderIdentity:  cp-a
+  AcquireTime:     <unset>
+  RenewTime:       Thu, 15 Oct 2026 10:42:24 +0000
+Conditions:
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----                 ------  -----------------                 ------------------                ------                       -------
+  NetworkUnavailable   False   Thu, 15 Oct 2026 00:27:21 +0000   Thu, 15 Oct 2026 00:27:21 +0000   CalicoIsUp                   Calico is running on this node
+  MemoryPressure       False   Thu, 15 Oct 2026 10:40:27 +0000   Wed, 07 Oct 2026 07:25:38 +0000   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Thu, 15 Oct 2026 10:40:27 +0000   Wed, 07 Oct 2026 07:25:38 +0000   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Thu, 15 Oct 2026 10:40:27 +0000   Wed, 07 Oct 2026 07:25:38 +0000   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Thu, 15 Oct 2026 10:40:27 +0000   Wed, 07 Oct 2026 07:30:16 +0000   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:  192.168.56.20
+  Hostname:    cp-a
+Capacity:
+  cpu:                2
+  ephemeral-storage:  29378688Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             2014860Ki
+  pods:               110
+Allocatable:
+  cpu:                2
+  ephemeral-storage:  27075398816
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             1912460Ki
+  pods:               110
+System Info:
+  Machine ID:                 aaa4ca3a6a8a47249de72b334e3709f9
+  System UUID:                aaa4ca3a-6a8a-4724-9de7-2b334e3709f9
+  Boot ID:                    25635be3-00a0-4b85-b098-6cfe01da26f2
+  Kernel Version:             6.8.0-146-generic
+  OS Image:                   Ubuntu 24.04.5 LTS
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  containerd://2.2.1
+  Kubelet Version:            v1.36.5
+PodCIDR:                      10.10.0.0/24
+PodCIDRs:                     10.10.0.0/24
+Non-terminated Pods:          (10 in total)
+  Namespace                   Name                                         CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                                         ------------  ----------  ---------------  -------------  ---
+  kube-system                 calico-kube-controllers-855c4cc49d-6s5q9     0 (0%)        0 (0%)      0 (0%)           0 (0%)         11h
+  kube-system                 calico-node-mzgcl                            250m (12%)    0 (0%)      0 (0%)           0 (0%)         11h
+  kube-system                 coredns-589f44dc88-89bnl                     100m (5%)     0 (0%)      70Mi (3%)        170Mi (9%)     11h
+  kube-system                 coredns-589f44dc88-b4d79                     100m (5%)     0 (0%)      70Mi (3%)        170Mi (9%)     11h
+  kube-system                 etcd-cp-a                                    100m (5%)     0 (0%)      100Mi (5%)       0 (0%)         11h
+  kube-system                 kube-apiserver-cp-a                          250m (12%)    0 (0%)      0 (0%)           0 (0%)         11h
+  kube-system                 kube-controller-manager-cp-a                 200m (10%)    0 (0%)      0 (0%)           0 (0%)         11h
+  kube-system                 kube-proxy-nvcmj                             0 (0%)        0 (0%)      0 (0%)           0 (0%)         11h
+  kube-system                 kube-scheduler-cp-a                          100m (5%)     0 (0%)      0 (0%)           0 (0%)         11h
+  monitoring                  prometheus-prometheus-node-exporter-4qllq    20m (1%)      100m (5%)   32Mi (1%)        96Mi (5%)      6h30m
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests     Limits
+  --------           --------     ------
+  cpu                1120m (56%)  100m (5%)
+  memory             272Mi (14%)  436Mi (23%)
+  ephemeral-storage  0 (0%)       0 (0%)
+  hugepages-1Gi      0 (0%)       0 (0%)
+  hugepages-2Mi      0 (0%)       0 (0%)
+
+
+Name:               worker-a1
+Roles:              <none>
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=worker-a1
+                    kubernetes.io/os=linux
+                    workload=platform
+Annotations:        node.alpha.kubernetes.io/ttl: 0
+                    projectcalico.org/IPv4Address: 192.168.56.21/24
+                    projectcalico.org/IPv4IPIPTunnelAddr: 10.10.238.0
+                    projectcalico.org/Interfaces: [{"name":"enp1s0","addresses":["192.168.56.21"]}]
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Wed, 07 Oct 2026 07:33:25 +0000
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  worker-a1
+  AcquireTime:     <unset>
+  RenewTime:       Thu, 15 Oct 2026 10:42:18 +0000
+Conditions:
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----                 ------  -----------------                 ------------------                ------                       -------
+  NetworkUnavailable   False   Thu, 15 Oct 2026 00:27:20 +0000   Thu, 15 Oct 2026 00:27:20 +0000   CalicoIsUp                   Calico is running on this node
+  MemoryPressure       False   Thu, 15 Oct 2026 10:39:25 +0000   Tue, 13 Oct 2026 07:57:15 +0000   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Thu, 15 Oct 2026 10:39:25 +0000   Tue, 13 Oct 2026 07:57:15 +0000   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Thu, 15 Oct 2026 10:39:25 +0000   Tue, 13 Oct 2026 07:57:15 +0000   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Thu, 15 Oct 2026 10:39:25 +0000   Tue, 13 Oct 2026 07:57:15 +0000   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:  192.168.56.21
+  Hostname:    worker-a1
+Capacity:
+  cpu:                4
+  ephemeral-storage:  59848952Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             6067400Ki
+  pods:               110
+Allocatable:
+  cpu:                4
+  ephemeral-storage:  55156794072
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             5965000Ki
+  pods:               110
+System Info:
+  Machine ID:                 a0e0c1fe09a9423691a682e3e7e9933c
+  System UUID:                a0e0c1fe-09a9-4236-91a6-82e3e7e9933c
+  Boot ID:                    8fbec4b7-dcd4-4fbb-9d15-a33cc8db74e2
+  Kernel Version:             6.8.0-146-generic
+  OS Image:                   Ubuntu 24.04.5 LTS
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  containerd://2.2.1
+  Kubelet Version:            v1.36.5
+PodCIDR:                      10.10.1.0/24
+PodCIDRs:                     10.10.1.0/24
+Non-terminated Pods:          (13 in total)
+  Namespace                   Name                                             CPU Requests  CPU Limits   Memory Requests  Memory Limits  Age
+  ---------                   ----                                             ------------  ----------   ---------------  -------------  ---
+  argocd                      argocd-application-controller-0                  100m (2%)     500m (12%)   256Mi (4%)       1Gi (17%)      11h
+  argocd                      argocd-redis-7cc5595759-79mnt                    50m (1%)      250m (6%)    128Mi (2%)       256Mi (4%)     11h
+  argocd                      argocd-repo-server-795ffc79fb-pswxl              100m (2%)     500m (12%)   256Mi (4%)       768Mi (13%)    11h
+  argocd                      argocd-server-67687bd47f-jvz72                   50m (1%)      500m (12%)   128Mi (2%)       512Mi (8%)     11h
+  kube-system                 calico-node-vwx8m                                250m (6%)     0 (0%)       0 (0%)           0 (0%)         11h
+  kube-system                 kube-proxy-5p8mv                                 0 (0%)        0 (0%)       0 (0%)           0 (0%)         11h
+  local-path-storage          local-path-provisioner-85d9db4886-n6wwt          0 (0%)        0 (0%)       0 (0%)           0 (0%)         11h
+  monitoring                  grafana-c78955987-xljg8                          50m (1%)      300m (7%)    256Mi (4%)       768Mi (13%)    58m
+  monitoring                  prometheus-kube-state-metrics-794f575fb-bd77w    50m (1%)      200m (5%)    64Mi (1%)        128Mi (2%)     6h30m
+  monitoring                  prometheus-prometheus-node-exporter-x9tv6        20m (0%)      100m (2%)    32Mi (0%)        96Mi (1%)      6h30m
+  monitoring                  prometheus-server-7f9cfd5964-ntvdt               110m (2%)     600m (15%)   400Mi (6%)       832Mi (14%)    6h30m
+  platform                    jenkins-0                                        260m (6%)     1100m (27%)  800Mi (13%)      1664Mi (28%)   11h
+  platform                    registry-665db59f88-5jmpp                        100m (2%)     500m (12%)   128Mi (2%)       512Mi (8%)     11h
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests      Limits
+  --------           --------      ------
+  cpu                1140m (28%)   4550m (113%)
+  memory             2448Mi (42%)  6560Mi (112%)
+  ephemeral-storage  0 (0%)        0 (0%)
+  hugepages-1Gi      0 (0%)        0 (0%)
+  hugepages-2Mi      0 (0%)        0 (0%)
+command_exit=0 log_exit=0
