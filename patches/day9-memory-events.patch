@@ -1,0 +1,16 @@
+--- a/Jenkinsfile
++++ b/Jenkinsfile
+@@ -158,6 +158,13 @@
+               mkdir -p out
+               { echo "== $1"
+                 if [ -r /sys/fs/cgroup/memory.peak ]; then echo "memory.peak_bytes=$(cat /sys/fs/cgroup/memory.peak)"; else echo "memory.peak_bytes=미수집"; fi
++                if [ -r /sys/fs/cgroup/memory.events ]; then
++                  echo "memory.events_begin"
++                  cat /sys/fs/cgroup/memory.events
++                  echo "memory.events_end"
++                else
++                  echo "memory.events=미수집"
++                fi
+                 grep -E '^(usage_usec|nr_throttled|throttled_usec)' /sys/fs/cgroup/cpu.stat 2>/dev/null || echo "cpu.stat=미수집"
+               } > "out/cgroup-$1.txt"
+             '''

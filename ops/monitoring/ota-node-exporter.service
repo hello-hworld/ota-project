@@ -1,0 +1,17 @@
+[Unit]
+Description=OTA physical host Node Exporter 1.12.1
+After=network-online.target libvirtd.service
+Wants=network-online.target
+
+[Service]
+User=nobody
+Group=nogroup
+ExecStart=/usr/local/libexec/ota-node-exporter-1.12.1 --web.listen-address=192.168.56.1:19100
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+RestrictSUIDSGID=yes
+
+[Install]
+WantedBy=multi-user.target

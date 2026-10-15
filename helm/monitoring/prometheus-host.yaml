@@ -1,0 +1,3 @@
+extraScrapeConfigs: "- job_name: ota-host\n  scrape_interval: 30s\n  static_configs:\n\
+  \  - targets:\n    - 192.168.56.1:19100\n    labels:\n      instance: ota-host\n\
+  \      scope: physical-host\n"

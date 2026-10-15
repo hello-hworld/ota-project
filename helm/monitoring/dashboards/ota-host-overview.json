@@ -1,0 +1,235 @@
+{
+  "uid": "ota-host-overview",
+  "title": "OTA Physical Host",
+  "schemaVersion": 39,
+  "version": 1,
+  "timezone": "browser",
+  "tags": [
+    "ota",
+    "host",
+    "day9"
+  ],
+  "refresh": "30s",
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "CPU busy",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus-a"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "100*(1-avg(rate(node_cpu_seconds_total{job=\"ota-host\",mode=\"idle\"}[2m])))"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "MemAvailable",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus-a"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "node_memory_MemAvailable_bytes{job=\"ota-host\"}"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Swap used",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus-a"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "node_memory_SwapTotal_bytes{job=\"ota-host\"}-node_memory_SwapFree_bytes{job=\"ota-host\"}"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Swap in / out pages per second",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus-a"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "rate(node_vmstat_pswpin{job=\"ota-host\"}[2m])"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Swap out pages per second",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus-a"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 16,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "rate(node_vmstat_pswpout{job=\"ota-host\"}[2m])"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Memory PSI waiting",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus-a"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 16,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "rate(node_pressure_memory_waiting_seconds_total{job=\"ota-host\"}[2m])"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Root disk available",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus-a"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 24,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "node_filesystem_avail_bytes{job=\"ota-host\",mountpoint=\"/\",fstype!=\"rootfs\"}"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Load 1m",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus-a"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 24,
+        "w": 12,
+        "h": 8
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "node_load1{job=\"ota-host\"}"
+        }
+      ]
+    }
+  ]
+}
