@@ -19,3 +19,9 @@
 2026-10-15T04:29:35Z STEP5 start
 2026-10-15T04:32:36Z NOTE: 40·41·42 FAIL = KSM Target 2개(:8080 객체 지표, :8081 KSM 자체 지표). 수집 정상, prom-check 기대값 오류 → 판정 수정 후 -r2
 2026-10-15T04:35:08Z STEP5 end
+2026-10-15T04:36:02Z STEP6 install sampling stopped
+2026-10-15T04:36:38Z P1-idle measure
+2026-10-15T04:41:10Z STEP6 CI start (day6-ci)
+2026-10-15T04:45:58Z STEP6 CI end
+2026-10-15T04:50:54Z STEP6 CI sampling stopped
+2026-10-15T04:51:33Z P2-final measure

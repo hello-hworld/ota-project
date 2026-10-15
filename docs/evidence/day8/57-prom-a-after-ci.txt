@@ -1,0 +1,52 @@
+== prom-check cluster=a via=kubectl --context ota-a → monitoring/http:prometheus-server:80 at=2026-10-15T04:49:54Z 기대 Node=['cp-a', 'worker-a1']
+-- ready: Prometheus Server is Ready.
+-- version: 3.15.0 (go go1.27.1)
+-- retention: time=2d size=3GiB lifecycle=true
+-- targets (활성 11개)
+   kubernetes-nodes                 up      worker-a1                                             age=18s dur=0.053s 
+   kubernetes-nodes                 up      cp-a                                                  age=2s dur=0.034s 
+   kubernetes-nodes-cadvisor        up      worker-a1                                             age=30s dur=0.035s 
+   kubernetes-nodes-cadvisor        up      cp-a                                                  age=29s dur=0.030s 
+   kubernetes-service-endpoints     up      cp-a         kube-dns                                 age=21s dur=0.006s 
+   kubernetes-service-endpoints     up      worker-a1    prometheus-kube-state-metrics            age=18s dur=0.003s 
+   kubernetes-service-endpoints     up      worker-a1    prometheus-kube-state-metrics            age=23s dur=0.004s 
+   kubernetes-service-endpoints     up      cp-a         prometheus-prometheus-node-exporter      age=12s dur=0.126s 
+   kubernetes-service-endpoints     up      worker-a1    prometheus-prometheus-node-exporter      age=9s dur=0.408s 
+   kubernetes-service-endpoints     up      cp-a         kube-dns                                 age=28s dur=0.007s 
+   prometheus                       up      localhost:9090                                          age=17s dur=0.007s 
+   (kube-state-metrics Target: ['10.10.238.26:8080', '10.10.238.26:8081'] — :8081은 KSM 자체 지표)
+   (service-endpoints의 그 밖의 Service: ['kube-dns'])
+-- 실제 샘플
+   node-exporter Node=['cp-a', 'worker-a1'] 시계열=[1, 1]
+   kubelet       Node=['cp-a', 'worker-a1'] 시계열=[1, 1]
+   cAdvisor      Node=['cp-a', 'worker-a1'] 시계열=[15, 10]
+   node-exporter 최신       샘플 2개, 가장 오래된 샘플 0s 전
+   cAdvisor 최신            샘플 2개, 가장 오래된 샘플 0s 전
+   kube-state-metrics 최신  샘플 2개, 가장 오래된 샘플 0s 전
+   kube-state-metrics kube_node_info Node: 2
+   kube-state-metrics kube_pod_info Pod: 23
+   kube-state-metrics memory requests 시계열: 16
+   kube-state-metrics Pod Ready 시계열: 23
+   kube-state-metrics Node 조건 시계열: 6
+-- 최근 30m 동안 수집 끊김
+   prometheus                       up 최솟값=1.0
+   kubernetes-nodes                 up 최솟값=1.0
+   kubernetes-nodes-cadvisor        up 최솟값=1.0
+   kubernetes-service-endpoints     up 최솟값=1.0
+   scrape 시간 구간 최대 kubernetes-nodes: 0.063s
+   scrape 시간 구간 최대 kubernetes-nodes-cadvisor: 0.073s
+   scrape 시간 구간 최대 kubernetes-service-endpoints: 0.507s
+   scrape 시간 구간 최대 prometheus: 0.016s
+   Prometheus RSS 구간 최대 bytes: 138227712
+-- 기록만 (판정 아님)
+   Control Plane 별도 job: 수집 안 함 (오늘 범위 밖)
+   TSDB head 시계열: 14962
+   TSDB 블록 bytes: 0
+   WAL bytes: 6765210
+   Prometheus RSS bytes: 135065600
+   수집 샘플/scrape 합: 14315
+   scrape 시간 최대 kubernetes-nodes: 0.053s
+   scrape 시간 최대 kubernetes-nodes-cadvisor: 0.039s
+   scrape 시간 최대 kubernetes-service-endpoints: 0.408s
+   scrape 시간 최대 prometheus: 0.007s
+RESULT=PASS

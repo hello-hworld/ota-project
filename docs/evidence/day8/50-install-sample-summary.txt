@@ -1,0 +1,21 @@
+[20261015-041045-day8-install-domstats.csv]
+  Host MemAvailable min=19090.5 MiB at 04:27:46Z; max=22390.1 MiB; samples=295
+  cp-a RSS max=2102.5 MiB at 04:13:02Z
+  cp-b RSS max=3097.4 MiB at 04:34:42Z
+  worker-a1 RSS max=6024.1 MiB at 04:28:36Z
+  worker-b1 RSS max=2507.8 MiB at 04:29:12Z
+  worker-b2 RSS max=2881.3 MiB at 04:30:18Z
+[20261015-041045-day8-install-host-vmstat.txt]
+  samples=1494 CPU busy(100-id) max=32% at 2026-10-15 04:16:41; si/so 합계=16/0; gu max=22% at 2026-10-15 04:16:41
+[20261015-041045-day8-install-worker-a1.txt]
+  samples=249 MemAvailable min=4113.1 MiB at 04:28:56; 마지막 시각 04:35:40
+[20261015-041113-day8-install-cp-a.txt]
+  samples=245 MemAvailable min=646.3 MiB at 04:15:04; 마지막 시각 04:35:45; PSI mem some avg10 max=0.0 at 04:35:45
+[20261015-041113-day8-install-cp-b.txt]
+  samples=245 MemAvailable min=1795.5 MiB at 04:23:06; 마지막 시각 04:35:45; PSI mem some avg10 max=0.0 at 04:35:45
+[20261015-041113-day8-install-worker-b1.txt]
+  samples=245 MemAvailable min=6248.4 MiB at 04:29:01; 마지막 시각 04:35:45; PSI mem some avg10 max=0.0 at 04:35:45
+[20261015-041113-day8-install-worker-b2.txt]
+  samples=245 MemAvailable min=6161.8 MiB at 04:30:07; 마지막 시각 04:35:45; PSI mem some avg10 max=0.0 at 04:35:45
+## domstats 마지막 줄
+1792038938,cp-b,4895181912000,3171732,19723724,1453359,5743405760

@@ -1,0 +1,27 @@
+[20261015-043927-day8-ci-domstats.csv]
+  Host MemAvailable min=18744.2 MiB at 04:49:56Z; max=19246.5 MiB; samples=131
+  cp-a RSS max=2102.1 MiB at 04:39:27Z
+  cp-b RSS max=3101.0 MiB at 04:40:03Z
+  worker-a1 RSS max=6184.1 MiB at 04:43:56Z
+  worker-b1 RSS max=2513.5 MiB at 04:39:42Z
+  worker-b2 RSS max=2896.5 MiB at 04:39:27Z
+[20261015-043927-day8-ci-host-vmstat.txt]
+  samples=664 CPU busy(100-id) max=27% at 2026-10-15 04:41:58; si/so 합계=8/0; gu max=22% at 2026-10-15 04:41:58
+[20261015-043927-day8-ci-worker-a1.txt]
+  samples=111 MemAvailable min=3830.8 MiB at 04:43:59; 마지막 시각 04:50:31
+[20261015-043939-day8-ci-cp-a.txt]
+  samples=111 MemAvailable min=645.3 MiB at 04:49:07; 마지막 시각 04:50:43; PSI mem some avg10 max=0.0 at 04:50:43
+[20261015-043939-day8-ci-cp-b.txt]
+  samples=111 MemAvailable min=1792.5 MiB at 04:44:00; 마지막 시각 04:50:43; PSI mem some avg10 max=0.0 at 04:50:43
+[20261015-043939-day8-ci-worker-b1.txt]
+  samples=111 MemAvailable min=6238.3 MiB at 04:39:40; 마지막 시각 04:50:43; PSI mem some avg10 max=0.0 at 04:50:43
+[20261015-043939-day8-ci-worker-b2.txt]
+  samples=111 MemAvailable min=6163.7 MiB at 04:44:30; 마지막 시각 04:50:43; PSI mem some avg10 max=0.0 at 04:50:43
+## domstats 마지막 줄
+1792039827,cp-b,5206722535000,3175384,19280540,1449888,5727156928
+## Host swap
+               total        used        free      shared  buff/cache   available
+Mem:           31810       12964        1436          11       17889       18845
+Swap:           8191          65        8126
+NAME      TYPE SIZE  USED PRIO
+/swap.img file   8G 65.5M   -2

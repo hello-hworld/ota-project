@@ -1,0 +1,21 @@
+## ota-a
+NAME      	NAMESPACE 	REVISION	UPDATED                                	STATUS  	CHART             	APP VERSION
+argocd    	argocd    	1       	2026-10-14 13:21:58.32048848 +0000 UTC 	deployed	argo-cd-10.10.3   	v3.5.5     
+grafana   	monitoring	1       	2026-10-15 04:22:51.242924351 +0000 UTC	deployed	grafana-13.6.0    	13.2.4     
+jenkins   	platform  	5       	2026-10-14 03:15:23.355968586 +0000 UTC	deployed	jenkins-5.9.68    	2.580.1    
+prometheus	monitoring	1       	2026-10-15 04:12:18.534493395 +0000 UTC	deployed	prometheus-29.37.0	v3.15.0    
+grafana-784d47b5-dh6jj node=worker-a1 phase=Running ready=true restarts=0 last=
+prometheus-kube-state-metrics-794f575fb-bd77w node=worker-a1 phase=Running ready=true restarts=0 last=
+prometheus-prometheus-node-exporter-4qllq node=cp-a phase=Running ready=true restarts=0 last=
+prometheus-prometheus-node-exporter-x9tv6 node=worker-a1 phase=Running ready=true restarts=0 last=
+prometheus-server-7f9cfd5964-ntvdt node=worker-a1 phase=Running ready=true true restarts=0 0 last=
+## ota-b
+NAME      	NAMESPACE 	REVISION	UPDATED                                	STATUS  	CHART             	APP VERSION
+prometheus	monitoring	1       	2026-10-15 04:16:40.479912348 +0000 UTC	deployed	prometheus-29.37.0	v3.15.0    
+prometheus-kube-state-metrics-5c7fd645ff-bfq47 node=worker-b2 phase=Running ready=true restarts=0 last=
+prometheus-prometheus-node-exporter-4k2zf node=cp-b phase=Running ready=true restarts=0 last=
+prometheus-prometheus-node-exporter-fz9xm node=worker-b2 phase=Running ready=true restarts=0 last=
+prometheus-prometheus-node-exporter-wnh9b node=worker-b1 phase=Running ready=true restarts=0 last=
+prometheus-server-6dd9685cc-jl8mt node=worker-b2 phase=Running ready=true true restarts=0 0 last=
+agent=0 staging=0
+(위에 줄이 없으면 Eviction·OOM 없음)
