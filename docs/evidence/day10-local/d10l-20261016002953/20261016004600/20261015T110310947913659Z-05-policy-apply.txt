@@ -1,0 +1,5 @@
+limitrange/ota-demo-defaults created
+resourcequota/ota-demo-budget created
+
+RESULT=APPLIED (run check next)
+command_exit=0 log_exit=0

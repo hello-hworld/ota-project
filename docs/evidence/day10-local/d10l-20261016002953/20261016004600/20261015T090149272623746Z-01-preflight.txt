@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/devops/ota-project/scripts/day9-preflight.py", line 19, in <module>
+    assert r.stdout.strip()=='no' and r.returncode==1,'Unexpected nodes/proxy permission or failed RBAC lookup'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Unexpected nodes/proxy permission or failed RBAC lookup
+command_exit=1 log_exit=0

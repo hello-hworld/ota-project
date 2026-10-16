@@ -1,0 +1,7 @@
+Name:       ota-demo-defaults
+Namespace:  production
+Type        Resource  Min  Max  Default Request  Default Limit  Max Limit/Request Ratio
+----        --------  ---  ---  ---------------  -------------  -----------------------
+Container   cpu       -    -    50m              250m           -
+Container   memory    -    -    64Mi             128Mi          -
+command_exit=0 log_exit=0

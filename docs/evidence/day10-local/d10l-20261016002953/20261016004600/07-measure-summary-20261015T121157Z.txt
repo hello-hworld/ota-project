@@ -1,0 +1,138 @@
+
+===== FILE: /home/devops/ota-project/docs/evidence/measure/20261015-100925-day9-run01-P0b-grafana-fixed.txt =====
+===== META =====
+label  : day9-run01-P0b-grafana-fixed
+date   : 2026-10-15 10:10:29 UTC
+git    : da87e9c day9
+kernel : 6.8.0-139-generic
+vms    : cp-a cp-b worker-a1 worker-b1 worker-b2
+k8s    : A v1.36.5 / B v1.36.5
+
+===== SUMMARY (비교표 입력용) =====
+Host MemAvailable (주 지표)  :   18439.2 MiB
+Host RAM Used (Total-Avail) :   13370.9 MiB
+Swap Used                   :      64.2 MiB
+KSM 절약량 (general_profit) :    5448.7 MiB
+KSM 보정 사용량 (보조 추정) :   18819.6 MiB
+KSM run / use_zero_pages / ksm_zero_pages : 1 / 0 / 0
+Load 1m / 5m / 15m          : 1.00 / 1.33 / 1.36
+CPU us / sy / id / wa (%)   : 0.0 / 2.6 / 89.8 / 0.0
+Guest CPU gu (%)            : 7.4
+Swap si / so (평균)         : 0.1 / 0.0
+CPU 평균 샘플 수            : 12
+Root Used                   : 14G / 98G
+VM Storage Used (du)        : 74G
+Total QEMU RSS              : 17200.1 MiB
+Total QEMU PSS              : 11897.1 MiB
+ksmd (%cpu time)            : 0.1 00:20:16
+
+cp-a MemAvailable=634.3 MiB
+worker-a1 MemAvailable=3961.1 MiB
+cp-b MemAvailable=1782.8 MiB
+worker-b1 MemAvailable=6236.5 MiB
+worker-b2 MemAvailable=6146.7 MiB
+--- allocatable / pressure
+NODE        CPU   MEM         MemPressure   DiskPressure
+cp-a        2     1912460Ki   False         False
+worker-a1   4     5965000Ki   False         False
+--- allocated resources (requests / limits 합계)
+--
+--- allocatable / pressure
+NODE        CPU   MEM         MemPressure   DiskPressure
+cp-b        2     2875268Ki   False         False
+worker-b1   4     6997200Ki   False         False
+worker-b2   4     6997196Ki   False         False
+===== COLLECTION =====
+수집 실패: 0
+
+===== FILE: /home/devops/ota-project/docs/evidence/measure/20261015-112927-day9-run01-P1-idle.txt =====
+===== META =====
+label  : day9-run01-P1-idle
+date   : 2026-10-15 11:30:30 UTC
+git    : 0ca578b DAY9: fix Grafana memory, collect memory events and add production policies
+kernel : 6.8.0-139-generic
+vms    : cp-a cp-b worker-a1 worker-b1 worker-b2
+k8s    : A v1.36.5 / B v1.36.5
+
+===== SUMMARY (비교표 입력용) =====
+Host MemAvailable (주 지표)  :   18547.5 MiB
+Host RAM Used (Total-Avail) :   13262.6 MiB
+Swap Used                   :      64.0 MiB
+KSM 절약량 (general_profit) :    5409.1 MiB
+KSM 보정 사용량 (보조 추정) :   18671.7 MiB
+KSM run / use_zero_pages / ksm_zero_pages : 1 / 0 / 0
+Load 1m / 5m / 15m          : 1.99 / 1.52 / 1.36
+CPU us / sy / id / wa (%)   : 0.0 / 2.8 / 89.0 / 0.0
+Guest CPU gu (%)            : 8.1
+Swap si / so (평균)         : 0.0 / 0.0
+CPU 평균 샘플 수            : 12
+Root Used                   : 14G / 98G
+VM Storage Used (du)        : 75G
+Total QEMU RSS              : 17199.8 MiB
+Total QEMU PSS              : 11796.0 MiB
+ksmd (%cpu time)            : 0.1 00:20:30
+
+cp-a MemAvailable=651.2 MiB
+worker-a1 MemAvailable=3901.1 MiB
+cp-b MemAvailable=1786.7 MiB
+worker-b1 MemAvailable=6209.5 MiB
+worker-b2 MemAvailable=6125.5 MiB
+--- allocatable / pressure
+NODE        CPU   MEM         MemPressure   DiskPressure
+cp-a        2     1912460Ki   False         False
+worker-a1   4     5965000Ki   False         False
+--- allocated resources (requests / limits 합계)
+--
+--- allocatable / pressure
+NODE        CPU   MEM         MemPressure   DiskPressure
+cp-b        2     2875268Ki   False         False
+worker-b1   4     6997200Ki   False         False
+worker-b2   4     6997196Ki   False         False
+===== COLLECTION =====
+수집 실패: 0
+
+===== FILE: /home/devops/ota-project/docs/evidence/measure/20261015-120522-day9-run01-P2-final.txt =====
+===== META =====
+label  : day9-run01-P2-final
+date   : 2026-10-15 12:11:34 UTC
+git    : 0ca578b DAY9: fix Grafana memory, collect memory events and add production policies
+kernel : 6.8.0-139-generic
+vms    : cp-a cp-b worker-a1 worker-b1 worker-b2
+k8s    : A v1.36.5 / B v1.36.5
+
+===== SUMMARY (비교표 입력용) =====
+Host MemAvailable (주 지표)  :   18577.8 MiB
+Host RAM Used (Total-Avail) :   13232.3 MiB
+Swap Used                   :      64.0 MiB
+KSM 절약량 (general_profit) :    5425.2 MiB
+KSM 보정 사용량 (보조 추정) :   18657.5 MiB
+KSM run / use_zero_pages / ksm_zero_pages : 1 / 0 / 0
+Load 1m / 5m / 15m          : 1.19 / 1.09 / 1.32
+CPU us / sy / id / wa (%)   : 0.0 / 2.6 / 89.8 / 0.0
+Guest CPU gu (%)            : 7.3
+Swap si / so (평균)         : 0.0 / 0.0
+CPU 평균 샘플 수            : 12
+Root Used                   : 14G / 98G
+VM Storage Used (du)        : 75G
+Total QEMU RSS              : 17208.4 MiB
+Total QEMU PSS              : 11756.2 MiB
+ksmd (%cpu time)            : 0.1 00:20:44
+
+cp-a MemAvailable=696.0 MiB
+worker-a1 MemAvailable=3884.1 MiB
+cp-b MemAvailable=1797.0 MiB
+worker-b1 MemAvailable=6240.7 MiB
+worker-b2 MemAvailable=6120.4 MiB
+--- allocatable / pressure
+NODE        CPU   MEM         MemPressure   DiskPressure
+cp-a        2     1912460Ki   False         False
+worker-a1   4     5965000Ki   False         False
+--- allocated resources (requests / limits 합계)
+--
+--- allocatable / pressure
+NODE        CPU   MEM         MemPressure   DiskPressure
+cp-b        2     2875268Ki   False         False
+worker-b1   4     6997200Ki   False         False
+worker-b2   4     6997196Ki   False         False
+===== COLLECTION =====
+수집 실패: 0

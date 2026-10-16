@@ -1,0 +1,4 @@
+Saved /home/devops/ota-project/docs/evidence/day9/run01/resource-budget-1792060935.json
+Node allocation uses kubectl describe output; init/sidecar/Pod overhead must be considered. No automatic resource changes.
+RESULT=PASS
+command_exit=0 log_exit=0

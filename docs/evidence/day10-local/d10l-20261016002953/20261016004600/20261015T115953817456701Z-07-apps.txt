@@ -1,0 +1,4 @@
+NAME                  SYNC STATUS   HEALTH STATUS
+ota-demo-production   Synced        Healthy
+ota-demo-staging      Synced        Healthy
+command_exit=0 log_exit=0

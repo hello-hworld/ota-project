@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"argoproj.io/v1alpha1","kind":"AppProject","metadata":{"annotations":{},"name":"ota-staging","namespace":"argocd"},"spec":{"clusterResourceWhitelist":[],"description":"DAY7 Staging (Cluster A / staging)","destinations":[{"namespace":"staging","server":"https://kubernetes.default.svc"}],"namespaceResourceWhitelist":[{"group":"apps","kind":"Deployment"},{"group":"","kind":"Service"}],"sourceRepos":["https://github.com/hello-hworld/ota-project.git"]}}
+  creationTimestamp: "2026-10-14T13:47:14Z"
+  generation: 1
+  name: ota-staging
+  namespace: argocd
+  resourceVersion: "876034"
+  uid: 80add0c8-a2be-481c-96f9-877c239a44cd
+spec:
+  clusterResourceWhitelist: []
+  description: DAY7 Staging (Cluster A / staging)
+  destinations:
+  - namespace: staging
+    server: https://kubernetes.default.svc
+  namespaceResourceWhitelist:
+  - group: apps
+    kind: Deployment
+  - group: ""
+    kind: Service
+  sourceRepos:
+  - https://github.com/hello-hworld/ota-project.git
+command_exit=0 log_exit=0

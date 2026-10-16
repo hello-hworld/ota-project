@@ -1,0 +1,12 @@
+# OTA local infrastructure contract
+- Staging 앱 위치: ota-a / staging
+- Staging DB: postgres.ota-data-staging.svc.cluster.local:5432 / ota / ota_app
+- Secret: staging/ota-db (PGHOST, PGPORT, PGDATABASE, PGUSER, PGPASSWORD)
+- DB image/version: 실행 증거 확인 후 기입
+- Production DB: 검토 매니페스트만 준비, 미적용
+- 앱 저장소/Commit/Dockerfile/테스트 명령: 팀원 인수 필요
+- 앱 port/health/readiness/startup/shutdown/resources: 팀원 인수 필요
+- DB major/schema/migration/DATABASE_URL 여부: 팀원과 확정
+- Secret key·인증파일 mount 경로: 실제 비밀값 없이 명세만 기입
+- 시험 대상·파일·정상/실패 시나리오: 팀원 인수 필요
+- AWS MQTT/S3: 접근 대기, 실제 연동 미검증

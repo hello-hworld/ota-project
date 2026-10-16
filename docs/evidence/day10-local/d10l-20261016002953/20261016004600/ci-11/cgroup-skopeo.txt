@@ -1,0 +1,13 @@
+== skopeo
+memory.peak_bytes=33878016
+memory.events_begin
+low 0
+high 0
+max 0
+oom 0
+oom_kill 0
+oom_group_kill 0
+memory.events_end
+usage_usec 187855
+nr_throttled 2
+throttled_usec 103615

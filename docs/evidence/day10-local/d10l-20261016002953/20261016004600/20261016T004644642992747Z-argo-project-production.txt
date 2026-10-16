@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"argoproj.io/v1alpha1","kind":"AppProject","metadata":{"annotations":{},"name":"ota-production","namespace":"argocd"},"spec":{"clusterResourceWhitelist":[],"description":"DAY7 Production (Cluster B / production)","destinations":[{"namespace":"production","server":"https://192.168.56.30:6443"}],"namespaceResourceWhitelist":[{"group":"apps","kind":"Deployment"},{"group":"","kind":"Service"}],"sourceRepos":["https://github.com/hello-hworld/ota-project.git"]}}
+  creationTimestamp: "2026-10-14T13:47:14Z"
+  generation: 1
+  name: ota-production
+  namespace: argocd
+  resourceVersion: "876035"
+  uid: 327888d7-236f-4678-a5f0-f712ae35870b
+spec:
+  clusterResourceWhitelist: []
+  description: DAY7 Production (Cluster B / production)
+  destinations:
+  - namespace: production
+    server: https://192.168.56.30:6443
+  namespaceResourceWhitelist:
+  - group: apps
+    kind: Deployment
+  - group: ""
+    kind: Service
+  sourceRepos:
+  - https://github.com/hello-hworld/ota-project.git
+command_exit=0 log_exit=0

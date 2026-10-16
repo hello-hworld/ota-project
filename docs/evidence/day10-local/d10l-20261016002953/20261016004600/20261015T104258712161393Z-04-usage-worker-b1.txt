@@ -1,0 +1,8 @@
+CONTAINER           NAME                      CPU %               MEM                 DISK                INODES
+0ba36fecd2c82       calico-kube-controllers   0.58                106MB               40.96kB             11
+23b6ff54753ae       demo                      0.22                11.58MB             8.192kB             3
+325940f93f693       node-exporter             0.00                9.613MB             32.77kB             11
+43a982eafecc2       coredns                   0.67                74.54MB             36.86kB             11
+82e279b6b6465       kube-proxy                0.00                58.93MB             65.54kB             24
+a1d5e8d16124c       calico-node               1.81                106.6MB             262.1kB             78
+command_exit=0 log_exit=0

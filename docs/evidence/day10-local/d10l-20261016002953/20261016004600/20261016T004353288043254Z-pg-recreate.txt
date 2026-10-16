@@ -1,0 +1,2 @@
+pod "postgres-0" deleted from ota-data-staging namespace
+command_exit=0 log_exit=0

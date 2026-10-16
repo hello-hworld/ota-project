@@ -1,0 +1,6 @@
+NAME                            REQUEST                                                                LIMIT                                                AGE
+resourcequota/ota-demo-budget   pods: 2/4, requests.cpu: 100m/200m, requests.memory: 128Mi/268435456   limits.cpu: 500m/1, limits.memory: 256Mi/536870912   13h
+
+NAME                           CREATED AT
+limitrange/ota-demo-defaults   2026-10-15T11:03:11Z
+command_exit=0 log_exit=0

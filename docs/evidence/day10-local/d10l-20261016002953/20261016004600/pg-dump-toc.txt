@@ -1,0 +1,19 @@
+;
+; Archive created at 2026-10-16 00:44:43 UTC
+;     dbname: ota
+;     TOC Entries: 8
+;     Compression: gzip
+;     Dump Version: 1.16-0
+;     Format: CUSTOM
+;     Integer: 4 bytes
+;     Offset: 8 bytes
+;     Dumped from database version: 17.11 (Debian 17.11-1.pgdg12+2)
+;     Dumped by pg_dump version: 17.11 (Debian 17.11-1.pgdg12+2)
+;
+;
+; Selected TOC Entries:
+;
+6; 2615 16390 SCHEMA - infra_smoke ota_app
+218; 1259 16391 TABLE infra_smoke checks ota_app
+3357; 0 16391 TABLE DATA infra_smoke checks ota_app
+3211; 2606 16397 CONSTRAINT infra_smoke checks checks_pkey ota_app

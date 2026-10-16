@@ -1,0 +1,3 @@
+2026-10-15T11:34:12Z DAY9 normal CI observation started
+2026-10-15T11:36:16Z DAY9 normal CI finished and Agent deletion observed
+2026-10-15T12:33:14Z DAY9 final automated checks and P2 PASS; dashboard visual checks partial

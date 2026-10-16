@@ -1,0 +1,173 @@
+{
+  "target": [
+    {
+      "discoveredLabels": {
+        "__address__": "192.168.56.1:19100",
+        "__always_scrape_classic_histograms__": "false",
+        "__convert_classic_histograms_to_nhcb__": "false",
+        "__metrics_path__": "/metrics",
+        "__scheme__": "http",
+        "__scrape_interval__": "30s",
+        "__scrape_native_histograms__": "false",
+        "__scrape_timeout__": "10s",
+        "instance": "ota-host",
+        "job": "ota-host",
+        "scope": "physical-host"
+      },
+      "labels": {
+        "instance": "ota-host",
+        "job": "ota-host",
+        "scope": "physical-host"
+      },
+      "scrapePool": "ota-host",
+      "scrapeUrl": "http://192.168.56.1:19100/metrics",
+      "globalUrl": "http://192.168.56.1:19100/metrics",
+      "lastError": "",
+      "lastScrape": "2026-10-15T10:33:48.482040563Z",
+      "lastScrapeDuration": 0.052799308,
+      "health": "up",
+      "scrapeInterval": "30s",
+      "scrapeTimeout": "10s"
+    }
+  ],
+  "panels": [
+    {
+      "title": "CPU busy",
+      "query": "100*(1-avg(rate(node_cpu_seconds_total{job=\"ota-host\",mode=\"idle\"}[2m])))",
+      "result": [
+        {
+          "metric": {},
+          "value": [
+            1792060452.822,
+            "11.945370370382024"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "MemAvailable",
+      "query": "node_memory_MemAvailable_bytes{job=\"ota-host\"}",
+      "result": [
+        {
+          "metric": {
+            "__name__": "node_memory_MemAvailable_bytes",
+            "instance": "ota-host",
+            "job": "ota-host",
+            "scope": "physical-host"
+          },
+          "value": [
+            1792060452.857,
+            "19276701696"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Swap used",
+      "query": "node_memory_SwapTotal_bytes{job=\"ota-host\"}-node_memory_SwapFree_bytes{job=\"ota-host\"}",
+      "result": [
+        {
+          "metric": {
+            "instance": "ota-host",
+            "job": "ota-host",
+            "scope": "physical-host"
+          },
+          "value": [
+            1792060452.889,
+            "67108864"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Swap in / out pages per second",
+      "query": "rate(node_vmstat_pswpin{job=\"ota-host\"}[2m])",
+      "result": [
+        {
+          "metric": {
+            "instance": "ota-host",
+            "job": "ota-host",
+            "scope": "physical-host"
+          },
+          "value": [
+            1792060452.921,
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Swap out pages per second",
+      "query": "rate(node_vmstat_pswpout{job=\"ota-host\"}[2m])",
+      "result": [
+        {
+          "metric": {
+            "instance": "ota-host",
+            "job": "ota-host",
+            "scope": "physical-host"
+          },
+          "value": [
+            1792060452.953,
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Memory PSI waiting",
+      "query": "rate(node_pressure_memory_waiting_seconds_total{job=\"ota-host\"}[2m])",
+      "result": [
+        {
+          "metric": {
+            "instance": "ota-host",
+            "job": "ota-host",
+            "scope": "physical-host"
+          },
+          "value": [
+            1792060452.984,
+            "0.0000030444444444456383"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Root disk available",
+      "query": "node_filesystem_avail_bytes{job=\"ota-host\",mountpoint=\"/\",fstype!=\"rootfs\"}",
+      "result": [
+        {
+          "metric": {
+            "__name__": "node_filesystem_avail_bytes",
+            "device": "/dev/mapper/ubuntu--vg-ubuntu--lv",
+            "fstype": "ext4",
+            "instance": "ota-host",
+            "job": "ota-host",
+            "mountpoint": "/",
+            "scope": "physical-host"
+          },
+          "value": [
+            1792060453.016,
+            "85312835584"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Load 1m",
+      "query": "node_load1{job=\"ota-host\"}",
+      "result": [
+        {
+          "metric": {
+            "__name__": "node_load1",
+            "instance": "ota-host",
+            "job": "ota-host",
+            "scope": "physical-host"
+          },
+          "value": [
+            1792060453.048,
+            "2.68"
+          ]
+        }
+      ]
+    }
+  ]
+}

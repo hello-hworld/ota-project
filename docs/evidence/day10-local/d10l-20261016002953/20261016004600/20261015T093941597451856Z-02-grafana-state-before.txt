@@ -1,0 +1,105 @@
+Name:             grafana-784d47b5-dh6jj
+Namespace:        monitoring
+Priority:         0
+Service Account:  grafana
+Node:             worker-a1/192.168.56.21
+Start Time:       Thu, 15 Oct 2026 04:22:55 +0000
+Labels:           app.kubernetes.io/instance=grafana
+                  app.kubernetes.io/name=grafana
+                  app.kubernetes.io/version=13.2.4
+                  helm.sh/chart=grafana-13.6.0
+                  pod-template-hash=784d47b5
+Annotations:      checksum/config: 816c1907bdb8de28fab2758ce6b8a9693bb3de7f3a8c307c83d75d9dcb9d05f3
+                  checksum/sc-dashboard-provider-config: e70bf6a851099d385178a76de9757bb0bef8299da6d8443602590e44f05fdf24
+                  cni.projectcalico.org/containerID: 6a65dc9b2f2bb358ef3a21a9d8b51408349a956c5ca6849494e7f31d53da50ea
+                  cni.projectcalico.org/podIP: 10.10.238.23/32
+                  cni.projectcalico.org/podIPs: 10.10.238.23/32
+                  kubectl.kubernetes.io/default-container: grafana
+Status:           Running
+IP:               10.10.238.23
+IPs:
+  IP:           10.10.238.23
+Controlled By:  ReplicaSet/grafana-784d47b5
+Containers:
+  grafana:
+    Container ID:    containerd://bfc0c8eb2fb963b4d8d90f7b53ec5395668152a6691143ab1baa31c1cc77c7a0
+    Image:           docker.io/grafana/grafana:13.2.4-distroless
+    Image ID:        docker.io/grafana/grafana@sha256:ae3d3add290adbe6a88412229f5d76fd7bb82743050881698642d3d62f277e35
+    Ports:           3000/TCP (grafana), 9094/TCP (gossip-tcp), 9094/UDP (gossip-udp), 6060/TCP (profiling)
+    Host Ports:      0/TCP (grafana), 0/TCP (gossip-tcp), 0/UDP (gossip-udp), 0/TCP (profiling)
+    SeccompProfile:  RuntimeDefault
+    State:           Running
+      Started:       Thu, 15 Oct 2026 09:28:11 +0000
+    Last State:      Terminated
+      Reason:        OOMKilled
+      Exit Code:     137
+      Started:       Thu, 15 Oct 2026 09:12:22 +0000
+      Finished:      Thu, 15 Oct 2026 09:28:10 +0000
+    Ready:           True
+    Restart Count:   2
+    Limits:
+      cpu:     300m
+      memory:  384Mi
+    Requests:
+      cpu:      50m
+      memory:   128Mi
+    Liveness:   http-get http://:grafana/api/health delay=60s timeout=30s period=10s #success=1 #failure=10
+    Readiness:  http-get http://:grafana/api/health delay=0s timeout=1s period=10s #success=1 #failure=3
+    Environment:
+      POD_IP:                          (v1:status.podIP)
+      GF_SECURITY_ADMIN_USER:         <set to the key 'admin-user' in secret 'grafana-admin'>      Optional: false
+      GF_SECURITY_ADMIN_PASSWORD:     <set to the key 'admin-password' in secret 'grafana-admin'>  Optional: false
+      GF_PATHS_DATA:                  /var/lib/grafana/
+      GF_PATHS_LOGS:                  /var/log/grafana
+      GF_PATHS_PLUGINS:               /var/lib/grafana/plugins
+      GF_PATHS_PROVISIONING:          /etc/grafana/provisioning
+      GF_UNIFIED_STORAGE_INDEX_PATH:  /var/lib/grafana-search/bleve
+      GOMEMLIMIT:                     345MiB
+    Mounts:
+      /etc/grafana/grafana.ini from config (rw,path="grafana.ini")
+      /etc/grafana/provisioning/dashboards/dashboardproviders.yaml from config (rw,path="dashboardproviders.yaml")
+      /etc/grafana/provisioning/datasources/datasources.yaml from config (rw,path="datasources.yaml")
+      /tmp from tmp (rw)
+      /var/lib/grafana from storage (rw)
+      /var/lib/grafana-search from search (rw)
+      /var/lib/grafana/dashboards/ota from dashboards-ota (rw)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  tmp:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      grafana
+    Optional:  false
+  dashboards-ota:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      grafana-dashboards-ota
+    Optional:  false
+  storage:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  grafana
+    ReadOnly:   false
+  search:
+    Type:        EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:      
+    SizeLimit:   <unset>
+QoS Class:       Burstable
+Node-Selectors:  workload=platform
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                   From     Message
+  ----     ------     ----                  ----     -------
+  Normal   Created    11m (x3 over 5h13m)   kubelet  spec.containers{grafana}: Container created
+  Normal   Started    11m (x3 over 5h13m)   kubelet  spec.containers{grafana}: Container started
+  Normal   Pulled     11m (x2 over 27m)     kubelet  spec.containers{grafana}: Container image "docker.io/grafana/grafana:13.2.4-distroless" already present on machine and can be accessed by the pod
+  Warning  Unhealthy  11m (x10 over 5h13m)  kubelet  spec.containers{grafana}: Readiness probe failed: Get "http://10.10.238.23:3000/api/health": dial tcp 10.10.238.23:3000: connect: connection refused
+command_exit=0 log_exit=0

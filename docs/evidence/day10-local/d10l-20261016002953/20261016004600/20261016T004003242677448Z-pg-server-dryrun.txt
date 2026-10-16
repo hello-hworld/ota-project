@@ -1,0 +1,6 @@
+namespace/ota-data-staging unchanged (server dry run)
+serviceaccount/postgres created (server dry run)
+service/postgres-headless created (server dry run)
+service/postgres created (server dry run)
+statefulset.apps/postgres created (server dry run)
+command_exit=0 log_exit=0

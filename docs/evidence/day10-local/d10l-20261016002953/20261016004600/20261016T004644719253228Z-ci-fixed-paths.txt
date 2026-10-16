@@ -1,0 +1,2 @@
+bash: rg: command not found
+command_exit=127 log_exit=0

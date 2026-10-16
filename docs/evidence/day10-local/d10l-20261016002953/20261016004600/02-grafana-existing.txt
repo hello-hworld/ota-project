@@ -1,0 +1,15 @@
+== grafana-check url=http://127.0.0.1:13000 at=2026-10-15T09:08:45Z
+-- health: http=200 database=ok version=13.2.4
+-- datasources
+   prometheus-a uid=prometheus-a type=prometheus access=proxy url=http://prometheus-server.monitoring.svc.cluster.local default=True readOnly=True
+   prometheus-b uid=prometheus-b type=prometheus access=proxy url=http://192.168.56.32:30909 default=False readOnly=True
+-- prometheus-a health: http=200 status=OK message=Successfully queried the Prometheus API.
+   prometheus-a node-exporter      http=200 status=200 Node=['cp-a', 'worker-a1'] 
+   prometheus-a cAdvisor           http=200 status=200 Node=['cp-a', 'worker-a1'] 
+   prometheus-a kube-state-metrics http=200 status=200 Node=['cp-a', 'worker-a1'] 
+-- prometheus-b health: http=200 status=OK message=Successfully queried the Prometheus API.
+   prometheus-b node-exporter      http=200 status=200 Node=['cp-b', 'worker-b1', 'worker-b2'] 
+   prometheus-b cAdvisor           http=200 status=200 Node=['cp-b', 'worker-b1', 'worker-b2'] 
+   prometheus-b kube-state-metrics http=200 status=200 Node=['cp-b', 'worker-b1', 'worker-b2'] 
+-- dashboard ota-infra-overview: http=200 title=OTA Infra Overview folder=OTA provisioned=True panels=18
+RESULT=PASS

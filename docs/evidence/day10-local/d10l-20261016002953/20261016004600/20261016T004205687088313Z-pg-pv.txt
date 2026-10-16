@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    local.path.provisioner/selected-node: worker-a1
+    pv.kubernetes.io/provisioned-by: rancher.io/local-path
+  creationTimestamp: "2026-10-16T00:40:13Z"
+  finalizers:
+  - kubernetes.io/pv-protection
+  name: pvc-b068ee3b-982d-4e07-9fee-73a0fe42bdf4
+  resourceVersion: "1067575"
+  uid: d0a5fc82-525b-4356-918b-aa87e1faeb19
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: data-postgres-0
+    namespace: ota-data-staging
+    resourceVersion: "1067350"
+    uid: b068ee3b-982d-4e07-9fee-73a0fe42bdf4
+  hostPath:
+    path: /opt/local-path-provisioner/pvc-b068ee3b-982d-4e07-9fee-73a0fe42bdf4_ota-data-staging_data-postgres-0
+    type: DirectoryOrCreate
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - worker-a1
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-path
+  volumeMode: Filesystem
+status:
+  lastPhaseTransitionTime: "2026-10-16T00:40:13Z"
+  phase: Bound
+command_exit=0 log_exit=0

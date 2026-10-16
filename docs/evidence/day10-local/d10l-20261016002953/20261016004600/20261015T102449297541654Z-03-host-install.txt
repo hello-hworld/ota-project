@@ -1,0 +1,17 @@
+    inet 192.168.56.1/24 brd 192.168.56.255 scope global virbr56
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+ 12 11.6M   12 1536k    0     0  1556k      0  0:00:07 --:--:--  0:00:07 1556k 31 11.6M   31 3758k    0     0  1910k      0  0:00:06  0:00:01  0:00:05 2265k 50 11.6M   50 6046k    0     0  2041k      0  0:00:05  0:00:02  0:00:03 2283k 69 11.6M   69 8222k    0     0  2074k      0  0:00:05  0:00:03  0:00:02 2245k 90 11.6M   90 10.4M    0     0  2161k      0  0:00:05  0:00:04  0:00:01 2310k100 11.6M  100 11.6M    0     0  2210k      0  0:00:05  0:00:05 --:--:-- 2358k
+/home/devops/.cache/ota-day9-downloads/node_exporter-1.12.1.linux-amd64.tar.gz: OK
+node_exporter, version 1.12.1 (branch: HEAD, revision: 6044da783597cc3b57aef7580ddcdcff58a4ee99)
+  build user:       root@3a6b59999579
+  build date:       20260714-12:05:11
+  go version:       go1.26.5
+  platform:         linux/amd64
+  tags:             unknown
+/etc/systemd/system/ota-node-exporter.service:7: Special user nobody configured, this is not safe!
+Created symlink /etc/systemd/system/multi-user.target.wants/ota-node-exporter.service → /etc/systemd/system/ota-node-exporter.service.
+node_uname_info{domainname="(none)",machine="x86_64",nodename="ota-host",release="6.8.0-139-generic",sysname="Linux",version="#139-Ubuntu SMP PREEMPT_DYNAMIC Sat Aug  1 03:52:05 UTC 2026"} 1
+RESULT=PASS
+command_exit=0 log_exit=0

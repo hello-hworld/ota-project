@@ -1,0 +1,14 @@
+ database |  role   
+----------+---------
+ ota      | ota_app
+(1 row)
+
+CREATE SCHEMA
+CREATE TABLE
+INSERT 0 1
+ sentinel_present 
+------------------
+                1
+(1 row)
+
+command_exit=0 log_exit=0

@@ -1,0 +1,17 @@
+CONTAINER           NAME                                 CPU %               MEM                 DISK                INODES
+0b1c39e324538       server                               0.14                132.8MB             61.44kB             14
+0b973de16f68b       local-path-provisioner               0.13                53.51MB             45.06kB             14
+1bf876f0d3a24       kube-proxy                           0.05                59.7MB              65.54kB             24
+311c706d74678       grafana                              1.20                217.4MB             53.25kB             14
+46b6c91599bb2       calico-node                          1.73                107.7MB             262.1kB             78
+4dcde2a722b16       kube-state-metrics                   0.05                17.6MB              32.77kB             10
+61682a010bef2       node-exporter                        0.00                11.62MB             32.77kB             11
+65bbab0dd9723       redis                                0.39                30.72MB             28.67kB             8
+7431c774a1449       application-controller               0.48                126.9MB             40.96kB             9
+8185079aff7c9       jenkins                              0.53                738MB               73.73kB             16
+a63f262a82e98       prometheus-server-configmap-reload   0.00                7.836MB             40.96kB             13
+dcf5a10ce1961       registry                             0.00                25.51MB             40.96kB             10
+e2b1eaa9c1d17       config-reload                        0.02                76.06MB             32.77kB             9
+f2ac7be9d84b5       repo-server                          0.00                100.8MB             65.54kB             14
+ffe22b5606d4c       prometheus-server                    0.93                156.6MB             36.86kB             12
+command_exit=0 log_exit=0

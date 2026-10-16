@@ -1,0 +1,10 @@
+NAME             READY   STATUS    RESTARTS   AGE     IP             NODE        NOMINATED NODE   READINESS GATES
+pod/postgres-0   1/1     Running   0          3m13s   10.10.238.38   worker-a1   <none>           <none>
+
+NAME                                    STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE     VOLUMEMODE
+persistentvolumeclaim/data-postgres-0   Bound    pvc-b068ee3b-982d-4e07-9fee-73a0fe42bdf4   10Gi       RWO            local-path     <unset>                 6m56s   Filesystem
+
+NAME                        TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE     SELECTOR
+service/postgres            ClusterIP   10.110.93.64   <none>        5432/TCP   6m56s   app.kubernetes.io/managed-by=day10-infra,app=postgres,ota-environment=staging
+service/postgres-headless   ClusterIP   None           <none>        5432/TCP   6m56s   app.kubernetes.io/managed-by=day10-infra,app=postgres,ota-environment=staging
+command_exit=0 log_exit=0

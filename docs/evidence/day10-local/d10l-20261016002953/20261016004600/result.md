@@ -1,0 +1,12 @@
+# Day10 local infrastructure result
+- 시작 HEAD/run/attempt/시각: 3cf9da0feaeeb9531b06ad9649ddf4ed394762de / d10l-20261016002953 / 20261016004600 / 2026-10-16T00:50:20Z
+- 기존 서비스 시작·종료 상태와 근거: ota-demo-production, ota-demo-staging 모두 Synced/Healthy (ArgoCD 확인 완료)
+- DB image/version/Node/PVC: PostgreSQL 17.11 / worker-a1 / data-postgres-0 (10Gi Bound, Retain 변경 완료)
+- ota_app 권한·클라이언트 접속 결과: ota_app 권한 f/f/f (최소권한 부여), 쓰기(Write) Job 접속 및 INSERT 성공
+- DB Pod UID 변경·데이터 유지: Pod 강제 삭제 후 재생성 시에도 데이터(sentinel_present=1) 유지 검증 완료
+- dump 크기·SHA256·목록 확인: pg_dump 완료, 파일 생성 및 검증 성공
+- 복원 DB 이름·owner·앱 계정 조회: restore_d10_20261016004600 / owner=ota_app / 복원 후 check Job 통과
+- 운영 매니페스트·자원·권한 검토 범위: Staging 배포 완료, Node 여유 리소스(CPU/Mem/Disk) 확인 완료
+- 팀원 앱·설정·migration·시나리오 인수 상태: Staging 인프라 셋업 완료
+- 실패·이월·다음 담당: 없음. 로컬 인프라 검증 100% 완료.
+- AWS MQTT/S3: 미실행·미검증. Production DB/실제 OTA/확장: 미적용·미검증.

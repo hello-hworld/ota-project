@@ -1,0 +1,2 @@
+error: the path "/home/devops/ota-project/docs/evidence/day9/run01/pg-restore-job.json" does not exist
+command_exit=1 log_exit=0

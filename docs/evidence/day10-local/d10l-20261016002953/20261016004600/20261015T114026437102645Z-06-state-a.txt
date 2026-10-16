@@ -1,0 +1,31 @@
+## ota-a monitoring pods
+grafana-c78955987-xljg8 node=worker-a1 phase=Running ready=true restarts=0 last=
+prometheus-kube-state-metrics-794f575fb-bd77w node=worker-a1 phase=Running ready=true restarts=0 last=
+prometheus-prometheus-node-exporter-4qllq node=cp-a phase=Running ready=true restarts=0 last=
+prometheus-prometheus-node-exporter-x9tv6 node=worker-a1 phase=Running ready=true restarts=0 last=
+prometheus-server-7f9cfd5964-ntvdt node=worker-a1 phase=Running ready=true true restarts=0 0 last=
+## ota-a images (실제 imageID)
+docker.io/grafana/grafana:13.2.4-distroless docker.io/grafana/grafana@sha256:ae3d3add290adbe6a88412229f5d76fd7bb82743050881698642d3d62f277e35
+quay.io/prometheus/node-exporter:v1.12.1 quay.io/prometheus/node-exporter@sha256:1b4e4438faca4dd7e001dd445d161a4a2091b0fededa84093b3a8dfeae1f1be0
+quay.io/prometheus-operator/prometheus-config-reloader:v0.94.1 quay.io/prometheus-operator/prometheus-config-reloader@sha256:06b52bd4dbe3ed6dd5905aadaf8b9987d9da4c31d37bb86deaadae68cee2d26b
+quay.io/prometheus/prometheus:v3.15.0 quay.io/prometheus/prometheus@sha256:efd719c99d83b060d9daefdcf00360461adf279f45ef5391f8d111892118753e
+registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.20.0 registry.k8s.io/kube-state-metrics/kube-state-metrics@sha256:42cfe3723a5f058171c627537fb57a3ea0f26e4380fa18555a95cb1a1b4cfc5b
+## ota-a pvc → pv node·경로·reclaim
+NAME                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+grafana             Bound    pvc-16ea6266-0ddb-4ec7-82d1-718965540f5d   1Gi        RWO            local-path     <unset>                 7h17m
+prometheus-server   Bound    pvc-763fc90c-2aca-48e7-84f9-1a7f7b1f199b   5Gi        RWO            local-path     <unset>                 7h28m
+pvc-16ea6266-0ddb-4ec7-82d1-718965540f5d node=worker-a1 path=/opt/local-path-provisioner/pvc-16ea6266-0ddb-4ec7-82d1-718965540f5d_monitoring_grafana reclaim=Delete
+pvc-763fc90c-2aca-48e7-84f9-1a7f7b1f199b node=worker-a1 path=/opt/local-path-provisioner/pvc-763fc90c-2aca-48e7-84f9-1a7f7b1f199b_monitoring_prometheus-server reclaim=Delete
+## ota-a services
+NAME                                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+grafana                               ClusterIP   10.110.199.121   <none>        80/TCP     7h17m
+prometheus-kube-state-metrics         ClusterIP   10.101.238.37    <none>        8080/TCP   7h28m
+prometheus-prometheus-node-exporter   ClusterIP   10.110.17.250    <none>        9100/TCP   7h28m
+prometheus-server                     ClusterIP   10.109.81.187    <none>        80/TCP     7h28m
+## ota-a node 상태
+NODE        READY   MEM     DISK    PID
+cp-a        True    False   False   False
+worker-a1   True    False   False   False
+## ota-a Running·Completed가 아닌 Pod
+(없음)
+command_exit=0 log_exit=0

@@ -1,0 +1,2 @@
+error: error from server (NotFound): jobs.batch "d10-d10l-20261016002953-restore" not found in namespace "staging"
+command_exit=1 log_exit=0

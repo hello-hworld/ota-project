@@ -1,0 +1,11 @@
+          database          |  role   
+----------------------------+---------
+ restore_d10_20261016004600 | ota_app
+(1 row)
+
+ sentinel_present 
+------------------
+                1
+(1 row)
+
+command_exit=0 log_exit=0

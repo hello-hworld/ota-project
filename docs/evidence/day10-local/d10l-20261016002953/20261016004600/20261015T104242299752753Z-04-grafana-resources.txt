@@ -1,0 +1,3 @@
+NAME      MEM_REQUEST   MEM_LIMIT
+grafana   256Mi         768Mi
+command_exit=0 log_exit=0

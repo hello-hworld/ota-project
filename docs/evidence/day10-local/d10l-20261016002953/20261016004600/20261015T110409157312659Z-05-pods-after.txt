@@ -1,0 +1,4 @@
+NAME                        READY   STATUS    RESTARTS   AGE   IP              NODE        NOMINATED NODE   READINESS GATES
+ota-demo-86699c58ff-nj8d5   1/1     Running   0          10h   10.20.214.233   worker-b1   <none>           <none>
+ota-demo-86699c58ff-xdsrp   1/1     Running   0          10h   10.20.127.165   worker-b2   <none>           <none>
+command_exit=0 log_exit=0

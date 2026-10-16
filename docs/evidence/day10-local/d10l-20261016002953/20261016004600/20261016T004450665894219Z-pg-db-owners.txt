@@ -1,0 +1,7 @@
+   datname    |  owner  
+--------------+---------
+ ota          | ota_app
+ restore_d10_ | ota_app
+(2 rows)
+
+command_exit=0 log_exit=0

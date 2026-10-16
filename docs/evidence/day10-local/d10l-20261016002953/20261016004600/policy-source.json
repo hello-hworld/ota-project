@@ -1,0 +1,27 @@
+{
+  "source": {
+    "uid": "9f0eb9ff-d624-4afd-a562-16e4e765f5ae",
+    "replicas": 2,
+    "resources": {
+      "limits": {
+        "cpu": "250m",
+        "memory": "128Mi"
+      },
+      "requests": {
+        "cpu": "50m",
+        "memory": "64Mi"
+      }
+    },
+    "image": "192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e",
+    "surge": 1
+  },
+  "slots": 4,
+  "formula": "replicas + maxSurge + 1 spare",
+  "quota": {
+    "pods": "4",
+    "requests.cpu": "200m",
+    "requests.memory": "268435456",
+    "limits.cpu": "1000m",
+    "limits.memory": "536870912"
+  }
+}

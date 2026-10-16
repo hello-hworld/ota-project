@@ -1,0 +1,27 @@
+LINT prometheus-a.yaml
+==> Linting /home/devops/ota-project/helm/monitoring/chart/prometheus-29.37.0.tgz
+
+1 chart(s) linted, 0 chart(s) failed
+LINT prometheus-b.yaml
+==> Linting /home/devops/ota-project/helm/monitoring/chart/prometheus-29.37.0.tgz
+
+1 chart(s) linted, 0 chart(s) failed
+LINT grafana.yaml
+==> Linting /home/devops/ota-project/helm/monitoring/chart/grafana-13.6.0.tgz
+
+1 chart(s) linted, 0 chart(s) failed
+ota-a retention=48h/3GiB 111264	/data
+BLOCK ULID                  MIN TIME       MAX TIME       DURATION      NUM SAMPLES  NUM CHUNKS   NUM SERIES   SIZE
+01M4Z6HJ2CZE197WBCEJ2HC7JF  1792037616627  1792044000000  1h46m23.373s  3044477      15799        14986        7252771
+01M4ZCMFKDGRS00S5PWWC8X2P5  1792044001638  1792051200000  1h59m58.362s  3451188      29051        14382        8114989
+01M4ZKG6VCB3V2K2XKP7R2B4YY  1792051201638  1792058400000  1h59m58.362s  3459254      29560        14895        8247407
+
+ota-b retention=48h/3GiB 115912	/data
+BLOCK ULID                  MIN TIME       MAX TIME       DURATION      NUM SAMPLES  NUM CHUNKS   NUM SERIES   SIZE
+01M4Z6SQQ6S52F03ZD2YWM3ZDN  1792037881267  1792044000000  1h41m58.733s  3231009      16736        15880        7204233
+01M4ZCMG8QBAKPCMGP07468NP0  1792044000019  1792051200000  1h59m59.981s  3803040      31989        15846        8477841
+01M4ZKG7MH6J3MM12H572AMAT5  1792051200019  1792058400000  1h59m59.981s  3806250      32077        15933        8497595
+
+Saved /home/devops/ota-project/docs/evidence/day9/run01/day8-followup-1792065601361627378.json
+RESULT=PASS (lint/current storage recorded; 48h retention deletion NOT proven)
+command_exit=0 log_exit=0

@@ -1,0 +1,80 @@
+{
+  "apiVersion": "batch/v1",
+  "kind": "Job",
+  "metadata": {
+    "name": "d10-d10l-20261016002953-write",
+    "labels": {
+      "app.kubernetes.io/managed-by": "day10-infra"
+    },
+    "namespace": "staging"
+  },
+  "spec": {
+    "backoffLimit": 0,
+    "activeDeadlineSeconds": 120,
+    "ttlSecondsAfterFinished": 3600,
+    "template": {
+      "metadata": {
+        "labels": {
+          "app.kubernetes.io/managed-by": "day10-infra"
+        }
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "restartPolicy": "Never",
+        "securityContext": {
+          "runAsNonRoot": true,
+          "runAsUser": 999,
+          "runAsGroup": 999,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        },
+        "containers": [
+          {
+            "name": "probe",
+            "image": "docker.io/library/postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826",
+            "resources": {
+              "requests": {
+                "cpu": "50m",
+                "memory": "64Mi"
+              },
+              "limits": {
+                "cpu": "250m",
+                "memory": "128Mi"
+              }
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              }
+            },
+            "envFrom": [
+              {
+                "secretRef": {
+                  "name": "ota-db"
+                }
+              }
+            ],
+            "command": [
+              "psql",
+              "-X",
+              "-v",
+              "ON_ERROR_STOP=1",
+              "-c",
+              "SELECT current_database() AS database, current_user AS role; CREATE SCHEMA IF NOT EXISTS infra_smoke; CREATE TABLE IF NOT EXISTS infra_smoke.checks (run_id text PRIMARY KEY); INSERT INTO infra_smoke.checks VALUES ('d10l-20261016002953') ON CONFLICT DO NOTHING;SELECT 1 / count(*)::int AS sentinel_present FROM infra_smoke.checks WHERE run_id='d10l-20261016002953';"
+            ],
+            "env": [
+              {
+                "name": "PGCONNECT_TIMEOUT",
+                "value": "10"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

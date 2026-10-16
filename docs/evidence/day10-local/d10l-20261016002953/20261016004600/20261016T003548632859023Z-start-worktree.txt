@@ -1,0 +1,5 @@
+?? docs/evidence/day10-local/
+?? docs/evidence/day9/run01/20261016T003548625823241Z-start-head.txt
+?? docs/evidence/day9/run01/20261016T003548632859023Z-start-worktree.txt
+?? scripts/day10-local/
+command_exit=0 log_exit=0

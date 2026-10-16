@@ -1,0 +1,6 @@
+==> Linting /home/devops/ota-project/helm/monitoring/chart/prometheus-29.37.0.tgz
+
+1 chart(s) linted, 0 chart(s) failed
+DAY8 option (a) and original four jobs preserved; one Host job added; no new nodes/proxy or Secret access
+RESULT=PASS
+command_exit=0 log_exit=0

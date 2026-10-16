@@ -1,0 +1,6 @@
+namespace/ota-data-staging unchanged
+serviceaccount/postgres created
+service/postgres-headless created
+service/postgres created
+statefulset.apps/postgres created
+command_exit=0 log_exit=0

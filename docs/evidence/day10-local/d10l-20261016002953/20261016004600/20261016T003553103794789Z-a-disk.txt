@@ -1,0 +1,4 @@
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        58G   18G   40G  31% /
+/dev/vda1        58G   18G   40G  31% /
+command_exit=0 log_exit=0

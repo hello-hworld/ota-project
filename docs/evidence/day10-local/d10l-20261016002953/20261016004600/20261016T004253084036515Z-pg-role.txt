@@ -1,0 +1,6 @@
+ rolname | rolsuper | rolcreatedb | rolcreaterole 
+---------+----------+-------------+---------------
+ ota_app | f        | f           | f
+(1 row)
+
+command_exit=0 log_exit=0

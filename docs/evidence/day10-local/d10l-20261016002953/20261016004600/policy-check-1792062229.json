@@ -1,0 +1,14 @@
+{
+  "defaultedResources": {
+    "limits": {
+      "cpu": "250m",
+      "memory": "128Mi"
+    },
+    "requests": {
+      "cpu": "50m",
+      "memory": "64Mi"
+    }
+  },
+  "quotaRejected": "Error from server (Forbidden): error when creating \"STDIN\": pods \"day9-admission-probe\" is forbidden: exceeded quota: ota-demo-budget, requested: limits.cpu=2,requests.cpu=1200m, used: limits.cpu=500m,requests.cpu=100m, limited: limits.cpu=1,requests.cpu=200m",
+  "probe": "server dry-run only; no Pod created"
+}

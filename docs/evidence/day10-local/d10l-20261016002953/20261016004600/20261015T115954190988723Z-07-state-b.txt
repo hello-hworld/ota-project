@@ -1,0 +1,28 @@
+## ota-b monitoring pods
+prometheus-kube-state-metrics-5c7fd645ff-bfq47 node=worker-b2 phase=Running ready=true restarts=0 last=
+prometheus-prometheus-node-exporter-4k2zf node=cp-b phase=Running ready=true restarts=0 last=
+prometheus-prometheus-node-exporter-fz9xm node=worker-b2 phase=Running ready=true restarts=0 last=
+prometheus-prometheus-node-exporter-wnh9b node=worker-b1 phase=Running ready=true restarts=0 last=
+prometheus-server-6dd9685cc-jl8mt node=worker-b2 phase=Running ready=true true restarts=0 0 last=
+## ota-b images (실제 imageID)
+quay.io/prometheus/node-exporter:v1.12.1 quay.io/prometheus/node-exporter@sha256:1b4e4438faca4dd7e001dd445d161a4a2091b0fededa84093b3a8dfeae1f1be0
+quay.io/prometheus-operator/prometheus-config-reloader:v0.94.1 quay.io/prometheus-operator/prometheus-config-reloader@sha256:06b52bd4dbe3ed6dd5905aadaf8b9987d9da4c31d37bb86deaadae68cee2d26b
+quay.io/prometheus/prometheus:v3.15.0 quay.io/prometheus/prometheus@sha256:efd719c99d83b060d9daefdcf00360461adf279f45ef5391f8d111892118753e
+registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.20.0 registry.k8s.io/kube-state-metrics/kube-state-metrics@sha256:42cfe3723a5f058171c627537fb57a3ea0f26e4380fa18555a95cb1a1b4cfc5b
+## ota-b pvc → pv node·경로·reclaim
+NAME                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+prometheus-server   Bound    pvc-6d596ab1-d3ac-4959-8a7b-35cb0711da72   5Gi        RWO            local-path     <unset>                 7h43m
+pvc-6d596ab1-d3ac-4959-8a7b-35cb0711da72 node=worker-b2 path=/opt/local-path-provisioner/pvc-6d596ab1-d3ac-4959-8a7b-35cb0711da72_monitoring_prometheus-server reclaim=Delete
+## ota-b services
+NAME                                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+prometheus-kube-state-metrics         ClusterIP   10.104.106.184   <none>        8080/TCP       7h43m
+prometheus-prometheus-node-exporter   ClusterIP   10.99.138.138    <none>        9100/TCP       7h43m
+prometheus-server                     NodePort    10.101.94.210    <none>        80:30909/TCP   7h43m
+## ota-b node 상태
+NODE        READY   MEM     DISK    PID
+cp-b        True    False   False   False
+worker-b1   True    False   False   False
+worker-b2   True    False   False   False
+## ota-b Running·Completed가 아닌 Pod
+(없음)
+command_exit=0 log_exit=0

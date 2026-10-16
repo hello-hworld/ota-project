@@ -1,0 +1,2 @@
+error: error validating "/home/devops/ota-project/docs/evidence/day9/run01/postgres-staging.json": error validating data: ValidationError(Service): unknown field "selector" in io.k8s.api.core.v1.Service; if you choose to ignore these errors, turn validation off with --validate=false
+command_exit=1 log_exit=0

@@ -1,0 +1,80 @@
+# helm/monitoring/grafana.yaml — DAY8 Cluster A Grafana (Chart grafana 13.6.0 / Grafana 13.2.4, grafana-community 저장소)
+# 기준: 고정 Chart의 기본 values(docs/evidence/day8/20-grafana-defaults.yaml)와 대조해 바꾼 키만 적는다.
+# 비밀번호: values에 넣지 않는다. 설치 전에 만든 Secret monitoring/grafana-admin(admin-user, admin-password)을 참조
+# 대시보드: helm/monitoring/dashboards/*.json → ConfigMap monitoring/grafana-dashboards-ota (kubectl로 생성·갱신, STEP 4)
+
+nodeSelector:
+  workload: platform              # worker-a1
+deploymentStrategy:
+  type: Recreate                  # 기본 RollingUpdate. RWO PVC의 SQLite를 새·이전 Pod가 동시에 열지 않게 한다
+testFramework:
+  enabled: false                  # 기본 true(helm test Pod). 렌더링에 넣지 않는다
+automountServiceAccountToken: false   # 기본 true. Grafana는 Kubernetes API를 쓰지 않는다(sidecar 모두 꺼짐)
+
+resources:
+  requests: {cpu: 50m, memory: 128Mi}
+  limits:   {cpu: 300m, memory: 384Mi}  # Chart가 GOMEMLIMIT = 0.9 × limit 을 넣는다(goMemLimit 기본)
+
+persistence:
+  enabled: true                   # 기본 false
+  type: pvc
+  size: 1Gi                       # 기본 10Gi
+  storageClassName: local-path    # 기본값 파일에는 주석으로만 있다. 템플릿 pvc.yaml이 사용 → 렌더링으로 확인
+initChownData:
+  enabled: false                  # 기본 true(root busybox init). local-path가 볼륨 디렉터리를 0777로 만든다(local-path-config setup)
+
+admin:
+  existingSecret: grafana-admin
+  userKey: admin-user
+  passwordKey: admin-password
+
+service:
+  type: ClusterIP                 # 기본값과 같음(명시). 접속은 ota-host 127.0.0.1:13000 port-forward + 기존 SSH 터널
+  port: 80
+
+grafana.ini:
+  analytics:
+    check_for_updates: false      # 기본 true. 측정 구간에 외부 호출을 만들지 않는다
+    check_for_plugin_updates: false
+    reporting_enabled: false
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: prometheus-a
+        uid: prometheus-a
+        type: prometheus
+        access: proxy             # Grafana 서버가 조회한다(브라우저 아님)
+        url: http://prometheus-server.monitoring.svc.cluster.local
+        isDefault: true
+        editable: false
+        jsonData:
+          timeInterval: 30s
+          httpMethod: POST
+      - name: prometheus-b
+        uid: prometheus-b
+        type: prometheus
+        access: proxy             # A의 Grafana Pod → (natOutgoing, worker-a1 IP) → worker-b2:30909
+        url: http://192.168.56.32:30909
+        editable: false
+        jsonData:
+          timeInterval: 30s
+          httpMethod: POST
+
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+      - name: ota
+        orgId: 1
+        folder: OTA
+        type: file
+        disableDeletion: true
+        allowUiUpdates: false     # 원본은 JSON 파일. UI에서 고쳐 저장하지 않는다
+        updateIntervalSeconds: 30
+        options:
+          path: /var/lib/grafana/dashboards/ota
+
+dashboardsConfigMaps:
+  ota: grafana-dashboards-ota     # subPath가 아닌 디렉터리 마운트 → ConfigMap을 다시 apply하면 Pod 재시작 없이 반영

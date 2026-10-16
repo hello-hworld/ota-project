@@ -1,0 +1,112 @@
+== prom-check cluster=a via=kubectl --context ota-a → monitoring/http:prometheus-server:80 at=2026-10-16T00:47:04Z 기대 Node=['cp-a', 'worker-a1']
+-- ready: Prometheus Server is Ready.
+-- version: 3.15.0 (go go1.27.1)
+-- retention: time=2d size=3GiB lifecycle=true
+-- targets (활성 12개)
+   kubernetes-nodes                 up      worker-a1                                             age=28s dur=0.042s 
+   kubernetes-nodes                 up      cp-a                                                  age=11s dur=0.027s 
+   kubernetes-nodes-cadvisor        up      worker-a1                                             age=9s dur=0.076s 
+   kubernetes-nodes-cadvisor        up      cp-a                                                  age=8s dur=0.029s 
+   kubernetes-service-endpoints     up      cp-a         prometheus-prometheus-node-exporter      age=21s dur=0.243s 
+   kubernetes-service-endpoints     up      worker-a1    prometheus-prometheus-node-exporter      age=19s dur=0.205s 
+   kubernetes-service-endpoints     up      cp-a         kube-dns                                 age=8s dur=0.006s 
+   kubernetes-service-endpoints     up      cp-a         kube-dns                                 age=0s dur=0.002s 
+   kubernetes-service-endpoints     up      worker-a1    prometheus-kube-state-metrics            age=27s dur=0.003s 
+   kubernetes-service-endpoints     up      worker-a1    prometheus-kube-state-metrics            age=3s dur=0.004s 
+   ota-host                         up      ota-host                                              age=16s dur=0.033s 
+   prometheus                       up      localhost:9090                                          age=27s dur=0.007s 
+   (kube-state-metrics Target: ['10.10.238.26:8080', '10.10.238.26:8081'] — :8081은 KSM 자체 지표)
+   (service-endpoints의 그 밖의 Service: ['kube-dns'])
+-- 실제 샘플
+   node-exporter Node=['cp-a', 'worker-a1'] 시계열=[1, 1]
+   kubelet       Node=['cp-a', 'worker-a1'] 시계열=[1, 1]
+   cAdvisor      Node=['cp-a', 'worker-a1'] 시계열=[17, 10]
+   node-exporter 최신       샘플 2개, 가장 오래된 샘플 0s 전
+   cAdvisor 최신            샘플 2개, 가장 오래된 샘플 0s 전
+   kube-state-metrics 최신  샘플 2개, 가장 오래된 샘플 0s 전
+   kube-state-metrics kube_node_info Node: 2
+   kube-state-metrics kube_pod_info Pod: 27
+   kube-state-metrics memory requests 시계열: 20
+   kube-state-metrics Pod Ready 시계열: 27
+   kube-state-metrics Node 조건 시계열: 6
+-- 기록만 (판정 아님)
+   Control Plane 별도 job: 수집 안 함 (오늘 범위 밖)
+   TSDB head 시계열: 16714
+   TSDB 블록 bytes: 75940740
+   WAL bytes: 90914219
+   Prometheus RSS bytes: 167284736
+   수집 샘플/scrape 합: 16319
+   scrape 시간 최대 kubernetes-nodes: 0.042s
+   scrape 시간 최대 kubernetes-nodes-cadvisor: 0.076s
+   scrape 시간 최대 kubernetes-service-endpoints: 0.243s
+   scrape 시간 최대 prometheus: 0.007s
+   scrape 시간 최대 ota-host: 0.033s
+RESULT=PASS
+저장 → /home/devops/ota-project/docs/evidence/day9/run01/final-preflight/01-prom-a.txt
+== prom-check cluster=b via=kubectl --context ota-b → monitoring/http:prometheus-server:80 at=2026-10-16T00:47:05Z 기대 Node=['cp-b', 'worker-b1', 'worker-b2']
+-- ready: Prometheus Server is Ready.
+-- version: 3.15.0 (go go1.27.1)
+-- retention: time=2d size=3GiB lifecycle=true
+-- targets (활성 14개)
+   kubernetes-nodes                 up      cp-b                                                  age=9s dur=0.025s 
+   kubernetes-nodes                 up      worker-b1                                             age=19s dur=0.034s 
+   kubernetes-nodes                 up      worker-b2                                             age=26s dur=0.017s 
+   kubernetes-nodes-cadvisor        up      cp-b                                                  age=14s dur=0.024s 
+   kubernetes-nodes-cadvisor        up      worker-b1                                             age=18s dur=0.052s 
+   kubernetes-nodes-cadvisor        up      worker-b2                                             age=11s dur=0.024s 
+   kubernetes-service-endpoints     up      worker-b1    prometheus-prometheus-node-exporter      age=1s dur=0.072s 
+   kubernetes-service-endpoints     up      cp-b         kube-dns                                 age=19s dur=0.006s 
+   kubernetes-service-endpoints     up      worker-b1    kube-dns                                 age=6s dur=0.007s 
+   kubernetes-service-endpoints     up      worker-b2    prometheus-kube-state-metrics            age=19s dur=0.008s 
+   kubernetes-service-endpoints     up      worker-b2    prometheus-kube-state-metrics            age=15s dur=0.005s 
+   kubernetes-service-endpoints     up      cp-b         prometheus-prometheus-node-exporter      age=29s dur=0.277s 
+   kubernetes-service-endpoints     up      worker-b2    prometheus-prometheus-node-exporter      age=10s dur=0.065s 
+   prometheus                       up      localhost:9090                                          age=5s dur=0.004s 
+   (kube-state-metrics Target: ['10.20.127.171:8080', '10.20.127.171:8081'] — :8081은 KSM 자체 지표)
+   (service-endpoints의 그 밖의 Service: ['kube-dns'])
+-- 실제 샘플
+   node-exporter Node=['cp-b', 'worker-b1', 'worker-b2'] 시계열=[1, 1, 1]
+   kubelet       Node=['cp-b', 'worker-b1', 'worker-b2'] 시계열=[1, 1, 1]
+   cAdvisor      Node=['cp-b', 'worker-b1', 'worker-b2'] 시계열=[6, 8, 8]
+   node-exporter 최신       샘플 3개, 가장 오래된 샘플 0s 전
+   cAdvisor 최신            샘플 3개, 가장 오래된 샘플 0s 전
+   kube-state-metrics 최신  샘플 3개, 가장 오래된 샘플 0s 전
+   kube-state-metrics kube_node_info Node: 3
+   kube-state-metrics kube_pod_info Pod: 21
+   kube-state-metrics memory requests 시계열: 11
+   kube-state-metrics Pod Ready 시계열: 21
+   kube-state-metrics Node 조건 시계열: 9
+-- 기록만 (판정 아님)
+   Control Plane 별도 job: 수집 안 함 (오늘 범위 밖)
+   TSDB head 시계열: 15931
+   TSDB 블록 bytes: 75001182
+   WAL bytes: 89161962
+   Prometheus RSS bytes: 159866880
+   수집 샘플/scrape 합: 15861
+   scrape 시간 최대 kubernetes-service-endpoints: 0.277s
+   scrape 시간 최대 kubernetes-nodes: 0.034s
+   scrape 시간 최대 kubernetes-nodes-cadvisor: 0.052s
+   scrape 시간 최대 prometheus: 0.004s
+RESULT=PASS
+저장 → /home/devops/ota-project/docs/evidence/day9/run01/final-preflight/01-prom-b.txt
+== demo-check production expect=C digest=sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e version=50615d6ab9d2-day6-ci-3 at=2026-10-16T00:47:05Z
+-- application ota-demo-production: sync=Synced health=Healthy compared-rev=3cf9da0feaeeb9531b06ad9649ddf4ed394762de op=Succeeded synced-rev=fb382f3794de5be73c7155cf6a89baa1325d8150
+-- deployment: replicas=2 ready=2 updated=2 available=2 readinessPath=/healthz conditions={'Progressing': 'True/NewReplicaSetAvailable', 'Available': 'True/MinimumReplicasAvailable'}
+   image=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+-- pods (NAME NODE PHASE READY RESTARTS IP / image / imageID)
+   ota-demo-86699c58ff-nj8d5 worker-b1 Running ready=True restarts=0 10.20.214.233
+     image=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+     imageID=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+   ota-demo-86699c58ff-xdsrp worker-b2 Running ready=True restarts=0 10.20.127.165
+     image=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+     imageID=192.168.56.21:32000/day6/demo@sha256:6068b90a242e7d40415786a9b7498f81a8b3f9324f4944d163a699df231e7b8e
+-- http (노드 192.168.56.31에서 curl, Service 10.105.243.168:8080 10회)
+   pod 10.20.214.233: 200 {"status": "ok", "version": "50615d6ab9d2-day6-ci-3"}
+   pod 10.20.127.165: 200 {"status": "ok", "version": "50615d6ab9d2-day6-ci-3"}
+   service 10.105.243.168: 10/10 정상
+RESULT=PASS
+저장 → /home/devops/ota-project/docs/evidence/day9/run01/final-preflight/01-production.txt
+ota-a Node health / DAY8 option (a) / no nodes/proxy: PASS
+ota-b Node health / DAY8 option (a) / no nodes/proxy: PASS
+RESULT=PASS
+command_exit=0 log_exit=0
